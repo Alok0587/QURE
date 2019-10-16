@@ -1,4 +1,4 @@
-package com.project.qure;
+package com.ibm.qure;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
