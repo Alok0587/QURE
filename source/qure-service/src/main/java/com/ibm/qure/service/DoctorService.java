@@ -13,6 +13,7 @@ import com.ibm.qure.repository.DoctorRepository;
 
 @Service
 public class DoctorService {
+	
 	@Autowired
 	DoctorRepository docRepo;
 
