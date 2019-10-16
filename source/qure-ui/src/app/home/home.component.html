@@ -1,0 +1,124 @@
+
+<span style="font-size:30px;cursor:pointer;" (click)="openNav()">&#9776;</span>
+
+ <style>
+   
+    
+    .sidenav {
+      height: 80%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 15%;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    </style>
+    
+    
+
+
+ <div  class="carousel slide" data-ride="carousel"style="width500px%; height: 200px; width:70%; margin-left:30%">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" >
+    <div class="item active">
+      <img src="assets/image/doctor1.jpg" alt="Los Angeles" >
+      <div class="carousel-caption d-none d-md-block" style="color:black; background-color: white;">
+          <h2>Quick Chat With Doctors</h2>
+          <p>get instant qure</p>
+        </div>
+    </div>
+
+    <div class="item">
+      <img src="assets/image/doctor2.jpg" alt="Chicago">
+      <div class="carousel-caption d-none d-md-block" style="color:black; background-color: white;">
+          <h2>Quick Chat With Doctors</h2>
+          <p>get instant Qure</p>
+        </div>
+    </div>
+
+    <div class="item">
+      <img src="assets/image/pharmacy.jpg" alt="New York">
+      <div class="carousel-caption d-none d-md-block" style="color:black; background-color: white;">
+          <h2>Order medicine</h2>
+          <p>get instant qure</p>
+        </div>
+    </div>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+     <div class="nav-item" routerLinkActive="active">
+        <div class="dropdown" style="margin-left:40px">
+            <button style="color:black; background-color: whitesmoke; width: 100px;  font-size: 15px; height:50px" class="btn btn-primary " type="button" data-toggle="dropdown">Login
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" routerLink="loginPatient">As Patient</a></li>
+              <li><a class="nav-link" routerLink="loginDoctor">As Doctor</a></li>
+              <li><a href="#">As Pharmasist</a></li>
+            </ul>
+          </div>
+     </div>
+      <a href="#"></a>
+      <a href="#"><i class="fa fa-circle-o-notch fa-spin" style="font-size:24px; color: white;" ></i> Search Doctors</a>
+      <a href="#">Contact</a>
+      <hr />
+    </div>
+
+
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <hr />
+</div>
+<div class="jumbotron" style="margin-top: 350px;">
+    <h2>Qure for Doctors</h2>      
+    <p>write some description</p>
+  </div><div class="jumbotron">
+      <h2>Qure for pateints</h2>      
+      <p>Write some description</p>
+    </div>
+<!--cards-->
+  

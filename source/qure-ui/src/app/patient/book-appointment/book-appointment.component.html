@@ -1,0 +1,25 @@
+<div class="container">
+        <div class="row">
+            <section class="col-sm-12 main-section ">
+                <div class="jumbotron">
+                    <h1 class="display-4">Patients page!</h1>
+                    <a class="btn btn-primary btn-lg" routerLink="bookAppointment" role="button">Book your appoinment now</a>
+                </div>
+            </section>
+        </div>
+    <div><h4>Appointments</h4></div>
+        <div class="row">
+                
+            <div class="card col-sm-3" *ngFor="let booking of bookingList">
+                <div class="card-body">
+                        <p class="card-text">Appointment ID: {{booking.patientId}}</p>
+                    <h5 class="card-title">{{booking.name}}</h5>
+                    <p class="card-text">Age: {{booking.age}}</p>
+                    <p class="card-text">Slot: {{booking.slot}}</p>
+                    
+                </div>
+            </div>
+    
+        </div>
+    
+    </div>
