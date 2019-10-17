@@ -1,11 +1,8 @@
 package com.ibm.qure.model;
 
-
-
-
 public class Address {
 
-	private int addressId;
+	private String buildingName;
 
 	private String street;
 
@@ -19,19 +16,21 @@ public class Address {
 		// default constructor
 	}
 
-	public Address(String street, String city, String state, String pincode) {
+	public Address(String buildingName, String street, String city, String state, String pincode) {
+		super();
+		this.buildingName = buildingName;
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
 	}
 
-	public int getAddressId() {
-		return addressId;
+	public String getBuildingName() {
+		return buildingName;
 	}
 
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
+	public void setBuildingName(String buildingName) {
+		this.buildingName = buildingName;
 	}
 
 	public String getStreet() {
