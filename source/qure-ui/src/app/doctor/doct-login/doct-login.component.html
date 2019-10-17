@@ -30,7 +30,7 @@
         top: -1.6em;
         padding: 10px;
         font-family: sans-serif;
-        font-size: .8em;
+        font-size: 15px;
         letter-spacing: 1px;
         color: rgb(120, 120, 120);
         transition: ease .3s;
@@ -89,7 +89,7 @@
     }
 </style>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmitButton()">
-    <h3>Doctor's Login</h3>
+    <h2>Doctor's Login</h2>
     <label>
         <p class="label-txt">ENTER YOUR EMAIL</p>
         <input type="text" formControlName="email" class="input">
@@ -107,6 +107,6 @@
     <input type="hidden" value="{typeUser}">
     <button type="submit" >submit</button>
     <br>
-    <h3>New User?</h3> &nbsp; <a class="nav-link" routerLink="registerDoctor">Register</a>
+    <h3>New User?</h3> &nbsp; <a class="nav-link" routerLink="registerDoctor"><h3>Register Now</h3></a>
 </form>
    
