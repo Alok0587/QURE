@@ -1,0 +1,58 @@
+<style>
+    .container-fluid {
+        height: 400px;
+       
+        background-color:#f6af44;
+        margin-top: 20%;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom:10%;
+    }
+    .row 
+    {
+        width : 1200px;
+    }
+
+    img {
+        height: 420px;
+        width: 500px;
+        border: 4;
+       
+        border-style: solid;
+        transition: 3s all ease;
+
+    }
+
+    img:hover {
+
+        transform: scale(1.2);
+    }
+    .card{
+        border-color: black;
+        /* width:600px; */
+        background-color:black; 
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="overflow: hidden; border-width: 15px;">
+                <a class="nav-link" routerLink="blogs/blog1"><img src="assets/image/exercise.jpg" alt="common exercise errors"
+                        title="COMMON EXERCISE ERRORS"></a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div  class="card"style="overflow: hidden; border-width: 15px;">
+                <a class="nav-link" routerLink="blogs/blog2"><img src="assets/image/How-to-keep-liver-healthy.jpg" alt="HOW TO KEEP LIVER HEALTHY"
+                        title="HOW TO KEEP LIVER HEALTHY" /></a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="overflow: hidden; border-width: 15px;">
+                <a class="nav-link" routerLink="blogs/blog3"><img src="assets/image/Depression-Symptoms-and-Signs.jpg"
+                        alt="SIGNS AND SYMPTOMS OF DEPRESSIONS" title="SIGNS AND SYMPTOMS OF DEPRESSIONS"></a>
+            </div>
+        </div>
+    </div>
+</div>

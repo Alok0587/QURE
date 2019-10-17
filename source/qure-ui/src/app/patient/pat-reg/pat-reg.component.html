@@ -1,6 +1,8 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!------ Include the above in your HEAD tag ---------->
 <style>
 
@@ -29,7 +31,8 @@ label {
   top: -1.6em;
   padding: 10px;
   font-family: sans-serif;
-  font-size: 15px;
+  font-weight:600;
+  font-size: 1.5em;
   letter-spacing: 1px;
   color: rgb(120,120,120);
   transition: ease .3s;
@@ -40,6 +43,8 @@ label {
   background: transparent;
   border: none;
   outline: none;
+  font-size: 1.5em;
+  font-weight: 500;
 }
 
 .line-box {
@@ -91,49 +96,49 @@ button:hover {
 <div class="container">
     
 <form>
-    <h2>Patient's registration</h2>
+    <h1>Patient's registration</h1>
         <label>
-                <p class="label-txt">Enter your name</p>
+                <p class="label-txt"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Enter your name</p>
                 <input type="text" class="input">
                 <div class="line-box">
                   <div class="line"></div>
                 </div>
               </label>
               <label>
-                    <p class="label-txt">Enter your email</p>
+                    <p class="label-txt"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Enter your email</p>
                     <input type="text" class="input">
                     <div class="line-box">
                       <div class="line"></div>
                     </div>
                   </label>
                   <label>
-                        <p class="label-txt">Enter password:</p>
-                        <input type="text" class="input">
+                        <p class="label-txt"><i class="fa fa-key" aria-hidden="true"></i>&nbsp;Enter password:</p>
+                        <input type="password" class="input">
                         <div class="line-box">
                           <div class="line"></div>
                         </div>
                       </label>
   <label>
-    <p class="label-txt">Confirm Password:</p>
+    <p class="label-txt"><i class="fa fa-key" aria-hidden="true"></i>&nbsp;Confirm Password:</p>
+    <input type="password" class="input">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Enter Age</p>
     <input type="text" class="input">
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <label>
-    <p class="label-txt">Enter Age</p>
-    <input type="text" class="input">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <label>
-        <p class="label-txt">enter Blood-group</p>
+        <p class="label-txt"><i class="fa fa-tint" aria-hidden="true"></i>&nbsp;enter Blood-group</p>
         <input type="text" class="input">
         <div class="line-box">
           <div class="line"></div>
         </div>
       </label>
-  <button type="submit">submit</button>
+  <button type="submit"><h3>submit</h3></button>
   </form>
   </div>
