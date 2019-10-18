@@ -1,85 +1,91 @@
 package com.ibm.qure.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 import java.util.Date;
 
-
 @Document
-@XmlRootElement
 public class Appointment {
-	
+
 	@Id
 	private String id;
-    private int appointmentStartTime;
-    private int appointmentEndTime;
-    private String nameOfDoctor;
-    private int price;
-    private Date appointDate;
-    
-    public Appointment()
-    {
-    	
-    }
-    
-    public Appointment(String id, int appointmentStartTime,int appointmentEndTime,String nameOfDoctor,int price,Date appointDate)
-    
-    {
-    	this.id = id;
-    	this.appointmentStartTime = appointmentStartTime;
-    	this.appointmentEndTime = appointmentEndTime;
-    	this.nameOfDoctor = nameOfDoctor;
-    	this.price = price;
-    	this.setAppointDate(appointDate);
-    	
-    
-    }
-    
-    
+	private int time;
+	private int price;
+	private Date appointmentDate;
+	private String patientId;
+	private String doctorId;
+	private int appointmetStatus=0;
+
+	public Appointment() {
+
+	}
+
+	public Appointment(String id, int time, int price, Date appointmentDate, String patientId, String doctorId) {
+		super();
+		this.id = id;
+		this.time = time;
+		this.price = price;
+		this.appointmentDate = appointmentDate;
+		this.patientId = patientId;
+		this.doctorId = doctorId;
+	}
+
 	public String getId() {
 		return id;
 	}
-	public void setId(String id2) {
-		this.id = id2;
-	}
-	
-	public int getAppointmentStartTime() {
-		return appointmentStartTime;
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public void setAppointmentStartTime(int appointmentStartTime) {
-		this.appointmentStartTime = appointmentStartTime;
+	public int getTime() {
+		return time;
 	}
 
-	public int getAppointmentEndTime() {
-		return appointmentEndTime;
+	public void setTime(int time) {
+		this.time = time;
 	}
 
-	public void setAppointmentEndTime(int appointmentEndTime) {
-		this.appointmentEndTime = appointmentEndTime;
-	}
-
-	public String getNameOfDoctor() {
-		return nameOfDoctor;
-	}
-	public void setNameOfDoctor(String nameOfDoctor) {
-		this.nameOfDoctor = nameOfDoctor;
-	}
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
 
-	public Date getAppointDate() {
-		return appointDate;
+	public Date getAppointmentDate() {
+		return appointmentDate;
 	}
 
-	public void setAppointDate(Date appointDate) {
-		this.appointDate = appointDate;
+	public void setAppointmentDate(Date appointmentDate) {
+		this.appointmentDate = appointmentDate;
 	}
+
+	public String getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
+	}
+
+	public String getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(String doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public int getAppointmetStatus() {
+		return appointmetStatus;
+	}
+
+	public void setAppointmetStatus(int appointmetStatus) {
+		this.appointmetStatus = appointmetStatus;
+	}
+	
+
 }

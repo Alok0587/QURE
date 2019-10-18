@@ -1,13 +1,11 @@
 package com.ibm.qure.model;
 
+import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlRootElement;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Document
-@XmlRootElement
 public class Admin {
 
 	@Id
@@ -15,16 +13,20 @@ public class Admin {
 	String adminName;
 	String adminMob;
 	String adminEmail;
-	
-	List<Doctor>doctorList;
 
-	public Admin(int adminId, String adminName, String adminMob, String adminEmail, List<Doctor> doctorList) {
+	List<Doctor> doctorList;
+	
+	public Admin() {
+		
+	}
+
+	public Admin(int adminId, String adminName, String adminMob, String adminEmail) {
 		super();
 		this.adminId = adminId;
 		this.adminName = adminName;
 		this.adminMob = adminMob;
 		this.adminEmail = adminEmail;
-		this.doctorList = doctorList;
+		this.doctorList = new ArrayList<Doctor>();
 	}
 
 	public int getAdminId() {
@@ -66,8 +68,5 @@ public class Admin {
 	public void setDoctorList(List<Doctor> doctorList) {
 		this.doctorList = doctorList;
 	}
-	
-	
-	
-}
 
+}
