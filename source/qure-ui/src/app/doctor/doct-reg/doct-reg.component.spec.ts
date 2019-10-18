@@ -8,9 +8,9 @@ describe('DoctRegComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DoctRegComponent ]
+      declarations: [DoctRegComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

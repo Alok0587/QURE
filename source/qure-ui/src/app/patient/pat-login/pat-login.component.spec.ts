@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PatLoginComponent } from './pat-login.component';
+import { patLoginComponent } from './pat-login.component';
 
 describe('PatLoginComponent', () => {
-  let component: PatLoginComponent;
-  let fixture: ComponentFixture<PatLoginComponent>;
+  let component: patLoginComponent;
+  let fixture: ComponentFixture<patLoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PatLoginComponent ]
+      declarations: [patLoginComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PatLoginComponent);
+    fixture = TestBed.createComponent(patLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

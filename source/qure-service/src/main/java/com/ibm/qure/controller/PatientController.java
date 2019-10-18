@@ -2,7 +2,6 @@ package com.ibm.qure.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,8 +28,6 @@ import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Patient;
 import com.ibm.qure.model.ResponseMessage;
 import com.ibm.qure.service.PatientService;
-
-
 
 @RestController
 @RequestMapping("/patients")
@@ -65,9 +62,8 @@ public class PatientController {
 		// Exception Handling moved to @ExceptionHandler
 //		try {
 		patientService.create(patient);
-	
 
-		resMsg = new ResponseMessage("Success", new String[] {"Patient created successfully"});
+		resMsg = new ResponseMessage("Success", new String[] { "Patient created successfully" });
 
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
@@ -81,18 +77,31 @@ public class PatientController {
 	// Update Patient PUT /Patients/{id}
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
-	public String updatePatient(@PathVariable String id, @RequestBody Patient updatedPatient) {
+	public ResponseEntity<ResponseMessage> updatePatient(@PathVariable String id, @RequestBody Patient updatedPatient)
+			throws URISyntaxException, ApplicationException {
 		updatedPatient.setPatientId(id);
 		patientService.update(updatedPatient);
-		return "Patient updated successfully";
+		ResponseMessage resMsg;
+		resMsg = new ResponseMessage("Success", new String[] { "Patient updated successfully" });
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(updatedPatient.getPatientId()).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
 	}
 
 	// Delete Patient DELETE /Patients/{id}
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
-	public String deletePatient(@PathVariable String id) {
+	public ResponseEntity<ResponseMessage> deletePatient(@PathVariable String id)
+			throws URISyntaxException, ApplicationException {
 		patientService.delete(id);
-		return "Patient deleted successfully";
+		ResponseMessage resMsg;
+		resMsg = new ResponseMessage("Success", new String[] { "Patient deleted successfully" });
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -102,7 +111,7 @@ public class PatientController {
 		int size = errors.size();
 		String[] errorMsgs = new String[size];
 
-		for(int i = 0; i < size; i++ ) {
+		for (int i = 0; i < size; i++) {
 			errorMsgs[i] = errors.get(i).getDefaultMessage();
 		}
 

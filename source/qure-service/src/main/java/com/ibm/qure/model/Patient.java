@@ -18,11 +18,11 @@ public class Patient extends Person {
 		// default constructor
 	}
 
-	public Patient(String name, String email, Date dateOfBirth, String gender, String phone,
-			int userLevel, Address address) {
-		super(name, email, dateOfBirth, gender, phone, address);
+	public Patient(String name, String email, int age, String gender, String phone, int userLevel, Address address) {
+		super(name, email, age, gender, phone, address);
 
-		appointmentList = new ArrayList<Appointment>();
+		this.appointmentList = new ArrayList<Appointment>();
+
 	}
 
 	public String getPatientId() {

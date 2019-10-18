@@ -88,18 +88,35 @@ public class AppointmentController {
 	// Update Appointment PUT /appointments/{id}
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
-	public String updateEmployee(@PathVariable String id, @RequestBody Appointment updatedAppoint) {
+	public ResponseEntity<ResponseMessage> updateEmployee(@PathVariable String id, @RequestBody Appointment updatedAppoint) {
 		updatedAppoint.setId(id);
 		appointService.update(updatedAppoint);
-		return "Appointment updated successfully";
+		
+		ResponseMessage resMsg;
+		resMsg = new ResponseMessage("Success", new String[] { "Appointment updated successfully" });
+
+		// Build newly created Employee resource URI - Employee ID is always 0 here.
+		// Need to get the new Employee ID.
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(updatedAppoint.getId()).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
 	}
 
 	// Delete Appointment DELETE /appointments/{id}
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
-	public String deleteAppointment(@PathVariable String id) {
+	public ResponseEntity<ResponseMessage> deleteAppointment(@PathVariable String id) {
 		appointService.delete(id);
-		return "Appointment deleted successfully";
+		ResponseMessage resMsg;
+		resMsg = new ResponseMessage("Success", new String[] { "Appointment deleted successfully" });
+
+		// Build newly created Employee resource URI - Employee ID is always 0 here.
+		// Need to get the new Employee ID.
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(id).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)

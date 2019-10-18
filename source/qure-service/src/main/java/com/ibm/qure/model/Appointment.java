@@ -12,7 +12,7 @@ public class Appointment {
 	private String id;
 	private int time;
 	private int price;
-	private Date appointmentDate;
+	private String appointmentDate;
 	private String patientId;
 	private String doctorId;
 	private int appointmetStatus=0;
@@ -21,7 +21,7 @@ public class Appointment {
 
 	}
 
-	public Appointment(String id, int time, int price, Date appointmentDate, String patientId, String doctorId) {
+	public Appointment(String id, int time, int price, String appointmentDate, String patientId, String doctorId) {
 		super();
 		this.id = id;
 		this.time = time;
@@ -55,11 +55,11 @@ public class Appointment {
 		this.price = price;
 	}
 
-	public Date getAppointmentDate() {
+	public String getAppointmentDate() {
 		return appointmentDate;
 	}
 
-	public void setAppointmentDate(Date appointmentDate) {
+	public void setAppointmentDate(String appointmentDate) {
 		this.appointmentDate = appointmentDate;
 	}
 

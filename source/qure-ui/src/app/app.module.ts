@@ -13,15 +13,16 @@ import { patLoginComponent } from './patient/pat-login/pat-login.component';
 import { docLoginComponent } from './doctor/doct-login/doct-login.component';
 import { DoctRegComponent } from './doctor/doct-reg/doct-reg.component';
 import { PatRegComponent } from './patient/pat-reg/pat-reg.component';
-import { BookAppointmentComponent } from './patient/book-appointment/book-appointment.component';
-import { BookComponent } from './patient/book-appointment/book/book.component';
+// import { BookAppointmentComponent } from './patient/book-appointment/book-appointment.component';
+// import { BookComponent } from './patient/book-appointment/book/book.component';
 import { HttpClientModule} from '@angular/common/http';
 import { BlogsComponent } from './blogs/blogs.component';
 import { Blog1Component } from './blogs/blog1/blog1.component';
 import { Blog2Component } from './blogs/blog2/blog2.component';
 import { Blog3Component } from './blogs/blog3/blog3.component';
 import { ContactComponent } from './contact/contact.component';
-import { AboutComponent } from './about/about.component';
+import { DoctAppointmentComponent } from './appointment/doct-appointment/doct-appointment.component';
+import { PatAppointmentComponent } from './appointment/pat-appointment/pat-appointment.component';
 
 
 
@@ -38,14 +39,15 @@ import { AboutComponent } from './about/about.component';
     docLoginComponent,
     DoctRegComponent,
     PatRegComponent,
-    BookAppointmentComponent,
-    BookComponent,
+    // BookAppointmentComponent,
+    // BookComponent,
     BlogsComponent,
     Blog1Component,
     Blog2Component,
     Blog3Component,
     ContactComponent,
-    AboutComponent
+    DoctAppointmentComponent,
+    PatAppointmentComponent
   ],
   imports: [
     BrowserModule,

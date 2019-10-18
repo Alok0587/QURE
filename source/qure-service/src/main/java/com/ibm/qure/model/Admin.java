@@ -13,11 +13,12 @@ public class Admin {
 	String adminName;
 	String adminMob;
 	String adminEmail;
+	int userLevel = 0;
 
 	List<Doctor> doctorList;
-	
+
 	public Admin() {
-		
+
 	}
 
 	public Admin(int adminId, String adminName, String adminMob, String adminEmail) {
@@ -27,6 +28,14 @@ public class Admin {
 		this.adminMob = adminMob;
 		this.adminEmail = adminEmail;
 		this.doctorList = new ArrayList<Doctor>();
+	}
+
+	public int getUserLevel() {
+		return userLevel;
+	}
+
+	public void setUserLevel(int userLevel) {
+		this.userLevel = userLevel;
 	}
 
 	public int getAdminId() {

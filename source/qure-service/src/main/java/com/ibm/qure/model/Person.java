@@ -1,12 +1,10 @@
 package com.ibm.qure.model;
 
-import java.util.Date;
-
 public abstract class Person {
 
 	private String name;
 	private String email;
-	private Date dateOfBirth;
+	private int age;
 	private String gender;
 	private String phone;
 	private Address address;
@@ -16,10 +14,10 @@ public abstract class Person {
 		// default constructor
 	}
 
-	public Person(String name, String email, Date dateOfBirth, String gender, String phone, Address address) {
+	public Person(String name, String email, int age, String gender, String phone, Address address) {
 		this.setName(name);
 		this.email = email;
-		this.dateOfBirth = dateOfBirth;
+		this.age = age;
 		this.gender = gender;
 		this.phone = phone;
 		this.address = address;
@@ -34,12 +32,12 @@ public abstract class Person {
 		this.email = email;
 	}
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
+	public int getage() {
+		return age;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setage(int age) {
+		this.age = age;
 	}
 
 	public String getGender() {

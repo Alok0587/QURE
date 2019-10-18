@@ -2,7 +2,6 @@ package com.ibm.qure.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,8 +28,6 @@ import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Doctor;
 import com.ibm.qure.model.ResponseMessage;
 import com.ibm.qure.service.DoctorService;
-
-
 
 @RestController
 @RequestMapping("/doctors")
@@ -62,15 +59,10 @@ public class DoctorController {
 
 		ResponseMessage resMsg;
 
-		// Exception Handling moved to @ExceptionHandler
-//		try {
 		doctorService.create(Doctor);
-	
 
-		resMsg = new ResponseMessage("Success", new String[] {"Doctor created successfully"});
+		resMsg = new ResponseMessage("Success", new String[] { "Doctor created successfully" });
 
-		// Build newly created Employee resource URI - Employee ID is always 0 here.
-		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(Doctor.getDoctorId()).toUri();
 
@@ -81,18 +73,33 @@ public class DoctorController {
 	// Update Doctor PUT /doctors/{id}
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
-	public String updateDoctor(@PathVariable String id, @RequestBody Doctor updatedDoctor) {
+	public ResponseEntity<ResponseMessage> updateDoctor(@PathVariable String id, @RequestBody Doctor updatedDoctor)
+			throws URISyntaxException, ApplicationException {
 		updatedDoctor.setDoctorId(id);
 		doctorService.update(updatedDoctor);
-		return "Doctor updated successfully";
+		ResponseMessage resMsg;
+
+		resMsg = new ResponseMessage("Success", new String[] { "Doctor updated successfully" });
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(updatedDoctor.getDoctorId()).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
 	}
 
 	// Delete Doctor DELETE /doctors/{id}
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
-	public String deleteDoctor(@PathVariable String id) {
+	public ResponseEntity<ResponseMessage> deleteDoctor(@PathVariable String id)
+			throws URISyntaxException, ApplicationException {
 		doctorService.delete(id);
-		return "Doctor deleted successfully";
+		ResponseMessage resMsg;
+
+		resMsg = new ResponseMessage("Success", new String[] { "Doctor updated successfully" });
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -102,7 +109,7 @@ public class DoctorController {
 		int size = errors.size();
 		String[] errorMsgs = new String[size];
 
-		for(int i = 0; i < size; i++ ) {
+		for (int i = 0; i < size; i++) {
 			errorMsgs[i] = errors.get(i).getDefaultMessage();
 		}
 
