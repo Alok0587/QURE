@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-doct-reg',
   templateUrl: './doct-reg.component.html',
-  styles: []
+  styleUrls: ['./doct-reg.component.css']
 })
 export class DoctRegComponent implements OnInit {
 

@@ -1,0 +1,47 @@
+.container-fluid{
+    height:250px;
+    width:100%;
+    background-color: #ff4d4d;
+    padding-top: 2px;
+    padding-left:10px;
+
+}
+h1{
+    text-align: center;
+    color:white;
+    }
+    h2{
+        color:#ffffe6;
+    }
+    .left{
+        float:left;
+        margin-top:100px;
+        background-color:#f6af44;
+        height:500px;
+        width:50%;
+        padding-top:50px;
+        text-align: center;
+    }
+    .right{
+        float:right;
+        margin-top:100px;
+        background-color: #f6af44;
+        height:500px;
+        width:50%;
+        padding-top:50px;
+        padding-left:20px;
+    }
+    input {
+        width: 100%;
+        padding: 10px;
+        /* background: transparent; */
+        border: none;
+        outline: none;
+        font-size: 1.5em;
+        font-weight: 500;
+    }
+    button{
+        text-align: center;
+        
+    }
+

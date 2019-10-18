@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styles: []
+  styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
 
@@ -11,5 +11,8 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ onContacting()
+ {
+   alert("Details saved Successfully!!! We will get back to you.")
+ }
 }

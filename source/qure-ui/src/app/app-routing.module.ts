@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +14,7 @@ import { Blog1Component } from './blogs/blog1/blog1.component';
 import { Blog2Component } from './blogs/blog2/blog2.component';
 import { Blog3Component } from './blogs/blog3/blog3.component';
 import {ContactComponent} from './contact/contact.component';
+import {AboutComponent} from './about/about.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -27,6 +27,7 @@ const routes: Routes = [
   {path:'patientLanding/bookings/bookAppointment',component:BookComponent},
   {path:'patientLanding/bookings',component:BookAppointmentComponent},
   {path:'contact',component:ContactComponent},
+  {path:'about',component:AboutComponent},
   {path:'blogs',component:BlogsComponent},
   {path:'blogs/blog1',component:Blog1Component},
   {path:'blogs/blog2',component:Blog2Component},

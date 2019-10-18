@@ -21,6 +21,7 @@ import { Blog1Component } from './blogs/blog1/blog1.component';
 import { Blog2Component } from './blogs/blog2/blog2.component';
 import { Blog3Component } from './blogs/blog3/blog3.component';
 import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -43,7 +44,8 @@ import { ContactComponent } from './contact/contact.component';
     Blog1Component,
     Blog2Component,
     Blog3Component,
-    ContactComponent
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
