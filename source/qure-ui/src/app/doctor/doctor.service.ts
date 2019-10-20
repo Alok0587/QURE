@@ -8,67 +8,67 @@ import { map } from 'rxjs/operators';
 export class DoctorService {
   private REST_API_URL: string = "http://localhost:7071/qure/doctors";
 
-  constructor(  private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  createDoctor( doctorData: any) { 
+  createDoctor(doctorData: any) {
     console.log(doctorData);
 
-    
-    let promise = new Promise( (resolve, reject) => {
+
+    let promise = new Promise((resolve, reject) => {
       this.http.post(this.REST_API_URL, doctorData)
         .toPromise()
-        .then( (res) => { 
+        .then((res) => {
           console.log(res);
-          resolve(res); 
+          resolve(res);
         })
-        .catch( (err) => { 
+        .catch((err) => {
           console.log(err);
-          reject(err); 
+          reject(err);
         })
-        .finally( ( ) => {
+        .finally(() => {
           console.log("Ends");
         });
     });
-    return promise; 
+    return promise;
   }
   getDoctors() {
     return this.http.get(this.REST_API_URL)
-      .pipe( map(res => { 
-        console.log( res);
-        return res; 
-      }));
-  }
-
-  getDoctorById( id){
-    console.log("id is " + id);
-    return this.http.get(this.REST_API_URL + '/' + id)
-      .pipe( map( res => {
-        console.log( res );
+      .pipe(map(res => {
+        console.log(res);
         return res;
       }));
   }
 
-  updateDoctor( doctorData ) {
+  getDoctorById(id) {
+    console.log("id is " + id);
+    return this.http.get(this.REST_API_URL + '/' + id)
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+      }));
+  }
+
+  updateDoctor(doctorData) {
     let _url = this.REST_API_URL + '/' + doctorData.doctorId;
-    
-    let promise = new Promise( (resolve, reject) => {
-      this.http.put( _url , doctorData)
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.put(_url, doctorData)
         .toPromise()
-        .then( (res) => { 
+        .then((res) => {
           console.log(res);
-          resolve(res); 
+          resolve(res);
         })
-        .catch( (err) => { 
+        .catch((err) => {
           console.log(err);
           reject(err);
         })
-        .finally( ( ) => {
+        .finally(() => {
           console.log("Ends");
         });
     });
-    return promise; 
+    return promise;
   }
-  
+
 
 }
 

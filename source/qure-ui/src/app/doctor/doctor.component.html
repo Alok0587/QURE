@@ -5,7 +5,7 @@
     <div class="col-lg-4">
       <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
-        <title>patient</title>
+        <title>doctor</title>
         <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
       </svg>
       <h2>Dr.{{doctorData.name}}</h2>
@@ -23,10 +23,10 @@
         (click)="onEditHandler()">Edit</button>
 
 
-        <!-- <a class="nav-link" routerLink="doctorLanding/{{doctorData.doctorId}}/appointments">gggg</a> -->
+      <!-- <a class="nav-link" routerLink="doctorLanding/{{doctorData.doctorId}}/appointments">gggg</a> -->
 
-        <button type="button" class="btn btn-primary" 
-        (click)="onAppointmentClick(doctorData.doctorId)">View Appointments</button>
+      <button type="button" class="btn btn-primary" (click)="onAppointmentClick(doctorData.doctorId)">View
+        Appointments</button>
 
 
       <div class="modal fade" id="editDoctorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -99,52 +99,6 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    entire {
-      font-family: "Lato", sans-serif;
-    }
-
-    .sidebar {
-      height: 100%;
-      width: 260px;
-      position: fixed;
-      z-index: 1;
-      top: 100px;
-      right: 0px;
-      background-color: #111;
-      overflow-x: hidden;
-      padding-top: 16px;
-    }
-
-    .sidebar a {
-      padding: 6px 8px 6px 16px;
-      text-decoration: none;
-      font-size: 20px;
-      color: #818181;
-      display: block;
-    }
-
-    .sidebar a:hover {
-      color: #f1f1f1;
-    }
-
-    .main {
-      margin-left: 160px;
-      /* Same as the width of the sidenav */
-      padding: 0px 10px;
-    }
-
-    @media screen and (max-height: 450px) {
-      .sidebar {
-        padding-top: 15px;
-      }
-
-      .sidebar a {
-        font-size: 18px;
-      }
-    }
-  </style>
-
   <div class="entire">
 
     <div class="sidebar">

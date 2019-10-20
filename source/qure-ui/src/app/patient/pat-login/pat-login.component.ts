@@ -5,7 +5,7 @@ import { PatientService } from '../patient.service';
 @Component({
   selector: 'app-pat-login',
   templateUrl: './pat-login.component.html',
-  styles: []
+  styleUrls: ['./pat-login.component.css']
 })
 export class patLoginComponent implements OnInit {
 

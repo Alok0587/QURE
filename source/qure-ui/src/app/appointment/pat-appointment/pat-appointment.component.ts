@@ -21,29 +21,29 @@ export class PatAppointmentComponent implements OnInit {
   appId: string;
   bookForm: FormGroup;
 
-  constructor(private appointmentService: AppointmentService,private route: ActivatedRoute) { 
-    this.bookForm= new FormGroup({
+  constructor(private appointmentService: AppointmentService, private route: ActivatedRoute) {
+    this.bookForm = new FormGroup({
       //step2; create Form Control
       id: new FormControl('', Validators.required), //step5: add validators
       date: new FormControl('', [
-                                Validators.required,
-                                Validators.max(24) 
-                              ]),
+        Validators.required,
+        Validators.max(24)
+      ]),
       price: new FormControl('', Validators.required)
     });
   }
 
   ngOnInit() {
     this.appointmentSubscription = this.appointmentService.getAppointments()
-    .subscribe( ( res: any[]) => {
-      console.log(res);
-      this.appointmentList = res;
-    });
+      .subscribe((res: any[]) => {
+        console.log(res);
+        this.appointmentList = res;
+      });
 
-      
-      
+
+
   }
-  async onViewHandler(appointmentData){
+  async onViewHandler(appointmentData) {
     // const appId = id;
 
     // 2. call the service method
@@ -53,10 +53,10 @@ export class PatAppointmentComponent implements OnInit {
     //     this.appointmentData = res;
     //   });
 
-      // this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
+    // this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
     this.duplicateAppointmentData = appointmentData;
   }
-  async onBookHandler(bookForm){
+  async onBookHandler(bookForm) {
     console.log(this.bookForm);
     console.log(this.bookForm.value);
     1//send data to service
@@ -65,30 +65,30 @@ export class PatAppointmentComponent implements OnInit {
 
     console.log(res);
 
- 
+
   }
 
-  
-  
+
+
 
 
   // async onDeleteHandler(id){
   //   const appId = id;
-  
+
 
   //   // 2. call the service method
   //   this.appointmentSubscription2 = await this.appointmentService.deleteAppointment(appId)
   //     .subscribe( (res: any) => { // 3. get the resp from service
   //       console.log( res );
-        
+
   //     });
 
   //     // this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
 
   // }
 
-    async onUpdateHandler( formData ) {
-      
+  async onUpdateHandler(formData) {
+
     console.log(formData); // you can validate using this
 
     // use promise based submission

@@ -5,7 +5,7 @@ import { PatientService } from '../patient.service';
 @Component({
   selector: 'app-pat-reg',
   templateUrl: './pat-reg.component.html',
-  styles: []
+  styleUrls: ['./pat-reg.component.css']
 })
 export class PatRegComponent implements OnInit {
 

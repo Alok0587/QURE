@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-doct-login',
   templateUrl: './doct-login.component.html',
-  styles: []
+  styleUrls: ['./doct-login.component.css']
 })
 export class docLoginComponent implements OnInit {
 

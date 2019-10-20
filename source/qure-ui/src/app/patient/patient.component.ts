@@ -8,7 +8,7 @@ import { RouterLink, Router } from '@angular/router';
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
-  styles: []
+  styleUrls: ['./patient.component.css']
 })
 export class PatientComponent implements OnInit {
   patientData: any;
@@ -61,6 +61,10 @@ export class PatientComponent implements OnInit {
   ngOnDestroy() {
     console.log("inside destroy of patient details");
     this.patientSubscription.unsubscribe();
+  }
+  logout() {
+    localStorage.removeItem('userToken');
+    this.router.navigate(['/loginPatient']);
   }
 
 }

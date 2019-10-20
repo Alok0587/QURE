@@ -1,0 +1,33 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container">
+    <div class="row">
+        <section class="col-sm-12 main-section ">
+            <a class="nav-link" routerLink="/patientLanding/:id" style="color: black; font-size: 30px;">&laquo;
+                Previous</a>
+            <div class="jumbotron"
+                style="background-image: url(assets/image/medicines.jpg); background-position: 50px; height: 300px; background-size: cover;">
+                <!-- <h1 class="display-4">Order medicines Landing page! --- This has Pharmacy Details</h1> -->
+                <a class="btn btn-primary btn-lg" routerLink="bookAppointment" role="button">Book Medicines here</a>
+            </div>
+        </section>
+    </div>
+    <div>
+        <h4>Pharmacies</h4>
+    </div>
+    <div class="row">
+
+        <div class="card col-sm-3" *ngFor="let medshop of medshopList">
+            <div class="card-body">
+                <p class="card-text">Pharmacy ID: {{medshop.id}}</p>
+                <h5 class="card-title">{{medshop.name}}</h5>
+                <p class="card-text">Age: {{medshop.age}}</p>
+                <p class="card-text">Slot: {{medshops.designation}}</p>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

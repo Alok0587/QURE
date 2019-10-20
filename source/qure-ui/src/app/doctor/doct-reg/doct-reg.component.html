@@ -3,127 +3,43 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!------ Include the above in your HEAD tag ---------->
-<style>
-  body {
-    background: #C5E1A5;
-  }
-
-  form {
-    width: 60%;
-    margin-top: 160px;
-    margin-left: 70%;
-    background: #efefef;
-    padding: 60px 120px 80px 120px;
-    text-align: center;
-    -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  label {
-    display: block;
-    position: relative;
-    margin: 40px 0px;
-  }
-
-  .label-txt {
-    position: absolute;
-    top: -1.6em;
-    padding: 10px;
-    font-family: sans-serif;
-    font-weight: 600;
-    font-size: 1.5em;
-    letter-spacing: 1px;
-    color: rgb(120, 120, 120);
-    transition: ease .3s;
-  }
-
-  .input {
-    width: 100%;
-    padding: 10px;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1.5em;
-    font-weight: 500;
-  }
-
-  .line-box {
-    position: relative;
-    width: 100%;
-    height: 2px;
-    background: #BCBCBC;
-  }
-
-  .line {
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #8BC34A;
-    transition: ease .6s;
-  }
-
-  .input:focus+.line-box .line {
-    width: 100%;
-  }
-
-  .label-active {
-    top: -3em;
-  }
-
-  button {
-    display: inline-block;
-    padding: 12px 24px;
-    background: rgb(220, 220, 220);
-    font-weight: bold;
-    color: rgb(120, 120, 120);
-    border: none;
-    outline: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: ease .3s;
-  }
-
-  button:hover {
-    background: rgb(42, 43, 41);
-    color: #ffffff;
-  }
-</style>
 <div class="container">
-  <form [formGroup]="doctorForm" (ngSubmit)="onDoctorHandler()">
-    <h1>Doctor's Registration </h1>
+  <div class="row">
+    <div class="col-md-4">
+      <img src="assets/image/doct.jpg" height="410px;" width="420px;"></div>
+    <div class="col-md-8">
+      <form [formGroup]="doctorForm" (ngSubmit)="onDoctorHandler()">
+        <h1>Doctor's Registration </h1>
 
-    <label>
-      <p class="label-txt"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Enter your name</p>
-      <input type="text" class="input" formControlName="name" required>
-      <div class="line-box">
-        <div class="line"></div>
-      </div>
-    </label>
-    <label>
-      <p class="label-txt"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Enter Doctor Id</p>
-      <input type="number" class="input" formControlName="doctorId" required>
-      <div class="line-box">
-        <div class="line"></div>
-      </div>
-    </label>
-    <label>
-      <p class="label-txt"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Enter your License Number</p>
-      <input type="email" class="input" formControlName="licenseNumber" required>
-      <div class="line-box">
-        <div class="line"></div>
-      </div>
-    </label>
-    <label>
-      <p class="label-txt"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Enter your email</p>
-      <input type="email" class="input" formControlName="email" required>
-      <div class="line-box">
-        <div class="line"></div>
-      </div>
-    </label>
-    <!-- <label>
+        <label>
+          <p class="label-txt"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Enter your name</p>
+          <input type="text" class="input" formControlName="name" required>
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label>
+        <label>
+          <p class="label-txt"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Enter Doctor Id</p>
+          <input type="number" class="input" formControlName="doctorId" required>
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label>
+        <label>
+          <p class="label-txt"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Enter your License Number</p>
+          <input type="email" class="input" formControlName="licenseNumber" required>
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label>
+        <label>
+          <p class="label-txt"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Enter your email</p>
+          <input type="email" class="input" formControlName="email" required>
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label>
+        <!-- <label>
       <p class="label-txt"><i class="fa fa-key" aria-hidden="true"></i>&nbsp;Enter password:</p>
       <input type="password" class="input">
       <div class="line-box">
@@ -137,49 +53,51 @@
         <div class="line"></div>
       </div>
     </label> -->
-    <label>
-      <p class="label-txt"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Enter Age</p>
-      <input type="number" class="input" formControlName="age" required>
-      <div class="line-box">
-        <div class="line"></div>
-      </div>
-    </label>
-    <label>
-      <p class="label-txt"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Enter Gender</p>
-      <input type="text" class="input" formControlName="gender" required>
-      <div class="line-box">
-        <div class="line"></div>
-      </div>
-    </label>
-    <label>
-      <p class="label-txt"><i class="fa fa-tint" aria-hidden="true"></i>&nbsp;Enter phoneNo</p>
-      <input type="text" class="input" formControlName="phone" required>
-      <div class="line-box">
-        <div class="line"></div>
-      </div>
-    </label>
-    <!-- <label>
+        <label>
+          <p class="label-txt"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Enter Age</p>
+          <input type="number" class="input" formControlName="age" required>
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label>
+        <label>
+          <p class="label-txt"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Enter Gender</p>
+          <input type="text" class="input" formControlName="gender" required>
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label>
+        <label>
+          <p class="label-txt"><i class="fa fa-tint" aria-hidden="true"></i>&nbsp;Enter phoneNo</p>
+          <input type="text" class="input" formControlName="phone" required>
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label>
+        <!-- <label>
       <p class="label-txt"><i class="fa fa-tint" aria-hidden="true"></i>&nbsp;Enter Adress</p>
       <input type="text" class="input" formControlName="address.city">
       <div class="line-box">
         <div class="line"></div>
       </div>
     </label> -->
-    <!-- <label>
+        <!-- <label>
       <p class="label-txt"><i class="fa fa-tint" aria-hidden="true"></i>&nbsp;Enter Specialization</p>
       <input type="text" class="input" formControlName="specialization">
       <div class="line-box">
         <div class="line"></div>
       </div>
     </label> -->
-    <div class="alert alert-success" *ngIf="isSaved">
-      Saved Successfully
-      <a class="btn-success" routerLink="/loginDoctor">
-        <h3>Login</h3>
-      </a>
+        <div class="alert alert-success" *ngIf="isSaved">
+          Saved Successfully
+          <a class="btn-success" routerLink="/loginDoctor">
+            <h3>Login</h3>
+          </a>
+        </div>
+        <button type="submit">
+          <h3>submit</h3>
+        </button>
+      </form>
     </div>
-    <button type="submit">
-      <h3>submit</h3>
-    </button>
-  </form>
+  </div>
 </div>

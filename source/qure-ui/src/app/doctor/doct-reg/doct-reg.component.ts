@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DoctorService } from '../doctor.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-doct-reg',
   templateUrl: './doct-reg.component.html',
-  styles: []
+  styleUrls: ['./doct-reg.component.css']
 })
 export class DoctRegComponent implements OnInit {
 
@@ -17,7 +18,7 @@ export class DoctRegComponent implements OnInit {
   constructor(private doctorService: DoctorService) {
     this.doctorForm = new FormGroup({
 
-      name: new FormControl('', Validators.required),  
+      name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       age: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required),

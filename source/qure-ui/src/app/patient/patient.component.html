@@ -24,8 +24,8 @@
 
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPatientModal"
     (click)="onEditHandler()">Edit</button>
-    <button type="button" class="btn btn-primary" 
-        (click)="onAppointmentClick(patientData.patientId)">View Appointments</button>
+  <button type="button" class="btn btn-primary" (click)="onAppointmentClick(patientData.patientId)">View
+    Appointments</button>
 
 
   <!-- Modal -->
@@ -44,8 +44,7 @@
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="name" [(ngModel)]="duplicatePatientData.name" disabled
-                >
+                <input type="text" class="form-control" name="name" [(ngModel)]="duplicatePatientData.name" disabled>
               </div>
             </div>
             <div class="form-group row">
@@ -72,8 +71,8 @@
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Gender</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="gender" [(ngModel)]="duplicatePatientData.gender" disabled
-                >
+                <input type="text" class="form-control" name="gender" [(ngModel)]="duplicatePatientData.gender"
+                  disabled>
               </div>
             </div>
             <div class="form-group row">
@@ -103,72 +102,29 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    entire {
-      font-family: "Lato", sans-serif;
-    }
 
-    .sidebar {
-      height: 100%;
-      width: 260px;
-      position: fixed;
-      z-index: 1;
-      top: 100px;
-      right: 0px;
-      background-color: #111;
-      overflow-x: hidden;
-      padding-top: 16px;
-    }
 
-    .sidebar a {
-      padding: 6px 8px 6px 16px;
-      text-decoration: none;
-      font-size: 20px;
-      color: #818181;
-      display: block;
-    }
+  <div class="sidebar">
+    <a href="#home"><i class="fa fa-fw fa-home"></i>&nbsp; Home</a>
+    <!-- <a href="#services"><i class="fa fa-list-alt"></i>&nbsp;History</a> -->
+    <a href="#"><i class="fa fa-comments-o"></i>&nbsp;Chats</a>
+    <a class="nav-link" (click)="onAppointmentClick(patientData.patientId)"><i class="fa fa-clock-o"></i>&nbsp;Show my
+      Bookings</a>
+    <a class="nav-link" routerLink="/patient/ordermedicines"><i class="fa fa-leaf"></i>&nbsp; Order Medicines</a>
+    <a class="nav-link" [routerLink]="['/logout']"><i class="fa fa-sign-out">&nbsp;Log out</i></a>
 
-    .sidebar a:hover {
-      color: #f1f1f1;
-    }
-
-    .main {
-      margin-left: 160px;
-      /* Same as the width of the sidenav */
-      padding: 0px 10px;
-    }
-
-    @media screen and (max-height: 450px) {
-      .sidebar {
-        padding-top: 15px;
-      }
-
-      .sidebar a {
-        font-size: 18px;
-      }
-    }
-  </style>
-
-  <div class="entire">
-
-    <div class="sidebar">
-      <a href="#home"><i class="fa fa-fw fa-home"></i>&nbsp; Home</a>
-      <a href="#services"><i class="fa fa-list-alt"></i>&nbsp;History</a>
-      <a href="#"><i class="fa fa-comments-o"></i>&nbsp;Chats</a>
-      <a class="nav-link" routerLink="bookings"><i class="fa fa-clock-o"></i>&nbsp;Current Bookings</a>
-      <a href="#contact"><i class="fa fa-leaf"></i>&nbsp;Medicines</a>
-
-    </div>
-
-    <div class="main">
-      <h2>Sidebar with Icons</h2>
-      <p>This side navigation is of full height (100%) and always shown.</p>
-      <p>Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo.
-        Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint
-        efficiantur his ad. Eum no molestiae voluptatibus.</p>
-      <p>Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo.
-        Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint
-        efficiantur his ad. Eum no molestiae voluptatibus.</p>
-    </div>
 
   </div>
+
+  <div class="main">
+    <h2>Sidebar with Icons</h2>
+    <p>This side navigation is of full height (100%) and always shown.</p>
+    <p>Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo.
+      Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint
+      efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    <p>Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo.
+      Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint
+      efficiantur his ad. Eum no molestiae voluptatibus.</p>
+  </div>
+
+</div>

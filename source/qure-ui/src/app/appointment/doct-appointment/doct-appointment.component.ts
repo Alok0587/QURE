@@ -19,7 +19,7 @@ export class DoctAppointmentComponent implements OnInit {
   appointmentData: any;
   appId: string;
 
-  constructor( private appointmentService: AppointmentService,private route: ActivatedRoute ) { 
+  constructor(private appointmentService: AppointmentService, private route: ActivatedRoute) {
     console.log("inside Constructor");
   }
 
@@ -27,38 +27,38 @@ export class DoctAppointmentComponent implements OnInit {
     console.log("inside ngOnInit");
 
     this.appointmentSubscription = this.appointmentService.getAppointments()
-      .subscribe( ( res: any[]) => {
+      .subscribe((res: any[]) => {
         console.log(res);
         this.appointmentList = res;
       });
 
-      
+
   }
-  async onViewHandler(id){
+  async onViewHandler(id) {
     const appId = id;
 
     // 2. call the service method
     this.appointmentSubscription2 = await this.appointmentService.getAppointmentById(appId)
-      .subscribe( (res: any) => { // 3. get the resp from service
-        console.log( res );
+      .subscribe((res: any) => { // 3. get the resp from service
+        console.log(res);
         this.appointmentData = res;
       });
 
-      // this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
+    // this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
 
   }
 
-  async onDeleteHandler(id){
+  async onDeleteHandler(id) {
     const appId = id;
 
     // 2. call the service method
     this.appointmentSubscription2 = await this.appointmentService.deleteAppointment(appId)
-      .subscribe( (res: any) => { // 3. get the resp from service
-        console.log( res );
-        
+      .subscribe((res: any) => { // 3. get the resp from service
+        console.log(res);
+
       });
 
-      // this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
+    // this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
 
   }
 

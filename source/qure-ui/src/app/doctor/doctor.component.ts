@@ -7,7 +7,7 @@ import { RouterLink, Router } from '@angular/router';
 @Component({
   selector: 'app-doctor',
   templateUrl: './doctor.component.html',
-  styles: []
+  styleUrls: ['./doctor.component.css']
 })
 export class DoctorComponent implements OnInit {
   doctorData: any;
@@ -57,7 +57,7 @@ export class DoctorComponent implements OnInit {
     this.doctorSubscription.unsubscribe();
   }
 
-  onAppointmentClick(dId: string){
+  onAppointmentClick(dId: string) {
     // let id = this.doctorId;
     this.router.navigate(['doctorLanding/' + dId + '/appointments'])
   }
