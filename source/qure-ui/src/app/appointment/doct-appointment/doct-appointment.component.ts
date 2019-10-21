@@ -25,8 +25,8 @@ export class DoctAppointmentComponent implements OnInit {
 
   ngOnInit() { // lifecycle hook
     console.log("inside ngOnInit");
-
-    this.appointmentSubscription = this.appointmentService.getAppointments()
+    const _doctorId: string = this.route.snapshot.paramMap.get('dId');
+    this.appointmentSubscription = this.appointmentService.getAppointmentsByDoctorId(_doctorId)
       .subscribe((res: any[]) => {
         console.log(res);
         this.appointmentList = res;

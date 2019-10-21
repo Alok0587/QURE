@@ -34,7 +34,8 @@ export class PatAppointmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appointmentSubscription = this.appointmentService.getAppointments()
+    const _patientId: string = this.route.snapshot.paramMap.get('pId');
+    this.appointmentSubscription = this.appointmentService.getAppointmentsByPatientId(_patientId)
       .subscribe((res: any[]) => {
         console.log(res);
         this.appointmentList = res;

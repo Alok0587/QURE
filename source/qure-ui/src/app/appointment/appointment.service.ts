@@ -34,9 +34,25 @@ export class AppointmentService {
     });
     return promise; // 4. send it back to the component
   }
+  // this.httpClient.get('/url', {
+  //   params: {
+  //     appid: 'id1234',
+  //     cnt: '5'
+  //   }
+  getAppointmentsByDoctorId(id: any) {
+    return this.http.get(this.REST_API_URL, {params: {
+      dId: id}
+    })
+      .pipe(map(res => {  // 3. get res from rest api
+        console.log(res);
+        return res; // 4. send it back to comp
+      }));
+  }
 
-  getAppointmentsByDoctorId(id) {
-    return this.http.get(this.REST_API_URL)
+  getAppointmentsByPatientId(id: any) {
+    return this.http.get(this.REST_API_URL, {params: {
+      pId: id}
+    })
       .pipe(map(res => {  // 3. get res from rest api
         console.log(res);
         return res; // 4. send it back to comp
