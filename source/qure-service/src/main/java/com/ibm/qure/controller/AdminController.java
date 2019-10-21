@@ -23,24 +23,24 @@ import com.ibm.qure.service.AdminService;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-	
+
 	@Autowired
 	AdminService adminService;
-	
+
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public List<Doctor> getAllDoctors() {
 
 		return adminService.getAll();
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
 	public String deleteDoctor(@PathVariable String id) {
 		adminService.delete(id);
 		return "Doctor deleted successfully";
 	}
-	
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ResponseMessage> handleValidationExcpetion(MethodArgumentNotValidException e) {
 
@@ -48,7 +48,7 @@ public class AdminController {
 		int size = errors.size();
 		String[] errorMsgs = new String[size];
 
-		for(int i = 0; i < size; i++ ) {
+		for (int i = 0; i < size; i++) {
 			errorMsgs[i] = errors.get(i).getDefaultMessage();
 		}
 

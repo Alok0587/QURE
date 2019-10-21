@@ -40,7 +40,6 @@ public class PatientController {
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public List<Patient> getAllPatients() {
-
 		return patientService.getAll();
 	}
 
@@ -56,22 +55,15 @@ public class PatientController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createPatient(@RequestBody @Valid Patient patient)
 			throws URISyntaxException, ApplicationException {
-
+		
 		ResponseMessage resMsg;
-
-		// Exception Handling moved to @ExceptionHandler
-//		try {
 		patientService.create(patient);
-
 		resMsg = new ResponseMessage("Success", new String[] { "Patient created successfully" });
-
-		// Build newly created Employee resource URI - Employee ID is always 0 here.
-		// Need to get the new Employee ID.
+		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(patient.getPatientId()).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
-
 	}
 
 	// Update Patient PUT /Patients/{id}
@@ -79,6 +71,7 @@ public class PatientController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> updatePatient(@PathVariable String id, @RequestBody Patient updatedPatient)
 			throws URISyntaxException, ApplicationException {
+		
 		updatedPatient.setPatientId(id);
 		patientService.update(updatedPatient);
 		ResponseMessage resMsg;
@@ -95,6 +88,7 @@ public class PatientController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> deletePatient(@PathVariable String id)
 			throws URISyntaxException, ApplicationException {
+		
 		patientService.delete(id);
 		ResponseMessage resMsg;
 		resMsg = new ResponseMessage("Success", new String[] { "Patient deleted successfully" });

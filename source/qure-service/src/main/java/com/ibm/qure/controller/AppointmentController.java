@@ -2,8 +2,8 @@ package com.ibm.qure.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -37,12 +38,19 @@ public class AppointmentController {
 	@Autowired
 	AppointmentService appointService;
 
-	// List All appointments GET /appointments
+	// List All appointments GET /appointments or Get by pId or dId
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public List<Appointment> getAllAppointments() {
+	public List<Appointment> getAllAppointments(@RequestParam(name = "dId", required = false) Optional<String> dId,
+			@RequestParam(name = "pId", required = false) Optional<String> pId) {
+		if (pId.isPresent()) {
+			return appointService.patientsAppointmentList(pId);
+		} else if (dId.isPresent()) {
+			return appointService.doctorsAppointmentList(dId);
+		} else {
+			return appointService.getAll();
+		}
 
-		return appointService.getAll();
 	}
 
 	// List appointment for given Id GET /appointments/{id}
@@ -53,26 +61,14 @@ public class AppointmentController {
 	}
 
 	// Create Appointment POST /appointments
-	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.ALL_VALUE })
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createAppointment(@RequestBody @Valid Appointment appointment)
 			throws URISyntaxException, ApplicationException {
 
 		ResponseMessage resMsg;
 
-		// Exception Handling moved to @ExceptionHandler
-//		try {
 		appointService.create(appointment);
-//		} catch (ApplicationException e) {
-//			resMsg = new ResponseMessage("Failure", e.getMessage());
-//			return ResponseEntity.badRequest().body(resMsg);
-//		}
-
-		// Exception Handling moved to @ExceptionHandler
-//		if(bindingResult.hasErrors()) {
-//			resMsg = new ResponseMessage("Failure", "Validation Error");
-//			return ResponseEntity.badRequest().body(resMsg);			
-//		}
 
 		resMsg = new ResponseMessage("Success", new String[] { "Appointment created successfully" });
 
@@ -88,10 +84,11 @@ public class AppointmentController {
 	// Update Appointment PUT /appointments/{id}
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
-	public ResponseEntity<ResponseMessage> updateEmployee(@PathVariable String id, @RequestBody Appointment updatedAppoint) {
+	public ResponseEntity<ResponseMessage> updateEmployee(@PathVariable String id,
+			@RequestBody Appointment updatedAppoint) {
 		updatedAppoint.setId(id);
 		appointService.update(updatedAppoint);
-		
+
 		ResponseMessage resMsg;
 		resMsg = new ResponseMessage("Success", new String[] { "Appointment updated successfully" });
 
@@ -113,8 +110,7 @@ public class AppointmentController {
 
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(id).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 	}

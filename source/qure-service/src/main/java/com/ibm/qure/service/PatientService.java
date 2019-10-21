@@ -9,8 +9,6 @@ import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Patient;
 import com.ibm.qure.repository.PatientRepository;
 
-
-
 @Service
 public class PatientService {
 	@Autowired
@@ -45,6 +43,5 @@ public class PatientService {
 		patientRepo.deleteById(id);
 		return true;
 	}
-	
 
 }

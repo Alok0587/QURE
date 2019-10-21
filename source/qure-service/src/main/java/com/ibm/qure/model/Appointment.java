@@ -3,8 +3,6 @@ package com.ibm.qure.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
 @Document
 public class Appointment {
 
@@ -15,7 +13,7 @@ public class Appointment {
 	private String appointmentDate;
 	private String patientId;
 	private String doctorId;
-	private int appointmetStatus=0;
+	private int appointmetStatus = 0;
 
 	public Appointment() {
 
@@ -86,6 +84,5 @@ public class Appointment {
 	public void setAppointmetStatus(int appointmetStatus) {
 		this.appointmetStatus = appointmetStatus;
 	}
-	
 
 }

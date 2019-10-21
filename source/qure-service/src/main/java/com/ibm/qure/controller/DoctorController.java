@@ -3,6 +3,7 @@ package com.ibm.qure.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,12 +38,15 @@ public class DoctorController {
 	@Autowired
 	DoctorService doctorService;
 
-	// List All Doctors GET /doctors
+	// List All Doctors GET /doctors or List Doctors by location
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public List<Doctor> getAllDoctors() {
-
-		return doctorService.getAll();
+	public List<Doctor> getAllDoctors(@RequestParam(name = "city", required = false) Optional<String> city) {
+		if (city.isPresent()) {
+			return doctorService.getByLocation(city);
+		} else {
+			return doctorService.getAll();
+		}
 	}
 
 	// List Doctor for given Id GET /doctors/{id}
