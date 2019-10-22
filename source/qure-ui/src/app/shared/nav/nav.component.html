@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar special-color-dark" [containerInside]="false">
 
     <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" href="/"><h2>Qure</h2></a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand" href="/"><h1>Qure</h1></a></mdb-navbar-brand>
   
     <!-- Collapsible content -->
     <links>
@@ -21,7 +21,7 @@
   
         <!-- Dropdown -->
         <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: blue;" mdbWavesEffect>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: wheat;" mdbWavesEffect>
             Sign in<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/login">Doctor</a>
@@ -34,7 +34,7 @@
 
         <!-- Dropdown -->
         <li class="nav-item dropdown" dropdown>
-            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: blue;" mdbWavesEffect>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: wheat" mdbWavesEffect>
               Sign up<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/register">Doctor</a>
@@ -79,3 +79,16 @@
   
   </mdb-navbar>
   <!--/.Navbar-->
+  <style>
+  .navbar-brand{
+    color: white;
+    /* font-size: 50px; */
+  }
+  .navbar-nav{
+    color: white;
+  }
+  .nav-link{
+    color:white;
+    font-size: 26px;
+  }
+    </style>

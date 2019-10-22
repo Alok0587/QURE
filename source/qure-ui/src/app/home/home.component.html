@@ -1,9 +1,9 @@
-<div>
-    <mdb-carousel class="carousel slide carousel-fade view overlay rounded z-depth-2 mb-4 waves-light"
-        [animation]="'fade'">
+<div class="container container-fluid">
+        
+    <mdb-carousel class="carousel slide carousel-fade view overlay rounded z-depth-2 mb-4 waves-light" [animation]="'fade'">
         <mdb-carousel-item>
-            <div class="view w-100">
-                <img class="d-block w-100" src="assets/image/doctor1.jpg" alt="First slide">
+            <div class="view w-100" >
+                <img class="d-block w-100" id="one" src="assets/image/slide2.jpg" alt="First slide">
                 <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
             </div>
             <div class="carousel-caption">
@@ -32,19 +32,17 @@
             </div>
         </mdb-carousel-item>
     </mdb-carousel>
-
     <div class="row">
         <!-- Section: Blog v.2 -->
         <section class="text-center my-5">
 
             <!-- Section heading -->
-            <h2 class="h1-responsive font-weight-bold my-5">Recent posts</h2>
+            <h2 class="h1-responsive font-weight-bold my-5">Recent Blogs</h2>
             <!-- Section description -->
-            <p class="dark-grey-text w-responsive mx-auto mb-5">Duis aute irure dolor in reprehenderit in voluptate
-                velit
-                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa
-                qui officia deserunt mollit anim id est laborum.</p>
+            <p class="dark-grey-text w-responsive mx-auto mb-5">
+
+
+            </p>
 
             <!-- Grid row -->
             <div class="row">
@@ -53,8 +51,8 @@
                 <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
 
                     <!-- Featured image -->
-                    <div class="view overlay rounded z-depth-2 mb-4 waves-light" mdbWavesEffect>
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
+                    <div class="view overlay rounded z-depth-2 mb-4 waves-light" id="myElement" mdbWavesEffect>
+                        <img class="img-fluid" src="assets/image/yoga.jpg"
                             alt="Sample image">
                         <a routerLink="/blogs/blog1">
                             <div class="mask rgba-white-slight"></div>
@@ -64,17 +62,15 @@
                     <!-- Category -->
                     <a routerLink="/blogs/blog1" class="pink-text">
                         <h6 class="font-weight-bold mb-3">
-                            <mdb-icon far icon="map" class="pr-2"></mdb-icon>Adventure
+                            <mdb-icon far icon="blog" class="pr-2"></mdb-icon>Fitness
                         </h6>
                     </a>
                     <!-- Post title -->
-                    <h4 class="font-weight-bold mb-3"><strong>Blog 1</strong></h4>
+                    <h4 class="font-weight-bold mb-3"><strong>Yoga for Relaxation</strong></h4>
                     <!-- Post data -->
-                    <p>by <a class="font-weight-bold">Billy Forester</a>, 15/07/2018</p>
+                    <p>by <a class="font-weight-bold">Shirley Cynthia</a>, 15/08/2019</p>
                     <!-- Excerpt -->
-                    <p class="dark-grey-text">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-                        impedit
-                        quo minus id quod maxime placeat facere possimus voluptas.</p>
+                    <p class="dark-grey-text"> Yoga is a mental and physical practice of exercises, poses, and meditation techniques that originated in ancient India…</p>
                     <!-- Read more button -->
                     <a mdbBtn color="pink" rounded="true" mdbWavesEffect routerLink="/blogs/blog1">Read more</a>
 
@@ -85,8 +81,8 @@
                 <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
 
                     <!-- Featured image -->
-                    <div class="view overlay rounded z-depth-2 mb-4 waves-light" mdbWavesEffect>
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+                    <div class="view overlay rounded z-depth-2 mb-4 waves-light" id="myElement" mdbWavesEffect>
+                        <img class="img-fluid" src="assets/image/skincare.jpg"
                             alt="Sample image">
                         <a routerLink="/blogs/blog2">
                             <div class="mask rgba-white-slight"></div>
@@ -96,16 +92,18 @@
                     <!-- Category -->
                     <a routerLink="/blogs/blog2" class="deep-orange-text">
                         <h6 class="font-weight-bold mb-3">
-                            <mdb-icon fas icon="graduation-cap" class="pr-2"></mdb-icon>Education
+                                <mdb-icon fas icon="blog"></mdb-icon>Beauty
                         </h6>
                     </a>
                     <!-- Post title -->
-                    <h4 class="font-weight-bold mb-3"><strong>Blog 2</strong></h4>
+                    <h4 class="font-weight-bold mb-3"><strong>Skin care</strong></h4>
                     <!-- Post data -->
-                    <p>by <a class="font-weight-bold">Billy Forester</a>, 13/07/2018</p>
+                    <p>by <a class="font-weight-bold">Dr. Surya Vamsi, M.D.</a>, October 18,2019</p>
                     <!-- Excerpt -->
-                    <p class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                        voluptatum deleniti atque corrupti quos dolores.</p>
+                    <p class="dark-grey-text">If you want glowing skin, the old adage 'you are what you eat' has never been truer. 
+                        Our nutritionist's tips will help you nourish your skin from the inside out.
+        
+                    </p>
                     <!-- Read more button -->
                     <a mdbBtn color="deep-orange" rounded="true" mdbWavesEffect routerLink="/blogs/blog2">Read more</a>
 
@@ -116,8 +114,8 @@
                 <div class="col-lg-4 col-md-6 mb-0">
 
                     <!-- Featured image -->
-                    <div class="view overlay rounded z-depth-2 mb-4 waves-light" mdbWavesEffect>
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/13.jpg"
+                    <div class="view overlay rounded z-depth-2 mb-4 waves-light" id="myElement" mdbWavesEffect>
+                        <img class="img-fluid" src="assets/image/Depression-Symptoms-and-Signs.jpg"
                             alt="Sample image">
                         <a routerLink="/blogs/blog3">
                             <div class="mask rgba-white-slight"></div>
@@ -127,17 +125,16 @@
                     <!-- Category -->
                     <a routerLink="/blogs/blog3" class="blue-text">
                         <h6 class="font-weight-bold mb-3">
-                            <mdb-icon fas icon="fire" class="pr-2"></mdb-icon>Culture
+                                <mdb-icon fas icon="briefcase-medical"></mdb-icon>Mental Health
                         </h6>
                     </a>
                     <!-- Post title -->
-                    <h4 class="font-weight-bold mb-3"><strong>Blog 3</strong></h4>
+                    <h4 class="font-weight-bold mb-3"><strong>Fight Depression and Stress</strong></h4>
                     <!-- Post data -->
-                    <p>by <a class="font-weight-bold">Billy Forester</a>, 11/07/2018</p>
+                    <p>by <a class="font-weight-bold"> Amulya Meka</a>,  April 23, 2019</p>
                     <!-- Excerpt -->
-                    <p class="dark-grey-text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                        fugit, sed
-                        quia consequuntur magni dolores eos qui ratione.</p>
+                    <p class="dark-grey-text">Having a constant cycle of negative thoughts may feel like it’s taking over your life.
+                         It could be an incident at work or mental impact of a breakup. How to Overcome it? </p>
                     <!-- Read more button -->
                     <a mdbBtn color="info" rounded="true" mdbWavesEffect routerLink="/blogs/blog3">Read more</a>
 
@@ -156,9 +153,9 @@
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center my-5">More posts</h2>
         <!-- Section description -->
-        <p class="text-center w-responsive mx-auto mb-5">Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-            qui officia deserunt mollit anim id est laborum.</p>
+        <p class="text-center w-responsive mx-auto mb-5">
+
+        </p>
 
         <!-- Grid row -->
         <div class="row">
@@ -167,7 +164,7 @@
             <div class="col-lg-5">
 
                 <!-- Featured image -->
-                <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4 waves-light" mdbWavesEffect>
+                <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4 waves-light" id="myElement" mdbWavesEffect>
                     <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg"
                         alt="Sample image">
                     <a routerLink="/blogs/blog4">
@@ -184,17 +181,16 @@
                 <!-- Category -->
                 <a routerLink="/blogs/blog4" class="green-text">
                     <h6 class="font-weight-bold mb-3">
-                        <mdb-icon fas icon="utensils" class="pr-2"></mdb-icon>Food
+                        <mdb-icon fas icon="utensils" class="pr-2"></mdb-icon>Food for Health
                     </h6>
                 </a>
                 <!-- Post title -->
-                <h3 class="font-weight-bold mb-3"><strong>Blog 5</strong></h3>
+                <h3 class="font-weight-bold mb-3"><strong>What is the Nutritarian Diet</strong></h3>
                 <!-- Excerpt -->
-                <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-                    placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus et aut officiis
-                    debitis.</p>
+                <p>Emphasizes eating high-nutrient, whole plant foods that supply abundant amounts of micronutrients. 
+                    Eating this healthful diet unleashes the body’s tremendous ability to heal, achieve optimal weight and slow the aging process.</p>
                 <!-- Post data -->
-                <p>by <a><strong>Carine Fox</strong></a>, 19/08/2018</p>
+                <p>by <a><strong>Dr.Uma Maheswari</strong></a>, 19/08/2019</p>
                 <!-- Read more button -->
                 <a mdbBtn color="success" mdbWavesEffect routerLink="/blogs/blog4">Read more</a>
 
@@ -215,17 +211,16 @@
                 <!-- Category -->
                 <a routerLink="/blogs/blog5" class="pink-text">
                     <h6 class="font-weight-bold mb-3">
-                        <mdb-icon far icon="image" class="pr-2"></mdb-icon>Lifestyle
+                            <mdb-icon fas icon="heartbeat"></mdb-icon>Lifestyle
                     </h6>
                 </a>
                 <!-- Post title -->
-                <h3 class="font-weight-bold mb-3"><strong>Blog 5</strong></h3>
+                <h3 class="font-weight-bold mb-3"><strong>Lower your risk of Heart Disease</strong></h3>
                 <!-- Excerpt -->
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                    deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non
-                    provident.</p>
+                <p>Heart disease is the leading cause of the death in the India.
+                     It is also a major cause of disability. There are many things that can raise your risk for heart disease..</p>
                 <!-- Post data -->
-                <p>by <a><strong>Carine Fox</strong></a>, 14/08/2018</p>
+                <p>by <a><strong>Dr. Dharma Rakshak</strong></a>, 14/08/2018</p>
                 <!-- Read more button -->
                 <a mdbBtn color="pink" mdbWavesEffect class="mb-lg-0 mb-4" routerLink="/blogs/blog5">Read more</a>
 
@@ -236,8 +231,8 @@
             <div class="col-lg-5">
 
                 <!-- Featured image -->
-                <div class="view overlay rounded z-depth-2 waves-light" mdbWavesEffect>
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(34).jpg"
+                <div class="view overlay rounded z-depth-2 waves-light" id="myElement" mdbWavesEffect>
+                    <img class="img-fluid" src="assets/image/heartrisk.jpg"
                         alt="Sample image">
                     <a routerLink="/blogs/blog5">
                         <div class="mask rgba-white-slight"></div>
@@ -257,10 +252,10 @@
 
             <!-- Grid column -->
             <div class="col-lg-5">
-
+                    
                 <!-- Featured image -->
-                <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4 waves-light" mdbWavesEffect>
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img (28).jpg"
+                <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4 waves-light" id="myElement" mdbWavesEffect>
+                    <img class="img-fluid" src="assets/image/pregnancy.jpg"
                         alt="Sample image">
                     <a routerLink="/blogs/blog6">
                         <div class="mask rgba-white-slight"></div>
@@ -276,17 +271,16 @@
                 <!-- Category -->
                 <a routerLink="/blogs/blog6" class="indigo-text">
                     <h6 class="font-weight-bold mb-3">
-                        <mdb-icon fas icon="suitcase" class="pr-2"></mdb-icon>Travels
+                            <mdb-icon fas icon="baby"></mdb-icon>Motherhood
                     </h6>
                 </a>
                 <!-- Post title -->
-                <h3 class="font-weight-bold mb-3"><strong>Title of the news</strong></h3>
+                <h3 class="font-weight-bold mb-3"><strong>Health and Pregnancy guide</strong></h3>
                 <!-- Excerpt -->
-                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-                    magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro qui dolorem ipsum quia sit
-                    amet.</p>
+                <p>When the pregnancy test comes back positive, you've begun a life-altering journey
+                    You need information to answer your questions and help you make good decisions for a healthy baby and a healthy you.</p>
                 <!-- Post data -->
-                <p>by <a><strong>Carine Fox</strong></a>, 11/08/2018</p>
+                <p>by <a><strong>Dr. Prathima Reddy, Gynecologist</strong></a>, 11/08/2018</p>
                 <!-- Read more button -->
                 <a mdbBtn color="indigo" mdbWavesEffect routerLink="/blogs/blog6">Read more</a>
 
@@ -299,3 +293,18 @@
     </section>
     <!-- Section: Blog v.1 -->
 </div>
+<style>
+#myElement{
+    -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 300px;
+            
+}
+.img-fluid{
+    height: inherit;
+}
+
+
+</style>
