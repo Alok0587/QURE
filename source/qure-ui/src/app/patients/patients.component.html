@@ -1,0 +1,125 @@
+<!-- Section: Personal card -->
+<a routerLink="/patients/login">Go back</a>
+<section class="my-5">
+
+        <!-- Grid row 1 -->
+        <div class="row" *ngIf="patientData">
+      
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-4">
+      
+            <!-- Card -->
+            <div class="card card-personal">
+      
+              <!-- Card image-->
+              <img class="card-img-top" src="\assets\image\person3.gif" alt="Card image cap">
+              <!-- Card image-->
+      
+              <!-- Card content -->
+              <div class="card-body">
+                <!-- Title-->
+                <a>
+                  <h4 class="card-title title-one">Mr.{{patientData.name}}</h4>
+                </a>
+                <p class="card-meta">{{patientData.email}}</p>
+                <!-- Text -->
+                <p class="card-text">{{patientData.phone}}</p>
+                <hr>
+                
+              </div>
+              <!-- Card content -->
+      
+            </div>
+            <!-- Card -->
+      
+          </div>
+          <!-- Grid column 2 -->
+          <div class="col-md-6 col-lg-4">
+      
+            <!-- Card -->
+            <div class="card text-center card-personal">
+      
+              <!-- Card image-->
+              <img class="card-img-top" src="\assets\image\appoint1.jpg" alt="Card image cap">
+              <!-- Card image-->
+      
+              <!-- Card content -->
+              <div class="card-body ">
+                <!-- Title-->
+                <a>
+                        <button type="button" class="btn btn-primary" (click)="onBookAppointmentClick(patientData.patientId)">
+                                <h4 class="card-title title-one ">Book Appoinment</h4></button>
+                </a>
+                <!-- <p class="card-meta">{{patientData.email}}</p> -->
+                <!-- Text -->
+                <p class="card-text">You don't have to visit or call us now.</p>
+                <hr>
+                
+              </div>
+              <!-- Card content -->
+      
+            </div>
+            <!-- Card -->
+      
+          </div>
+
+           <!-- Grid column3 -->
+           <div class="col-md-6 col-lg-4">
+      
+            <!-- Card -->
+            <div class="card text-center card-personal">
+      
+              <!-- Card image-->
+              <img class="card-img-top" src="\assets\image\medicine.jpg" alt="Card image cap">
+              <!-- Card image-->
+      
+              <!-- Card content -->
+              <div class="card-body ">
+                <!-- Title-->
+                <a>
+                  <h4 class="card-title title-one ">Book Medicines</h4>
+                </a>
+                <!-- <p class="card-meta">{{patientData.email}}</p> -->
+                <!-- Text -->
+                <p class="card-text">Our own QURE Pharmacy is at your service.</p>
+                <hr>
+
+                <p class="card-text">Don't worry. It's a free delivery!</p>
+                
+              </div>
+              <!-- Card content -->
+      
+            </div>
+            <!-- Card -->
+      
+          </div>
+      
+        </div>
+        <!-- Grid row -->
+      
+      </section>
+      <!-- Section: Personal card -->
+
+      <div>
+            <h4>Appointments</h4>
+        </div>
+        <div class="ScrollStyle">
+            <div class="row">
+
+                <div class="card col-sm-2" *ngFor="let appointment of appointmentList">
+                    <div class="card-body">
+                        <p class="card-text">Appointment ID: {{appointment.id}}</p>
+                        <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
+                        <p class="card-text">Time: {{appointment.time}}</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#viewAppointmentModal"
+                            (click)="onViewHandler(appointment)">View/Update</button> -->
+                        <button type="button" (click)="onDeleteHandler(appointment.id)"
+                            class="btn btn-danger">Delete</button>
+                        <!-- <p class="card-text">Slot: {{booking.slot}}</p> -->
+                        <!-- <button type="button">Cancel this appointment</button> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>

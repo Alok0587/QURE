@@ -1,77 +1,73 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { NavComponent } from './shared/header/nav/nav.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { HomeComponent } from './home/home.component';
-import { PatientComponent } from './patient/patient.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DoctorComponent } from './doctor/doctor.component';
-import { patLoginComponent } from './patient/pat-login/pat-login.component';
-import { docLoginComponent } from './doctor/doct-login/doct-login.component';
-import { DoctRegComponent } from './doctor/doct-reg/doct-reg.component';
-import { PatRegComponent } from './patient/pat-reg/pat-reg.component';
-// import { BookAppointmentComponent } from './patient/book-appointment/book-appointment.component';
-// import { BookComponent } from './patient/book-appointment/book/book.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BlogsComponent } from './blogs/blogs.component';
+
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { NavComponent } from './shared/nav/nav.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { PatientsComponent } from './patients/patients.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { AdminComponent } from './admin/admin.component';
+import { PatientLoginComponent } from './patients/patient-login/patient-login.component';
+import { PatientRegisterComponent } from './patients/patient-register/patient-register.component';
+import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-register.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { DoctorLoginComponent } from './doctors/doctor-login/doctor-login.component';
 import { Blog1Component } from './blogs/blog1/blog1.component';
 import { Blog2Component } from './blogs/blog2/blog2.component';
 import { Blog3Component } from './blogs/blog3/blog3.component';
-import { ContactComponent } from './contact/contact.component';
-import { DoctAppointmentComponent } from './appointment/doct-appointment/doct-appointment.component';
-import { PatAppointmentComponent } from './appointment/pat-appointment/pat-appointment.component';
-import { AboutComponent } from './about/about.component';
-import { FaqComponent } from './faq/faq.component';
-import { OrdermedicinesComponent } from './patient/ordermedicines/ordermedicines.component';
-import { BookappointmentComponent } from './appointment/bookappointment/bookappointment.component';
-// import { BookappointmentComponent } from './appointment/bookappointment/bookappointment.component';
-
-
-
+import { Blog4Component } from './blogs/blog4/blog4.component';
+import { Blog5Component } from './blogs/blog5/blog5.component';
+import { Blog6Component } from './blogs/blog6/blog6.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
+ 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    NavComponent,
-    FooterComponent,
     HomeComponent,
-    PatientComponent,
-    DoctorComponent,
-    patLoginComponent,
-    docLoginComponent,
-    DoctRegComponent,
-    PatRegComponent,
-    // BookAppointmentComponent,
-    // BookComponent,
-    BlogsComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavComponent,
+    AboutComponent,
+    ContactComponent,
+    PatientsComponent,
+    DoctorsComponent,
+    AdminComponent,
+    PatientLoginComponent,
+    PatientRegisterComponent,
+    DoctorRegisterComponent,
+    AdminLoginComponent,
+    DoctorLoginComponent,
     Blog1Component,
     Blog2Component,
     Blog3Component,
-    ContactComponent,
-    DoctAppointmentComponent,
-    PatAppointmentComponent,
-    AboutComponent,
-    FaqComponent,
-    OrdermedicinesComponent,
-    BookappointmentComponent,
-    // BookappointmentComponent
+    Blog4Component,
+    Blog5Component,
+    Blog6Component,
+    AppointmentsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MDBBootstrapModule.forRoot(),
+
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA,
-    NO_ERRORS_SCHEMA
-  ],
   bootstrap: [AppComponent]
+  // schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
+

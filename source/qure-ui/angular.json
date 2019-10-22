@@ -3,9 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "QURE-UI": {
+    "qure-ui": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/QURE-UI",
+            "outputPath": "dist/qure-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+              "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
+              "src/styles.scss"
+          ],
+          "scripts": [
+            "node_modules/chart.js/dist/Chart.js",
+            "node_modules/hammerjs/hammer.min.js"
+          ]
           },
           "configurations": {
             "production": {
@@ -63,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "QURE-UI:build"
+            "browserTarget": "qure-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "QURE-UI:build:production"
+              "browserTarget": "qure-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "QURE-UI:build"
+            "browserTarget": "qure-ui:build"
           }
         },
         "test": {
@@ -89,7 +99,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -111,15 +121,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "QURE-UI:serve"
+            "devServerTarget": "qure-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "QURE-UI:serve:production"
+              "devServerTarget": "qure-ui:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "QURE-UI"
+  "defaultProject": "qure-ui"
 }
