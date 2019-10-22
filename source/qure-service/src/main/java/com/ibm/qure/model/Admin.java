@@ -10,12 +10,12 @@ public class Admin {
 
 	@Id
 	int adminId;
-	String adminName;
-	String adminMob;
-	String adminEmail;
-	int userLevel = 0;
+	private String adminName;
+	private String adminMob;
+	private String adminEmail;
+	private int userLevel = 0;
 
-	List<Doctor> doctorList;
+
 
 	public Admin() {
 
@@ -27,7 +27,7 @@ public class Admin {
 		this.adminName = adminName;
 		this.adminMob = adminMob;
 		this.adminEmail = adminEmail;
-		this.doctorList = new ArrayList<Doctor>();
+		//this.doctorList = new ArrayList<Doctor>();
 	}
 
 	public int getUserLevel() {
@@ -70,12 +70,12 @@ public class Admin {
 		this.adminEmail = adminEmail;
 	}
 
-	public List<Doctor> getDoctorList() {
-		return doctorList;
-	}
-
-	public void setDoctorList(List<Doctor> doctorList) {
-		this.doctorList = doctorList;
-	}
+//	public List<Doctor> getDoctorList() {
+//		return doctorList;
+//	}
+//
+//	public void setDoctorList(List<Doctor> doctorList) {
+//		this.doctorList = doctorList;
+//	}
 
 }

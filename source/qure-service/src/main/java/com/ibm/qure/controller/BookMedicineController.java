@@ -2,8 +2,8 @@ package com.ibm.qure.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -22,97 +22,80 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ibm.qure.exceptions.ApplicationException;
-import com.ibm.qure.model.Appointment;
+import com.ibm.qure.model.BookMedicine;
 import com.ibm.qure.model.ResponseMessage;
-import com.ibm.qure.service.AppointmentService;
+import com.ibm.qure.service.BookMedicineService;
 
+
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/appointments")
-public class AppointmentController {
+@RequestMapping("/bookmedicines")
+public class BookMedicineController {
 
 	@Autowired
-	AppointmentService appointService;
+	BookMedicineService bookMedicineService;
 
-	// List All appointments GET /appointments or Get by pId or dId
+	// List All BookMedicines GET /bookMedicines
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public List<Appointment> getAllAppointments(@RequestParam(name = "dId", required = false) Optional<String> dId,
-			@RequestParam(name = "pId", required = false) Optional<String> pId) {
-		if (pId.isPresent()) {
-			return appointService.patientsAppointmentList(pId);
-		} else if (dId.isPresent()) {
-			return appointService.doctorsAppointmentList(dId);
-		} else {
-			return appointService.getAll();
-		}
+	public List<BookMedicine> getAllBookMedicines() {
 
+		return bookMedicineService.getAll();
 	}
 
-	// List appointment for given Id GET /appointments/{id}
+	// List BookMedicine for given Id GET /bookMedicines/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public Appointment getAppointment(@PathVariable String id) {
-		return appointService.get(id);
+	public BookMedicine getBookMedicine(@PathVariable String id) {
+		return bookMedicineService.get(id);
 	}
 
-	// Create Appointment POST /appointments
-	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.ALL_VALUE })
+	// Create BookMedicine POST /bookMedicines
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public ResponseEntity<ResponseMessage> createAppointment(@RequestBody @Valid Appointment appointment)
+	public ResponseEntity<ResponseMessage> createBookMedicine(@RequestBody @Valid BookMedicine bookMedicine)
 			throws URISyntaxException, ApplicationException {
 
 		ResponseMessage resMsg;
 
-		appointService.create(appointment);
+		bookMedicineService.create(bookMedicine);
+	
+		resMsg = new ResponseMessage("Success", new String[] {"BookMedicine created successfully"});
 
-		resMsg = new ResponseMessage("Success", new String[] { "Appointment created successfully" });
-
-		// Build newly created Employee resource URI - Employee ID is always 0 here.
-		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(appointment.getAppointmentId()).toUri();
+				.buildAndExpand(bookMedicine.getBookedId()).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 
 	}
 
-	// Update Appointment PUT /appointments/{id}
+	// Update BookMedicine PUT /bookMedicines/{id}
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
-	public ResponseEntity<ResponseMessage> updateEmployee(@PathVariable String id,
-			@RequestBody Appointment updatedAppoint) {
-		updatedAppoint.setAppointmentId(id);
-		appointService.update(updatedAppoint);
-
+	public ResponseEntity<ResponseMessage> updateBookMedicine(@PathVariable String id, @RequestBody BookMedicine updatedBookMedicine) throws URISyntaxException, ApplicationException  {
 		ResponseMessage resMsg;
-		resMsg = new ResponseMessage("Success", new String[] { "Appointment updated successfully" });
 
-		// Build newly created Employee resource URI - Employee ID is always 0 here.
-		// Need to get the new Employee ID.
+		updatedBookMedicine.setBookedId(id);
+		bookMedicineService.update(updatedBookMedicine);
+
+		resMsg = new ResponseMessage("Success", new String[] {"BookMedicine updated successfully"});
+
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(updatedAppoint.getAppointmentId()).toUri();
+				.buildAndExpand(updatedBookMedicine.getBookedId()).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 	}
 
-	// Delete Appointment DELETE /appointments/{id}
+	// Delete BookMedicine DELETE /bookMedicines/{id}
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
-	public ResponseEntity<ResponseMessage> deleteAppointment(@PathVariable String id) {
-		appointService.delete(id);
-		ResponseMessage resMsg;
-		resMsg = new ResponseMessage("Success", new String[] { "Appointment deleted successfully" });
-
-		// Build newly created Employee resource URI - Employee ID is always 0 here.
-		// Need to get the new Employee ID.
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
-
-		return ResponseEntity.created(location).body(resMsg);
+	public String deleteBookMedicine(@PathVariable String id) {
+		bookMedicineService.delete(id);
+		return "BookMedicine deleted successfully";
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -122,7 +105,7 @@ public class AppointmentController {
 		int size = errors.size();
 		String[] errorMsgs = new String[size];
 
-		for (int i = 0; i < size; i++) {
+		for(int i = 0; i < size; i++ ) {
 			errorMsgs[i] = errors.get(i).getDefaultMessage();
 		}
 

@@ -8,8 +8,7 @@ public abstract class Person {
 	private String gender;
 	private String phone;
 	private Address address;
-	private int userLevel=2;
-
+	
 	public Person() {
 		// default constructor
 	}
@@ -64,13 +63,13 @@ public abstract class Person {
 		this.address = address;
 	}
 
-	public int getUserLevel() {
-		return userLevel;
-	}
-
-	public void setUserLevel(int userLevel) {
-		this.userLevel = userLevel;
-	}
+//	public int getUserLevel() {
+//		return userLevel;
+//	}
+//
+//	public void setUserLevel(int userLevel) {
+//		this.userLevel = userLevel;
+//	}
 
 	public String getName() {
 		return name;
