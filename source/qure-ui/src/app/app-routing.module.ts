@@ -15,6 +15,7 @@ import { Blog3Component } from './blogs/blog3/blog3.component';
 import { Blog4Component } from './blogs/blog4/blog4.component';
 import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
+import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'blogs/blog4', component: Blog4Component },
   { path: 'blogs/blog5', component: Blog5Component },
   { path: 'blogs/blog6', component: Blog6Component },
-  { path: 'patients/:id', component: PatientsComponent }
+  { path: 'patients/:id', component: PatientsComponent },
+  { path: 'appointments/:id', component: AddAppointmentComponent }
   
 ];
 

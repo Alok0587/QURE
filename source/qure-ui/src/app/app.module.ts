@@ -29,6 +29,7 @@ import { Blog4Component } from './blogs/blog4/blog4.component';
 import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
  
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AppointmentsComponent } from './appointments/appointments.component';
     Blog4Component,
     Blog5Component,
     Blog6Component,
-    AppointmentsComponent
+    AppointmentsComponent,
+    AddAppointmentComponent
   ],
   imports: [
     BrowserModule,

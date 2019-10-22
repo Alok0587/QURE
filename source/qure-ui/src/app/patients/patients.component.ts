@@ -46,8 +46,30 @@ export class PatientsComponent implements OnInit {
       });
   }
 
-  onBookAppointmentClick(pId: any){
-    
+  async onViewHandler(appId){
+    this.appointmentSubscription2 = await this.appointmentService.getAppointmentById(appId)
+      .subscribe( (res: any) => { 
+        console.log( res );
+        this.appointmentData = res;
+      });
+    this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
+  }
+
+  onBookAppointmentHandler(pId: any){
+    this.router.navigate(['appointments/' + pId])
+  }
+  async onDeleteHandler(aId: any){
+    let res = await this.appointmentService.deleteAppointment(aId)
+    .subscribe((res: any[]) => {
+      console.log(res);
+      this.appointmentList = res;
+    });
+    console.log(res);
+  }
+  async onUpdateHandler( formData ) {
+  
+    let res = await this.appointmentService.updateAppointment(this.duplicateAppointmentData)
+    console.log(res); // 2. get the resp from service
   }
 
 }

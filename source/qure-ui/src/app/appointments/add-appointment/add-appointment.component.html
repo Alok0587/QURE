@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>Book new Appoinment</h1>
+        <button class="btn btn-dark">Go Back</button>
+    </div>
+
+    <!-- new booking  -->
+    <form class="col-md-6 offset-md-3" [formGroup]="bookForm" (ngSubmit)="onBookHandler()">
+
+        <div class="form-group row">
+            <label for="patientId" class="col-sm-2 col-form-label">Patient Id</label>
+            <div class="col-sm-10">
+                <input type="text" value="bookForm.patientId" class="form-control" formControlName="patientId"
+                    disabled />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="doctorId" class="col-sm-2 col-form-label">Doctor Id</label>
+            <div class="col-sm-10">
+                <input type="text" value="bookForm.doctortId" class="form-control" formControlName="doctorId" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="appointmentDate" class="col-sm-2 col-form-label">Pick your Date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" min="2019-01-01"
+                    max="2020-12-31" [ngClass]="{ 'is-invalid': bookForm.get('appointmentDate').touched
+          && bookForm.get('appointmentDate').invalid}" placeholder="Enter date" formControlName="appointmentDate" />
+                <div class="invalid-feedback">
+                    <div *ngIf="bookForm.get('appointmentDate').errors?.required">date is required</div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group row">
+            <label for="time" class="col-sm-2 col-form-label">Pict your time</label>
+            <div class="col-sm-10">
+                <input type="time" id="time" name="time" class="form-control" [ngClass]="{ 'is-invalid': bookForm.get('time').touched
+            && bookForm.get('time').invalid}" formControlName="time" min="09:00" max="18:00" required>
+                <small>Office hours are 9am to 6pm</small>
+                <div class="invalid-feedback">
+                    <div *ngIf="bookForm.get('time').errors?.required">time is required</div>
+                    <div *ngIf="bookForm.get('time').errors?.min">Please give valid time</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">price</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': bookForm.get('price').touched
+          && bookForm.get('price').invalid}" formControlName="price" disabled />
+                <div class="invalid-feedback">
+                    <div>price is required</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-success" *ngIf="isSaved">
+            Saved Successfully
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

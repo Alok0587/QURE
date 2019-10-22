@@ -16,13 +16,13 @@ export class PatientLoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       patientId: new FormControl(),
       email: new FormControl(),
-      password:new FormControl()
-   });
-   }
+      password: new FormControl()
+    });
+  }
 
-   async onSubmitButton(){
+  async onSubmitButton() {
     console.log(this.loginForm.value.patientId);
-    
+
 
     let id = this.loginForm.value.patientId;
     this.router.navigate(['/patients', id]);
