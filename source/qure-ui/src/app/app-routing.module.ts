@@ -16,6 +16,8 @@ import { Blog4Component } from './blogs/blog4/blog4.component';
 import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'patients/register', component: PatientRegisterComponent },
   { path: 'patients/login', component: PatientLoginComponent },
   { path: 'doctors', component: PatientsComponent },
+  { path: 'patients/appointments/:pid', component: AppointmentsComponent},
+  { path: 'patients/bookmedicine/:pid', component:BookMedicineComponent},
   { path: 'doctors/register', component: DoctorRegisterComponent },
   { path: 'doctors/login', component: DoctorLoginComponent },
   { path: 'about', component: AboutComponent },

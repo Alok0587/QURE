@@ -67,36 +67,38 @@
 
         <!-- Grid column3 -->
         <div class="col-md-6 col-lg-4">
-
+      
             <!-- Card -->
             <div class="card text-center card-personal">
+      
+              <!-- Card image-->
+              <img class="card-img-top" src="\assets\image\medicine.jpg" alt="Card image cap">
+              <!-- Card image-->
+      
+              <!-- Card content -->
+              <div class="card-body ">
+                <!-- Title-->
+                <a>
+                  <h4 class="card-title title-one ">Book Medicines</h4>
+                </a>
+                <!-- <p class="card-meta">{{patientData.email}}</p> -->
+                <!-- Text -->
+                <p class="card-text">Our own QURE Pharmacy is at your service.</p>
+               
 
-                <!-- Card image-->
-                <img class="card-img-top" src="\assets\image\medicine.jpg" alt="Card image cap">
-                <!-- Card image-->
-
-                <!-- Card content -->
-                <div class="card-body ">
-                    <!-- Title-->
-                    <a>
-                        <h4 class="card-title title-one ">Book Medicines</h4>
-                    </a>
-                    <!-- <p class="card-meta">{{patientData.email}}</p> -->
-                    <!-- Text -->
-                    <p class="card-text">Our own QURE Pharmacy is at your service.</p>
-                    <hr>
-
-                    <p class="card-text">Don't worry. It's a free delivery!</p>
-
-                </div>
-                <!-- Card content -->
-
+                <p class="card-text">Don't worry. It's a free delivery!</p>
+               
+                <button type="button" class="btn btn-primary" (click)="onBookHandler(patientData.patientId)">Book</button>     <hr>
+                
+              </div>
+              <!-- Card content -->
+      
             </div>
             <!-- Card -->
-
+      
+          </div>
+      
         </div>
-
-    </div>
     <!-- Grid row -->
 
 </section>

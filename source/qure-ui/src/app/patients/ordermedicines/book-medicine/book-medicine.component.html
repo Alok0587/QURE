@@ -1,0 +1,49 @@
+<!-- <div class="card-deck">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h5 class="card-title">Panel title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    
+  </div> -->
+  <!-- Jumbotron --><link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+<div class="card card-image" style="background-image: url(/assets/image/medicine1.jpg);">
+    <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+      <div class="py-5">
+  
+        <!-- Content -->
+        <!-- <h5 class="h5 orange-text"><i class="fas fa-camera-retro"></i> Photography</h5> -->
+        <h2 class="card-title h2 my-4 py-2">BOOK MEDICINES</h2>
+        <p class="mb-4 pb-2 px-md-5 mx-md-5">Order medicines on QURE store and get them delivered for free!</p>
+        <!-- <a class="btn peach-gradient"><i class="fas fa-clone left"></i> View project</a> -->
+  
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+  <br><br>
+
+
+  <div class="card-deck">
+    <div class="card  border-dark col-sm-3" *ngFor="let medicine of medicineList">
+        <div class="card-body text-center" >
+            <p class="card-text"><strong >Medicine ID:</strong> {{medicine.medicineId}}</p><hr>
+            <p class="card-text"><strong>Medicine name:</strong> {{medicine.name}}</p><hr>
+            <!-- <p class="card-text"><strong>Quantity:</strong> <select id="calc">
+                <option value="2">2mg</option>
+                <option value="4">4mg</option>
+                <option value="6">6mg</option>
+                <option value="8">8mg</option>
+                <option value="10">10mg</option>
+            </select></p><hr> -->
+            <p class="card-text"><strong>Quantity:</strong> {{medicine.quantity}}</p><hr>
+            <p class="card-text"><strong>Price:</strong> {{medicine.price}}</p><hr>
+            <button type="submit" class="btn btn-primary" (click)="onBookHandler(medicine.medicineId)">Book</button>
+
+       
+    </div>
+    
+
+</div>

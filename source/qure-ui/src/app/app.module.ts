@@ -30,6 +30,7 @@ import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
+import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
  
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AddAppointmentComponent } from './appointments/add-appointment/add-appo
     Blog5Component,
     Blog6Component,
     AppointmentsComponent,
-    AddAppointmentComponent
+    AddAppointmentComponent,
+    BookMedicineComponent
   ],
   imports: [
     BrowserModule,

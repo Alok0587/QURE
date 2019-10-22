@@ -72,4 +72,11 @@ export class PatientsComponent implements OnInit {
     console.log(res); // 2. get the resp from service
   }
 
+  onBookHandler(id)
+  {
+    console.log("Id: "+id);
+
+    this.router.navigate(['patients/bookmedicine/',id]);
+  }
+
 }
