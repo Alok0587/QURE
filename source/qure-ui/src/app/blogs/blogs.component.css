@@ -1,0 +1,33 @@
+.container-fluid {
+    height: 400px;
+   
+    background-color:#ffffe6;
+    margin-top: 20%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom:10%;
+}
+.row 
+{
+    width : 1200px;
+}
+
+img {
+    height: 420px;
+    width: 500px;
+    border: 4;
+   
+    border-style: solid;
+    transition: 3s all ease;
+
+}
+
+img:hover {
+
+    transform: scale(1.2);
+}
+.card{
+    border-color: black;
+    /* width:600px; */
+    background-color:black; 
+}

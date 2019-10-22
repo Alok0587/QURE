@@ -1,0 +1,90 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+      <img src="assets/image/illustration.webp" height="400px;" width="440px;"></div>
+      <div class="col-md-8"> 
+
+  <form [formGroup]="patientForm" (ngSubmit)="onAddPatientHandler()">
+    <h1>Patient's registration</h1>
+    <label>
+      <p class="label-txt"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Enter your name</p>
+      <input type="text" class="input" formControlName="name" required>
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <label>
+      <p class="label-txt"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Enter your patient ID</p>
+      <input type="text" class="input" formControlName="patientId" required>
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <label>
+      <p class="label-txt"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Enter your email</p>
+      <input type="email" class="input" formControlName="email" required>
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <label>
+      <p class="label-txt"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Enter your age</p>
+      <input type="yext" class="input" formControlName="age" required>
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <label>
+      <p class="label-txt"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Enter your gender</p>
+      <input type="text" class="input" formControlName="gender" required>
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <!-- <label>
+      <p class="label-txt"><i class="fa fa-key" aria-hidden="true"></i>&nbsp;Enter password:</p>
+        <input type="password" class="input">
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+   </label>
+      <label>
+    <p class="label-txt"><i class="fa fa-key" aria-hidden="true"></i>&nbsp;Confirm Password:</p>
+    <input type="password" class="input">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label> -->
+    <label>
+      <p class="label-txt"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;Enter phone</p>
+      <input type="text" class="input" formControlName="phone" required>
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <!-- <label>
+        <p class="label-txt"><i class="fa fa-tint" aria-hidden="true"></i>&nbsp;enter Blood-group</p>
+        <input type="text" class="input">
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </label> -->
+    <div class="alert alert-success" *ngIf="isSaved">
+      Saved Successfully
+      <a class="btn-success" routerLink="/loginPatient">
+        <h3>Login</h3>
+      </a>
+    </div>
+    <button type="submit">
+      <h3>submit</h3>
+    </button>
+  </form>
+</div>
+</div>
+</div>
