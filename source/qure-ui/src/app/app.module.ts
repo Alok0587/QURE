@@ -19,8 +19,7 @@ import { DoctorsComponent } from './doctors/doctors.component';
 import { AdminComponent } from './admin/admin.component';
 import { PatientLoginComponent } from './patients/patient-login/patient-login.component';
 import { PatientRegisterComponent } from './patients/patient-register/patient-register.component';
-import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-register.component';
-import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+
 import { DoctorLoginComponent } from './doctors/doctor-login/doctor-login.component';
 import { Blog1Component } from './blogs/blog1/blog1.component';
 import { Blog2Component } from './blogs/blog2/blog2.component';
@@ -32,6 +31,9 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
 import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
 import { FaqComponent } from './faq/faq.component';
+import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
+import { SpecializationComponent } from './specialization/specialization.component';
+import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-register.component';
  
 
 @NgModule({
@@ -49,7 +51,6 @@ import { FaqComponent } from './faq/faq.component';
     PatientLoginComponent,
     PatientRegisterComponent,
     DoctorRegisterComponent,
-    AdminLoginComponent,
     DoctorLoginComponent,
     Blog1Component,
     Blog2Component,
@@ -60,7 +61,10 @@ import { FaqComponent } from './faq/faq.component';
     AppointmentsComponent,
     AddAppointmentComponent,
     BookMedicineComponent,
-    FaqComponent
+    FaqComponent,
+    AdminComponent,
+    AdminloginComponent,
+    SpecializationComponent,
   ],
   imports: [
     BrowserModule,

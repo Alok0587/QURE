@@ -1,0 +1,27 @@
+img {
+    border-radius: 50%;
+    width: 200px;
+    border-color: black;
+    border: solid;
+  
+}
+
+.col-sm-3 {
+    margin: 20px;
+    padding: 20px;
+    align-content: center;
+}
+
+.container .row{
+    width: 100%;
+    height: 200%;
+}
+
+
+/* .container{
+    background-color:#ffd24d;
+} */
+a{
+    text-align: center;
+    color:black;
+}

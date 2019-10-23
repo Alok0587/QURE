@@ -2,7 +2,6 @@ import { FaqComponent } from './faq/faq.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
 import { PatientRegisterComponent } from './patients/patient-register/patient-register.component';
@@ -20,6 +19,9 @@ import { Blog6Component } from './blogs/blog6/blog6.component';
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
+import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
+import { AdminComponent } from './admin/admin.component';
+import { SpecializationComponent } from './specialization/specialization.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,13 +30,13 @@ const routes: Routes = [
   { path: 'patients/register', component: PatientRegisterComponent },
   { path: 'patients/login', component: PatientLoginComponent },
   { path: 'doctors', component: PatientsComponent },
-  { path: 'patients/appointments/:pid', component: AppointmentsComponent},
-  { path: 'patients/bookmedicine/:pid', component:BookMedicineComponent},
+  { path: 'patients/appointments/:pid', component: AppointmentsComponent },
+  { path: 'patients/bookmedicine/:pid', component: BookMedicineComponent },
   { path: 'doctors/register', component: DoctorRegisterComponent },
   { path: 'doctors/login', component: DoctorLoginComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent},
-  {path:'faq',component: FaqComponent},
+  { path: 'contact', component: ContactComponent },
+  { path: 'faq', component: FaqComponent },
   { path: 'blogs/blog1', component: Blog1Component },
   { path: 'blogs/blog2', component: Blog2Component },
   { path: 'blogs/blog3', component: Blog3Component },
@@ -43,7 +45,10 @@ const routes: Routes = [
   { path: 'blogs/blog6', component: Blog6Component },
   { path: 'patients/:id', component: PatientsComponent },
   { path: 'appointments/:id', component: AddAppointmentComponent },
-  {path:'doctors/:id',component: DoctorsComponent}
+  { path: 'doctors/:id', component: DoctorsComponent },
+  { path: 'adminlogin', component: AdminloginComponent },
+  { path: 'adminlogin/admin', component: AdminComponent },
+  { path: 'specialization/:spec', component: SpecializationComponent }
 ];
 
 @NgModule({

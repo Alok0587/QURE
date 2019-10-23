@@ -37,6 +37,22 @@ export class DoctorService {
         return res;
       }))
   }
+
+  getDoctorBySpecialization(special) {
+
+    console.log(special + "12345");
+    return this.http.get(this.REST_API_URL, {
+      params: {
+        specialization: special
+      }
+    })
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+      }));
+
+
+  }
   
 }
 
