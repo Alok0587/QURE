@@ -1,1 +1,126 @@
-<p>doctors works!</p>
+<!-- Section: Personal card -->
+<a routerLink="/doctors/login">Go back</a>
+<section class="my-5">
+
+        <!-- Grid row -->
+        <div class="row" *ngIf="doctorData">
+      
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-4">
+      
+            <!-- Card -->
+            <div class="card card-personal">
+      
+              <!-- Card image-->
+              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" alt="Card image cap">
+              <!-- Card image-->
+      
+              <!-- Card content -->
+              <div class="card-body">
+                <!-- Title-->
+                <a>
+                  <h4 class="card-title title-one">Mr./Ms.{{doctorData.name}}</h4>
+                </a>
+                <p class="card-meta">{{doctorData.email}}</p>
+                <!-- Text -->
+                <p class="card-text">{{doctorData.phone}}</p>
+                <hr>
+                
+              </div>
+              <!-- Card content -->
+      
+            </div>
+            <!-- Card -->
+      
+          </div>
+          <!-- Grid column -->
+      
+        </div>
+        <!-- Grid row -->
+      
+      </section>
+      <!-- Section: Personal card -->
+      <div class="modal fade" id="viewAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">view appointment details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="appointmentData">
+                <form ngNativeValidate #f="ngForm">
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Appointment Id</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="id" placeholder="Enter name"
+                                [(ngModel)]="appointmentData.id" disabled required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" name="date" placeholder="Enter date"
+                                [(ngModel)]="appointmentData.date" disabled required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
+                        <div class="col-sm-9">
+                            <input type="time" class="form-control" name="time" placeholder="Enter time"
+                                [(ngModel)]="appointmentData.time" disabled required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Patient Id</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="pid" placeholder="Enter id"
+                                [(ngModel)]="appointmentData.patientId" disabled required>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success" *ngIf="isSaved">
+                        Updated successfully!
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+      <!-- Section: Personal card -->
+
+    
+      <div>
+            <h3>Appointments</h3>
+        </div>
+        <div class="ScrollStyle">
+            <div class="row" >
+
+                <div class="card col-md-3" *ngFor="let appointment of appointmentList" 
+                 style="background-color:#ffffe6;">
+                    <div class="card-body" >
+                        <p class="card-text">Appointment ID: {{appointment.id}}</p>
+                        <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
+                        <p class="card-text">Time: {{appointment.time}}</p>
+                        <center><button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                            data-target="#viewAppointmentModal"
+                            (click)="onViewHandler(appointment.id)">View</button> </center>
+                       <center><button type="button" (click)="onDeleteHandler(appointment.id)"
+                            class="btn btn-danger">Delete</button></center>
+                        <!-- <p class="card-text">Slot: {{booking.slot}}</p> -->
+                        <!-- <button type="button">Cancel this appointment</button> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      
+
+

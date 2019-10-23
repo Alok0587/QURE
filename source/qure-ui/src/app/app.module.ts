@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +31,7 @@ import { Blog6Component } from './blogs/blog6/blog6.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
 import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
+import { FaqComponent } from './faq/faq.component';
  
 
 @NgModule({
@@ -58,7 +59,8 @@ import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/b
     Blog6Component,
     AppointmentsComponent,
     AddAppointmentComponent,
-    BookMedicineComponent
+    BookMedicineComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,10 @@ import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/b
     HttpClientModule,
   ],
   providers: [],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ],
   bootstrap: [AppComponent]
   // schemas: [ NO_ERRORS_SCHEMA ]
 })

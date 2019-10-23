@@ -1,3 +1,5 @@
+import { FaqComponent } from './faq/faq.component';
+import { DoctorsComponent } from './doctors/doctors.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -32,6 +34,7 @@ const routes: Routes = [
   { path: 'doctors/login', component: DoctorLoginComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent},
+  {path:'faq',component: FaqComponent},
   { path: 'blogs/blog1', component: Blog1Component },
   { path: 'blogs/blog2', component: Blog2Component },
   { path: 'blogs/blog3', component: Blog3Component },
@@ -39,8 +42,8 @@ const routes: Routes = [
   { path: 'blogs/blog5', component: Blog5Component },
   { path: 'blogs/blog6', component: Blog6Component },
   { path: 'patients/:id', component: PatientsComponent },
-  { path: 'appointments/:id', component: AddAppointmentComponent }
-  
+  { path: 'appointments/:id', component: AddAppointmentComponent },
+  {path:'doctors/:id',component: DoctorsComponent}
 ];
 
 @NgModule({

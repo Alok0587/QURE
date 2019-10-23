@@ -23,7 +23,16 @@ export class AppointmentService {
         return res;
       }));
   }
-
+   
+  getAppointmentsByDoctorId(id: any) {
+    return this.http.get(this.REST_API_URL, {params: {
+      dId: id}
+    })
+      .pipe(map(res => {  // 3. get res from rest api
+        console.log(res);
+        return res; // 4. send it back to comp
+      }));
+  }
   createAppointment(appointmentData: any) {
     console.log(appointmentData);
     let promise = new Promise((resolve, reject) => {

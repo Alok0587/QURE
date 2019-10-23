@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DoctorService } from '../doctor.service';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-doctor-login',
@@ -6,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./doctor-login.component.scss']
 })
 export class DoctorLoginComponent implements OnInit {
+  loginForm: FormGroup;
 
-  constructor() { }
+  constructor(private doctorService: DoctorService, public router: Router) {
 
+    this.loginForm = new FormGroup({
+      doctorId: new FormControl(),
+      email: new FormControl(),
+      password:new FormControl()
+   });
+   }
+
+   async onSubmitButton(){
+    console.log(this.loginForm.value.doctorId);
+    
+
+    let id = this.loginForm.value.doctorId;
+    this.router.navigate(['/doctors', id]);
+  }
   ngOnInit() {
   }
 
