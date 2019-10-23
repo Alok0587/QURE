@@ -11,27 +11,31 @@ export class DoctorRegisterComponent implements OnInit {
 
   doctorForm: FormGroup;
   isSaved: boolean;
-  constructor(private doctorService: DoctorService) { 
+  constructor(private doctorService: DoctorService) {
 
     this.doctorForm = new FormGroup({
       // Step2: Create Form Control
-      name: new FormControl('', [ 
-                                Validators.required,
-                                Validators.minLength(2)                                
-                              ] ),
-      email: new FormControl('', [ 
-                                Validators.required,
-                                Validators.email                                
-                              ] ),  
-      age: new FormControl('', [ 
-                                Validators.required,
-                                Validators.min(1),
-                                Validators.max(125)
-                              ] ),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.min(4),
+      ]),
+      age: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(125)
+      ]),
       gender: new FormControl('', Validators.required),
       phone: new FormControl('', Validators.required),
-      specialization:new FormControl('',Validators.required),
-       address: new FormGroup({
+      specialization: new FormControl('', Validators.required),
+      address: new FormGroup({
         buildingName: new FormControl('', Validators.required),
         street: new FormControl('', Validators.required),
         city: new FormControl('', Validators.required),
@@ -40,11 +44,11 @@ export class DoctorRegisterComponent implements OnInit {
       })
     });
   }
-  
+
   async onAddDoctorHandler() {
     console.log(this.doctorForm);
-    console.log(this.doctorForm.value);
-    let res: any = await this.doctorService.registerDoctor(this.doctorForm.value);
+    console.log("Doctor Data: " + this.doctorForm.value);
+    let res: any = await this.doctorService.registerDoctor(JSON.stringify(this.doctorForm.value));
     console.log(res);
 
     if (res && res.message) {

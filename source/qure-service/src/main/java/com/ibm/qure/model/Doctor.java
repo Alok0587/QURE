@@ -28,9 +28,9 @@ public class Doctor extends Person {
 		// default constructor
 	}
 
-	public Doctor(String name, String email, int age, String gender, String phone, Address address,
+	public Doctor(String name, String email, String password,int age, String gender, String phone, Address address,
 			String licenseNumber, String specialization) {
-		super(name, email, age, gender, phone, address);
+		super(name, email,password, age, gender, phone, address);
 		this.licenseNumber = licenseNumber;
 		this.specialization = specialization;
 //		this.appointmentList = new ArrayList<Appointment>();

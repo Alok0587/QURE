@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { resolve, reject } from 'q';
 import { map } from 'rxjs/operators';
 
@@ -12,8 +12,10 @@ export class DoctorService {
   constructor(private http: HttpClient) { }
 
   registerDoctor(doctorData: any) {
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log("Doctor Req Body: " + doctorData)
     let promise = new Promise((resolve, reject) => {
-      this.http.post(this.REST_API_URL, doctorData)
+      this.http.post(this.REST_API_URL, doctorData,{headers: headers})
         .toPromise()
         .then((res) => {
           console.log(res);

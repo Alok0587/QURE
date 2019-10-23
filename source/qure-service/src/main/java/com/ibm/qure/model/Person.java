@@ -4,6 +4,7 @@ public abstract class Person {
 
 	private String name;
 	private String email;
+	private String password;
 	private int age;
 	private String gender;
 	private String phone;
@@ -13,16 +14,25 @@ public abstract class Person {
 		// default constructor
 	}
 
-	public Person(String name, String email, int age, String gender, String phone, Address address) {
+	public Person(String name, String email,String password, int age, String gender, String phone, Address address) {
 		this.setName(name);
 		this.email = email;
 		this.age = age;
 		this.gender = gender;
 		this.phone = phone;
 		this.address = address;
+		this.password=password;
 	}
 
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getEmail() {
 		return email;
 	}

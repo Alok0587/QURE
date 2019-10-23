@@ -11,23 +11,27 @@ export class PatientRegisterComponent implements OnInit {
 
   patientForm: FormGroup;
   isSaved: boolean;
-  
+
   constructor(private patientService: PatientService) {
     this.patientForm = new FormGroup({
       // Step2: Create Form Control
-      name: new FormControl('', [ 
-                                Validators.required,
-                                Validators.minLength(2)                                
-                              ] ),
-      email: new FormControl('', [ 
-                                Validators.required,
-                                Validators.email                                
-                              ] ),  
-      age: new FormControl('', [ 
-                                Validators.required,
-                                Validators.min(1),
-                                Validators.max(125)
-                              ] ),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.min(4)
+      ]),
+      age: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(125)
+      ]),
       gender: new FormControl('', Validators.required),
       phone: new FormControl('', Validators.required),
       address: new FormGroup({
@@ -37,11 +41,11 @@ export class PatientRegisterComponent implements OnInit {
         pincode: new FormControl('', Validators.required),
         state: new FormControl('', Validators.required)
       })
-     
-    });
-   }
 
-   async onAddPatientHandler() {
+    });
+  }
+
+  async onAddPatientHandler() {
     console.log(this.patientForm);
     console.log(this.patientForm.value);
     let res: any = await this.patientService.registerPatient(this.patientForm.value);
