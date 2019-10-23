@@ -27,19 +27,30 @@ export class PatientRegisterComponent implements OnInit {
         Validators.required,
         Validators.min(4)
       ]),
+
+
       age: new FormControl('', [
         Validators.required,
         Validators.min(1),
         Validators.max(125)
       ]),
       gender: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required),
+      phone: new FormControl('', [Validators.required,
+      Validators.pattern("[0-9]{0-10}"),
+
+      ]),
       address: new FormGroup({
         buildingName: new FormControl('', Validators.required),
         street: new FormControl('', Validators.required),
-        city: new FormControl('', Validators.required),
-        pincode: new FormControl('', Validators.required),
-        state: new FormControl('', Validators.required)
+        city: new FormControl('', [Validators.required,
+        Validators.pattern('^[a-zA-Z]+$')
+        ]),
+        pincode: new FormControl('', [Validators.required,
+        Validators.pattern('^[0-9]{1,6}$')
+        ]),
+        state: new FormControl('', [Validators.required,
+        Validators.pattern('^[a-zA-Z]+$')
+        ])
       })
 
     });

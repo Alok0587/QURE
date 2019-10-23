@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Doctor Registration</h1>
-            <button class="btn btn-dark">
+            <button class="btn btn-dark" routerLink="/doctors/login">
                 Go Back</button>
         </div>
         <form class="col-md-6 offset-md-3" [formGroup]="doctorForm" (ngSubmit)="onAddDoctorHandler()">
@@ -30,19 +30,18 @@
                     </div>
                 </div>
             </div>
-
+          
             <div class="form-group row">
-                <label for="password" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" [ngClass]="{ 'is-invalid': doctorForm.get('password').touched 
-        && doctorForm.get('password').invalid }" placeholder="Enter Password" formControlName="password" />
-                    <div class="invalid-feedback">
-                        <div *ngIf="doctorForm.get('password').errors?.required">Password is required</div>
-                        <div *ngIf="doctorForm.get('password').errors?.email">Invalid Password</div>
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" [ngClass]="{ 'is-invalid': doctorForm.get('password').touched 
+            && doctorForm.get('password').invalid }" placeholder="Enter Password" formControlName="password" />
+                        <div class="invalid-feedback">
+                            <div *ngIf="doctorForm.get('password').errors?.required">Password is required</div>
+                            <div *ngIf="doctorForm.get('password').errors?.min">Invalid Password</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
             <div class="form-group row">
                 <label for="age" class="col-sm-2 col-form-label">Age</label>
                 <div class="col-sm-10">
@@ -55,38 +54,41 @@
                     </div>
                 </div>
             </div>
-             
-            <div class="form-group row" >
-                    <label for="gender" class="col-sm-2 col-form-label">Gender</label>
-                        <div class="col-sm-3">
-                            <input id="male" type="radio" value="male" name="gender" formControlName="gender" checked>
-                            <label for="male">Male</label>
-                         </div>
-                      
-                         <div class="col-sm-3">
-                            <input id="female" type="radio" value="female" name="gender" formControlName="gender">
-                            <label for="female">Female</label>
-                         </div>
-                
+
+            <div class="form-group row">
+                <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+                <div class="col-sm-3">
+                    <input id="male" type="radio" value="male" name="gender" formControlName="gender" checked>
+                    <label for="male">Male</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <input id="female" type="radio" value="female" name="gender" formControlName="gender">
+                    <label for="female">Female</label>
+                </div>
+
             </div>
 
-            <div class="form-group row" >
-                    <label for="specialization" class="col-sm-3 col-form-label">Specialization </label>
-                        <div class="col-sm-9">
-                                <select class="custom-select custom-select-sm form-control" [ngClass]="{ 'is-invalid': doctorForm.get('specialization').touched 
+            <div class="form-group row">
+                <label for="specialization" class="col-sm-3 col-form-label">Specialization </label>
+                <div class="col-sm-9">
+                    <select class="custom-select custom-select-sm form-control" [ngClass]="{ 'is-invalid': doctorForm.get('specialization').touched 
                                 && doctorForm.get('specialization').invalid }" formControlName="specialization">
-                                        <option selected>Open this select menu</option>
-                                        <option value="ENT">ENT</option>
-                                        <option value="Dentist">Dentist</option>
-                                        <option value="Psychiatrist">Psychiatrist</option>
-                                        <option value="Neurologist">Neurologist</option>
-                                        <option value="Cardiologist">Cardiologist</option>
-                                        <option value="Orthopaedician">Orthopaedician</option>
-                                      </select>
-                         </div>
-                
+                        <option selected>Open this select menu</option>
+                        <option value="ENT">ENT</option>
+                        <option value="Dentist">Dentist</option>
+                        <option value="Psychiatrist">Psychiatrist</option>
+                        <option value="Neurologist">Neurologist</option>
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Orthopaedician">Orthopaedician</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        <div *ngIf="doctorForm.get('specialization').errors?.required">Specialization is required</div>  
+                    </div>
+                </div>
+
             </div>
-            
+
             <div class="form-group row">
                 <label for="phone" class="col-sm-2 col-form-label">Mobile</label>
                 <div class="col-sm-10">
@@ -95,7 +97,7 @@
                         formControlName="phone" />
                     <div class="invalid-feedback">
                         <div *ngIf="doctorForm.get('phone').errors?.required">Mobile is required</div>
-                        <div *ngIf="doctorForm.get('phone').errors?.min">Mobile should be min 10 digits</div>
+                        <div *ngIf="doctorForm.get('phone').errors?.pattern">Mobile number should be 10 digits</div>
                     </div>
                 </div>
             </div>
@@ -108,7 +110,7 @@
                 && doctorForm.get('address').get('buildingName').invalid }" placeholder="Enter Building Name"
                             formControlName="buildingName" />
                         <div class="invalid-feedback">
-                            <div>Building Name is required</div>
+                            <div *ngIf="doctorForm.get('address').get('buildingName').errors?.required">Building Name is required</div>
                         </div>
                     </div>
                 </div>
@@ -120,7 +122,7 @@
                     && doctorForm.get('address').get('street').invalid }" placeholder="Enter Street"
                             formControlName="street" />
                         <div class="invalid-feedback">
-                            <div>Street is required</div>
+                            <div *ngIf="doctorForm.get('address').get('street').errors?.required">Street is required</div>
                         </div>
                     </div>
                 </div>
@@ -132,7 +134,9 @@
                         && doctorForm.get('address').get('city').invalid }" placeholder="Enter City"
                             formControlName="city" />
                         <div class="invalid-feedback">
-                            <div>City is required</div>
+                            <div *ngIf="patientForm.get('address').get('city').errors?.required">City is required</div>
+                            <div *ngIf="patientForm.get('address').get('city').errors?.pattern">Enter valid city</div>
+
                         </div>
                     </div>
                 </div>
@@ -144,7 +148,11 @@
                             && doctorForm.get('address').get('pincode').invalid }" placeholder="Enter PinCode"
                             formControlName="pincode" />
                         <div class="invalid-feedback">
-                            <div>Pincode is required</div>
+                            <div *ngIf="patientForm.get('address').get('pincode').errors?.required">PinCode is required
+                            </div>
+                            <div *ngIf="patientForm.get('address').get('pincode').errors?.pattern">Pincode should be of
+                                6 digits</div>
+
                         </div>
                     </div>
                 </div>
@@ -156,7 +164,10 @@
                                 && doctorForm.get('address').get('state').invalid }" placeholder="Enter State"
                             formControlName="state" />
                         <div class="invalid-feedback">
-                            <div>State is required</div>
+                            <div *ngIf="patientForm.get('address').get('state').errors?.required">State is required
+                            </div>
+                            <div *ngIf="patientForm.get('address').get('state').errors?.pattern">Enter valid state</div>
+
                         </div>
                     </div>
                 </div>
