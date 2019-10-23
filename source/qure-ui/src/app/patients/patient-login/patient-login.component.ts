@@ -14,13 +14,9 @@ export class PatientLoginComponent implements OnInit {
 
   constructor(private patientService: PatientService, public router: Router) {
     this.loginForm = new FormGroup({
-      patientId: new FormControl('',Validators.required),
-      email: new FormControl('', [ 
-        Validators.required,
-        Validators.email                                
-      ]),
-      password: new FormControl('',[Validators.required,
-      Validators.min(4)])
+            patientId: new FormControl(),
+      email: new FormControl(),
+      password: new FormControl()
     });
   }
 

@@ -14,13 +14,9 @@ export class DoctorLoginComponent implements OnInit {
   constructor(private doctorService: DoctorService, public router: Router) {
 
     this.loginForm = new FormGroup({
-      doctorId: new FormControl('',Validators.required),
-      email: new FormControl('', [ 
-        Validators.required,
-        Validators.email                                
-      ]),
-      password:new FormControl('',[Validators.required,
-      Validators.min(4)])
+      doctorId: new FormControl(),
+      email: new FormControl(),
+      password:new FormControl()
    });
    }
 

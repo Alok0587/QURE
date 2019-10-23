@@ -35,7 +35,7 @@ export class DoctorRegisterComponent implements OnInit {
       ]),
       gender: new FormControl('', Validators.required),
       phone: new FormControl('', [Validators.required,
-                             Validators.pattern("[0-9]{0-10}"),
+                             Validators.pattern("[0-9]{10}"),
 
       ]),
       specialization: new FormControl('', Validators.required),
