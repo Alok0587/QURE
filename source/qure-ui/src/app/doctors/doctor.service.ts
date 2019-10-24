@@ -51,8 +51,6 @@ export class DoctorService {
         return res;
       }));
 
-
   }
   
 }
-
