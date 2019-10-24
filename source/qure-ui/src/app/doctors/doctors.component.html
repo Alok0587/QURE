@@ -45,7 +45,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">view appointment details</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Appointment details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -55,22 +55,22 @@
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Appointment Id</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="id" placeholder="Enter name"
-                                [(ngModel)]="appointmentData.id" disabled required>
+                            <input type="text" class="form-control" name="id" placeholder="Enter Id"
+                                [(ngModel)]="appointmentData.appointmentId" disabled required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">date</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="date" placeholder="Enter date"
-                                [(ngModel)]="appointmentData.appointmentDate" disabled required>
+                                [(ngModel)]="appointmentData.appointmentDate" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="time" placeholder="Enter time"
-                                [(ngModel)]="appointmentData.time" disabled required>
+                                [(ngModel)]="appointmentData.time" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn-sm btn-secondary" data-dismiss="modal">Close</button>
                         <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
                     </div>
                 </form>
@@ -106,14 +106,14 @@
                 <div class="card col-md-3" *ngFor="let appointment of appointmentList" 
                  style="background-color:#ffffe6;">
                     <div class="card-body" >
-                        <p class="card-text">Appointment ID: {{appointment.id}}</p>
+                        <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
                         <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
                         <p class="card-text">Time: {{appointment.time}}</p>
-                        <center><button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        <center><button type="button" class="btn-sm btn-primary " data-toggle="modal"
                             data-target="#viewAppointmentModal"
-                            (click)="onViewHandler(appointment.id)">View</button> </center>
-                       <center><button type="button" (click)="onDeleteHandler(appointment.id)"
-                            class="btn btn-danger">Delete</button></center>
+                            (click)="onViewHandler(appointment.appointmentId)">View</button> </center>
+                       <center><button type="button" (click)="onDeleteHandler(appointment.appointmentId)"
+                            class="btn-sm btn-danger">Cancel</button></center>
                         <!-- <p class="card-text">Slot: {{booking.slot}}</p> -->
                         <!-- <button type="button">Cancel this appointment</button> -->
                     </div>
