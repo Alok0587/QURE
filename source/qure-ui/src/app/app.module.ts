@@ -35,6 +35,8 @@ import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
 import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-register.component';
 import { ChatComponent } from './chat/chat.component';
+import { AdminDoctorComponent } from './admin/admin-doctor/admin-doctor.component';
+import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.component';
  
 
 @NgModule({
@@ -66,7 +68,9 @@ import { ChatComponent } from './chat/chat.component';
     AdminComponent,
     AdminloginComponent,
     SpecializationComponent,
-    ChatComponent
+    ChatComponent,
+    AdminDoctorComponent,
+    AdminPharmacyComponent
   ],
   imports: [
     BrowserModule,

@@ -19,12 +19,7 @@ export class AdminComponent implements OnInit {
    
   }
 
-  onSubmitDoctor(spec)
-  {
-    console.log(spec);
-    this.router.navigate(['specialization/',spec]);
-  }
-
+ 
   
 
 }

@@ -23,6 +23,8 @@ import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AdminComponent } from './admin/admin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
 import { ChatComponent } from './chat/chat.component';
+import { AdminDoctorComponent } from './admin/admin-doctor/admin-doctor.component';
+import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -50,6 +52,8 @@ const routes: Routes = [
   { path: 'adminlogin', component: AdminloginComponent },
   { path: 'adminlogin/admin', component: AdminComponent },
   { path: 'specialization/:spec', component: SpecializationComponent },
+  {path:'admin-doctor',component:AdminDoctorComponent},
+  {path:'admin-pharmacy',component:AdminPharmacyComponent},
   {path:'Chat',component:ChatComponent}
 ];
 
