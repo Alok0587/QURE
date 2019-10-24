@@ -17,37 +17,36 @@
         <div class="container">
             <div class="row" id="row1">
                 <div class="col-sm-3">
-                    <a class="nav-link"><img src="assets/image/dentist.jpg"><br><br>
-                        DENTIST</a>
-                    <button class="btn btn-primary" (click)="onSubmitDoctor('dentist')">View</button>
+                    <a class="nav-link"><img src="assets/image/dentist.jpg"></a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('dentist')">DENTIST</button>
                 </div>
                 <div class="col-sm-3">
-                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/cardiology.png"><br><br>
-                        CARDIOLOGIST</a>
-                    <button class="btn btn-primary" (click)="onSubmitDoctor('cardiologist')">View</button>
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/cardiology.png">
+                    </a><br>
+                   <button class="btn btn-primary" (click)="onSubmitDoctor('cardiologist')">CARDIOLOGIST</button>
                 </div>
                 <div class="col-sm-3">
-                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/ent.png"><br><br>
-                        ENT</a>
-                    <button class="btn btn-primary" (click)="onSubmitDoctor('ent')">View</button>
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/ent.png">
+                    </a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('ent')">ENT</button>
                 </div>
             </div>
 
             <div class="row" id="row2">
                 <div class="col-sm-3">
-                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/neurology.jpg"><br><br>
-                        NEUROLOGIST</a>
-                    <button class="btn btn-primary" (click)="onSubmitDoctor('neurologist')">View</button>
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/neurology.jpg">
+                    </a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('neurologist')">NEUROLOGIST</button>
                 </div>
                 <div class="col-sm-3">
-                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/orthopedic.jpg"><br><br>
-                        ORTHOPEDICIAN</a>
-                    <button class="btn btn-primary" (click)="onSubmitDoctor('orthopedician')">View</button>
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/orthopedic.jpg">
+                    </a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('orthopedician')">ORTHOPEDICIAN</button>
                 </div>
                 <div class="col-sm-3">
-                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/psychology.jpg"><br><br>
-                        PSYCHIATRIST</a>
-                    <button class="btn btn-primary" (click)="onSubmitDoctor('psychiatrist')">View</button>
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/psychology.jpg">
+                    </a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('psychiatrist')">PSYCHIATRIST</button>
                 </div>
             </div>
         </div>
@@ -55,9 +54,24 @@
 </div>
 
 <style>
-    img {
-        margin-left: 16px;
-
+    .col-sm-3 img {
+        margin-left: 20px;
+        border-color: black;
+        border-style: solid;
         border-radius: 50%;
     }
+
+    img {
+        margin-left: 18px;
+        border-radius: 50%;
+    }
+
+    .col-sm-3 {
+        margin-right: 40px;
+    }
+
+    .col-sm-3 button{
+        margin-left: 70px;
+    }
+   
 </style>
