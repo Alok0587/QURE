@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <h1>Book new Appoinment</h1>
-        <button class="btn btn-dark" (click)="onClickButton()" >Go Back</button>
+        <button class="btn btn-dark" routerLink="/">Go Back</button>
     </div>
 
     <!-- new booking  -->
@@ -10,7 +10,7 @@
         <div class="form-group row">
             <label for="patientId" class="col-sm-2 col-form-label">Patient Id</label>
             <div class="col-sm-10">
-                <input type="text" value="enter patient id" class="form-control" formControlName="patientId"
+                <input type="text" value="bookForm.patientId" class="form-control" formControlName="patientId"
                     disabled />
             </div>
         </div>
@@ -18,7 +18,7 @@
         <div class="form-group row">
             <label for="doctorId" class="col-sm-2 col-form-label">Doctor Id</label>
             <div class="col-sm-10">
-                <input type="text" value="enter doctor id" class="form-control" formControlName="doctorId" />
+                <input type="text" value="bookForm.doctortId" class="form-control" formControlName="doctorId" />
             </div>
         </div>
 
@@ -39,35 +39,11 @@
 
 
 
-        <!-- <div class="form-group row">
-            <label for="time" class="col-sm-2 col-form-label">Pick your time</label>
+        <div class="form-group row">
+            <label for="time" class="col-sm-2 col-form-label">Pict your time</label>
             <div class="col-sm-10">
                 <input type="time" id="time" name="time" class="form-control" [ngClass]="{ 'is-invalid': bookForm.get('time').touched
             && bookForm.get('time').invalid}" formControlName="time" min="09:00" max="18:00" required>
-                <small>Office hours are 9am to 6pm</small>
-                <div class="invalid-feedback">
-                    <div *ngIf="bookForm.get('time').errors?.required">time is required</div>
-                    <div *ngIf="bookForm.get('time').errors?.min">Please give valid time</div>
-                </div>
-            </div>
-        </div> -->
-   
-        <div class="form-group row">
-            <label for="time" class="col-sm-2 col-form-label">Pick your time</label>
-            <div class="col-sm-10">
-                <select id="time" name="time" class=" custom-select custom-select-sm form-control" [ngClass]="{ 'is-invalid': bookForm.get('time').touched
-            && bookForm.get('time').invalid}" formControlName="time" min="09:00" max="18:00" required>
-            <option selected>Open this select menu</option>
-                <option value="9am">9am</option>
-                <option value="10am">10am</option>
-                <option value="11am">11am</option>
-                <option value="12pm">12pm</option>
-                <option value="1pm">1pm</option>
-                <option value="2pm">2pm</option>
-                <option value="3pm">3pm</option>
-                <option value="4pm">4pm</option>
-                <option value="5pm">5pm</option>
-            </select>
                 <small>Office hours are 9am to 6pm</small>
                 <div class="invalid-feedback">
                     <div *ngIf="bookForm.get('time').errors?.required">time is required</div>

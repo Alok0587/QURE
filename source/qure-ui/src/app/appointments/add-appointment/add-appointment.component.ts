@@ -54,9 +54,4 @@ export class AddAppointmentComponent implements OnInit {
  
   }
 
-  onClickButton()
-  {
-    let id = this.bookForm.value.patientId;
-    this.router.navigate(['/patients', id])
-  }
 }
