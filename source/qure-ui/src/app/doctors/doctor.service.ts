@@ -52,5 +52,15 @@ export class DoctorService {
       }));
 
   }
+  deleteDoctor(id: any) {
+
+    console.log("id is " + id);
+    return this.http.delete(this.REST_API_URL + '/' + id)
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+       
+      }));
+  }
   
 }

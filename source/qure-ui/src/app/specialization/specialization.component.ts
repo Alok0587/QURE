@@ -41,5 +41,13 @@ export class SpecializationComponent implements OnInit {
       });
     //this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
   }
+  async onDeleteHandler(dId: any){
+    let res = await this.doctorService.deleteDoctor(dId)
+    .subscribe((res: any[]) => {
+      console.log(res);
+     
+    });
+   
+  }
 
 }
