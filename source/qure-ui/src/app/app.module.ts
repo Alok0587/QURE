@@ -34,6 +34,7 @@ import { FaqComponent } from './faq/faq.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
 import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-register.component';
+import { ChatComponent } from './chat/chat.component';
  
 
 @NgModule({
@@ -65,6 +66,7 @@ import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-regist
     AdminComponent,
     AdminloginComponent,
     SpecializationComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

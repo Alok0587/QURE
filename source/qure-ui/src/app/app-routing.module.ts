@@ -22,6 +22,7 @@ import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/b
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AdminComponent } from './admin/admin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,7 +49,8 @@ const routes: Routes = [
   { path: 'doctors/:id', component: DoctorsComponent },
   { path: 'adminlogin', component: AdminloginComponent },
   { path: 'adminlogin/admin', component: AdminComponent },
-  { path: 'specialization/:spec', component: SpecializationComponent }
+  { path: 'specialization/:spec', component: SpecializationComponent },
+  {path:'Chat',component:ChatComponent}
 ];
 
 @NgModule({
