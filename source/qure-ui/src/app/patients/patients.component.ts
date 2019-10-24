@@ -47,12 +47,14 @@ export class PatientsComponent implements OnInit {
   }
 
   async onViewHandler(appId){
+
+    console.log(appId);
     this.appointmentSubscription2 = await this.appointmentService.getAppointmentById(appId)
       .subscribe( (res: any) => { 
         console.log( res );
         this.appointmentData = res;
       });
-    this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
+    //this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
   }
 
   onBookAppointmentHandler(pId: any){
