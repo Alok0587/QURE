@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DoctorService } from '../doctors/doctor.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { AppointmentService } from '../appointments/appointment.service';
 
 @Component({
   selector: 'app-specialization',
@@ -13,8 +14,8 @@ export class SpecializationComponent implements OnInit {
   doctorList :any[];
   doctorData :any;
   doctorSubscription: Subscription;
-
-  constructor(private doctorService: DoctorService, private route: ActivatedRoute) { }
+  
+  constructor(private doctorService: DoctorService, private route: ActivatedRoute,private appointmentService: AppointmentService) { }
 
   ngOnInit() {
     
@@ -25,7 +26,20 @@ export class SpecializationComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res);
         this.doctorList = res;
+
+       // this.doctorSubscription = this.doctorService.getDoctorById()
       });
+  }
+
+  async onViewHandler(dId){
+
+    console.log(dId);
+    this.doctorSubscription = await this.doctorService.getDoctorById(dId)
+      .subscribe( (res: any) => { 
+        console.log( res );
+        this.doctorData = res;
+      });
+    //this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
   }
 
 }
