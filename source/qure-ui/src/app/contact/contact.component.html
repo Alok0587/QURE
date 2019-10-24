@@ -1,45 +1,48 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<a class="nav-link" routerLink="/"><i class="fa fa-backward" aria-hidden="true"></i>&nbsp;Go back</a>
+<!-- Jumbotron -->
 
-<div class="xyz">
-<h1>Contact Us</h1><br>
-<center><h2>Have questions about our products, support services, or anything else? Let</h2></center><br>
-     <h2 style="padding-left:500px;">us know and we’ll get back to you.</h2>
-</div>
-<a class="nav-link" routerLink=""> <i class="fa fa-backward" aria-hidden="true"></i>&nbsp;Go back</a>
-<div>
-    <div class="left">
+<div class="jumbotron text-center">
+
+    <!-- Title -->
+    <h3 class="card-title h3">Have questions about our products, support services, or anything else?</h3>
+    <br/>
+    <!-- Grid row -->
+    <div class="row d-flex justify-content-center">
         
-    <h3><b>Get in touch with Us</b></h3><br>
-    <h3>(1800) 456-7890<br>
-    contact.healing@gmail.com<br><br>
-    84 Solo Sreet 158/9<br>
-    NewYork City, US<br><br>
-    Open hours:<br>
-   10 am to 6 pm Mon-Fri<br>
-    Saturday Sunday</h3>
-    </div>
-    <div class="right">
-        <form (ngSubmit)="onContacting()">
+      <!-- Grid column -->
+      <div class="col-xl-7 pb-2">
+        <h4 class="pink-text">
+          <mdb-icon fas icon="microphone"></mdb-icon>&nbsp;
+      <strong>Our Support Team is here to help you !</strong>
+    </h4>
+
+        <p class="card-text">
             
-                              <fieldset class="form-group">
-                    <div class="form-group">
-                        <label for="name"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;First Name:</label>
-                        <input type="text" class="form-control" id="name">
-                        </div>
-                        <br>
-                        <div class="form-group">
-                        <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Email address:</label>
-                        <input type="email" class="form-control" id="email">
-                        </div>
-                        <br>
-                        <div class="form-group">
-                        <label for="message"><i class="fa fa-commenting" aria-hidden="true"></i>&nbsp;Message:</label>
-                        <textarea class="form-control"  cols="30" id="message"></textarea>
-                        </div>
-                        <br>
-                       </fieldset>
-                       <center><button type="submit" style="background-color:#99ebff; color:black;font-weight:600;" ><h5>submit</h5></button></center>
-    
+                    
+                <b>Get in touch with Us</b><br>
+                <b class="blue-text my-4 font-weight-bold">(080) 4567-4567</b><br>
+                <b class="blue-text my-4 font-weight-bold">contact.qure@gmail.com</b>
+                <br><br>
+                84 Solo Sreet 158/9<br>
+                Marathalli, Bangalore, India<br><br>
+                <b>Open hours:</b><br>
+            <b>10 am to 6 pm Mon-Sat<br>
+                Closed on Sundays</b>
+                
+        </p>
+  
+      </div>
+      
+    </div>
+    <!-- Grid row -->
+  
+    <hr class="my-4">
+  
+    <div class="pt-2">
+      <button type="button" mdbBtn color="blue" mdbWavesEffect>Sign up now <mdb-icon fas icon="user-plus" class="ml-1"></mdb-icon> </button>
+      <!-- <button type="button" mdbBtn color="primary" outline="true" mdbWavesEffect> Download <mdb-icon fas icon="download" class="ml-1"></mdb-icon></button> -->
+    </div>
+  
+  </div>
 
-
-
+  <!-- Jumbotron -->
