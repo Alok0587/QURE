@@ -1,0 +1,175 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Patient Registration</h1>
+            <button class="btn btn-dark" routerLink="/patients/login">
+                Go Back</button>
+        </div>
+        <form class="col-md-6 offset-md-3" [formGroup]="patientForm" (ngSubmit)="onAddPatientHandler()">
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('name').touched 
+        && patientForm.get('name').invalid }" placeholder="Enter Name" formControlName="name" />
+                    <div class="invalid-feedback">
+                        <div *ngIf="patientForm.get('name').errors?.required">Name is required</div>
+                        <div *ngIf="patientForm.get('name').errors?.minlength">Invalid Name</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('email').touched 
+        && patientForm.get('email').invalid }" placeholder="Enter Email" formControlName="email" />
+                    <div class="invalid-feedback">
+                        <div *ngIf="patientForm.get('email').errors?.required">Email is required</div>
+                        <div *ngIf="patientForm.get('email').errors?.email">Invalid Email</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('password').touched 
+            && patientForm.get('password').invalid }" placeholder="Enter Password" formControlName="password" />
+                        <div class="invalid-feedback">
+                            <div *ngIf="patientForm.get('password').errors?.required">Password is required</div>
+                            <div *ngIf="patientForm.get('password').errors?.min">Invalid Password</div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="form-group row">
+                <label for="age" class="col-sm-2 col-form-label">Age</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('age').touched 
+        && patientForm.get('age').invalid }" placeholder="Enter Age" formControlName="age" />
+                    <div class="invalid-feedback">
+                        <div *ngIf="patientForm.get('age').errors?.required">Age is required</div>
+                        <div *ngIf="patientForm.get('age').errors?.min">Age should be min 0</div>
+                        <div *ngIf="patientForm.get('age').errors?.max">Invalid age</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+                <div class="col-sm-3">
+                    <input id="male" type="radio" value="male" name="gender" formControlName="gender" checked>
+                    <label for="male">Male</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <input id="female" type="radio" value="female" name="gender" formControlName="gender">
+                    <label for="female">Female</label>
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group row">
+                <label for="phone" class="col-sm-2 col-form-label">Mobile</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('phone').touched 
+                                        && patientForm.get('phone').invalid }" placeholder="Enter Mobile"
+                        formControlName="phone" />
+                    <div class="invalid-feedback">
+                        <div *ngIf="patientForm.get('phone').errors?.required">Mobile is required</div>
+                        <div *ngIf="patientForm.get('phone').errors?.pattern">Mobile should be of 10 digits</div>
+                    </div>
+                </div>
+            </div>
+            <div formGroupName="address">
+                <div class="form-group row">
+                    <label for="buildingName" class="col-sm-5 col-form-label">Adress: Building Name</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('buildingName').touched 
+        && patientForm.get('address').get('buildingName').invalid }" placeholder="Enter Building Name"
+                            formControlName="buildingName" />
+                        <div class="invalid-feedback">
+                            <div *ngIf="doctorForm.get('address').get('buildingName').errors?.required">Building Name is required</div>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="street" class="col-sm-5 col-form-label">Street</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('street').touched 
+            && patientForm.get('address').get('street').invalid }" placeholder="Enter Street"
+                            formControlName="street" />
+                        <div class="invalid-feedback">
+                            <div *ngIf="doctorForm.get('address').get('street').errors?.required">Street is required</div>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="city" class="col-sm-5 col-form-label">City</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('city').touched 
+                && patientForm.get('address').get('city').invalid }" placeholder="Enter City" formControlName="city" />
+                        <div class="invalid-feedback">
+                            <div *ngIf="patientForm.get('address').get('city').errors?.required">City is required</div>
+                            <div *ngIf="patientForm.get('address').get('city').errors?.pattern">Enter valid city</div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="pincode" class="col-sm-5 col-form-label">Pincode</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('pincode').touched 
+                    && patientForm.get('address').get('pincode').invalid }" placeholder="Enter Pincode"
+                            formControlName="pincode" />
+                        <div class="invalid-feedback">
+                            <div *ngIf="patientForm.get('address').get('pincode').errors?.required">PinCode is required
+                            </div>
+                            <div *ngIf="patientForm.get('address').get('pincode').errors?.pattern">Pincode should be of
+                                6 digits</div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="state" class="col-sm-5 col-form-label">State</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('state').touched 
+                        && patientForm.get('address').get('state').invalid }" placeholder="Enter State"
+                            formControlName="state" />
+                        <div class="invalid-feedback">
+                            <div *ngIf="patientForm.get('address').get('state').errors?.required">State is required
+                            </div>
+                            <div *ngIf="patientForm.get('address').get('state').errors?.pattern">Enter valid state</div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="alert alert-success" *ngIf="isSaved">
+                Saved Successfully
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

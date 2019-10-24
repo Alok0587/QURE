@@ -1,5 +1,6 @@
 package com.ibm.qure.model;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,9 +12,13 @@ public class Doctor extends Person {
 
 	private String licenseNumber;
 
-	private int approvalStatus = 0;
+	//private int approvalStatus = 0;
 
 	private String specialization;
+	
+	private int userLevel = 2;
+	
+	
 
 //	private List<Appointment> appointmentList;
 
@@ -23,14 +28,14 @@ public class Doctor extends Person {
 		// default constructor
 	}
 
-	public Doctor(String name, String email, int age, String gender, String phone, int userLevel, Address address,
+	public Doctor(String name, String email, String password,int age, String gender, String phone, Address address,
 			String licenseNumber, String specialization) {
-		super(name, email, age, gender, phone, address);
+		super(name, email,password, age, gender, phone, address);
 		this.licenseNumber = licenseNumber;
 		this.specialization = specialization;
 //		this.appointmentList = new ArrayList<Appointment>();
 //		this.patientList = new ArrayList<Patient>();
-		this.setUserLevel(1);
+		
 	}
 
 	public String getDoctorId() {
@@ -65,13 +70,13 @@ public class Doctor extends Person {
 //		this.appointmentList = appointmentList;
 //	}
 
-	public int getApprovalStatus() {
-		return approvalStatus;
-	}
-
-	public void setApprovalStatus(int approvalStatus) {
-		this.approvalStatus = approvalStatus;
-	}
+//	public int getApprovalStatus() {
+//		return approvalStatus;
+//	}
+//
+//	public void setApprovalStatus(int approvalStatus) {
+//		this.approvalStatus = approvalStatus;
+//	}
 
 //	public List<Patient> getPatientList() {
 //		return patientList;

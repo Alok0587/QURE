@@ -1,0 +1,77 @@
+<div class="row">
+
+    <div class="col-md-3" style="background-color: #e6f9ff;">
+        <br>
+        <img src="assets/image/adminProfile2.png">
+        <br><br>
+        <h4 style="text-align: center;"><b>ADMIN</b></h4><br>
+
+        First Name: John<br>
+        Last Name: Smith<br>
+        Email Id: johnsmith@gmail.com<br>
+        Phone: 9876543210<br>
+        Address: Bangalore, India<br>
+    </div>
+
+    <div class="col-md-9">
+        <div class="container">
+            <div class="row" id="row1">
+                <div class="col-sm-3">
+                    <a class="nav-link"><img src="assets/image/dentist.jpg"></a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('dentist')">DENTIST</button>
+                </div>
+                <div class="col-sm-3">
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/cardiology.png">
+                    </a><br>
+                   <button class="btn btn-primary" (click)="onSubmitDoctor('cardiologist')">CARDIOLOGIST</button>
+                </div>
+                <div class="col-sm-3">
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/ent.png">
+                    </a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('ent')">ENT</button>
+                </div>
+            </div>
+
+            <div class="row" id="row2">
+                <div class="col-sm-3">
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/neurology.jpg">
+                    </a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('neurologist')">NEUROLOGIST</button>
+                </div>
+                <div class="col-sm-3">
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/orthopedic.jpg">
+                    </a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('orthopedician')">ORTHOPEDICIAN</button>
+                </div>
+                <div class="col-sm-3">
+                    <a class="nav-link" routerLink="/specialization"><img src="assets/image/psychology.jpg">
+                    </a><br>
+                    <button class="btn btn-primary" (click)="onSubmitDoctor('psychiatrist')">PSYCHIATRIST</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .col-sm-3 img {
+        margin-left: 20px;
+        border-color: black;
+        border-style: solid;
+        border-radius: 50%;
+    }
+
+    img {
+        margin-left: 18px;
+        border-radius: 50%;
+    }
+
+    .col-sm-3 {
+        margin-right: 40px;
+    }
+
+    .col-sm-3 button{
+        margin-left: 70px;
+    }
+   
+</style>

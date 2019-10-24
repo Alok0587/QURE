@@ -4,9 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
 import javax.validation.Valid;
-
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Doctor;
 import com.ibm.qure.model.ResponseMessage;
@@ -39,15 +36,20 @@ public class DoctorController {
 	DoctorService doctorService;
 
 	// List All Doctors GET /doctors or List Doctors by location
-	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
-	@CrossOrigin("*")
-	public List<Doctor> getAllDoctors(@RequestParam(name = "city", required = false) Optional<String> city) {
-		if (city.isPresent()) {
-			return doctorService.getByLocation(city);
-		} else {
-			return doctorService.getAll();
+		@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
+		@CrossOrigin("*")
+		public List<Doctor> getAllDoctors(@RequestParam(name = "city", required = false) Optional<String> city,@RequestParam(name = "specialization", required = false) Optional<String> specialization) {
+			if (city.isPresent()) {
+				return doctorService.getByLocation(city);
+			} 
+			else if(specialization.isPresent()) {
+				return doctorService.getBySpecialization(specialization);
+				
+			}
+				else {
+				return doctorService.getAll();
+			}
 		}
-	}
 
 	// List Doctor for given Id GET /doctors/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })

@@ -1,27 +1,33 @@
 package com.ibm.qure.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Appointment {
 
 	@Id
-	private String id;
-	private int time;
+	private String appointmentId;
+	private String time;
 	private int price;
 	private String appointmentDate;
+	
+	//@DBRef
 	private String patientId;
+	
+	//@DBRef
 	private String doctorId;
+	
 	private int appointmetStatus = 0;
 
 	public Appointment() {
 
 	}
 
-	public Appointment(String id, int time, int price, String appointmentDate, String patientId, String doctorId) {
+	public Appointment(String appointmentId,String time, int price, String appointmentDate, String patientId, String doctorId) {
 		super();
-		this.id = id;
+		this.appointmentId = appointmentId;
 		this.time = time;
 		this.price = price;
 		this.appointmentDate = appointmentDate;
@@ -29,19 +35,19 @@ public class Appointment {
 		this.doctorId = doctorId;
 	}
 
-	public String getId() {
-		return id;
+	public String getAppointmentId() {
+		return appointmentId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setAppointmentId(String appointmentId) {
+		this.appointmentId = appointmentId;
 	}
 
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

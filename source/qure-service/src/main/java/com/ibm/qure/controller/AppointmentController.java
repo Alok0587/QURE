@@ -75,7 +75,7 @@ public class AppointmentController {
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(appointment.getId()).toUri();
+				.buildAndExpand(appointment.getAppointmentId()).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 
@@ -86,7 +86,7 @@ public class AppointmentController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> updateEmployee(@PathVariable String id,
 			@RequestBody Appointment updatedAppoint) {
-		updatedAppoint.setId(id);
+		updatedAppoint.setAppointmentId(id);
 		appointService.update(updatedAppoint);
 
 		ResponseMessage resMsg;
@@ -95,7 +95,7 @@ public class AppointmentController {
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(updatedAppoint.getId()).toUri();
+				.buildAndExpand(updatedAppoint.getAppointmentId()).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 	}

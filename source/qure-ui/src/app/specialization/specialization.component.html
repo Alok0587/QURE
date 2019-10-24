@@ -1,0 +1,89 @@
+<div>
+    <h4><strong>DOCTORS LIST</strong></h4>
+</div>
+<!-- <div class="ScrollStyle" style="padding-left: 50px;">   -->
+<div style="padding-left: 50px;">
+    <div class="row">
+
+        <div class="card col-sm-2" *ngFor="let doctor of doctorList">
+            <div class="card-body">
+                <p class="card-text">Doctor ID: {{doctor.doctorId}}</p>
+                <p class="card-text">MIC number: {{doctor.licenseNumber}}</p>
+                <p class="card-text">Name: {{doctor.name}}</p>
+                <button type="button" data-toggle="modal" (click)="onViewHandler(doctor.doctorId)"
+                    data-target="#viewDoctorModal" class="btn btn-primary">View</button>
+                <button type="button" data-toggle="modal" (click)="onDeleteHandler(doctor.doctorId)"
+                    class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="viewDoctorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><b>DOCTOR'S DETAILS</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="doctorData">
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="name" placeholder="name"
+                            [(ngModel)]="doctorData.name" disabled required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">License Number</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="lno" placeholder="licenseNumber"
+                            [(ngModel)]="doctorData.licenseNumber" disabled required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Age</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="age" placeholder="Age"
+                            [(ngModel)]="doctorData.age" disabled required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Gender</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="gender" placeholder="gender"
+                            [(ngModel)]="doctorData.gender" disabled required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="email" placeholder="Age"
+                            [(ngModel)]="doctorData.email" disabled required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Phone Number</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="phone" placeholder="Age"
+                            [(ngModel)]="doctorData.phone" disabled required>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
+</div>
