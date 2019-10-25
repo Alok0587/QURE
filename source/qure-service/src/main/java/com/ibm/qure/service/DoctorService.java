@@ -38,6 +38,11 @@ public class DoctorService {
 	public List<Doctor>getBySpecialization(Optional<String> specialization){
 		return docRepo.findBySpecialization(specialization);
 	}
+	public List<Doctor> getByCityAndSpecialization(Optional<String> city,Optional<String> specialization) {
+		// TODO Auto-generated method stub
+		return docRepo.findBySpecializationAndAddress_City(city,specialization);
+	}
+
 
 	public List<Doctor> getAll() {
 		return docRepo.findAll();

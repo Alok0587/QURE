@@ -8,5 +8,8 @@ import com.ibm.qure.model.Doctor;
 public interface DoctorRepository extends MongoRepository<Doctor, Object> {
 	List<Doctor> findByAddress_City(Optional<String> city);
 	List<Doctor> findBySpecialization(Optional<String> specialization);
+	//List<Doctor> findByAddress_CityAndSpecialization(String city,String specialization);
+	List findBySpecializationAndAddress_City(Optional<String> city, Optional<String> specialization);
+	
 
 }

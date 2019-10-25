@@ -39,7 +39,13 @@ public class DoctorController {
 		@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 		@CrossOrigin("*")
 		public List<Doctor> getAllDoctors(@RequestParam(name = "city", required = false) Optional<String> city,@RequestParam(name = "specialization", required = false) Optional<String> specialization) {
-			if (city.isPresent()) {
+			if(city.isPresent()&&specialization.isPresent())
+			{
+				return doctorService.getByCityAndSpecialization(city,specialization);
+				
+			}
+			
+			else if (city.isPresent()) {
 				return doctorService.getByLocation(city);
 			} 
 			else if(specialization.isPresent()) {
