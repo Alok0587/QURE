@@ -62,5 +62,26 @@ export class DoctorService {
        
       }));
   }
+
+  updateDoctor(doctorData) {
+    let _url = this.REST_API_URL + '/' + doctorData.doctorId;
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.put(_url, doctorData)
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+        .finally(() => {
+          console.log("Ends");
+        });
+    });
+    return promise;
+  }
   
 }

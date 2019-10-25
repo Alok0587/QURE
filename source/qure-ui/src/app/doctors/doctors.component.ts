@@ -22,10 +22,11 @@ export class DoctorsComponent implements OnInit {
   appointmentSubscription: Subscription;
 
   appointmentSubscription2: Subscription;
-
+   
   duplicateAppointmentData: any;
   appointmentData: any;
   appId: string;
+  duplicateDoctorData: any;
 
   constructor(private appointmentService: AppointmentService, private doctorService: DoctorService, private route: ActivatedRoute, public router: Router) { }
 
@@ -65,4 +66,27 @@ export class DoctorsComponent implements OnInit {
     });
     console.log(res);
   }
+
+  onEditHandler() {
+
+    this.duplicateDoctorData = JSON.parse(JSON.stringify(this.doctorData));
+  }
+
+  async onUpdateHandler(formData) {
+    console.log(formData);
+    console.log(formData.value);
+
+
+    var obj = formData.value;
+    obj.id = this.doctorId;
+
+
+    let res = await this.doctorService.updateDoctor(this.duplicateDoctorData);
+    console.log(res);
+    if (res) {
+      this.isSaved2 = true;
+    }
+    //this.router.navigate(['/doctorLanding', this.doctorId]);
+  }
+
 }

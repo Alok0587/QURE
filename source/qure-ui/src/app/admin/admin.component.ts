@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styles: []
+  styleUrls: ['./admin.component.css']
 
 })
 
@@ -18,8 +18,5 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
    
   }
-
- 
-  
 
 }

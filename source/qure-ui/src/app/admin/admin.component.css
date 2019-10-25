@@ -1,9 +1,4 @@
-.col-md-9 {
-    padding: 50px;
-    background-color: cyan;
-}
-
-.col-md-3 {
-    background-color: bisque;
-    margin-right:40px;
+.row .col-md-3 img{
+    border-radius: 50%;
+    
 }

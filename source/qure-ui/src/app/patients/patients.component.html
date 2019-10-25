@@ -25,7 +25,9 @@
                     <!-- Text -->
                     <p class="card-text">{{patientData.phone}}</p>
                     <hr>
-
+                   <center> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPatientModal"
+                    (click)="onEditHandler()">Edit</button></center>
+                 
                 </div>
                 <!-- Card content -->
 
@@ -157,7 +159,76 @@
         </div>
     </div>
 
+<!--modal for update and view patient-->
 
+<div class="modal fade" id="editPatientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Patient</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="duplicatePatientData">
+          <form ngNativeValidate #f="ngForm" (ngSubmit)="onPatientUpdateHandler(f)">
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="name" [(ngModel)]="duplicatePatientData.name" disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Age</label>
+              <div class="col-sm-9">
+                <input type="int" class="form-control" name="age" placeholder="Enter Age"
+                  [(ngModel)]="duplicatePatientData.age" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
+              <div class="col-sm-9">
+                <input type="email" class="form-control" name="email" placeholder="Enter Email"
+                  [(ngModel)]="duplicatePatientData.email" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Phone</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="phone" placeholder="Enter Phone"
+                  [(ngModel)]="duplicatePatientData.phone" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Gender</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="gender" [(ngModel)]="duplicatePatientData.gender"
+                  disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">patientId</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="patientId" [(ngModel)]="duplicatePatientData.patientId"
+                  disabled>
+              </div>
+            </div>
+
+            <div class="alert alert-success" *ngIf="isSaved2">
+              Updated successfully!
+              refresh to view the changes
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

@@ -81,4 +81,24 @@ export class PatientsComponent implements OnInit {
     this.router.navigate(['patients/bookmedicine/',id]);
   }
 
+  onEditHandler() {
+
+    this.duplicatePatientData = JSON.parse(JSON.stringify(this.patientData));
+    console.log(this.duplicatePatientData);
+  }
+
+  async onPatientUpdateHandler(formData) {
+     console.log(formData);
+     console.log(formData.value);
+
+     var obj = formData.value;
+     obj.id = this.patientId;
+
+     let res = await this.patientService.updatePatient(this.duplicatePatientData);
+     console.log(res);
+     if (res) {
+       this.isSaved2 = true;
+     }
+   }
+
 }
