@@ -9,17 +9,21 @@ export class WebSocketAPI {
     webSocketEndPoint: string = 'http://localhost:8888/ws';
     topic: string = "/topic/greetings";
     stompClient: any;
+    checkConnected:boolean;
     flag:boolean=false;
+    ;
     appComponent: ChatComponent;
     constructor(appComponent: ChatComponent){
         this.appComponent = appComponent;
     }
+
     _connect() {
         console.log("Initialize WebSocket Connection");
         let ws = new SockJS(this.webSocketEndPoint);
         this.stompClient = Stomp.over(ws);
         const _this = this;
         _this.stompClient.connect({}, function (frame) {
+            this.checkConnected=true;
             _this.stompClient.subscribe(_this.topic, function (sdkEvent) {
                 _this.onMessageReceived(sdkEvent);
             });
@@ -30,6 +34,8 @@ export class WebSocketAPI {
     _disconnect() {
         if (this.stompClient !== null) {
             this.stompClient.disconnect();
+            this.checkConnected=false;
+
         }
         console.log("Disconnected");
     }
@@ -57,13 +63,12 @@ export class WebSocketAPI {
         console.log("Message Recieved from Server :: " + message);
         if(this.flag==true)
         {
-            $("#convo").append("<h4 class='font-italic' style='color:blue;'>"+"<i class='fa fa-user-circle-o fa-lg' aria-hidden='true'>"+"</i>"+"&nbsp;"+"You:"+"</h4>");
+             $("#convo").append("<h4 class='font-italic text-warning'>"+"&nbsp;"+"You:"+"</h4>");
             this.flag=false;
 
         }
         else{
-            $("#convo").append("<h4 class='font-italic' style='color:blue;' >"+"<i class='fa fa-user-circle-o fa-lg' aria-hidden='true'>"+"</i>"
-            +"&nbsp;"+"User:"+"</h4>");
+            $("#convo").append("<h4 class='font-italic' >" +"&nbsp;"+"User:"+"</h4>");
         }
         this.appComponent.recievedMessage(JSON.stringify(message.body));
         
