@@ -1,21 +1,51 @@
-<!-- <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand app-name" href="#">Employee Management App</a>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark stylish-color-dark fixed-top">
+        <a class="navbar-brand app-name" routerLink="/"><strong>QURE</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <app-nav>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sign in</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sign up</a>
-                </li>
-            </app-nav>
+          <ul class="navbar-nav mr-auto" style="margin-left: 70%; padding-right: 12%;">
+              <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                  <a class="nav-link waves-light" routerLink="/">Home</a>
+              </li>
+              <li class="nav-item"> 
+                  <a class="nav-link waves-light" mdbWavesEffect routerLink="/contact">Contact</a>
+              </li>
+              <li class="nav-item" >
+                  <a class="nav-link waves-light" mdbWavesEffect routerLink="/about">About</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link waves-light" mdbWavesEffect routerLink="/Chat">Chat</a>
+              </li>
+              
+              <li class="nav-item dropdown" dropdown>
+                  <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: white;" mdbWavesEffect> Sign In<span class="caret"></span></a>
+                  <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/login">Doctor</a>
+                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients/login">Patient</a>
+                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/pharmacist/login">Parmacist</a>
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/login">Admin</a>
+                      </div>
+              </li>
+
+              <li class="nav-item dropdown" dropdown>
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: white;" mdbWavesEffect>
+                      Sign up<span class="caret"></span></a>
+                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                      <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/register">Doctor</a>
+                      <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients/register">Patient</a>
+                      <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/register">Parmacist</a>
+                      <div class="divider dropdown-divider"></div>
+                      <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/register">Admin</a>
+                    </div>
+                  </li>
+          
+
+          </ul>              
         </div>
     </nav>
-</header> -->
-<app-nav></app-nav>
+</header> 
