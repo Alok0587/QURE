@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class OrderService {
-
+ 
   private REST_API_URL: string = "http://localhost:7071/qure/medicines";
 
   private REST_URL_BOOK : string = "http://localhost:7071/qure/bookmedicines";
@@ -15,6 +15,14 @@ export class OrderService {
 
   getMedicines() {
     return this.http.get(this.REST_API_URL)
+      .pipe(map(res => { 
+        console.log(res);
+        return res; 
+      }));
+  }
+
+  getOrders() {
+    return this.http.get(this.REST_URL_BOOK)
       .pipe(map(res => { 
         console.log(res);
         return res; 
@@ -44,5 +52,48 @@ export class OrderService {
 
     return promise;
   }
+
+  getOrderById(oid)
+  {
+    console.log("id is " + oid);
+    return this.http.get(this.REST_URL_BOOK + "/" +oid)
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+      }))
+
+  }
+
+  getMedicineById(mid)
+  {
+    console.log("id is " + mid);
+    return this.http.get(this.REST_API_URL + "/" + mid)
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+      }))
+
+  }
+  deleteMedicine(medicineId: any) {
+    console.log("id is " + medicineId);
+    return this.http.delete(this.REST_API_URL + '/' + medicineId)
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+       
+      }));
+
+  }
+  deleteOrder(orderId: any) {
+    console.log("id is " + orderId);
+    return this.http.delete(this.REST_URL_BOOK + '/' + orderId)
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+       
+      }));
+
+  }
+
 
 }

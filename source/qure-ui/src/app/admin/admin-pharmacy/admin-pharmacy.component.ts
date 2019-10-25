@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { OrderService } from 'src/app/patients/ordermedicines/order.service';
 
 @Component({
   selector: 'app-admin-pharmacy',
@@ -6,10 +9,87 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-pharmacy.component.scss']
 })
 export class AdminPharmacyComponent implements OnInit {
-
-  constructor() { }
+  
+  orderId:string;
+  medicineId:string;
+  medicineList: any[];
+  orderList:any[];
+  orderSubscription: Subscription;
+  medicineData: any;
+  orderData: any;
+  
+  constructor(private orderService: OrderService, private route: ActivatedRoute, public router: Router) { }
 
   ngOnInit() {
   }
+
+  async viewOrders()
+  {
+    
+    this.orderSubscription = await this.orderService.getOrders()
+      .subscribe( (res: any) => { 
+        console.log( res );
+        this.orderList = res;
+      });
+  }
+
+  async viewMedicines()
+  {
+    
+    this.orderSubscription = await this.orderService.getMedicines()
+      .subscribe( (res: any) => { 
+        console.log( res );
+        this.medicineList = res;
+      });
+  }
+
+  async onOrderViewHandler(orderId){
+
+    console.log(orderId);
+    this.orderSubscription = await this.orderService.getOrderById(orderId)
+      .subscribe( (res: any) => { 
+        console.log( res );
+        this.orderData = res;
+        console.log("order data  "+this.orderData);
+      });
+
+
+   
+    //this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
+  }
+
+  async onMedicineViewHandler(medicineId){
+
+   
+    console.log(medicineId);
+    this.orderSubscription = await this.orderService.getMedicineById(medicineId)
+      .subscribe( (res: any) => { 
+        console.log( res );
+        this.medicineData = res;
+      });
+
+
+   //licateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
+  }
+   async onOrderDeleteHandler(orderId)
+{
+  let res = await this.orderService.deleteOrder(orderId)
+    .subscribe((res: any[]) => {
+      console.log(res);
+      
+    });
+    console.log(res);
+
+}
+ async onMedicineDeleteHandler(medicineId)
+
+{
+  let res = await this.orderService.deleteMedicine(medicineId)
+  .subscribe((res: any[]) => {
+    console.log(res);
+    
+  });
+  console.log(res);
+}
 
 }
