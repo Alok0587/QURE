@@ -62,6 +62,21 @@ export class DoctorService {
        
       }));
   }
+  filterDoctor(city,specialization)
+  {
+    let _url = this.REST_API_URL + "/?city=" + city + "&?specialization=" + specialization;
+
+    return this.http.get(_url)
+      .toPromise()
+      .then((res: any[]) => {
+        console.log(res);
+        return res;
+      })
+      .catch(err => {
+        return (err);
+
+      })
+  }
 
   updateDoctor(doctorData) {
     let _url = this.REST_API_URL + '/' + doctorData.doctorId;

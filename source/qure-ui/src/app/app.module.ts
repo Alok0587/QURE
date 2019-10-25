@@ -81,7 +81,7 @@ import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.co
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AddAppointmentComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA

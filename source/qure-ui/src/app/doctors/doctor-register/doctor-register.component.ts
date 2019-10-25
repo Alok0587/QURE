@@ -46,7 +46,7 @@ export class DoctorRegisterComponent implements OnInit {
         Validators.pattern('^[a-zA-Z]+$')
         ]),
         pincode: new FormControl('', [Validators.required,
-        Validators.pattern('^[0-9]{1,6}$')
+        Validators.pattern('^[0-9]{6}$')
         ]),
         state: new FormControl('', [Validators.required,
         Validators.pattern('^[a-zA-Z]+$')

@@ -20,19 +20,21 @@ export class AddAppointmentComponent implements OnInit {
   appointmentData: any;
   appId: string;
   bookForm: FormGroup;
+  doctorId: any;
 
   constructor(private appointmentService: AppointmentService, private route: ActivatedRoute, public router: Router) {
     
    }
 
   ngOnInit() {
+    const _dId = this.onReturn();
     // const patientId: string = this.route.snapshot.paramMap.get('id');
     const _patientId: string = this.route.snapshot.paramMap.get('id');
     console.log(_patientId)
     this.bookForm= new FormGroup({
       //step2; create Form Control
       patientId: new FormControl(_patientId, Validators.required),
-      doctorId: new FormControl('', Validators.required),
+      doctorId: new FormControl(_dId, Validators.required),
       time: new FormControl('', Validators.required), //step5: add validators
       appointmentDate: new FormControl('', [
                                 Validators.required
@@ -40,6 +42,18 @@ export class AddAppointmentComponent implements OnInit {
                               ]),
       price: new FormControl('500', Validators.required)
     });
+  }
+  async onDoctorSelect(did)
+  {
+    this.appId = did;
+    console.log(this.appId);
+    // this.ngOnInit();
+
+  }
+
+   onReturn()
+  {
+    return this.appId;
   }
 
   async onBookHandler(bookForm){
@@ -54,4 +68,9 @@ export class AddAppointmentComponent implements OnInit {
  
   }
 
+  onClickButton()
+  {
+    let id=this.bookForm.value.patientId;
+    this.router.navigate(['/patients',id])
+  }
 }

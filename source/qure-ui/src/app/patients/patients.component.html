@@ -6,7 +6,7 @@
     <div class="row" *ngIf="patientData">
 
         <!-- Grid column -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-3">
 
             <!-- Card -->
             <div class="card card-personal">
@@ -36,7 +36,7 @@
 
         </div>
         <!-- Grid column 2 -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6">
 
             <!-- Card -->
             <div class="card text-center card-personal">
@@ -51,13 +51,36 @@
                     <a>
                             <p class="card-text">You don't have to visit or call us now.</p>
                            
-                        <button type="button" class="btn-sm btn-primary"
-                            (click)="onBookAppointmentHandler(patientData.patientId)"> BOOK
-                        </button>
+                        
                     </a>
+                    <form class="form-inline" [formGroup]="searchForm" (ngSubmit)="onSearchDoctorHandler(patientData.patientId)">
+                        <div class="form-group "  id="searchbar">
+                    <select class="form-control" formControlName="city" placeholder="Location" style="width: 200px; height: 50px;">
+                        <option selected>---Select city---</option>
+                        <option>Delhi</option>
+                        <option>Pune</option>
+                        <option>Bengaluru</option>
+                
+                      </select>
+                      <br>
+                      <select class="form-control" formControlName="specialization" placeholder="Specialization" style="width: 200px; height: 50px;">
+                          <option selected>----select specialization ----</option>
+                        <option value="ENT">ENT</option>
+                        <option value="Dentist">Dentist</option>
+                        <option value="Psychiatrist">Psychiatrist</option>
+                        <option value="Neurologist">Neurologist</option>
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Orthopaedician">Orthopaedician</option>
+                  
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-primary">SELECT</button>                    
+                        
+                      </div>
+                      </form>
                     <!-- <p class="card-meta">{{patientData.email}}</p> -->
                     <!-- Text -->
-                   <hr>
+                   
                    
 
                 </div>
@@ -69,7 +92,7 @@
         </div>
 
         <!-- Grid column3 -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-3">
       
             <!-- Card -->
             <div class="card text-center card-personal">
@@ -91,7 +114,7 @@
 
         
                
-                <button type="button" class="btn-sm btn-primary" (click)="onBookHandler(patientData.patientId)">Book</button>     <hr>
+                <button type="button" class="btn-sm btn-primary" (click)="onBookPatientHandler(patientData.patientId)">Book</button>     <hr>
                 
               </div>
               <!-- Card content -->
@@ -230,7 +253,22 @@
     </div>
   </div>
 
+<h4>Doctors</h4>
+<div class="ScrollStyle">
+    <div class="row">
 
+        <div class="card col-sm-2" *ngFor="let doctor of doctorList">
+            <div class="card-body">
+                <p class="card-text">Doctor ID: {{doctor.doctorId}}</p>
+                <p class="card-text">MIC number: {{doctor.licenseNumber}}</p>
+                <p class="card-text">Name: {{doctor.name}}</p>
+                <button type="button" data-toggle="modal" (click)="onSelectHandler(doctor.doctorId)"
+                    class="btn btn-danger">BOOK</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
     <h4>Appointments</h4>
 </div>
