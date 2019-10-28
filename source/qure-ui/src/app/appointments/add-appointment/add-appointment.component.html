@@ -1,77 +1,174 @@
 <div class="row">
-    <div class="col-md-12">
-        <h1>Book new Appoinment</h1>
-        <button class="btn btn-dark" (click)="onClickButton()">Go Back</button>
+<div class="col-md-3">
+
+    <!-- Card -->
+    <div class="card text-center card-personal">
+
+        <!-- Card image-->
+        <img class="card-img-top" src="\assets\image\appoint1.jpg" alt="Card image cap">
+        <!-- Card image-->
+
+        <!-- Card content -->
+        <div class="card-body ">
+            <!-- Title-->
+            <a>
+                    <p class="card-text">You don't have to visit or call us now.</p>
+                   
+                
+            </a>
+            <form class="form" [formGroup]="searchForm" (ngSubmit)="onSearchDoctorHandler()">
+                <div class="form-group "  id="searchbar">Location
+            <select class="form-control" formControlName="city" style="width: 200px; height: 30px;">
+                    <option value="false">ALL location</option>
+                <option value="delhi">delhi</option>
+                <option value="pune">pune</option>
+                <option value="bangalore">bangalore</option>
+        
+              </select>
+              <br />
+              Specialization<select class="form-control" formControlName="specialization" style="width: 200px; height: 30px;">
+                    <option value="false">All specialization</option>
+                <option value="ENT">ENT</option>
+                <option value="Dentist">Dentist</option>
+                <option value="Psychiatrist">Psychiatrist</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Orthopaedician">Orthopaedician</option>
+          
+                </select>
+                <br>
+                <button type="submit" class="btn btn-primary">SELECT</button>          
+                
+              </div>
+              </form>
+            <!-- <p class="card-meta">{{patientData.email}}</p> -->
+            <!-- Text -->
+           
+           
+
+        </div>
+        <!-- Card content -->
+
     </div>
+    <!-- Card -->
 
-    <!-- new booking  -->
-    <form class="col-md-6 offset-md-3" [formGroup]="bookForm" (ngSubmit)="onBookHandler()">
-
-        <div class="form-group row">
-            <label for="patientId" class="col-sm-2 col-form-label">Patient Id</label>
-            <div class="col-sm-10">
-                <input type="text" value="bookForm.patientId" class="form-control" formControlName="patientId"
-                    disabled />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="doctorId" class="col-sm-2 col-form-label">Doctor Id</label>
-            <div class="col-sm-10">
-                <input type="text" value="bookForm.doctorId" class="form-control" formControlName="doctorId" disabled/>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="appointmentDate" class="col-sm-2 col-form-label">Pick your Date</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" min="2019-01-01"
-                    max="2020-12-31" [ngClass]="{ 'is-invalid': bookForm.get('appointmentDate').touched
-          && bookForm.get('appointmentDate').invalid}" placeholder="Enter date" formControlName="appointmentDate" />
-                <div class="invalid-feedback">
-                    <div *ngIf="bookForm.get('appointmentDate').errors?.required">date is required</div>
-
-                </div>
-
-            </div>
-        </div>
-
-
-
-
-        <div class="form-group row">
-            <label for="time" class="col-sm-2 col-form-label">Pict your time</label>
-            <div class="col-sm-10">
-                <input type="time" id="time" name="time" class="form-control" [ngClass]="{ 'is-invalid': bookForm.get('time').touched
-            && bookForm.get('time').invalid}" formControlName="time" min="09:00" max="18:00" required>
-                <small>Office hours are 9am to 6pm</small>
-                <div class="invalid-feedback">
-                    <div *ngIf="bookForm.get('time').errors?.required">time is required</div>
-                    <div *ngIf="bookForm.get('time').errors?.min">Please give valid time</div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">price</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': bookForm.get('price').touched
-          && bookForm.get('price').invalid}" formControlName="price" disabled />
-                <div class="invalid-feedback">
-                    <div>price is required</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="alert alert-success" *ngIf="isSaved">
-            Saved Successfully
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-10 offset-sm-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-    </form>
 </div>
+<div class="col-md-9">
+
+
+
+
+
+<h4>Doctors</h4>
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+<div class="row">
+
+<div class="card col-sm-4" *ngFor="let doctor of doctorList">
+    <div class="card-body">
+        <p class="card-text">Doctor Name: {{doctor.name}}</p>
+        <p class="card-text">MIC number: {{doctor.licenseNumber}}</p>
+        <p class="card-text" *ngIf="doctor.address">Adress: {{doctor.address.buildingName}}, {{doctor.address.street}}, 
+            {{doctor.address.city}}, {{doctor.address.state}}
+        </p>
+        <p class="card-text">Contact number: {{doctor.phone}}</p>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span><p>verified &#x2714;</p>
+
+                
+        <!-- <button type="button" data-toggle="modal" (click)="onSelectHandler(doctor.doctorId)"
+            class="btn btn-danger">BOOK</button> -->
+            <center> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookAppointmentModal"
+                (click)="onSelectHandler(doctor.doctorId)">BOOK</button></center>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="bookAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Appointment Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form ngNativeValidate #f="ngForm" (ngSubmit)="onBookHandler(f)">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Doctor Id</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="doctorId" placeholder="Enter Id"
+                            [(ngModel)]="appointmentData.doctorId" disabled required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Patient Id</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="patientId" placeholder="Enter Id"
+                            [(ngModel)]="appointmentData.patientId" disabled required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">date</label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" name="appointmentDate" placeholder="Enter date"
+                            [(ngModel)]="appointmentData.appointmentDate" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
+                    <div class="col-sm-9">
+                        <!-- <input type="time" class="form-control" name="time" placeholder="Enter time"
+                            [(ngModel)]="appointmentData.time"> -->
+                            
+
+                            <select class="form-control" name="time" [(ngModel)]="appointmentData.time" required>
+                                    <option value="9">9 am</option>
+                                        <option value="10">10 am</option>
+                                        <option value="17">5 pm</option>
+                                        <option value="18">6 pm</option>
+                                        <option value="19">7 pm</option>
+                                        <option value="9">9 pm</option>
+                              
+                                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Price</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="price" placeholder="Enter time"
+                            [(ngModel)]="appointmentData.price" disabled>
+                    </div>
+                </div>
+
+                <div class="alert alert-success" *ngIf="isSaved">
+                    Updated successfully!
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/patients">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+

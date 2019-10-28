@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PatientService } from '../patient.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-register',
@@ -11,10 +12,10 @@ export class PatientRegisterComponent implements OnInit {
 
   patientForm: FormGroup;
   isSaved: boolean;
+  gender='male';
 
-  constructor(private patientService: PatientService) {
+  constructor(private patientService: PatientService, private router: Router) {
     this.patientForm = new FormGroup({
-      // Step2: Create Form Control
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(2)
@@ -27,26 +28,21 @@ export class PatientRegisterComponent implements OnInit {
         Validators.required,
         Validators.min(4)
       ]),
-
-
       age: new FormControl('', [
         Validators.required,
         Validators.min(1),
         Validators.max(125)
       ]),
-      gender: new FormControl('', Validators.required),
+      gender: new FormControl('male', Validators.required),
       phone: new FormControl('', [Validators.required,
-      Validators.pattern("[0-9]{10}"),
-
-      ]),
+        Validators.pattern("[0-9]{10}"),]),
+        
       address: new FormGroup({
         buildingName: new FormControl('', Validators.required),
         street: new FormControl('', Validators.required),
-        city: new FormControl('', [Validators.required,
-        Validators.pattern('^[a-zA-Z]+$')
-        ]),
+        city: new FormControl('', Validators.required),
         pincode: new FormControl('', [Validators.required,
-        Validators.pattern('^[0-9]{1,6}$')
+          Validators.pattern('^[0-9]{6}')
         ]),
         state: new FormControl('', [Validators.required,
         Validators.pattern('^[a-zA-Z]+$')
@@ -65,6 +61,9 @@ export class PatientRegisterComponent implements OnInit {
     if (res && res.message) {
       this.isSaved = true;
     }
+
+    this.router.navigate(['patients/login', { regStatus: this.isSaved }] );
+    // this.router.navigate(['patients/login']);
   }
 
   ngOnInit() {

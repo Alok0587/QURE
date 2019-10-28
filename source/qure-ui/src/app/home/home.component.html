@@ -1,198 +1,107 @@
-<div class="container-fluid">    
-          <!--Carousel Wrapper-->
-<div id="carousel-example-2" class="carousel slide carousel-fade" style="margin-left:-30px;margin-right: -40px" data-ride="carousel">
-        <!--Indicators-->
-        <ol class="carousel-indicators">
-          <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel-example-2" data-slide-to="1"></li>
-          <li data-target="#carousel-example-2" data-slide-to="2"></li>
-        </ol>
-        <!--/.Indicators-->
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-          <div class="carousel-item active">
-            <div class="view">
-              <img class="d-block w-100" src="assets/image/doc.jpg" style="height: 550px"  alt="First slide">
-              <div class="mask rgba-black-light"></div>
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">QURE...We'll get you well quick</h3>
-              <p>Book a doctors consultation</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <!--Mask color-->
-            <div class="view">
-              <img class="d-block w-100" src="assets/image/doc-pat.jpg" style="height: 550px" alt="Second slide">
-              <div class="mask rgba-black-light"></div>
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">QURE...We help you cure better</h3>
-              <p>Chat with doctors online and get your queries cleared</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <!--Mask color-->
-            <div class="view">
-              <img class="d-block w-100" src="assets/image/slide2.jpg" style="height: 550px"
-                alt="Third slide">
-              <div class="mask rgba-black-slight"></div>
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">QURE...We get you doctors, labs and medicines all together for you </h3>
-              <p>Get your prescription medicines to your doorstep online</p>
-            </div>
-          </div>
-        </div>
-        <!--/.Slides-->
-        <!--Controls-->
-        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      
-        <!--/.Controls-->
-      </div>
-      <!--/.Carousel Wrapper-->
-      
-      
+
+    <!-- <center><h1 class=".h1-responsive font-weight-bold">QURE</h1></center> -->
     
+
+    <mdb-carousel class="carousel slide carousel-fade view overlay rounded z-depth-2 mb-4 waves-light"
+        [animation]="'fade'">
+        <mdb-carousel-item>
+            <div class="view w-100">
+                <img class="d-block w-100" id="one" src="assets/image/carousal1.jpg" alt="First slide">
+                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+            </div>
+            <div class="carousel-caption" style="color: black;">
+                <h2 class="h2-responsive font-weight-bold">Qure... we'll get you well quick</h2>
+                <p class="font-weight-bold">Book now !!!</p>
+            </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+            <div class="view w-100">
+                <img class="d-block w-100" src="assets/image/carousal2.jpg" alt="Second slide">
+                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+            </div>
+            <div class="carousel-caption" style="color: black;">
+                <h2 class="h2-responsive font-weight-bold">Qure... we help you cure better</h2>
+                <p class="font-weight-bold">Chat with doctors and get your queries cleared</p>
+            </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+            <div class="view w-100">
+                <img class="d-block w-100" src="assets/image/carousal3.jpg" alt="Third slide">
+                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+            </div>
+            <div class="carousel-caption" style="color: black;">
+                <h2 class="h2-responsive font-weight-bold">Qure... will get you doctors as well as medicines</h2>
+                <p class="font-weight-bold">Get your prescribed medicines to your doorstep</p>
+            </div>
+        </mdb-carousel-item>
+    </mdb-carousel>
     <div class="row">
-        <!-- Section: Blog v.2 -->
         <section class="text-center my-5">
-
-            <!-- Section heading -->
-            <h2 class="h1-responsive font-weight-bold my-5">Recent Blogs</h2>
-            <!-- Section description -->
-            <p class="dark-grey-text w-responsive mx-auto mb-5">
-
-
-            </p>
-
-            <!-- Grid row -->
+            <h2 class="h1-responsive font-weight-bold my-5">Recent Medical Blogs</h2>
+            <!-- <p class="dark-grey-text w-responsive mx-auto mb-5">...</p> -->
             <div class="row">
-
-                <!-- Grid column -->
                 <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
-
-                    <!-- Featured image -->
                     <div class="view overlay rounded z-depth-2 mb-4 waves-light" id="myElement" mdbWavesEffect>
-                        <img class="img-fluid" src="assets/image/yoga.jpg"
-                            alt="Sample image">
+                        <img class="img-fluid" src="assets/image/yoga.jpg" alt="Sample image">
                         <a routerLink="/blogs/blog1">
                             <div class="mask rgba-white-slight"></div>
                         </a>
                     </div>
-
-                    <!-- Category -->
                     <a routerLink="/blogs/blog1" class="pink-text">
                         <h6 class="font-weight-bold mb-3">
                             <mdb-icon far icon="blog" class="pr-2"></mdb-icon>Fitness
                         </h6>
                     </a>
-                    <!-- Post title -->
                     <h4 class="font-weight-bold mb-3"><strong>Yoga for Relaxation</strong></h4>
-                    <!-- Post data -->
                     <p>by <a class="font-weight-bold">Shirley Cynthia</a>, 15/08/2019</p>
-                    <!-- Excerpt -->
-                    <p class="dark-grey-text"> Yoga is a mental and physical practice of exercises, poses, and meditation techniques that originated in ancient India…</p>
-                    <!-- Read more button -->
+                    <p class="dark-grey-text"> Yoga is a mental and physical practice of exercises, poses, and
+                        meditation techniques that originated in ancient India…</p>
                     <a mdbBtn color="pink" rounded="true" mdbWavesEffect routerLink="/blogs/blog1">Read more</a>
-
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
                 <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
-
-                    <!-- Featured image -->
                     <div class="view overlay rounded z-depth-2 mb-4 waves-light" id="myElement" mdbWavesEffect>
-                        <img class="img-fluid" src="assets/image/skincare.jpg"
-                            alt="Sample image">
+                        <img class="img-fluid" src="assets/image/skincare.jpg" alt="Sample image">
                         <a routerLink="/blogs/blog2">
                             <div class="mask rgba-white-slight"></div>
                         </a>
                     </div>
-
-                    <!-- Category -->
                     <a routerLink="/blogs/blog2" class="deep-orange-text">
                         <h6 class="font-weight-bold mb-3">
-                                <mdb-icon fas icon="blog"></mdb-icon>Beauty
+                            <mdb-icon fas icon="blog"></mdb-icon>Beauty
                         </h6>
                     </a>
-                    <!-- Post title -->
                     <h4 class="font-weight-bold mb-3"><strong>Skin care</strong></h4>
-                    <!-- Post data -->
                     <p>by <a class="font-weight-bold">Dr. Surya Vamsi, M.D.</a>, October 18,2019</p>
-                    <!-- Excerpt -->
-                    <p class="dark-grey-text">If you want glowing skin, the old adage 'you are what you eat' has never been truer. 
-                        Our nutritionist's tips will help you nourish your skin from the inside out.
-        
-                    </p>
-                    <!-- Read more button -->
+                    <p class="dark-grey-text">If you want glowing skin, the old adage 'you are what you eat' has never
+                        been truer. Our nutritionist's tips ...</p>
                     <a mdbBtn color="deep-orange" rounded="true" mdbWavesEffect routerLink="/blogs/blog2">Read more</a>
-
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
                 <div class="col-lg-4 col-md-6 mb-0">
-
-                    <!-- Featured image -->
                     <div class="view overlay rounded z-depth-2 mb-4 waves-light" id="myElement" mdbWavesEffect>
-                        <img class="img-fluid" src="assets/image/Depression-Symptoms-and-Signs.jpg"
-                            alt="Sample image">
+                        <img class="img-fluid" src="assets/image/Depression-Symptoms-and-Signs.jpg" alt="Sample image">
                         <a routerLink="/blogs/blog3">
                             <div class="mask rgba-white-slight"></div>
                         </a>
                     </div>
-
-                    <!-- Category -->
                     <a routerLink="/blogs/blog3" class="blue-text">
                         <h6 class="font-weight-bold mb-3">
-                                <mdb-icon fas icon="briefcase-medical"></mdb-icon>Mental Health
+                            <mdb-icon fas icon="briefcase-medical"></mdb-icon>Mental Health
                         </h6>
                     </a>
-                    <!-- Post title -->
                     <h4 class="font-weight-bold mb-3"><strong>Fight Depression and Stress</strong></h4>
-                    <!-- Post data -->
-                    <p>by <a class="font-weight-bold"> Amulya Meka</a>,  April 23, 2019</p>
-                    <!-- Excerpt -->
-                    <p class="dark-grey-text">Having a constant cycle of negative thoughts may feel like it’s taking over your life.
-                         It could be an incident at work or mental impact of a breakup. How to Overcome it? </p>
-                    <!-- Read more button -->
+                    <p>by <a class="font-weight-bold"> Amulya Meka</a>, April 23, 2019</p>
+                    <p class="dark-grey-text">Having a constant cycle of negative thoughts may feel like it’s taking
+                        over your life. How to Overcome it? </p>
                     <a mdbBtn color="info" rounded="true" mdbWavesEffect routerLink="/blogs/blog3">Read more</a>
-
                 </div>
-                <!-- Grid column -->
-
             </div>
-            <!-- Grid row -->
-
         </section>
-        <!-- Section: Blog v.2 -->
     </div>
-    <!-- Section: Blog v.1 -->
     <section class="my-5">
-
-        <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center my-5">More posts</h2>
-        <!-- Section description -->
-        <p class="text-center w-responsive mx-auto mb-5">
-
-        </p>
-
-        <!-- Grid row -->
+        <p class="text-center w-responsive mx-auto mb-5"></p>
         <div class="row">
-
-            <!-- Grid column -->
             <div class="col-lg-5">
-
-                <!-- Featured image -->
                 <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4 waves-light" id="myElement" mdbWavesEffect>
                     <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg"
                         alt="Sample image">
@@ -200,141 +109,76 @@
                         <div class="mask rgba-white-slight"></div>
                     </a>
                 </div>
-
             </div>
-            <!-- Grid column -->
 
-            <!-- Grid column -->
             <div class="col-lg-7">
-
-                <!-- Category -->
                 <a routerLink="/blogs/blog4" class="green-text">
                     <h6 class="font-weight-bold mb-3">
                         <mdb-icon fas icon="utensils" class="pr-2"></mdb-icon>Food for Health
                     </h6>
                 </a>
-                <!-- Post title -->
                 <h3 class="font-weight-bold mb-3"><strong>What is the Nutritarian Diet</strong></h3>
-                <!-- Excerpt -->
-                <p>Emphasizes eating high-nutrient, whole plant foods that supply abundant amounts of micronutrients. 
-                    Eating this healthful diet unleashes the body’s tremendous ability to heal, achieve optimal weight and slow the aging process.</p>
-                <!-- Post data -->
+                <p>Emphasizes eating high-nutrient, whole plant foods that supply abundant amounts of micronutrients.
+                    Eating this healthful diet unleashes the body’s tremendous ability to heal, achieve optimal weight
+                    and slow the aging process.</p>
                 <p>by <a><strong>Dr.Uma Maheswari</strong></a>, 19/08/2019</p>
-                <!-- Read more button -->
                 <a mdbBtn color="success" mdbWavesEffect routerLink="/blogs/blog4">Read more</a>
 
             </div>
-            <!-- Grid column -->
 
         </div>
-        <!-- Grid row -->
-
         <hr class="my-5">
-
-        <!-- Grid row -->
         <div class="row">
-
-            <!-- Grid column -->
             <div class="col-lg-7">
-
-                <!-- Category -->
                 <a routerLink="/blogs/blog5" class="pink-text">
                     <h6 class="font-weight-bold mb-3">
-                            <mdb-icon fas icon="heartbeat"></mdb-icon>Lifestyle
+                        <mdb-icon fas icon="heartbeat"></mdb-icon>Lifestyle
                     </h6>
                 </a>
-                <!-- Post title -->
                 <h3 class="font-weight-bold mb-3"><strong>Lower your risk of Heart Disease</strong></h3>
-                <!-- Excerpt -->
                 <p>Heart disease is the leading cause of the death in the India.
-                     It is also a major cause of disability. There are many things that can raise your risk for heart disease..</p>
-                <!-- Post data -->
+                    It is also a major cause of disability. There are many things that can raise your risk for heart
+                    disease..</p>
                 <p>by <a><strong>Dr. Dharma Rakshak</strong></a>, 14/08/2018</p>
-                <!-- Read more button -->
                 <a mdbBtn color="pink" mdbWavesEffect class="mb-lg-0 mb-4" routerLink="/blogs/blog5">Read more</a>
 
             </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
             <div class="col-lg-5">
-
-                <!-- Featured image -->
                 <div class="view overlay rounded z-depth-2 waves-light" id="myElement" mdbWavesEffect>
-                    <img class="img-fluid" src="assets/image/heartrisk.jpg"
-                        alt="Sample image">
+                    <img class="img-fluid" src="assets/image/heartrisk.jpg" alt="Sample image">
                     <a routerLink="/blogs/blog5">
                         <div class="mask rgba-white-slight"></div>
                     </a>
                 </div>
 
             </div>
-            <!-- Grid column -->
-
         </div>
-        <!-- Grid row -->
-
         <hr class="my-5">
-
-        <!-- Grid row -->
         <div class="row">
-
-            <!-- Grid column -->
             <div class="col-lg-5">
-                    
-                <!-- Featured image -->
                 <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4 waves-light" id="myElement" mdbWavesEffect>
-                    <img class="img-fluid" src="assets/image/pregnancy.jpg"
-                        alt="Sample image">
+                    <img class="img-fluid" src="assets/image/pregnancy.jpg" alt="Sample image">
                     <a routerLink="/blogs/blog6">
                         <div class="mask rgba-white-slight"></div>
                     </a>
                 </div>
 
             </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
             <div class="col-lg-7">
-
-                <!-- Category -->
                 <a routerLink="/blogs/blog6" class="indigo-text">
                     <h6 class="font-weight-bold mb-3">
-                            <mdb-icon fas icon="baby"></mdb-icon>Motherhood
+                        <mdb-icon fas icon="baby"></mdb-icon>Motherhood
                     </h6>
                 </a>
-                <!-- Post title -->
                 <h3 class="font-weight-bold mb-3"><strong>Health and Pregnancy guide</strong></h3>
-                <!-- Excerpt -->
                 <p>When the pregnancy test comes back positive, you've begun a life-altering journey
-                    You need information to answer your questions and help you make good decisions for a healthy baby and a healthy you.</p>
-                <!-- Post data -->
+                    You need information to answer your questions and help you make good decisions for a healthy baby
+                    and a healthy you.</p>
+
                 <p>by <a><strong>Dr. Prathima Reddy, Gynecologist</strong></a>, 11/08/2018</p>
-                <!-- Read more button -->
+
                 <a mdbBtn color="indigo" mdbWavesEffect routerLink="/blogs/blog6">Read more</a>
 
             </div>
-            <!-- Grid column -->
-
         </div>
-        <!-- Grid row -->
-
     </section>
-    <!-- Section: Blog v.1 -->
-</div>
-<style>
-  
-#myElement{
-    -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            height: 300px;
-            
-}
-.img-fluid{
-    height: inherit;
-}
-
-
-</style>

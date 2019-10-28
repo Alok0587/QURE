@@ -27,7 +27,7 @@ import { Blog3Component } from './blogs/blog3/blog3.component';
 import { Blog4Component } from './blogs/blog4/blog4.component';
 import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
+
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
 import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
 import { FaqComponent } from './faq/faq.component';
@@ -61,7 +61,6 @@ import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.co
     Blog4Component,
     Blog5Component,
     Blog6Component,
-    AppointmentsComponent,
     AddAppointmentComponent,
     BookMedicineComponent,
     FaqComponent,

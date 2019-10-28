@@ -35,7 +35,7 @@ export class SpecializationComponent implements OnInit {
 
     console.log(dId);
     this.doctorSubscription = await this.doctorService.getDoctorById(dId)
-      .subscribe( (res: any) => { 
+    .subscribe( (res: any) => { 
         console.log( res );
         this.doctorData = res;
       });

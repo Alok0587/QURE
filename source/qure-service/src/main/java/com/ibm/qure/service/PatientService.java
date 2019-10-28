@@ -27,7 +27,7 @@ public class PatientService {
 	}
 
 	public Patient get(String id) {
-		return patientRepo.findById(id).get();
+		return patientRepo.findByEmail(id);
 	}
 
 	public List<Patient> getAll() {
