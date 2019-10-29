@@ -132,11 +132,11 @@ aria-hidden="true">
 
                             <select class="form-control" name="time" [(ngModel)]="appointmentData.time" required>
                                     <option value="9">9 am</option>
-                                        <option value="10">10 am</option>
-                                        <option value="17">5 pm</option>
-                                        <option value="18">6 pm</option>
-                                        <option value="19">7 pm</option>
-                                        <option value="9">9 pm</option>
+                                        <option *ngIf="check1" value="10">10 am</option>
+                                        <option *ngIf="check2" value="17">5 pm</option>
+                                        <option *ngIf="check3" value="18">6 pm</option>
+                                        <option *ngIf="check4" value="19">7 pm</option>
+                                        <option *ngIf="check5" value="9">9 pm</option>
                               
                                     </select>
                     </div>

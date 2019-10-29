@@ -42,16 +42,41 @@ public class AppointmentController {
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public List<Appointment> getAllAppointments(@RequestParam(name = "dId", required = false) Optional<String> dId,
-			@RequestParam(name = "pId", required = false) Optional<String> pId) {
-		if (pId.isPresent()) {
+			@RequestParam(name = "pId", required = false) Optional<String> pId, @RequestParam(name = "slot", required = false) Optional<String> slot) {
+		if(dId.isPresent() && slot.isPresent()) {
+			return appointService.appointmentSlot(slot, dId);
+		}
+		else if (pId.isPresent()) {
 			return appointService.patientsAppointmentList(pId);
 		} else if (dId.isPresent()) {
 			return appointService.doctorsAppointmentList(dId);
-		} else {
+		} 
 			return appointService.getAll();
-		}
+		
 
 	}
+	
+	
+	
+	@GetMapping(value = "/checkslot", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@CrossOrigin("*")
+	public boolean checkSlot(@RequestParam(name = "dId", required = false) Optional<String> dId,
+			@RequestParam(name = "slot", required = false) Optional<String> slot) {
+		if(dId.isPresent() && slot.isPresent()) {
+			System.out.println("inside checkslot");
+			return appointService.appointmentSlot(slot, dId).isEmpty();
+		}		
+		
+			return false;
+		
+
+	}
+	
+	
+	
+	
+	
+	
 
 	// List appointment for given Id GET /appointments/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })

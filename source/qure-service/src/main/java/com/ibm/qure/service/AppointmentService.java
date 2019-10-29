@@ -41,6 +41,9 @@ public class AppointmentService{
 	public Appointment get(String id) {
 		return appointRepo.findById(id).get();
 	}
+	public List<Appointment> appointmentSlot(Optional<String> slot, Optional<String> dId){
+		return appointRepo.findAllByTimeAndDoctorId(slot, dId);
+	}
 	
 
 	public List<Appointment> getAll() {
