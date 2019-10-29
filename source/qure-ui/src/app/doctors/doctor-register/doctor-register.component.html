@@ -70,6 +70,18 @@
             </div>
 
             <div class="form-group row">
+                    <label for="licenseNumber" class="col-sm-2 col-form-label">License Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': doctorForm.get('licenseNumber').touched 
+            && doctorForm.get('licenseNumber').invalid }" placeholder="Enter licenseNumber" formControlName="licenseNumber" />
+                        <div class="invalid-feedback">
+                            <div *ngIf="doctorForm.get('licenseNumber').errors?.required">licenseNumber is required</div>
+                            <div *ngIf="doctorForm.get('licenseNumber').errors?.minlength">licenseNumber Name</div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="form-group row">
                 <label for="specialization" class="col-sm-3 col-form-label">Specialization </label>
                 <div class="col-sm-9">
                     <select class="custom-select custom-select-sm form-control" [ngClass]="{ 'is-invalid': doctorForm.get('specialization').touched 
@@ -134,8 +146,8 @@
                         && doctorForm.get('address').get('city').invalid }" placeholder="Enter City"
                             formControlName="city" />
                         <div class="invalid-feedback">
-                            <div *ngIf="patientForm.get('address').get('city').errors?.required">City is required</div>
-                            <div *ngIf="patientForm.get('address').get('city').errors?.pattern">Enter valid city</div>
+                            <div *ngIf="doctorForm.get('address').get('city').errors?.required">City is required</div>
+                            <div *ngIf="doctorForm.get('address').get('city').errors?.pattern">Enter valid city</div>
 
                         </div>
                     </div>
@@ -148,9 +160,9 @@
                             && doctorForm.get('address').get('pincode').invalid }" placeholder="Enter PinCode"
                             formControlName="pincode" />
                         <div class="invalid-feedback">
-                            <div *ngIf="patientForm.get('address').get('pincode').errors?.required">PinCode is required
+                            <div *ngIf="doctorForm.get('address').get('pincode').errors?.required">PinCode is required
                             </div>
-                            <div *ngIf="patientForm.get('address').get('pincode').errors?.pattern">Pincode should be of
+                            <div *ngIf="doctorForm.get('address').get('pincode').errors?.pattern">Pincode should be of
                                 6 digits</div>
 
                         </div>
@@ -164,21 +176,15 @@
                                 && doctorForm.get('address').get('state').invalid }" placeholder="Enter State"
                             formControlName="state" />
                         <div class="invalid-feedback">
-                            <div *ngIf="patientForm.get('address').get('state').errors?.required">State is required
+                            <div *ngIf="doctorForm.get('address').get('state').errors?.required">State is required
                             </div>
-                            <div *ngIf="patientForm.get('address').get('state').errors?.pattern">Enter valid state</div>
+                            <div *ngIf="doctorForm.get('address').get('state').errors?.pattern">Enter valid state</div>
 
                         </div>
                     </div>
                 </div>
 
 
-            </div>
-
-
-
-            <div class="alert alert-success" *ngIf="isSaved">
-                Saved Successfully
             </div>
 
             <div class="form-group row">

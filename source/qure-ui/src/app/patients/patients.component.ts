@@ -3,6 +3,10 @@ import { Subscription } from 'rxjs';
 import { PatientService } from './patient.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentService } from '../appointments/appointment.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { DoctorService } from '../doctors/doctor.service';
+import {AddAppointmentComponent} from '../appointments/add-appointment/add-appointment.component';
+import { ConcatSource } from 'webpack-sources';
 
 @Component({
   selector: 'app-patients',
@@ -11,10 +15,13 @@ import { AppointmentService } from '../appointments/appointment.service';
 })
 export class PatientsComponent implements OnInit {
   patientData: any;
+  pData: any;
   duplicatePatientData: any;
   patientSubscription: Subscription;
   patientId: string;
   isSaved2: boolean = false;
+  searchForm: FormGroup;
+  doctorList: any[];
 
 
   appointmentList: any[];
@@ -25,60 +32,103 @@ export class PatientsComponent implements OnInit {
   duplicateAppointmentData: any;
   appointmentData: any;
   appId: string;
+  doctorData: any;
 
-  constructor(private appointmentService: AppointmentService, private patientService: PatientService, private route: ActivatedRoute, public router: Router) { }
-
-  ngOnInit() {
-    const _patientId: string = this.route.snapshot.paramMap.get('id');
+  constructor(private addAppointment: AddAppointmentComponent,private appointmentService: AppointmentService,private doctorService:DoctorService,  private patientService: PatientService, private route: ActivatedRoute, public router: Router) {
 
     
+  }
 
-    this.patientSubscription = this.patientService.getPatientById(_patientId)
-      .subscribe((res: any) => {
+  async ngOnInit() {
+    // const _patientId: string = this.route.snapshot.paramMap.get('id');
+    let pEmail = sessionStorage.getItem('username');
+
+    this.patientSubscription = this.patientService.getPatientByEmail(pEmail)
+      .subscribe(async (res: any) => {
         console.log(res);
-        this.patientData = res;
+        this.patientData = await res;
+        console.log("current Patient is"+ this.patientData.patientId);
       });
-
-      this.appointmentSubscription = this.appointmentService.getAppointmentsByPatientId(_patientId)
-      .subscribe((res: any[]) => {
-        console.log(res);
-        this.appointmentList = res;
-      });
+      console.log("here I am");
   }
-
-  async onViewHandler(appId){
-
-    console.log(appId);
-    this.appointmentSubscription2 = await this.appointmentService.getAppointmentById(appId)
-      .subscribe( (res: any) => { 
-        console.log( res );
-        this.appointmentData = res;
-      });
-    //this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
-  }
-
-  onBookAppointmentHandler(pId: any){
-    this.router.navigate(['appointments/' + pId])
-  }
-  async onDeleteHandler(aId: any){
-    let res = await this.appointmentService.deleteAppointment(aId)
-    .subscribe((res: any[]) => {
-      console.log(res);
-      this.appointmentList = res;
-    });
-    console.log(res);
-  }
-  async onUpdateHandler( formData ) {
   
-    let res = await this.appointmentService.updateAppointment(this.duplicateAppointmentData)
-    console.log(res); // 2. get the resp from service
+  async onViewAppointmentList(){
+    this.appointmentSubscription = this.appointmentService.getAppointmentsByPatientId(this.patientData.patientId)
+      .subscribe(async (res: any[]) => {
+        console.log(res);
+        this.appointmentList = await res;
+      });
   }
 
-  onBookHandler(id)
-  {
-    console.log("Id: "+id);
-
-    this.router.navigate(['patients/bookmedicine/',id]);
+  onEditHandler() {
+    this.duplicatePatientData = JSON.parse(JSON.stringify(this.patientData));
+    console.log(this.duplicatePatientData);
+    console.log("inside onEdit handler");
   }
+
+  async onPatientUpdateHandler(formData) {
+    console.log(formData);
+    console.log(formData.value);
+
+    var obj = formData.value;
+    obj.id = this.patientId;
+
+    let res = await this.patientService.updatePatient(this.duplicatePatientData);
+    console.log(res);
+    if (res) {
+      this.isSaved2 = true;
+      this.ngOnInit();
+    }
+  }
+
+  onBookAppointmentHandler(pId) {
+    console.log("Id: " + pId);
+    sessionStorage.setItem('userId', this.patientData.patientId)
+      let user = sessionStorage.getItem('userId');
+      console.log("userId" + user);
+
+    this.router.navigate(['patients/appointments/', pId]);
+  }
+
+
+
+
+  onBookPatientHandler(pId) {
+    console.log("Id: " + pId);
+
+    this.router.navigate(['patients/bookmedicine/', pId]);
+  }
+
+
+  async onViewHandler(appointmentData) {
+    console.log(appointmentData);
+    this.duplicateAppointmentData = JSON.parse(JSON.stringify(appointmentData));
+    console.log("duplicate is " + this.duplicateAppointmentData);    
+  }
+
+  // onBookAppointmentHandler(pId: any){
+  //   this.router.navigate(['appointments/' + pId])
+  // }
+
+
+  async onDeleteHandler(aId: any) {
+    this.appointmentService.deleteAppointment(aId);
+    this.onViewAppointmentList();
+  }
+  
+  async onUpdateHandler(formData) {
+    console.log("inside update app" + this.duplicateAppointmentData);
+    let res = await this.appointmentService.updateAppointment(this.duplicateAppointmentData);
+    this.onViewAppointmentList();
+  }
+
+  
+  
+  ngOnDestroy() {
+    this.patientSubscription.unsubscribe();
+    // this.appointmentSubscription.unsubscribe();
+    // this.appointmentSubscription.unsubscribe();
+
+}
 
 }

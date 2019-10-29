@@ -12,6 +12,8 @@ export class DoctorRegisterComponent implements OnInit {
 
   doctorForm: FormGroup;
   isSaved: boolean;
+
+
   constructor(private doctorService: DoctorService,public router: Router) {
 
     this.doctorForm = new FormGroup({
@@ -33,10 +35,14 @@ export class DoctorRegisterComponent implements OnInit {
         Validators.min(1),
         Validators.max(125)
       ]),
-      gender: new FormControl('', Validators.required),
+      gender: new FormControl('male', Validators.required),
       phone: new FormControl('', [Validators.required,
                              Validators.pattern("[0-9]{10}"),
 
+      ]),
+      licenseNumber: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2)
       ]),
       specialization: new FormControl('', Validators.required),
       address: new FormGroup({
@@ -46,7 +52,7 @@ export class DoctorRegisterComponent implements OnInit {
         Validators.pattern('^[a-zA-Z]+$')
         ]),
         pincode: new FormControl('', [Validators.required,
-        Validators.pattern('^[0-9]{1,6}$')
+        Validators.pattern('^[0-9]{6}$')
         ]),
         state: new FormControl('', [Validators.required,
         Validators.pattern('^[a-zA-Z]+$')
@@ -65,7 +71,7 @@ export class DoctorRegisterComponent implements OnInit {
     if (res && res.message) {
       this.isSaved = true;
     }
-    this.router.navigate(['/doctors/login']);
+    this.router.navigate(['doctors/login', { regStatus: this.isSaved }] );
   }
   ngOnInit() {
   }

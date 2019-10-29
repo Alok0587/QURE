@@ -11,7 +11,7 @@
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('name').touched 
-        && patientForm.get('name').invalid }" placeholder="Enter Name" formControlName="name" />
+        && patientForm.get('name').invalid }" placeholder="Enter Name" formControlName="name" required/>
                     <div class="invalid-feedback">
                         <div *ngIf="patientForm.get('name').errors?.required">Name is required</div>
                         <div *ngIf="patientForm.get('name').errors?.minlength">Invalid Name</div>
@@ -23,7 +23,7 @@
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
                     <input type="email" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('email').touched 
-        && patientForm.get('email').invalid }" placeholder="Enter Email" formControlName="email" />
+        && patientForm.get('email').invalid }" placeholder="Enter Email" formControlName="email" required/>
                     <div class="invalid-feedback">
                         <div *ngIf="patientForm.get('email').errors?.required">Email is required</div>
                         <div *ngIf="patientForm.get('email').errors?.email">Invalid Email</div>
@@ -35,7 +35,7 @@
                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('password').touched 
-            && patientForm.get('password').invalid }" placeholder="Enter Password" formControlName="password" />
+            && patientForm.get('password').invalid }" placeholder="Enter Password" formControlName="password" required/>
                         <div class="invalid-feedback">
                             <div *ngIf="patientForm.get('password').errors?.required">Password is required</div>
                             <div *ngIf="patientForm.get('password').errors?.min">Invalid Password</div>
@@ -47,7 +47,7 @@
                 <label for="age" class="col-sm-2 col-form-label">Age</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('age').touched 
-        && patientForm.get('age').invalid }" placeholder="Enter Age" formControlName="age" />
+        && patientForm.get('age').invalid }" placeholder="Enter Age" formControlName="age" required/>
                     <div class="invalid-feedback">
                         <div *ngIf="patientForm.get('age').errors?.required">Age is required</div>
                         <div *ngIf="patientForm.get('age').errors?.min">Age should be min 0</div>
@@ -77,7 +77,7 @@
                 <div class="col-sm-10">
                     <input type="number" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('phone').touched 
                                         && patientForm.get('phone').invalid }" placeholder="Enter Mobile"
-                        formControlName="phone" />
+                        formControlName="phone" required/>
                     <div class="invalid-feedback">
                         <div *ngIf="patientForm.get('phone').errors?.required">Mobile is required</div>
                         <div *ngIf="patientForm.get('phone').errors?.pattern">Mobile should be of 10 digits</div>
@@ -90,9 +90,9 @@
                     <div class="col-sm-7">
                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('buildingName').touched 
         && patientForm.get('address').get('buildingName').invalid }" placeholder="Enter Building Name"
-                            formControlName="buildingName" />
+                            formControlName="buildingName" required/>
                         <div class="invalid-feedback">
-                            <div *ngIf="doctorForm.get('address').get('buildingName').errors?.required">Building Name is required</div>
+                            <div *ngIf="patientForm.get('address').get('buildingName').errors?.required">Building Name is required</div>
                         
                         </div>
                     </div>
@@ -103,9 +103,9 @@
                     <div class="col-sm-7">
                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('street').touched 
             && patientForm.get('address').get('street').invalid }" placeholder="Enter Street"
-                            formControlName="street" />
+                            formControlName="street" required/>
                         <div class="invalid-feedback">
-                            <div *ngIf="doctorForm.get('address').get('street').errors?.required">Street is required</div>
+                            <div *ngIf="patientForm.get('address').get('street').errors?.required">Street is required</div>
                         
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                     <label for="city" class="col-sm-5 col-form-label">City</label>
                     <div class="col-sm-7">
                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('city').touched 
-                && patientForm.get('address').get('city').invalid }" placeholder="Enter City" formControlName="city" />
+                && patientForm.get('address').get('city').invalid }" placeholder="Enter City" formControlName="city" required/>
                         <div class="invalid-feedback">
                             <div *ngIf="patientForm.get('address').get('city').errors?.required">City is required</div>
                             <div *ngIf="patientForm.get('address').get('city').errors?.pattern">Enter valid city</div>
@@ -129,7 +129,7 @@
                     <div class="col-sm-7">
                         <input type="number" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('pincode').touched 
                     && patientForm.get('address').get('pincode').invalid }" placeholder="Enter Pincode"
-                            formControlName="pincode" />
+                            formControlName="pincode" required/>
                         <div class="invalid-feedback">
                             <div *ngIf="patientForm.get('address').get('pincode').errors?.required">PinCode is required
                             </div>
@@ -145,7 +145,7 @@
                     <div class="col-sm-7">
                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': patientForm.get('address').get('state').touched 
                         && patientForm.get('address').get('state').invalid }" placeholder="Enter State"
-                            formControlName="state" />
+                            formControlName="state" required/>
                         <div class="invalid-feedback">
                             <div *ngIf="patientForm.get('address').get('state').errors?.required">State is required
                             </div>
@@ -154,15 +154,7 @@
                         </div>
                     </div>
                 </div>
-
-
-            </div>
-
-
-
-            <div class="alert alert-success" *ngIf="isSaved">
-                Saved Successfully
-            </div>
+            </div>    
 
             <div class="form-group row">
                 <div class="col-sm-10 offset-sm-2">

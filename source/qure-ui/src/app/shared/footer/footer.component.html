@@ -11,9 +11,8 @@
       <div class="col-md-4 mx-auto">
 
         <!-- Content -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Footer Content</h5>
-        <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit.</p>
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">QURE</h5>
+        <p>Here at qure Health comes first</p>
 
       </div>
       <!-- Grid column -->
@@ -52,7 +51,7 @@
               <a class="nav-link" routerLink="/faq">FAQ</a>
           </li>
           <li>
-              <a class="nav-link" routerLink="/blogs">Blogs</a>
+              <a class="nav-link" routerLink="/blogs/blog1">Blogs</a>
           </li>
           
         </ul>
@@ -64,24 +63,6 @@
 
       <!-- Grid column -->
       <div class="col-md-2 mx-auto">
-
-        <!-- Links -->
-        <!-- <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5> -->
-
-        <!-- <ul class="list-unstyled">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-          <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
-          </li>
-        </ul> -->
 
       </div>
       <!-- Grid column -->
@@ -99,8 +80,8 @@
     <li class="list-inline-item">
       <h5 class="mb-1">Register for free</h5>
     </li>
-    <li class="list-inline-item">
-      <a href="#!" mdbBtn color="danger" rounded="true" mdbWavesEffect>Sign up!</a>
+    <li class="list-inline-item" *ngIf="!(authenticationService.isUserLoggedIn('DOCTOR') || authenticationService.isUserLoggedIn('PATIENT'))">
+      <a routerLink="/patients/register" mdbBtn color="danger" rounded="true" mdbWavesEffect>Sign up!</a>
     </li>
   </ul>
   <!-- Call to action -->
@@ -130,10 +111,10 @@
       </a>
     </li>
     <li class="list-inline-item">
-      <a mdbBtn floating="true" color="dribbble" class="mx-1" mdbWavesEffect>
-        <mdb-icon fab icon="dribbble"></mdb-icon>
-      </a>
-    </li>
+        <a mdbBtn floating="true" color="li" class="mx-1" mdbWavesEffect>
+          <mdb-icon fab icon="instagram"></mdb-icon>
+        </a>
+      </li>
   </ul>
   <!-- Social buttons -->
 

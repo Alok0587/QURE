@@ -2,6 +2,7 @@ package com.ibm.qure.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -9,6 +10,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +28,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Doctor;
 import com.ibm.qure.model.ResponseMessage;
+import com.ibm.qure.repository.DoctorRepository;
+import com.ibm.qure.repository.PatientRepository;
+import com.ibm.qure.security.UserRepository;
+import com.ibm.qure.security.Users;
 import com.ibm.qure.service.DoctorService;
 
 @RestController
@@ -34,12 +40,39 @@ public class DoctorController {
 
 	@Autowired
 	DoctorService doctorService;
+	
+	@Autowired
+	UserRepository userRepo;
+	
+	@Autowired
+	DoctorRepository doctorRepo;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	//USER Authentication 
+	@PostMapping("/auth")
+	@CrossOrigin("*")
+	public Principal authenticate(Principal user)
+	{	System.out.println("inside authenticaion of doctor");
+		System.out.println("LoggedIn User: " + user);
+//		return (Principal) patientRepo.findByEmail(user.getName());
+		return user;
+		
+	}
 
 	// List All Doctors GET /doctors or List Doctors by location
 		@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 		@CrossOrigin("*")
 		public List<Doctor> getAllDoctors(@RequestParam(name = "city", required = false) Optional<String> city,@RequestParam(name = "specialization", required = false) Optional<String> specialization) {
-			if (city.isPresent()) {
+			System.out.println("Inside doc filtr controller");
+			if(city.isPresent()&&specialization.isPresent())
+			{System.out.println("Inside doc filtr asdfg");
+				return doctorService.getByCityAndSpecialization(city,specialization);
+				
+			}
+			
+			else if (city.isPresent()) {
 				return doctorService.getByLocation(city);
 			} 
 			else if(specialization.isPresent()) {
@@ -61,17 +94,27 @@ public class DoctorController {
 	// Create Doctor POST /doctors
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public ResponseEntity<ResponseMessage> createDoctor(@RequestBody @Valid Doctor Doctor)
+	public ResponseEntity<ResponseMessage> createDoctor(@RequestBody @Valid Doctor doctor)
 			throws URISyntaxException, ApplicationException {
+		
+		
+		String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
+		doctor.setPassword(encodedPassword);
+		doctorRepo.save(doctor);
+		
+		Users user= new Users(doctor.getEmail(), doctor.getPassword(), doctor.getDoctorId(), "DOCTOR");
+		System.out.println(user.getUsername());
+		System.out.println(user.getPassword());
+		userRepo.save(user);
 
 		ResponseMessage resMsg;
 
-		doctorService.create(Doctor);
+		doctorService.create(doctor);
 
 		resMsg = new ResponseMessage("Success", new String[] { "Doctor created successfully" });
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(Doctor.getDoctorId()).toUri();
+				.buildAndExpand(doctor.getDoctorId()).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 

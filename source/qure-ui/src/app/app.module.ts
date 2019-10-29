@@ -27,7 +27,7 @@ import { Blog3Component } from './blogs/blog3/blog3.component';
 import { Blog4Component } from './blogs/blog4/blog4.component';
 import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
+
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
 import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
 import { FaqComponent } from './faq/faq.component';
@@ -35,6 +35,8 @@ import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
 import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-register.component';
 import { ChatComponent } from './chat/chat.component';
+import { AdminDoctorComponent } from './admin/admin-doctor/admin-doctor.component';
+import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.component';
  
 
 @NgModule({
@@ -59,14 +61,15 @@ import { ChatComponent } from './chat/chat.component';
     Blog4Component,
     Blog5Component,
     Blog6Component,
-    AppointmentsComponent,
     AddAppointmentComponent,
     BookMedicineComponent,
     FaqComponent,
     AdminComponent,
     AdminloginComponent,
     SpecializationComponent,
-    ChatComponent
+    ChatComponent,
+    AdminDoctorComponent,
+    AdminPharmacyComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,7 @@ import { ChatComponent } from './chat/chat.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AddAppointmentComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA
