@@ -19,6 +19,7 @@ export class ChatComponent {
 
   date: string = new Date().toLocaleString();
   parser: string[];
+  
   ngOnInit() {
     this.webSocketAPI = new WebSocketAPI(new ChatComponent());
   }
@@ -27,6 +28,7 @@ export class ChatComponent {
     this.webSocketAPI._connect();
     $("#connected").attr("disabled", true);
     $("#disconnected").attr("disabled", false);
+    this.delay(1000);
     document.getElementById("activity").innerHTML="<p style='color:green'><b>Available</p>";
 
 
@@ -48,12 +50,12 @@ export class ChatComponent {
     this.convo = JSON.parse(message);
     console.log(message.class);
     this.msg = this.convo.slice(13, this.convo.length - 2);
-     $("#convo").append("<tr><td>"+"<button class='btn btn-info' style='float:left'>" + "<h5  style='color:white;'>"  +this.msg + "</h5>" + "<span class='time-left text-muted'>"+this.date+"</span>"+"</button>"+"</tr></td>"); 
-
-
-
+     $("#convo").append("<tr><td>"+"<button type= 'button' class='btn btn-success' style='float:left;'>" + "<h5  style='color:white;'>"  +this.msg + "</h5>" + "<span class='time-left text-muted'>"+this.date+"</span>"+"</button>"+"</tr></td>"); 
 
   }
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+}
 }
 
 //js of ui

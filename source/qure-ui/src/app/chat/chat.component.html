@@ -3,67 +3,72 @@
         enabled. Please enable
         Javascript and reload this page!</h2>
 </noscript>
-<div style="margin-top: 10px;">
-    <div class="card"
-        style="width: 500px; height:500px; margin-left: 480px; border-style:solid;border-width: 3px;border-color: rgb(150, 185, 206);">
-        <div class="card-body">
-            <div class="row" style="margin: 2px;">
-                <div class="col-md-12 ">
-                    <h3 class="font-italic"><b>Doctor</b></h3>
-                    <span id="activity"></span>
-                    <div class="table-responsive" >
-                    <table  class="table table-borderless ">
-                        <thead>
-                            <tr>
-                            </tr>
-                        </thead>
-                        <tbody id="convo">
-                        </tbody>
-                    </table>
+<div class="row">
+    <div class="col-md-8" style="height:800px; float:left">
+        <img src="assets/image/chatBackground.jpg" class="img-fluid">
+    </div>
+    <div class="col-md-4" style="height:800px; float:right">
+        <div class="card" style="height:500px; border-style:solid;border-width: 3px;border-color: rgb(150, 185, 206);">
+            <div class="card-body">
+                <div class="row" style="margin: 2px;">
+                    <div class="col-md-12 ">
+                        <h3 class="font-italic"><b><i class="fa fa-user-md"></i>&nbsp;Qure Health Doctor</b></h3>
+                        <span id="activity"><div class="fa-2x">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                          </div></span>
+                        
+                        <hr />
+                        <div class="table-responsive">
+                            <table class="table table-borderless ">
+                                <thead>
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody id="convo">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <div id="main-content" class="container"
-        style="width: 500px;height: 135PX; margin-left: 480px;border-style: solid;border-width: 5px; border-color: rgb(29, 76, 233);">
+        <div id="main-content" class="container"
+            style="border-style: solid;border-width: 5px; border-color: rgb(29, 76, 233);">
 
-        <div class="row">
-            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <!--<label for="connect">WebSocket connection:</label>-->
+                            <button id="connected" (click)="connect()" class="btn btn-default" type="submit">Request
+                                Chat</button>
+                            <button id="disconnected" (click)="disconnect()" class="btn btn-danger" type="submit">Leave
+                            </button>
+                        </div>
+                    </form>
+
                 <form class="form-inline">
                     <div class="form-group">
-                        <!--<label for="connect">WebSocket connection:</label>-->
-                        <button id="connected" (click)="connect()" class="btn btn-default"
-                            type="submit">Request Chat</button>
-                        <button id="disconnected" (click)="disconnect()" class="btn btn-danger"
-                            type="submit">Leave
-                        </button>
+                        <input type="text" [(ngModel)]="name" class="form-control" name="name"
+                            style="width:300px; margin:8px;" placeholder="Type here.."> <br>
                     </div>
+                    <button (click)="sendMessage()" class="btn btn-success" type="submit">Send</button>
                 </form>
+
+
             </div>
-
-            <form class="form-inline">
-                <div class="form-group">
-                    <input type="text" [(ngModel)]="name" class="form-control" name="name" style="width:350px; margin:8px;"
-                        placeholder="Type here.."> <br>
-                </div>
-                <button (click)="sendMessage()" class="btn btn-success" type="submit">Send</button>
-            </form>
-
 
         </div>
 
     </div>
-
+    <!--trying chat ui-->
 </div>
-<!--trying chat ui-->
-
-
+</div>
 <router-outlet></router-outlet>
