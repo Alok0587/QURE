@@ -31,13 +31,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	      .antMatchers("/qure/patients/register").permitAll()
 	      .antMatchers("/qure/patients/login").permitAll()
 	      .antMatchers("/qure/patients/auth").permitAll()
-	      .antMatchers("/qure/patients").authenticated()
+//	      .antMatchers("/qure/patients").authenticated()
 	      .antMatchers("/qure/doctors/register").permitAll()	      
 	      .antMatchers("/qure/doctors/login").permitAll()
 	      .antMatchers("/qure/doctors/auth").permitAll()
-	      .antMatchers("/qure/doctors").authenticated()
+//	      .antMatchers("/qure/doctors").authenticated()
 //	      .antMatchers("/**").permitAll()
-//	      .anyRequest().permitAll()
+//	      .anyRequest().authenticated()
 	      .and().httpBasic()
 	      .and().formLogin();
 //	      .and().sessionManagement().disable();

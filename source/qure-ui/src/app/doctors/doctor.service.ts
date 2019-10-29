@@ -149,23 +149,24 @@ export class DoctorService {
 
     
     let _url = this.REST_API_URL;
-    if(city==="false"){
-      if(specialization==="false"){
+    if(city.match("false")){
+      if(specialization.match("false")){
         _url = this.REST_API_URL;
       }
       else{
-        _url = this.REST_API_URL + "/?specialization=" + specialization;
+        _url = this.REST_API_URL + "?specialization=" + specialization;
       }
        
     }
-    else if(specialization==="false"){
-      _url = this.REST_API_URL + "/?city=" + city;
+    else if(specialization.match("false")){
+      _url = this.REST_API_URL + "?city=" + city;
       }      
     
     else{
-      let _url = this.REST_API_URL + "/?city=" + city + "&?specialization=" + specialization;
+      let _url = this.REST_API_URL + "?city=" + city + "&?specialization=" + specialization;
     }                              
       console.log("inside filter Doctor" + specialization+"and"+city)
+      console.log("sending to link "+ _url);
     return this.http.get(_url, {headers: headers})
       .toPromise()
       .then(async (res: any[]) => {
