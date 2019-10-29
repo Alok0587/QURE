@@ -35,6 +35,7 @@ import com.ibm.qure.security.Users;
 import com.ibm.qure.service.DoctorService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/doctors")
 public class DoctorController {
 
@@ -66,22 +67,31 @@ public class DoctorController {
 		@CrossOrigin("*")
 		public List<Doctor> getAllDoctors(@RequestParam(name = "city", required = false) Optional<String> city,@RequestParam(name = "specialization", required = false) Optional<String> specialization) {
 			System.out.println("Inside doc filtr controller");
-			if(city.isPresent()&&specialization.isPresent())
-			{System.out.println("Inside doc filtr asdfg");
-				return doctorService.getByCityAndSpecialization(city,specialization);
-				
+			if(city.isPresent()) {
+				if(specialization.isPresent()) {
+					System.out.println("Inside doc filtr 1");
+					return doctorService.getByCityAndSpecialization(city,specialization);
+				}
+				else {
+					System.out.println("Inside doc filtr 2");
+					return doctorService.getByLocation(city);
+				}
 			}
 			
-			else if (city.isPresent()) {
-				return doctorService.getByLocation(city);
-			} 
+//			else if (city.isPresent()) {
+//				System.out.println("Inside doc filtr 2");
+//				return doctorService.getByLocation(city);
+//			} 
 			else if(specialization.isPresent()) {
+				System.out.println("Inside doc filtr 3");
 				return doctorService.getBySpecialization(specialization);
 				
 			}
-				else {
+			else {
+				System.out.println("Inside doc filtr 4");
 				return doctorService.getAll();
 			}
+			
 		}
 
 	// List Doctor for given Id GET /doctors/{id}
