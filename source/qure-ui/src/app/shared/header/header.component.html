@@ -18,15 +18,16 @@
               <li class="nav-item" >
                   <a class="nav-link waves-light" mdbWavesEffect routerLink="/about">About</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                   <a class="nav-link waves-light" mdbWavesEffect routerLink="/Chat">Chat</a>
-              </li>
+              </li> -->
               
 
                 <li class="nav-item dropdown" *ngIf="authenticationService.isUserLoggedIn('PATIENT')"  dropdown>
                     <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light font-weight-bold" style="color: chartreuse;" mdbWavesEffect>My Profile<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
                           <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients">Profile</a>
+                          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/Chat">Chat</a>
                           <a class="dropdown-item waves-light" mdbWavesEffect (click)="onLogout()" style="color: red;">Log out</a>
                          
                         </div>
@@ -35,6 +36,7 @@
                   <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light font-weight-bold" style="color: chartreuse;" mdbWavesEffect>Dr Profile<span class="caret"></span></a>
                   <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
                         <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors">Profile</a>
+                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/Chat">Chat</a>
                         <a class="dropdown-item waves-light" mdbWavesEffect (click)="onLogout()" style="color: red;">Log out</a>
                        
                       </div>
