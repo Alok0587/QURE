@@ -149,34 +149,76 @@ export class DoctorService {
 
     
     let _url = this.REST_API_URL;
-    if(city.match("false")){
-      if(specialization.match("false")){
-        _url = this.REST_API_URL;
-      }
-      else{
-        _url = this.REST_API_URL + "?specialization=" + specialization;
-      }
+
+    // if(city.match("false")){
+    //   if(specialization.match("false")){
+    //     _url = this.REST_API_URL;
+    //   }
+    //   else{
+    //     _url = this.REST_API_URL + "?specialization=" + specialization;
+    //   }
        
-    }
-    else if(specialization.match("false")){
-      _url = this.REST_API_URL + "?city=" + city;
-      }      
+    // }
+    // else if(specialization.match("false")){
+    //   _url = this.REST_API_URL + "?city=" + city;
+    //   }      
     
-    else{
-      let _url = this.REST_API_URL + "?city=" + city + "&?specialization=" + specialization;
-    }                              
+    // else{
+    //   let _url = this.REST_API_URL + "?city=" + city + "&specialization=" + specialization;
+    // }
+
+    // if(city==="false"){
+    //   if(specialization==="false"){
+    //     _url = this.REST_API_URL;
+    //   }
+    //   else{
+    //     _url = this.REST_API_URL + "?specialization=" + specialization;
+    //   }
+       
+    // }
+    // else if(specialization==="false"){
+    //   _url = this.REST_API_URL + "?city=" + city;
+    //   }      
+    
+    // else{
+    //   let _url = this.REST_API_URL + "?city=" + city + "&?specialization=" + specialization;
+    // }
+    //_url = this.REST_API_URL;
+    if(specialization!="false" && city!="false"){
+      _url = _url + "?city=" + city + "&specialization=" + specialization;
+    }
+       
+    else if(city!="false"){
+        _url = _url + "?city=" + city;
+      }
+    else if(specialization!="false"){
+        _url =_url + "?specialization=" + specialization;
+      }
+      
+    
+    // else if(specialization==="false"){
+    //   _url = this.REST_API_URL + "?city=" + city;
+    //   }      
+    
+    // else{
+    //   let _url = this.REST_API_URL + "?city=" + city + "&?specialization=" + specialization;
+    // } 
+    
       console.log("inside filter Doctor" + specialization+"and"+city)
       console.log("sending to link "+ _url);
     return this.http.get(_url, {headers: headers})
       .toPromise()
       .then(async (res: any[]) => {
         console.log(res);
+        _url = this.REST_API_URL;
         return await res;
       })
       .catch(err => {
+        _url = this.REST_API_URL;
         return (err);
 
       })
+     
   }
 
   updateDoctor(doctorData) {

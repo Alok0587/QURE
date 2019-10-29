@@ -13,7 +13,7 @@ public interface DoctorRepository extends MongoRepository<Doctor, Object> {
 	List<Doctor> findBySpecialization(Optional<String> specialization);
 	//List<Doctor> findByAddress_CityAndSpecialization(String city,String specialization);
 	//@Query("{'doctor.specialization' : ?0, doctor.address.city : ?1}")
-	List findBySpecializationAndAddress_City(Optional<String> city, Optional<String> specialization);
+	List findBySpecializationAndAddress_City(Optional<String> specialization, Optional<String> city);
 	
 	Doctor findByEmail(String id);
 	

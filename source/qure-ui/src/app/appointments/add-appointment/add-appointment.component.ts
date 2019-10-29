@@ -15,6 +15,11 @@ export class AddAppointmentComponent implements OnInit {
   // appointmentList: any[];
   appointmentSubscription: Subscription;
   doctorList: any[];
+  check1: boolean;
+  check2: boolean;
+  check3: boolean;
+  check4: boolean;
+  check5: boolean;
 
   appointmentForm: any;
   appId: string;
@@ -86,11 +91,10 @@ export class AddAppointmentComponent implements OnInit {
     console.log(pid+" city id "+this.searchForm.value.city);
     console.log(pid+" sped is id "+this.searchForm.value.specialization);
     this.doctorList = await this.doctorService.filterDoctor(this.searchForm.value.city,this.searchForm.value.specialization);
-    console.log("doctors list" + this.doctorList);
-
-    
+    console.log("doctors list" + this.doctorList);  
 
   }
+
   onSelectHandler(dId)
   {
     // console.log(dId);
@@ -108,6 +112,24 @@ export class AddAppointmentComponent implements OnInit {
     // this.router.navigate(['/appointments',_patientId_]);
 
     //this.router.navigate()
+    console.log("chekcks")
+    console.log(this.checkSlot(10,dId))
+    this.check1=this.checkSlot(10,dId);
+    this.check2=this.checkSlot(10,dId);
+    this.check3=this.checkSlot(10,dId);
+    this.check4=this.checkSlot(10,dId);
+    this.check5=this.checkSlot(10,dId);
+  }
+
+    checkSlot(slot, dId){
+    let res:any =  this.appointmentService.checkSlot(slot, dId);
+    console.log(JSON.parse(JSON.stringify(res)));
+    console.log("result of checkSlot" + res);
+    console.log(res);
+   if(res){
+      return true;
+    }
+    return false;
   }
 
 

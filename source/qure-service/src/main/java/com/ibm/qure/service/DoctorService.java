@@ -41,7 +41,7 @@ public class DoctorService {
 	public List<Doctor> getByCityAndSpecialization(Optional<String> city,Optional<String> specialization) {
 		// TODO Auto-generated method stub
 		System.out.println("inside city and spec");
-		return docRepo.findBySpecializationAndAddress_City(city,specialization);
+		return docRepo.findBySpecializationAndAddress_City(specialization,city);
 	}
 
 

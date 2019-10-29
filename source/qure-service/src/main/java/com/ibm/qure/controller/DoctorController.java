@@ -70,6 +70,8 @@ public class DoctorController {
 			if(city.isPresent()) {
 				if(specialization.isPresent()) {
 					System.out.println("Inside doc filtr 1");
+					System.out.println("city and spec is "+city);
+					System.out.println("city and spec is "+specialization);
 					return doctorService.getByCityAndSpecialization(city,specialization);
 				}
 				else {

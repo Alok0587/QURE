@@ -143,4 +143,24 @@ export class AppointmentService {
     });
     return promise;
   }
+
+  checkSlot(slot, dId){
+    let uandp = sessionStorage.getItem('usernameandpassword');
+    const headers = new HttpHeaders({
+                                  
+                                  'Content-Type':  'application/json',
+                                  'Authorization': 'Basic ' + btoa(uandp)});
+    console.log(headers);
+    console.log("slot is " + slot);
+    return this.http.get(this.REST_API_URL+'/checkslot', {params: {
+      slot: slot, dId: dId},
+      headers: headers
+    })
+      .pipe( map(async res => {
+        console.log(res);
+        return await res;
+      }));
+
+    
+  }
 }
