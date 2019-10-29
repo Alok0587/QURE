@@ -131,7 +131,7 @@ aria-hidden="true">
 
 <div class="ScrollStyle">
 
-        <div class="row">
+        <div class="row" [hidden]="!showOrders">
                 
             <div class="card col-sm-4" *ngFor="let order of orderList">
                     <h3>Order</h3>
@@ -151,7 +151,7 @@ aria-hidden="true">
     
 <div class="ScrollStyle">
 
-        <div class="row">
+        <div class="row" [hidden]="!showMedicines">
                 
             <div class="card col-sm-4" *ngFor="let medicine of medicineList"> 
                     <h3>Medicine</h3>

@@ -45,8 +45,19 @@
     <hr class="my-4">
   
     <div class="pt-2">
-      <button type="button" mdbBtn color="blue" mdbWavesEffect>Sign up now <mdb-icon fas icon="user-plus" class="ml-1"></mdb-icon> </button>
+      <!-- <button type="button" mdbBtn color="blue" mdbWavesEffect>Sign up now <mdb-icon fas icon="user-plus" class="ml-1"></mdb-icon> </button> -->
       <!-- <button type="button" mdbBtn color="primary" outline="true" mdbWavesEffect> Download <mdb-icon fas icon="download" class="ml-1"></mdb-icon></button> -->
+    
+      <button class=" btn btn-primary dropdown" dropdown >
+        <a dropdownToggle mdbWavesEffect type="button" class="dropdown-toggle waves-light"  mdbWavesEffect>
+          Sign up now <mdb-icon fas icon="user-plus"></mdb-icon><span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/register"> As Doctor</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients/register"> As Patient</a>
+          
+        </div>
+      </button>
+
     </div>
   
   </div>

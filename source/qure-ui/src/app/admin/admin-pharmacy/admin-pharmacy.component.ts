@@ -17,8 +17,12 @@ export class AdminPharmacyComponent implements OnInit {
   orderSubscription: Subscription;
   medicineData: any;
   orderData: any;
-  
-  constructor(private orderService: OrderService, private route: ActivatedRoute, public router: Router) { }
+  showOrders: boolean;
+  showMedicines:boolean;
+  constructor(private orderService: OrderService, private route: ActivatedRoute, public router: Router) {
+    this.showOrders = false;
+    this.showMedicines = false;
+  }
 
   ngOnInit() {
   }
@@ -31,6 +35,8 @@ export class AdminPharmacyComponent implements OnInit {
         console.log( res );
         this.orderList = res;
       });
+      this.showOrders = true;
+      this.showMedicines = false;
   }
 
   async viewMedicines()
@@ -41,6 +47,8 @@ export class AdminPharmacyComponent implements OnInit {
         console.log( res );
         this.medicineList = res;
       });
+      this.showOrders = false;
+      this.showMedicines = true;
   }
 
   async onOrderViewHandler(orderId){
