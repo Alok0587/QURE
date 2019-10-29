@@ -1,0 +1,24 @@
+{
+    "Contact":
+    {
+        "TITLE": "Have questions about our products, support services, or anything else?",
+        "TEXT": "Our Support Team is here to help you ! ",
+        "SELECT":"Select language",
+        "FirstLine":"Get in touch with Us",
+        "Hours":"Open hours:",
+        "Lastline":"Closed on Sundays"
+    },
+    "About":
+    {
+        "TitleOne":"We make healthcare",
+        "TitleTwo":"Understandable, Accessible and Affordable",
+        "SELECT":"Select language",
+        "Epharmacy":"Order medicines and health products online and get it delivered at home from licensed pharmacies",
+        "Consultation":"Consult qualified and registered doctors on chat for free",
+        "Labtest":"Book lab tests online for hassle-free, home sample collection service.",
+        "BelowCards":"Qure brings to you an online platform, which can be accessed for all your health needs. We are trying to make healthcare a hassle-free experience for you. Get your allopathic, ayurvedic, homeopathic medicines, vitamins & nutrition supplements and other health-related products delivered at home. Lab tests? That too in the comfort of your home. Doctor consult? Yes, we got that covered too.",
+        "Sideheading":"Our work and culture",
+        "Besideimage":"At Qure we strongly believe that a great culture is an important ingredient for a startup’s success. Our culture promotes radical candour, fast paced iterations, collaboration and a flat hierarchy. Listed below are our core values that enshrine our culture. Done is better than perfect: We are highly experimental and data driven organization. As such we believe in shipping soon and often. We believe that in the long run failing fast beats all else. Team and not individual: We believe in the power of the team. For us a superstar team is much more important than a superstar individual."
+    }
+
+}

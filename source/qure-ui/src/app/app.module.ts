@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HomeComponent } from './home/home.component';
@@ -37,7 +37,13 @@ import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-regist
 import { ChatComponent } from './chat/chat.component';
 import { AdminDoctorComponent } from './admin/admin-doctor/admin-doctor.component';
 import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
  
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http);
+}
+
 
 @NgModule({
   declarations: [
@@ -75,7 +81,13 @@ import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.co
     BrowserModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
-
+    TranslateModule.forRoot({
+      loader:{
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps:[HttpClient]
+      }
+    }),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
