@@ -6,6 +6,8 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
+import com.ibm.qure.exceptions.QureApplicationException;
 import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Patient;
 import com.ibm.qure.model.ResponseMessage;
@@ -37,7 +39,7 @@ import com.ibm.qure.service.PatientService;
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
-
+	private static Logger log=LoggerFactory.getLogger(PatientController.class);
 	@Autowired
 	PatientService patientService;
 	
@@ -79,7 +81,7 @@ public class PatientController {
 		@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
 		@CrossOrigin("*")
 		public ResponseEntity<ResponseMessage> createPatient(@RequestBody @Valid Patient patient)
-				throws URISyntaxException, ApplicationException {
+				throws URISyntaxException, ApplicationException,QureApplicationException {
 			
 //			Users user= new Users(patient.getEmail(), patient.getPassword());
 //			System.out.println("inside post");
@@ -96,7 +98,7 @@ public class PatientController {
 			Users user= new Users(patient.getEmail(), patient.getPassword(), patient.getPatientId(), "PATIENT");
 			System.out.println(user.getUsername());
 			System.out.println(user.getPassword());
-			userRepo.save(user);
+			 userRepo.save(user);
 			resMsg = new ResponseMessage("Success", new String[] { "Patient created successfully" });
 			
 			
@@ -110,13 +112,17 @@ public class PatientController {
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> updatePatient(@PathVariable String id, @RequestBody Patient updatedPatient)
-			throws URISyntaxException, ApplicationException {
+			throws URISyntaxException, ApplicationException,QureApplicationException {
 		
 		updatedPatient.setPatientId(id);
-		patientService.update(updatedPatient);
+	boolean x=	patientService.update(updatedPatient);
 		ResponseMessage resMsg;
+		if(x) {
 		resMsg = new ResponseMessage("Success", new String[] { "Patient updated successfully" });
-
+		}
+		else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Patient failed to update" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(updatedPatient.getPatientId()).toUri();
 
@@ -127,12 +133,17 @@ public class PatientController {
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> deletePatient(@PathVariable String id)
-			throws URISyntaxException, ApplicationException {
+			throws URISyntaxException, ApplicationException, QureApplicationException{
 		
-		patientService.delete(id);
+		boolean x= patientService.delete(id);
 		ResponseMessage resMsg;
+		if(x) {
 		resMsg = new ResponseMessage("Success", new String[] { "Patient deleted successfully" });
-
+		}
+		else
+		{
+			resMsg = new ResponseMessage("Failure", new String[] { "Patient failed to  delete" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
@@ -153,8 +164,9 @@ public class PatientController {
 		return ResponseEntity.badRequest().body(resMsg);
 	}
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ResponseMessage> handleAppExcpetion(Exception e) {
+	@ExceptionHandler(QureApplicationException.class)
+	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
+		log.error("Error Occured:",e.getMessage(),e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

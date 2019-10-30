@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,11 +32,12 @@ import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Appointment;
 import com.ibm.qure.model.ResponseMessage;
 import com.ibm.qure.service.AppointmentService;
+import com.ibm.qure.exceptions.QureApplicationException;
 
 @RestController
 @RequestMapping("/appointments")
 public class AppointmentController {
-
+	private static Logger log=LoggerFactory.getLogger(AppointmentController.class);
 	@Autowired
 	AppointmentService appointService;
 
@@ -89,14 +92,18 @@ public class AppointmentController {
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.ALL_VALUE })
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createAppointment(@RequestBody @Valid Appointment appointment)
-			throws URISyntaxException, ApplicationException {
+			throws URISyntaxException, ApplicationException,QureApplicationException {
 
 		ResponseMessage resMsg;
 
-		appointService.create(appointment);
-
+		boolean x= appointService.create(appointment);
+  if(x) {
 		resMsg = new ResponseMessage("Success", new String[] { "Appointment created successfully" });
-
+  }
+  else
+  {
+	  resMsg = new ResponseMessage("Failure", new String[] { "Appointment can't be created " }); 
+  }
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -112,11 +119,16 @@ public class AppointmentController {
 	public ResponseEntity<ResponseMessage> updateEmployee(@PathVariable String id,
 			@RequestBody Appointment updatedAppoint) {
 		updatedAppoint.setAppointmentId(id);
-		appointService.update(updatedAppoint);
+		boolean x=appointService.update(updatedAppoint);
 
 		ResponseMessage resMsg;
+		if(x) {
 		resMsg = new ResponseMessage("Success", new String[] { "Appointment updated successfully" });
-
+		}
+		else
+		{
+			resMsg = new ResponseMessage("Failure", new String[] { "Appointment failed to update" });
+		}
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -129,10 +141,15 @@ public class AppointmentController {
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> deleteAppointment(@PathVariable String id) {
-		appointService.delete(id);
+		boolean y=appointService.delete(id);
 		ResponseMessage resMsg;
+		if(y) {
 		resMsg = new ResponseMessage("Success", new String[] { "Appointment deleted successfully" });
-
+		}
+		else
+		{
+			resMsg = new ResponseMessage("Failure", new String[] { "Appointment failed to delete" });
+		}
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
@@ -155,8 +172,9 @@ public class AppointmentController {
 		return ResponseEntity.badRequest().body(resMsg);
 	}
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ResponseMessage> handleAppExcpetion(Exception e) {
+	@ExceptionHandler(QureApplicationException.class)
+	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
+		log.error("Error Occured:",e.getMessage(),e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);
