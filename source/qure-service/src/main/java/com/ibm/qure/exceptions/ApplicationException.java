@@ -1,6 +1,7 @@
 package com.ibm.qure.exceptions;
 
 public class ApplicationException extends Exception {
+	
 	public ApplicationException() {
 		super();
 	}
