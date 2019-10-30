@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, pipe } from 'rxjs';
 import { AppointmentService } from '../appointment.service';
 import { DoctorService } from 'src/app/doctors/doctor.service';
+import { delay } from 'rxjs/internal/operators/delay';
 
 @Component({
   selector: 'app-add-appointment',
@@ -15,14 +16,12 @@ export class AddAppointmentComponent implements OnInit {
   // appointmentList: any[];
   appointmentSubscription: Subscription;
   doctorList: any[];
-  check1: boolean;
-  check2: boolean;
-  check3: boolean;
-  check4: boolean;
-  check5: boolean;
-
+  appointmentList: any[];
+  appointmentSubscription2: Subscription;
+  slotList:any;
   appointmentForm: any;
   appId: string;
+  minDate:any;
   bookForm: FormGroup;
   searchForm: FormGroup;
   doctorId: any;
@@ -37,13 +36,25 @@ export class AddAppointmentComponent implements OnInit {
 
 
 
-  constructor(private appointmentService: AppointmentService, private route: ActivatedRoute, public router: Router, private doctorService: DoctorService) {
-    
+  constructor(private appointmentService: AppointmentService, private route: ActivatedRoute, public router: Router, private doctorService: DoctorService) 
+  {
+    this.slotList=['9','10','17','18','19','21'];
+    // console.log(this.startDate.getDate());
    }
 
   ngOnInit() {
     // const _dId = this.onReturn();
     // const patientId: string = this.route.snapshot.paramMap.get('id');
+    let startDate = new Date();
+    console.log(startDate.getDate()+"/"+startDate.getMonth()+"/"+startDate.getFullYear()); 
+    this.minDate=(startDate.getDate()+"/"+startDate.getMonth()+"/"+startDate.getFullYear());
+    // let todayDate=this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.minDate=startDate;
+    let today: Date = new Date(Date.now());
+    console.log(today);
+    // console.log(this.minDate);
+
+
     const _patientId: string = sessionStorage.getItem('userId');
     console.log(_patientId)
     this.bookForm= new FormGroup({
@@ -94,10 +105,22 @@ export class AddAppointmentComponent implements OnInit {
     console.log("doctors list" + this.doctorList);  
 
   }
+  wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }
 
-  onSelectHandler(dId)
+ onSelectHandler(dId)
   {
-    // console.log(dId);
+    this.appointmentService.getAppointmentsByDoctorId(dId)
+      .subscribe((res: any[]) => {
+        console.log(res);
+        this.appointmentList=res;
+      });
+
     console.log(this.bookForm.value.patientId);
     this.doctorId=dId;
     this.appointmentData.doctorId=dId;
@@ -112,29 +135,43 @@ export class AddAppointmentComponent implements OnInit {
     // this.router.navigate(['/appointments',_patientId_]);
 
     //this.router.navigate()
-    console.log("chekcks")
-    console.log(this.checkSlot(10,dId))
-    this.check1=this.checkSlot(10,dId);
-    this.check2=this.checkSlot(10,dId);
-    this.check3=this.checkSlot(10,dId);
-    this.check4=this.checkSlot(10,dId);
-    this.check5=this.checkSlot(10,dId);
+    // console.log("chekcks")
+    // console.log(this.checkSlot(10,dId))
+    // this.check1=this.checkSlot(10,dId);
+    // this.check2=this.checkSlot(10,dId);
+    // this.check3=this.checkSlot(10,dId);
+    // this.check4=this.checkSlot(10,dId);
+    // this.check5=this.checkSlot(10,dId);
   }
 
-    checkSlot(slot, dId){
-    let res:any =  this.appointmentService.checkSlot(slot, dId);
-    console.log(JSON.parse(JSON.stringify(res)));
-    console.log("result of checkSlot" + res);
-    console.log(res);
-   if(res){
-      return true;
-    }
-    return false;
+  //   checkSlot(slot, dId){
+  //   let res:any =  this.appointmentService.checkSlot(slot, dId);
+  //   console.log(JSON.parse(JSON.stringify(res)));
+  //   console.log("result of checkSlot" + res);
+  //   console.log(res);
+  //  if(res){
+  //     return true;
+  //   }
+  //   return false;
+  // }
+  async getAppointmentList(dId){
+    
   }
 
 
 
-
+showSlot()
+{
+  this.appointmentList.forEach(appointment=>{
+    this.slotList.forEach(slot=>{
+      if(appointment.time==slot){
+        const index: number = this.slotList.indexOf(slot);
+        this.slotList.splice(index,1);
+      }
+    });
+  });
+  console.log(this.slotList);
+}
 
 
 
