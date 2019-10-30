@@ -5,7 +5,7 @@ import { Subscription, pipe } from 'rxjs';
 import { AppointmentService } from '../appointment.service';
 import { DoctorService } from 'src/app/doctors/doctor.service';
 import { delay } from 'rxjs/internal/operators/delay';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-add-appointment',
   templateUrl: './add-appointment.component.html',
@@ -161,10 +161,10 @@ export class AddAppointmentComponent implements OnInit {
 
 
 showSlot()
-{
+{console.log(this.bookForm.value.appointmentDate);
   this.appointmentList.forEach(appointment=>{
     this.slotList.forEach(slot=>{
-      if(appointment.time==slot){
+      if(appointment.time==slot && this.bookForm.value.appointmentDate===appointment.appointmentData){
         const index: number = this.slotList.indexOf(slot);
         this.slotList.splice(index,1);
       }
@@ -202,4 +202,38 @@ showSlot()
     let id=this.bookForm.value.patientId;
     this.router.navigate(['/patients',id])
   }
+
+  checkDate(){
+    let selDate=$("#appointmentDate");
+    console.log("in check date. date="+selDate.val());
+    let d=selDate.val();
+    console.log("date0="+d[0]);
+    let yy:number=0;
+    let mm:number=0;
+    let dd:number=0;
+    yy=Number(d[0]+d[1]+d[2]+d[3]);mm=Number(d[5]+d[6]);dd=Number(d[8]+d[9]);
+    let dateObj=new Date(yy,mm-1,dd);
+    console.log("dateObj="+dateObj+"----"+yy+" "+mm+" "+dd);
+    var fullDate = new Date()
+    console.log("today="+fullDate);
+    let tt:number=dateObj.getTime();
+    let td:number=fullDate.getTime();
+    console.log("curDate="+tt);
+    console.log("todays daye="+td);
+    console.log("befpre");
+    console.log("gg"+(tt<td));
+
+    if((tt<td)==true){
+      console.log("beforeeee");
+      $("#appointmentDate").val('');
+      $("#dateErr").text("Enter a valid Date");
+    }
+    else
+    {
+      $("#dateErr").text("");
+
+    }
+    
+  }
+
 }
