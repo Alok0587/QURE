@@ -24,6 +24,7 @@ export class AddAppointmentComponent implements OnInit {
   bookForm: FormGroup;
   searchForm: FormGroup;
   doctorId: any;
+  selDate: any;
   appointmentData = {
     patientId: "",
     doctorId: "",
@@ -103,10 +104,12 @@ export class AddAppointmentComponent implements OnInit {
 
 
   showSlot() {
-    console.log(this.bookForm.value.appointmentDate);
+    this.slotList = ['9', '10', '17', '18', '19', '21'];
+    console.log("in show Slot. date=" + this.selDate.val());
     this.appointmentList.forEach(appointment => {
       this.slotList.forEach(slot => {
-        if (appointment.time == slot && this.bookForm.value.appointmentDate === appointment.appointmentDate) {
+        if (appointment.time == slot && this.selDate.val() === appointment.appointmentDate) {
+          console.log("inside")
           const index: number = this.slotList.indexOf(slot);
           this.slotList.splice(index, 1);
         }
@@ -137,9 +140,9 @@ export class AddAppointmentComponent implements OnInit {
   }
 
   checkDate() {
-    let selDate = $("#appointmentDate");
-    console.log("in check date. date=" + selDate.val());
-    let d = selDate.val();
+    this.selDate = $("#appointmentDate");
+    console.log("in check date. date=" + this.selDate.val());
+    let d = this.selDate.val();
     console.log("date0=" + d[0]);
     let yy: number = 0;
     let mm: number = 0;

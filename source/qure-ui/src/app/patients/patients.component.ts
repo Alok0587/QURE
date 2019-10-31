@@ -23,6 +23,8 @@ export class PatientsComponent implements OnInit {
   isSaved2: boolean = false;
   searchForm: FormGroup;
   doctorList: any[];
+  slotList: any;
+  selDate: any;
 
 
   appointmentList: any[];
@@ -43,7 +45,7 @@ export class PatientsComponent implements OnInit {
 
 
   constructor(private orderService: OrderService,private addAppointment: AddAppointmentComponent, private appointmentService: AppointmentService, private doctorService: DoctorService, private patientService: PatientService, private route: ActivatedRoute, public router: Router) {
-
+    this.slotList = ['9', '10', '17', '18', '19', '21'];
 
   }
 
@@ -142,7 +144,7 @@ export class PatientsComponent implements OnInit {
   async onViewHandler(appointmentData) {
     console.log(appointmentData);
     this.duplicateAppointmentData = JSON.parse(JSON.stringify(appointmentData));
-    console.log("duplicate is " + this.duplicateAppointmentData);
+    // console.log("duplicate is " + this.duplicateAppointmentData);
   }
 
   // onBookAppointmentHandler(pId: any){
@@ -161,12 +163,57 @@ export class PatientsComponent implements OnInit {
     this.onViewAppointmentList();
   }
 
+  checkDate() {
+    this.selDate = $("#appointmentDate");
+    console.log("in check date2. date=" + this.selDate.val());
+    let d = this.selDate.val();
+    console.log("date0=" + d[0]);
+    let yy: number = 0;
+    let mm: number = 0;
+    let dd: number = 0;
+    yy = Number(d[0] + d[1] + d[2] + d[3]); mm = Number(d[5] + d[6]); dd = Number(d[8] + d[9]);
+    let dateObj = new Date(yy, mm - 1, dd);
+    console.log("dateObj=" + dateObj + "----" + yy + " " + mm + " " + dd);
+    var fullDate = new Date()
+    console.log("today=" + fullDate);
+    let tt: number = dateObj.getTime();
+    let td: number = fullDate.getTime();
+    console.log("curDate=" + tt);
+    console.log("todays daye=" + td);
+    console.log("befpre");
+    console.log("gg" + (tt < td));
+
+    if ((tt < td) == true) {
+      console.log("beforeeee");
+      $("#appointmentDate").val('');
+      $("#dateErr").text("Enter a valid Date");
+    }
+    else {
+      $("#dateErr").text("");
+
+    }
+
+  }
+
+  showSlot() {
+    this.slotList = ['9', '10', '17', '18', '19', '21'];
+    console.log("in show Slot. date=" + this.selDate.val());
+    this.appointmentList.forEach(appointment => {
+      this.slotList.forEach(slot => {
+        if (appointment.time == slot && this.selDate.val() === appointment.appointmentDate) {
+          console.log("inside")
+          const index: number = this.slotList.indexOf(slot);
+          this.slotList.splice(index, 1);
+        }
+      });
+    });
+    console.log(this.slotList);
+  }
+
 
 
   ngOnDestroy() {
     this.patientSubscription.unsubscribe();
-    // this.appointmentSubscription.unsubscribe();
-    // this.appointmentSubscription.unsubscribe();
 
   }
 
