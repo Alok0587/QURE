@@ -30,7 +30,9 @@ import com.ibm.qure.exceptions.QureApplicationException;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-	private static Logger log=LoggerFactory.getLogger(AdminController.class);
+
+	private static Logger log = LoggerFactory.getLogger(AdminController.class);
+
 	@Autowired
 	AdminService adminService;
 
@@ -43,30 +45,20 @@ public class AdminController {
 
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
-	
 	public ResponseEntity<ResponseMessage> deleteDoctor(@PathVariable String id)
-			throws URISyntaxException, ApplicationException,QureApplicationException {
-		 boolean x= adminService.delete(id);
+			throws URISyntaxException, ApplicationException, QureApplicationException {
+		boolean x = adminService.delete(id);
 		ResponseMessage resMsg;
-  if(x) {
-		resMsg = new ResponseMessage("Success", new String[] { "Doctor deleted successfully" });
-  }
-  else
-  {
-	  resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete doctor" });
-  }
+		if (x) {
+			resMsg = new ResponseMessage("Success", new String[] { "Doctor deleted successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete doctor" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 	}
 
-	
-//	public String deleteDoctor(@PathVariable String id) {
-//		adminService.delete(id);
-//		return "Doctor deleted successfully";
-//	}
-
-	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ResponseMessage> handleValidationExcpetion(MethodArgumentNotValidException e) {
 
@@ -84,7 +76,7 @@ public class AdminController {
 
 	@ExceptionHandler(QureApplicationException.class)
 	public ResponseEntity<ResponseMessage> handleAppExcpetion(Exception e) {
-		log.error("Error Occured:",e.getMessage(),e);
+		log.error("Error Occured:", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

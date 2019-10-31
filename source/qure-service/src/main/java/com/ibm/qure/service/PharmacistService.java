@@ -9,12 +9,9 @@ import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Pharmacist;
 import com.ibm.qure.repository.PharmacistRepository;
 
-
-
-
 @Service
 public class PharmacistService {
-	
+
 	@Autowired
 	PharmacistRepository pharmacistRepo;
 
@@ -47,6 +44,5 @@ public class PharmacistService {
 		pharmacistRepo.deleteById(id);
 		return true;
 	}
-	
 
 }

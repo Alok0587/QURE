@@ -1,33 +1,21 @@
 package com.ibm.qure.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Patient extends Person {
 	@Id
 	private String patientId;
-	
-	//@DBRef
-	private String appointmentId;
-	
-	//@DBRef
-	private String medicineId;
-	
-	private int userLevl = 2;
-	
 
-//	private List<Appointment> appointmentList;
+	private String medicineId;
 
 	public Patient() {
 		// default constructor
 	}
 
-	public Patient(String name,  String email,String password, int age, String gender, String phone,Address address) {
-		super(name, email,password, age, gender, phone, address);
-
-//		this.appointmentList = new ArrayList<Appointment>();
+	public Patient(String name, String email, String password, int age, String gender, String phone, Address address) {
+		super(name, email, password, age, gender, phone, address);
 
 	}
 
@@ -39,11 +27,12 @@ public class Patient extends Person {
 		this.patientId = patientId;
 	}
 
-//	public List<Appointment> getAppointmentList() {
-//		return appointmentList;
-//	}
-//
-//	public void setAppointmentList(List<Appointment> appointmentList) {
-//		this.appointmentList = appointmentList;
-//	}
+	public String getMedicineId() {
+		return medicineId;
+	}
+
+	public void setMedicineId(String medicineId) {
+		this.medicineId = medicineId;
+	}
+
 }

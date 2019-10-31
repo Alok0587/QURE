@@ -2,7 +2,6 @@ package com.ibm.qure.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -32,12 +31,11 @@ import com.ibm.qure.model.BookMedicine;
 import com.ibm.qure.model.ResponseMessage;
 import com.ibm.qure.service.BookMedicineService;
 
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/bookmedicines")
 public class BookMedicineController {
-	private static Logger log=LoggerFactory.getLogger(BookMedicineController.class);
+	private static Logger log = LoggerFactory.getLogger(BookMedicineController.class);
 	@Autowired
 	BookMedicineService bookMedicineService;
 
@@ -60,18 +58,16 @@ public class BookMedicineController {
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createBookMedicine(@RequestBody @Valid BookMedicine bookMedicine)
-			throws URISyntaxException, ApplicationException,QureApplicationException {
+			throws URISyntaxException, ApplicationException, QureApplicationException {
 
 		ResponseMessage resMsg;
 
-		boolean y= bookMedicineService.create(bookMedicine);
-	 if(y) {
-		resMsg = new ResponseMessage("Success", new String[] {"BookMedicine created successfully"});
-	 }
-	 else
-	 {
-		 resMsg = new ResponseMessage("Failure", new String[] {"BookMedicine failed to create"}); 
-	 }
+		boolean y = bookMedicineService.create(bookMedicine);
+		if (y) {
+			resMsg = new ResponseMessage("Success", new String[] { "BookMedicine created successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "BookMedicine failed to create" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(bookMedicine.getBookedId()).toUri();
 
@@ -82,19 +78,19 @@ public class BookMedicineController {
 	// Update BookMedicine PUT /bookMedicines/{id}
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
-	public ResponseEntity<ResponseMessage> updateBookMedicine(@PathVariable String id, @RequestBody BookMedicine updatedBookMedicine) throws URISyntaxException, ApplicationException,QureApplicationException  {
+	public ResponseEntity<ResponseMessage> updateBookMedicine(@PathVariable String id,
+			@RequestBody BookMedicine updatedBookMedicine)
+			throws URISyntaxException, ApplicationException, QureApplicationException {
 		ResponseMessage resMsg;
 
 		updatedBookMedicine.setBookedId(id);
-	 boolean x=	bookMedicineService.update(updatedBookMedicine);
- 
-	 if(x) {
-		resMsg = new ResponseMessage("Success", new String[] {"BookMedicine updated successfully"});
-	 }
-	 else
-	 {
-		 resMsg = new ResponseMessage("Failure", new String[] {"BookMedicine  failed to update"});
-	 }
+		boolean x = bookMedicineService.update(updatedBookMedicine);
+
+		if (x) {
+			resMsg = new ResponseMessage("Success", new String[] { "BookMedicine updated successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "BookMedicine  failed to update" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(updatedBookMedicine.getBookedId()).toUri();
 
@@ -105,25 +101,18 @@ public class BookMedicineController {
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> deleteBookMedicine(@PathVariable String id)
-			throws URISyntaxException, ApplicationException,QureApplicationException {
-		 boolean x= bookMedicineService.delete(id);
+			throws URISyntaxException, ApplicationException, QureApplicationException {
+		boolean x = bookMedicineService.delete(id);
 		ResponseMessage resMsg;
-  if(x) {
-		resMsg = new ResponseMessage("Success", new String[] { "BookMedicine deleted successfully" });
-  }
-  else
-  {
-	  resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete BookMedicine" });
-  }
+		if (x) {
+			resMsg = new ResponseMessage("Success", new String[] { "BookMedicine deleted successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete BookMedicine" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 	}
-
-//	public String deleteBookMedicine(@PathVariable String id) {
-//		bookMedicineService.delete(id);
-//		return "BookMedicine deleted successfully";
-//	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ResponseMessage> handleValidationExcpetion(MethodArgumentNotValidException e) {
@@ -132,7 +121,7 @@ public class BookMedicineController {
 		int size = errors.size();
 		String[] errorMsgs = new String[size];
 
-		for(int i = 0; i < size; i++ ) {
+		for (int i = 0; i < size; i++) {
 			errorMsgs[i] = errors.get(i).getDefaultMessage();
 		}
 
@@ -142,7 +131,7 @@ public class BookMedicineController {
 
 	@ExceptionHandler(QureApplicationException.class)
 	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
-		log.error("Error Occured:",e.getMessage(),e);
+		log.error("Error Occured:", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

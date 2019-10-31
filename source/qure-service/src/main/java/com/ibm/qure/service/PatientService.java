@@ -18,7 +18,7 @@ public class PatientService {
 	public PatientService() {
 	}
 
-	public boolean create(Patient patient) throws ApplicationException,QureApplicationException {
+	public boolean create(Patient patient) throws ApplicationException, QureApplicationException {
 		try {
 			patientRepo.save(patient);
 			return true;
@@ -27,8 +27,12 @@ public class PatientService {
 		}
 	}
 
-	public Patient get(String id) {
-		return patientRepo.findByEmail(id);
+	public Patient get(String email) {
+		return patientRepo.findByEmail(email);
+	}
+
+	public Patient getById(String id) {
+		return patientRepo.findByPatientId(id);
 	}
 
 	public List<Patient> getAll() {

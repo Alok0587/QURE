@@ -9,7 +9,9 @@ import com.ibm.qure.model.Appointment;
 
 public interface AppointmentRepository extends MongoRepository<Appointment, Object> {
 	List<Appointment> findAllByPatientId(Optional<String> pId);
+
 	List<Appointment> findAllByDoctorId(Optional<String> dId);
+
 	List<Appointment> findAllByTimeAndDoctorId(Optional<String> slot, Optional<String> dId);
 
 }

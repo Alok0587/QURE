@@ -9,12 +9,9 @@ import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.BookMedicine;
 import com.ibm.qure.repository.BookMedicineRepository;
 
-
-
-
 @Service
 public class BookMedicineService {
-	
+
 	@Autowired
 	BookMedicineRepository bookMedicineRepo;
 
@@ -47,6 +44,5 @@ public class BookMedicineService {
 		bookMedicineRepo.deleteById(id);
 		return true;
 	}
-	
 
 }

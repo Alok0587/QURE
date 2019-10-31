@@ -26,24 +26,28 @@ public class DoctorService {
 		}
 	}
 
-	public Doctor get(String id) {
-		return docRepo.findByEmail(id);
+	public Doctor get(String email) {
+		return docRepo.findByEmail(email);
+	}
+
+	public Doctor getById(String id) {
+		return docRepo.findByDoctorId(id);
 	}
 
 	public List<Doctor> getByLocation(Optional<String> city) {
 		// TODO Auto-generated method stub
 		return docRepo.findByAddress_City(city);
 	}
-	
-	public List<Doctor>getBySpecialization(Optional<String> specialization){
+
+	public List<Doctor> getBySpecialization(Optional<String> specialization) {
 		return docRepo.findBySpecialization(specialization);
 	}
-	public List<Doctor> getByCityAndSpecialization(Optional<String> city,Optional<String> specialization) {
+
+	public List<Doctor> getByCityAndSpecialization(Optional<String> city, Optional<String> specialization) {
 		// TODO Auto-generated method stub
 		System.out.println("inside city and spec");
-		return docRepo.findBySpecializationAndAddress_City(specialization,city);
+		return docRepo.findBySpecializationAndAddress_City(specialization, city);
 	}
-
 
 	public List<Doctor> getAll() {
 		return docRepo.findAll();

@@ -12,16 +12,7 @@
     </div>
     <!--Body-->
     <div class="modal-body mx-4">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmitButton2()">
-        <!--Body-->
-        <!-- <div class="md-form mb-5">
-                <input type="text" formControlName="patientId" id="Form-id1" class="form-control validate">
-                <label data-error="wrong" data-success="right" for="Form-id1">Your Id</label>
-              </div> -->
-        <div class="alert alert-success" *ngIf="regStatus">
-          Registration Successfull
-        </div>
-
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitButton()">
         <div class="md-form mb-5">
           <input type="email" id="Form-email1" class="form-control validate" formControlName="email" placeholder="email"
             required>
@@ -32,25 +23,12 @@
           <input type="password" id="Form-pass1" class="form-control validate" formControlName="password"
             placeholder="password" required>
           <label data-error="wrong" data-success="right" for="Form-pass1"></label>
-          <!-- <p class="font-small blue-text d-flex justify-content-end">Forgot <a [routerLink]="['/contact']"
-              class="blue-text ml-1">
-              Password?</a></p> -->
         </div>
 
         <div class="text-center mb-3">
-          <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a" (click)="onSubmitButton()">Sign in</button>
+          <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in</button>
         </div>
       </form>
-
     </div>
-    <!--Footer-->
-    <!-- <div class="modal-footer mx-5 pt-3 mb-1">
-      <p class="font-small grey-text d-flex justify-content-end">Not a member? <a [routerLink]="['/doctors/register']"
-          class="blue-text ml-1">
-          Sign Up</a></p>
-    </div> -->
   </div>
-  <!--/.Content-->
 </div>
-
-<!-- Modal -->

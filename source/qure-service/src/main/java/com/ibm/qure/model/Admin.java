@@ -1,7 +1,5 @@
 package com.ibm.qure.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,8 +13,6 @@ public class Admin {
 	private String adminEmail;
 	private int userLevel = 0;
 
-
-
 	public Admin() {
 
 	}
@@ -27,7 +23,7 @@ public class Admin {
 		this.adminName = adminName;
 		this.adminMob = adminMob;
 		this.adminEmail = adminEmail;
-		//this.doctorList = new ArrayList<Doctor>();
+		// this.doctorList = new ArrayList<Doctor>();
 	}
 
 	public int getUserLevel() {
@@ -69,13 +65,5 @@ public class Admin {
 	public void setAdminEmail(String adminEmail) {
 		this.adminEmail = adminEmail;
 	}
-
-//	public List<Doctor> getDoctorList() {
-//		return doctorList;
-//	}
-//
-//	public void setDoctorList(List<Doctor> doctorList) {
-//		this.doctorList = doctorList;
-//	}
 
 }

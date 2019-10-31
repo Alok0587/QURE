@@ -2,7 +2,6 @@ package com.ibm.qure.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -33,12 +32,11 @@ import com.ibm.qure.model.ResponseMessage;
 import com.ibm.qure.service.MedicineService;
 import com.ibm.qure.exceptions.QureApplicationException;
 
-
 @RestController
 @RequestMapping("/medicines")
 public class MedicineController {
-  
-	 private static Logger log=LoggerFactory.getLogger(MedicineController.class);
+
+	private static Logger log = LoggerFactory.getLogger(MedicineController.class);
 	@Autowired
 	MedicineService medicineService;
 
@@ -61,19 +59,17 @@ public class MedicineController {
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createMedicine(@RequestBody @Valid Medicine medicine)
-			throws URISyntaxException, ApplicationException,QureApplicationException {
+			throws URISyntaxException, ApplicationException, QureApplicationException {
 
 		ResponseMessage resMsg;
 
-		boolean x=medicineService.create(medicine);
-		
-	if(x) {
-		resMsg = new ResponseMessage("Success", new String[] {"Medicine created successfully"});
-	}
-	else
-	{
-		resMsg = new ResponseMessage("Failure", new String[] {"Medicine failed to create"});
-	}
+		boolean x = medicineService.create(medicine);
+
+		if (x) {
+			resMsg = new ResponseMessage("Success", new String[] { "Medicine created successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Medicine failed to create" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(medicine.getMedicineId()).toUri();
 
@@ -84,18 +80,18 @@ public class MedicineController {
 	// Update Medicine PUT /medicines/{id}
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
-	public ResponseEntity<ResponseMessage> updateMedicine(@PathVariable String id, @RequestBody Medicine updatedMedicine) throws URISyntaxException, ApplicationException ,QureApplicationException {
+	public ResponseEntity<ResponseMessage> updateMedicine(@PathVariable String id,
+			@RequestBody Medicine updatedMedicine)
+			throws URISyntaxException, ApplicationException, QureApplicationException {
 		ResponseMessage resMsg;
 
 		updatedMedicine.setMedicineId(id);
-		boolean x= medicineService.update(updatedMedicine);
-     if(x) {
-		resMsg = new ResponseMessage("Success", new String[] {"Medicine updated successfully"});
-     }
-     else
-     {
-    	 resMsg = new ResponseMessage("Failure", new String[] {"Medicine failed to update"});
-     }
+		boolean x = medicineService.update(updatedMedicine);
+		if (x) {
+			resMsg = new ResponseMessage("Success", new String[] { "Medicine updated successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Medicine failed to update" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(updatedMedicine.getMedicineId()).toUri();
 
@@ -106,25 +102,18 @@ public class MedicineController {
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> deleteMedicine(@PathVariable String id)
-			throws URISyntaxException, ApplicationException,QureApplicationException {
-		 boolean x= medicineService.delete(id);
+			throws URISyntaxException, ApplicationException, QureApplicationException {
+		boolean x = medicineService.delete(id);
 		ResponseMessage resMsg;
-  if(x) {
-		resMsg = new ResponseMessage("Success", new String[] { "Medicine deleted successfully" });
-  }
-  else
-  {
-	  resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete medicine" });
-  }
+		if (x) {
+			resMsg = new ResponseMessage("Success", new String[] { "Medicine deleted successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete medicine" });
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
 	}
-
-//	public String deleteMedicine(@PathVariable String id) {
-//		medicineService.delete(id);
-//		return "Medicine deleted successfully";
-//	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ResponseMessage> handleValidationExcpetion(MethodArgumentNotValidException e) {
@@ -133,7 +122,7 @@ public class MedicineController {
 		int size = errors.size();
 		String[] errorMsgs = new String[size];
 
-		for(int i = 0; i < size; i++ ) {
+		for (int i = 0; i < size; i++) {
 			errorMsgs[i] = errors.get(i).getDefaultMessage();
 		}
 
@@ -143,7 +132,7 @@ public class MedicineController {
 
 	@ExceptionHandler(QureApplicationException.class)
 	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
-		log.error("Error Occured:",e.getMessage(),e);
+		log.error("Error Occured:", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

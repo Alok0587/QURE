@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentService } from '../appointments/appointment.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DoctorService } from '../doctors/doctor.service';
-import {AddAppointmentComponent} from '../appointments/add-appointment/add-appointment.component';
+import { AddAppointmentComponent } from '../appointments/add-appointment/add-appointment.component';
 import { ConcatSource } from 'webpack-sources';
 
 @Component({
@@ -34,9 +34,9 @@ export class PatientsComponent implements OnInit {
   appId: string;
   doctorData: any;
 
-  constructor(private addAppointment: AddAppointmentComponent,private appointmentService: AppointmentService,private doctorService:DoctorService,  private patientService: PatientService, private route: ActivatedRoute, public router: Router) {
+  constructor(private addAppointment: AddAppointmentComponent, private appointmentService: AppointmentService, private doctorService: DoctorService, private patientService: PatientService, private route: ActivatedRoute, public router: Router) {
 
-    
+
   }
 
   async ngOnInit() {
@@ -47,12 +47,23 @@ export class PatientsComponent implements OnInit {
       .subscribe(async (res: any) => {
         console.log(res);
         this.patientData = await res;
-        console.log("current Patient is"+ this.patientData.patientId);
+        console.log("current Patient is" + this.patientData.patientId);
+        await this.onViewAppointmentList();
+
       });
-      console.log("here I am");
+    // console.log("here I am");
+    //   console.log(this.patientData.patientId);
+    // console.log("here I am");
+    // console.log("here I am 2");
+    // console.log(this.patientData.value.patientId);
+    // console.log("here I am 3");
+    // console.log(this.patientData.patientId);
+    // console.log("here I am 4");
+
+
   }
-  
-  async onViewAppointmentList(){
+
+  async onViewAppointmentList() {
     this.appointmentSubscription = this.appointmentService.getAppointmentsByPatientId(this.patientData.patientId)
       .subscribe(async (res: any[]) => {
         console.log(res);
@@ -84,8 +95,8 @@ export class PatientsComponent implements OnInit {
   onBookAppointmentHandler(pId) {
     console.log("Id: " + pId);
     sessionStorage.setItem('userId', this.patientData.patientId)
-      let user = sessionStorage.getItem('userId');
-      console.log("userId" + user);
+    let user = sessionStorage.getItem('userId');
+    console.log("userId" + user);
 
     this.router.navigate(['patients/appointments/', pId]);
   }
@@ -103,7 +114,7 @@ export class PatientsComponent implements OnInit {
   async onViewHandler(appointmentData) {
     console.log(appointmentData);
     this.duplicateAppointmentData = JSON.parse(JSON.stringify(appointmentData));
-    console.log("duplicate is " + this.duplicateAppointmentData);    
+    console.log("duplicate is " + this.duplicateAppointmentData);
   }
 
   // onBookAppointmentHandler(pId: any){
@@ -112,23 +123,23 @@ export class PatientsComponent implements OnInit {
 
 
   async onDeleteHandler(aId: any) {
-    this.appointmentService.deleteAppointment(aId);
-    this.onViewAppointmentList();
+    await this.appointmentService.deleteAppointment(aId);
+    await this.onViewAppointmentList();
   }
-  
+
   async onUpdateHandler(formData) {
     console.log("inside update app" + this.duplicateAppointmentData);
     let res = await this.appointmentService.updateAppointment(this.duplicateAppointmentData);
     this.onViewAppointmentList();
   }
 
-  
-  
+
+
   ngOnDestroy() {
     this.patientSubscription.unsubscribe();
     // this.appointmentSubscription.unsubscribe();
     // this.appointmentSubscription.unsubscribe();
 
-}
+  }
 
 }

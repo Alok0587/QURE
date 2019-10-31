@@ -26,6 +26,8 @@ import { AdminDoctorComponent } from './admin/admin-doctor/admin-doctor.componen
 import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.component';
 import { PatientService } from './patients/patient.service';
 import { DoctorService } from './doctors/doctor.service';
+import { AdminService } from './admin/admin.service';
+import { AuthenticationService } from './authentication/authentication.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -51,11 +53,11 @@ const routes: Routes = [
   { path: 'appointments/:id', component: AddAppointmentComponent, canActivate:[PatientService] },
   { path: 'doctors/:id', component: DoctorsComponent, canActivate:[DoctorService] },
   { path: 'adminlogin', component: AdminloginComponent },
-  { path: 'adminlogin/admin', component: AdminComponent },
-  { path: 'specialization/:spec', component: SpecializationComponent },
-  {path:'admin-doctor',component:AdminDoctorComponent},
-  {path:'admin-pharmacy',component:AdminPharmacyComponent},
-  {path:'Chat',component:ChatComponent}
+  { path: 'adminlogin/admin', component: AdminComponent, canActivate:[AdminService] },
+  { path: 'specialization/:spec', component: SpecializationComponent, canActivate:[AdminService] },
+  {path:'admin-doctor',component:AdminDoctorComponent, canActivate:[AdminService]},
+  {path:'admin-pharmacy',component:AdminPharmacyComponent, canActivate:[AdminService]},
+  {path:'Chat',component:ChatComponent, canActivate:[AuthenticationService] }
 ];
 
 @NgModule({

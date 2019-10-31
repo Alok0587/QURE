@@ -9,22 +9,21 @@ public abstract class Person {
 	private String gender;
 	private String phone;
 	private Address address;
-	
+
 	public Person() {
 		// default constructor
 	}
 
-	public Person(String name, String email,String password, int age, String gender, String phone, Address address) {
+	public Person(String name, String email, String password, int age, String gender, String phone, Address address) {
 		this.setName(name);
 		this.email = email;
 		this.age = age;
 		this.gender = gender;
 		this.phone = phone;
 		this.address = address;
-		this.password=password;
+		this.password = password;
 	}
 
-	
 	public String getPassword() {
 		return password;
 	}
@@ -72,14 +71,6 @@ public abstract class Person {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-
-//	public int getUserLevel() {
-//		return userLevel;
-//	}
-//
-//	public void setUserLevel(int userLevel) {
-//		this.userLevel = userLevel;
-//	}
 
 	public String getName() {
 		return name;

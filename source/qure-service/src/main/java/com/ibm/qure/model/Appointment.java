@@ -1,7 +1,6 @@
 package com.ibm.qure.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -12,20 +11,19 @@ public class Appointment {
 	private String time;
 	private int price;
 	private String appointmentDate;
-	
-	//@DBRef
+
 	private String patientId;
-	
-	//@DBRef
+
 	private String doctorId;
-	
-	private int appointmetStatus = 0;
+
+	private int appointmentStatus = 0;
 
 	public Appointment() {
 
 	}
 
-	public Appointment(String appointmentId,String time, int price, String appointmentDate, String patientId, String doctorId) {
+	public Appointment(String appointmentId, String time, int price, String appointmentDate, String patientId,
+			String doctorId) {
 		super();
 		this.appointmentId = appointmentId;
 		this.time = time;
@@ -84,11 +82,11 @@ public class Appointment {
 	}
 
 	public int getAppointmetStatus() {
-		return appointmetStatus;
+		return appointmentStatus;
 	}
 
-	public void setAppointmetStatus(int appointmetStatus) {
-		this.appointmetStatus = appointmetStatus;
+	public void setAppointmetStatus(int appointmentStatus) {
+		this.appointmentStatus = appointmentStatus;
 	}
 
 }

@@ -10,10 +10,10 @@ import { AppointmentService } from '../appointments/appointment.service';
   styleUrls: ['./doctors.component.scss']
 })
 export class DoctorsComponent implements OnInit {
-  
+
   doctorData: any;
   duplicateDoctorData: any;
-  
+
   doctorSubscription: Subscription;
   doctorId: string;
   isSaved2: boolean = false;
@@ -23,7 +23,7 @@ export class DoctorsComponent implements OnInit {
   appointmentSubscription: Subscription;
 
   appointmentSubscription2: Subscription;
-   
+
   duplicateAppointmentData: any;
   appointmentData: any;
   appId: string;
@@ -33,19 +33,19 @@ export class DoctorsComponent implements OnInit {
   async ngOnInit() {
     // const _doctorId: string = this.route.snapshot.paramMap.get('id');
     let dEmail = sessionStorage.getItem('username');
-    
+
 
     this.doctorSubscription = this.doctorService.getDoctorByEmail(dEmail)
       .subscribe(async (res: any) => {
         console.log(res);
         this.doctorData = await res;
         console.log(this.doctorData.doctorId);
-        this.onViewAppointmentList();  
+        this.onViewAppointmentList();
       });
-      console.log("checking whether doctor data is there or not"); 
-         
+    console.log("checking whether doctor data is there or not");
+
   }
-  onViewAppointmentList(){
+  onViewAppointmentList() {
     this.appointmentSubscription = this.appointmentService.getAppointmentsByDoctorId(this.doctorData.doctorId)
       .subscribe(async (res: any[]) => {
         console.log(res);
@@ -53,15 +53,15 @@ export class DoctorsComponent implements OnInit {
       });
   }
 
-  
-  async onViewHandler(appointmentData){
+
+  async onViewHandler(appointmentData) {
     console.log(appointmentData);
     this.duplicateAppointmentData = await JSON.parse(JSON.stringify(appointmentData));
     console.log("duplicate is " + this.duplicateAppointmentData);
     //this.duplicateAppointmentData = this.appointmentData;
     //JSON.parse(JSON.stringify(this.appointmentData));
   }
-  async onDeleteHandler(aId: any){
+  async onDeleteHandler(aId: any) {
     let res = await this.appointmentService.deleteAppointment(aId);
     this.onViewAppointmentList();
   }
@@ -93,6 +93,6 @@ export class DoctorsComponent implements OnInit {
     // this.appointmentSubscription.unsubscribe();
     // this.appointmentSubscription.unsubscribe();
 
-}
+  }
 
 }
