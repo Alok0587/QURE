@@ -61,8 +61,8 @@ public class PatientController {
 	@PostMapping(value = "/auth", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public Principal authenticate(Principal user) {
-		log.debug("inside authenticaion");
-		log.debug("LoggedIn User: " + user);
+		System.out.println("inside authenticaion");
+		System.out.println("LoggedIn User: " + user);
 //		return (Principal) patientRepo.findByEmail(user.getName());
 		return user;
 
@@ -71,14 +71,14 @@ public class PatientController {
 	// List All Patients GET /Patients
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public List<Patient> getAllPatients() throws QureApplicationException {
+	public List<Patient> getAllPatients() {
 		return patientService.getAll();
 	}
 
 	// List Patient for given Id GET /Patients/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public Patient getPatient(@PathVariable String id) throws QureApplicationException {
+	public Patient getPatient(@PathVariable String id) {
 		return patientService.get(id);
 	}
 
@@ -92,14 +92,15 @@ public class PatientController {
 		patient.setPassword(encodedPassword);
 		patientRepo.save(patient);
 		messageService.sendSMS(patient.getPhone(), patient.getName());
+		messageService.sendEmail(patient.getEmail());
 
 		ResponseMessage resMsg;
 		Users user = new Users(patient.getEmail(), patient.getPassword(), patient.getPatientId(), "PATIENT");
-		log.debug(user.getUsername());
-		log.debug(user.getPassword());
+		System.out.println(user.getUsername());
+		System.out.println(user.getPassword());
 		userRepo.save(user);
 		resMsg = new ResponseMessage("Success", new String[] { "Patient created successfully" });
-        log.debug("Patient created successfully");
+
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(patient.getPatientId()).toUri();
 
@@ -117,10 +118,8 @@ public class PatientController {
 		ResponseMessage resMsg;
 		if (x) {
 			resMsg = new ResponseMessage("Success", new String[] { "Patient updated successfully" });
-			log.debug("Patient updated successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Patient failed to update" });
-			log.debug("Patient failed to update");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(updatedPatient.getPatientId()).toUri();
@@ -138,10 +137,8 @@ public class PatientController {
 		ResponseMessage resMsg;
 		if (x) {
 			resMsg = new ResponseMessage("Success", new String[] { "Patient deleted successfully" });
-			log.debug("Patient deleted successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Patient failed to  delete" });
-			log.debug("Patient failed to  delete");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
@@ -165,7 +162,7 @@ public class PatientController {
 
 	@ExceptionHandler(QureApplicationException.class)
 	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
-		log.error("Error Occured:{}", e.getMessage(), e);
+		log.error("Error Occured:", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

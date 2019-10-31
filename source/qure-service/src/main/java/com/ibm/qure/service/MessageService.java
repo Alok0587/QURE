@@ -1,9 +1,9 @@
 package com.ibm.qure.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.ibm.qure.model.Appointment;
 import com.twilio.sdk.TwilioRestClient;
@@ -18,7 +18,12 @@ import java.util.List;
 
 @Service
 public class MessageService {
-	private static Logger log = LoggerFactory.getLogger(MessageService.class);
+	@Autowired
+	private EmailCfg emailCfg;
+	
+	@Autowired
+	JavaMailSender mailSender;
+	
 	@Autowired
 	PatientService patientService;
 
@@ -41,19 +46,19 @@ public class MessageService {
 
 			MessageFactory messageFactory = client.getAccount().getMessageFactory();
 			Message message = messageFactory.create(params);
-			log.debug(message.getSid());
+			System.out.println(message.getSid());
 		} catch (TwilioRestException e) {
-			log.debug(e.getErrorMessage());
+			System.out.println(e.getErrorMessage());
 		}
 	}
 
 	public void sendAppointmentSMS(Appointment appointment) {
 		try {
-			log.debug("before mobile");
+			System.out.println("before mobile");
 			TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
 
 			String mobile = patientService.getById(appointment.getPatientId()).getPhone();
-			log.debug(mobile);
+			System.out.println(mobile);
 
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("Body", "Your appointment on " + appointment.getAppointmentDate()
@@ -63,9 +68,9 @@ public class MessageService {
 
 			MessageFactory messageFactory = client.getAccount().getMessageFactory();
 			Message message = messageFactory.create(params);
-			log.debug(message.getSid());
+			System.out.println(message.getSid());
 		} catch (TwilioRestException e) {
-			log.debug(e.getErrorMessage());
+			System.out.println(e.getErrorMessage());
 		}
 	}
 
@@ -76,7 +81,7 @@ public class MessageService {
 			Appointment appointment = appointmentService.get(id);
 
 			String mobile = (patientService.getById(appointment.getPatientId())).getPhone();
-			log.debug(mobile);
+			System.out.println(mobile);
 
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("Body",
@@ -88,10 +93,51 @@ public class MessageService {
 
 			MessageFactory messageFactory = client.getAccount().getMessageFactory();
 			Message message = messageFactory.create(params);
-			log.debug(message.getSid());
+			System.out.println(message.getSid());
 		} catch (TwilioRestException e) {
-			log.debug(e.getErrorMessage());
+			System.out.println(e.getErrorMessage());
 		}
 	}
+	
+	public void sendEmail(String email) {
+	 SimpleMailMessage mailMessage = new SimpleMailMessage();
 
+     mailMessage.setFrom("qureapplication@gmail.com");
+     mailMessage.setTo(email);
+     mailMessage.setSubject("Glad to see you at QURE");
+     mailMessage.setText("Welcome to QURE. We look forward to serve you. \n Thank you for being with us!");
+
+     mailSender.send(mailMessage);
+
+     System.out.println("Email sent successfully!");
+	}
+
+	public void sendAppointmentEmail(String email) {
+         SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+	     mailMessage.setFrom("qureapplication@gmail.com");
+	     mailMessage.setTo(email);
+	     mailMessage.setSubject("Appointment Booked for you");
+	     mailMessage.setText("An appointment for you has been booked. \n Thank you for being with us!");
+
+	     mailSender.send(mailMessage);
+
+	     System.out.println("Email sent successfully!");
+
+	}
+	
+	public void deleteAppointmentEmail(String email) {
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+	     mailMessage.setFrom("qureapplication@gmail.com");
+	     mailMessage.setTo(email);
+	     mailMessage.setSubject("Appointment Cancelled");
+	     mailMessage.setText("We inform you that your appointment was cancelled. Please book another appointment. \n Thank you for being with us!");
+
+	     mailSender.send(mailMessage);
+
+	     System.out.println("Email sent successfully!");
+
+		
+	}
 }
