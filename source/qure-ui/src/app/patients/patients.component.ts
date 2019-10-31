@@ -7,6 +7,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { DoctorService } from '../doctors/doctor.service';
 import { AddAppointmentComponent } from '../appointments/add-appointment/add-appointment.component';
 import { ConcatSource } from 'webpack-sources';
+import { OrderService } from '../ordermedicines/order.service';
 
 @Component({
   selector: 'app-patients',
@@ -29,12 +30,19 @@ export class PatientsComponent implements OnInit {
 
   appointmentSubscription2: Subscription;
 
+  
+  orderList: any[];
+  medicineId: any;
+  
   duplicateAppointmentData: any;
   appointmentData: any;
   appId: string;
   doctorData: any;
+  showOrders: boolean = false;
+  showAppointments : boolean = false;
 
-  constructor(private addAppointment: AddAppointmentComponent, private appointmentService: AppointmentService, private doctorService: DoctorService, private patientService: PatientService, private route: ActivatedRoute, public router: Router) {
+
+  constructor(private orderService: OrderService,private addAppointment: AddAppointmentComponent, private appointmentService: AppointmentService, private doctorService: DoctorService, private patientService: PatientService, private route: ActivatedRoute, public router: Router) {
 
 
   }
@@ -69,6 +77,26 @@ export class PatientsComponent implements OnInit {
         console.log(res);
         this.appointmentList = await res;
       });
+      this.showOrders = false;
+      this.showAppointments = true;
+  }
+  async viewOrderList(pid)
+  {
+    console.log(pid);
+    this.patientSubscription = this.orderService.getOrdersByPatient(pid)
+    .subscribe(async (res: any[]) => {
+      console.log(res);
+      this.orderList = await res;
+     
+    });
+    // for(var order of orderList)
+    // {
+    //   this.medicineId = order.medicineId; 
+    //   console.log(this.medicineId);
+
+    // }
+    this.showOrders = true;
+    this.showAppointments = false;
   }
 
   onEditHandler() {

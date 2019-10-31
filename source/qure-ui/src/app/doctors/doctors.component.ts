@@ -88,6 +88,15 @@ export class DoctorsComponent implements OnInit {
     }
     //this.router.navigate(['/doctorLanding', this.doctorId]);
   }
+
+  onPrescribeHandler(appid,pid)
+  {
+    console.log(appid+"igfuwefouewf"+pid);
+
+    this.router.navigate(['bookmedicine/',appid,pid]);
+  }
+
+  
   ngOnDestroy() {
     this.doctorSubscription.unsubscribe();
     // this.appointmentSubscription.unsubscribe();

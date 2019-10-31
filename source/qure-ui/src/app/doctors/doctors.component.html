@@ -20,7 +20,7 @@
         <div class="card-body">
           <!-- Title-->
           <a>
-            <h4 class="card-title title-one">Mr./Ms.{{doctorData.name}}</h4>
+            <h4 class="card-title title-one">{{doctorData.name}}</h4>
           </a>
           <p class="card-meta">{{doctorData.email}}</p>
           <!-- Text -->
@@ -57,6 +57,9 @@
                 data-target="#viewAppointmentModal" (click)="onViewHandler(appointment)">View</button> </center>
             <center><button type="button" (click)="onDeleteHandler(appointment.appointmentId)"
                 class="btn-sm btn-danger">Cancel</button></center>
+                <center><button type="button" (click)="onPrescribeHandler(appointment.appointmentId,appointment.patientId)"
+                  class="btn-sm btn-primary">Prescribe</button></center>
+           
             <!-- <p class="card-text">Slot: {{booking.slot}}</p> -->
             <!-- <button type="button">Cancel this appointment</button> -->
           </div>

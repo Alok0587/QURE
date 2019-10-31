@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <!-- Title-->
                     <a>
-                        <h4 class="card-title title-one">Mr/Mrs {{patientData.name}}</h4>
+                        <h4 class="card-title title-one">{{patientData.name}}</h4>
                     </a>
                     <p class="card-meta">{{patientData.email}}</p>
                     <!-- Text -->
@@ -90,10 +90,7 @@
                 <!-- Text -->
                 <p class="card-text">Our own QURE Pharmacy is at your service.</p>
                
-
-        
-               
-                <button type="button" class="btn-sm btn-primary" (click)="onBookPatientHandler(patientData.patientId)">Book medicine</button>     <hr>
+                <button type="button" class="btn-sm btn-primary" (click)="viewOrderList(patientData.patientId)">View medicines</button>     <hr>
                 
               </div>
               <!-- Card content -->
@@ -261,20 +258,38 @@
     
 
 <div class="ScrollStyle">
-    <div class="row" *ngIf ="appointmentList">
-      <h4>Appointments</h4><br/>
-    <p *ngIf ="!appointmentList">No appointments found</p>
-        <div class="card col-sm-4" *ngFor="let appointment of appointmentList">
-            <div class="card-body">
-                <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
-                <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
-                <p class="card-text">Time: {{appointment.time}}</p>
-                <p class="card-text">Doctor: {{appointment.doctorId}}</p>
-                <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
-                    (click)="onViewHandler(appointment)">View/Update</button>
-                <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger">Delete</button>
-            </div>
-        </div>
+  <p *ngIf="appointmentList" [hidden]="!showAppointments">APPOINTMENTS</p>
+  <div class="row" *ngIf ="appointmentList" [hidden]="!showAppointments">
+  <p *ngIf ="!appointmentList">NO APPOINTMENTS FOUND</p>
+      <div class="card col-sm-4" *ngFor="let appointment of appointmentList">
+          <div class="card-body">
+              <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
+              <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
+              <p class="card-text">Time: {{appointment.time}}</p>
+              <p class="card-text">Doctor: {{appointment.doctorId}}</p>
+              <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
+                  (click)="onViewHandler(appointment)">View/Update</button>
+              <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger">Delete</button>
+          </div>
+      </div>
 
+  </div>
+</div>
+
+<div class="ScrollStyle">
+  <p *ngIf="orderList" [hidden]="!showOrders">ORDERS</p>
+<div class="row" *ngIf ="orderList"  >
+<p *ngIf ="!orderList">NO PRESCRIPTIONS FOUND</p>
+    <div class="card col-sm-4" *ngFor="let order of orderList">
+        <div class="card-body">
+            <p class="card-title">Booked ID: {{order.bookedId}}</p>
+            <p class="card-text">Appointment ID: {{order.appointmentId}}</p>
+           <p class="card-text">Status: {{order.processingStatus}}</p>
+            <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
+                (click)="onViewHandler(order.bookedId)">View/Update</button>
+            <button type="button" (click)="onDeleteHandler(order.bookedId)" class="btn-sm btn-danger">Delete</button>
+        </div>
     </div>
+
+</div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from 'src/app/patients/ordermedicines/order.service';
+import { OrderService } from 'src/app/ordermedicines/order.service';
 
 @Component({
   selector: 'app-admin-pharmacy',

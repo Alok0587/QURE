@@ -1,6 +1,7 @@
 package com.ibm.qure.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,12 @@ import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.BookMedicine;
 import com.ibm.qure.repository.BookMedicineRepository;
 
+
+
+
 @Service
 public class BookMedicineService {
-
+	
 	@Autowired
 	BookMedicineRepository bookMedicineRepo;
 
@@ -30,6 +34,10 @@ public class BookMedicineService {
 	public BookMedicine get(String id) {
 		return bookMedicineRepo.findById(id).get();
 	}
+	
+	public List<BookMedicine> getPatient(Optional<String> pid) {
+		return bookMedicineRepo.findByPatientId(pid);
+	}
 
 	public List<BookMedicine> getAll() {
 		return bookMedicineRepo.findAll();
@@ -44,5 +52,6 @@ public class BookMedicineService {
 		bookMedicineRepo.deleteById(id);
 		return true;
 	}
+	
 
 }

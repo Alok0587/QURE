@@ -17,7 +17,7 @@ import { Blog4Component } from './blogs/blog4/blog4.component';
 import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
-import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
+import { BookMedicineComponent } from './ordermedicines/book-medicine/book-medicine.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AdminComponent } from './admin/admin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'patients/login', component: PatientLoginComponent },
   { path: 'doctors', component: DoctorsComponent, canActivate:[DoctorService] },
   { path: 'patients/appointments/:pid', component: AddAppointmentComponent, canActivate:[PatientService] },
-  { path: 'patients/bookmedicine/:pid', component: BookMedicineComponent, canActivate:[PatientService] },
+  { path: 'bookmedicine/:appid/:pid', component: BookMedicineComponent},
   { path: 'doctors/register', component: DoctorRegisterComponent },
   { path: 'doctors/login', component: DoctorLoginComponent },
   { path: 'about', component: AboutComponent },

@@ -74,6 +74,16 @@ export class OrderService {
       }))
 
   }
+  getOrdersByPatient(patientId)
+  {
+    console.log(patientId);
+    return this.http.get(this.REST_URL_BOOK + "/" +patientId)
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+      }))
+
+  }
   deleteMedicine(medicineId: any) {
     console.log("id is " + medicineId);
     return this.http.delete(this.REST_API_URL + '/' + medicineId)

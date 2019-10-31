@@ -29,7 +29,7 @@ import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
 
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
-import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
+import { BookMedicineComponent } from './ordermedicines/book-medicine/book-medicine.component';
 import { FaqComponent } from './faq/faq.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
