@@ -2,27 +2,33 @@ package com.ibm.qure.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.ibm.qure.controller.DoctorController;
 import com.ibm.qure.exceptions.ApplicationException;
+import com.ibm.qure.exceptions.QureApplicationException;
 import com.ibm.qure.model.Doctor;
 import com.ibm.qure.repository.DoctorRepository;
 
 @Service
 public class DoctorService {
-
+	private static Logger log = LoggerFactory.getLogger(DoctorService.class);
 	@Autowired
 	DoctorRepository docRepo;
 
 	public DoctorService() {
 	}
 
-	public boolean create(Doctor doctor) throws ApplicationException {
+	public boolean create(Doctor doctor) throws QureApplicationException {
 		try {
 			docRepo.save(doctor);
 			return true;
 		} catch (Exception e) {
-			throw new ApplicationException("Server Error. Please try after sometime. Cause: " + e.getMessage(), e);
+			throw new QureApplicationException("Server Error. Please try after sometime. Cause: " + e.getMessage(), e);
 		}
 	}
 
@@ -45,7 +51,7 @@ public class DoctorService {
 
 	public List<Doctor> getByCityAndSpecialization(Optional<String> city, Optional<String> specialization) {
 		// TODO Auto-generated method stub
-		System.out.println("inside city and spec");
+		log.debug("inside city and spec");
 		return docRepo.findBySpecializationAndAddress_City(specialization, city);
 	}
 

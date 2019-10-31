@@ -51,8 +51,10 @@ public class AdminController {
 		ResponseMessage resMsg;
 		if (x) {
 			resMsg = new ResponseMessage("Success", new String[] { "Doctor deleted successfully" });
+			log.debug("doctor deleted successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete doctor" });
+			log.debug("failed to delete doctor");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
@@ -76,7 +78,7 @@ public class AdminController {
 
 	@ExceptionHandler(QureApplicationException.class)
 	public ResponseEntity<ResponseMessage> handleAppExcpetion(Exception e) {
-		log.error("Error Occured:", e.getMessage(), e);
+		log.error("Error Occured:{}", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

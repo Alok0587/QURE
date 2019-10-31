@@ -42,7 +42,7 @@ public class PharmacistController {
 	// List All Pharmacists GET /pharmacists
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public List<Pharmacist> getAllPharmacists() {
+	public List<Pharmacist> getAllPharmacists() throws QureApplicationException{
 
 		return pharmacistService.getAll();
 	}
@@ -50,7 +50,7 @@ public class PharmacistController {
 	// List Pharmacist for given Id GET /pharmacists/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public Pharmacist getPharmacist(@PathVariable String id) {
+	public Pharmacist getPharmacist(@PathVariable String id)throws QureApplicationException {
 		return pharmacistService.get(id);
 	}
 
@@ -65,8 +65,10 @@ public class PharmacistController {
 		boolean x = pharmacistService.create(pharmacist);
 		if (x) {
 			resMsg = new ResponseMessage("Success", new String[] { "Pharmacist created successfully" });
+			log.debug("Pharmacist created successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Pharmacist failed to create" });
+			log.debug("Pharmacist failed to create");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(pharmacist.getPharmaId()).toUri();
@@ -87,8 +89,10 @@ public class PharmacistController {
 		boolean x = pharmacistService.update(updatedPharmacist);
 		if (x) {
 			resMsg = new ResponseMessage("Success", new String[] { "Pharmacist updated successfully" });
+			log.debug("Pharmacist updated successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Pharmacist failed to update" });
+			log.debug("Pharmacist failed to update");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(updatedPharmacist.getPharmaId()).toUri();
@@ -106,8 +110,10 @@ public class PharmacistController {
 		ResponseMessage resMsg;
 		if (x) {
 			resMsg = new ResponseMessage("Success", new String[] { "Pharmacist deleted successfully" });
+			log.debug("Pharmacist deleted successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete pharmacist" });
+			log.debug("Failed to delete pharmacist");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
@@ -131,7 +137,7 @@ public class PharmacistController {
 
 	@ExceptionHandler(QureApplicationException.class)
 	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
-		log.error("Error Occured:", e.getMessage(), e);
+		log.error("Error Occured: {}", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

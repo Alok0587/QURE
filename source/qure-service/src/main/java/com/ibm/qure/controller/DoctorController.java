@@ -63,8 +63,8 @@ public class DoctorController {
 	@PostMapping("/auth")
 	@CrossOrigin("*")
 	public Principal authenticate(Principal user) {
-		System.out.println("inside authenticaion of doctor");
-		System.out.println("LoggedIn User: " + user);
+		log.debug("inside authenticaion of doctor");
+		log.debug("LoggedIn User: " + user);
 //		return (Principal) patientRepo.findByEmail(user.getName());
 		return user;
 
@@ -74,26 +74,26 @@ public class DoctorController {
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public List<Doctor> getAllDoctors(@RequestParam(name = "city", required = false) Optional<String> city,
-			@RequestParam(name = "specialization", required = false) Optional<String> specialization) {
-		System.out.println("Inside doc filtr controller");
+			@RequestParam(name = "specialization", required = false) Optional<String> specialization) throws QureApplicationException {
+		log.debug("Inside doc filtr controller");
 		if (city.isPresent()) {
 			if (specialization.isPresent()) {
-				System.out.println("Inside doc filtr 1");
-				System.out.println("city and spec is " + city);
-				System.out.println("city and spec is " + specialization);
+				log.debug("Inside doc filtr 1");
+				log.debug("city and spec is " + city);
+				log.debug("city and spec is " + specialization);
 				return doctorService.getByCityAndSpecialization(city, specialization);
 			} else {
-				System.out.println("Inside doc filtr 2");
+				log.debug("Inside doc filtr 2");
 				return doctorService.getByLocation(city);
 			}
 		}
 
 		else if (specialization.isPresent()) {
-			System.out.println("Inside doc filtr 3");
+			log.debug("Inside doc filtr 3");
 			return doctorService.getBySpecialization(specialization);
 
 		} else {
-			System.out.println("Inside doc filtr 4");
+			log.debug("Inside doc filtr 4");
 			return doctorService.getAll();
 		}
 
@@ -102,7 +102,7 @@ public class DoctorController {
 	// List Doctor for given Id GET /doctors/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public Doctor getDoctor(@PathVariable String id) {
+	public Doctor getDoctor(@PathVariable String id) throws QureApplicationException{
 		return doctorService.get(id);
 	}
 
@@ -117,8 +117,8 @@ public class DoctorController {
 		doctorRepo.save(doctor);
 
 		Users user = new Users(doctor.getEmail(), doctor.getPassword(), doctor.getDoctorId(), "DOCTOR");
-		System.out.println(user.getUsername());
-		System.out.println(user.getPassword());
+		log.debug(user.getUsername());
+		log.debug(user.getPassword());
 		userRepo.save(user);
 
 		ResponseMessage resMsg;
@@ -148,8 +148,10 @@ public class DoctorController {
 		ResponseMessage resMsg;
 		if (x) {
 			resMsg = new ResponseMessage("Success", new String[] { "Doctor updated successfully" });
+			log.debug("Doctor updated successfully");
 		} else {
 			resMsg = new ResponseMessage("Success", new String[] { "Doctor update Failed" });
+			log.debug("Doctor update Failed");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(updatedDoctor.getDoctorId()).toUri();
@@ -166,8 +168,10 @@ public class DoctorController {
 		ResponseMessage resMsg;
 		if (x) {
 			resMsg = new ResponseMessage("Success", new String[] { "Doctor deleted successfully" });
+			log.debug("Doctor deleted successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Failed to delete doctor" });
+			log.debug("Failed to delete doctor");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
@@ -191,7 +195,7 @@ public class DoctorController {
 
 	@ExceptionHandler(QureApplicationException.class)
 	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
-		log.error("Error Occured:", e.getMessage(), e);
+		log.error("Error Occured:{}", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

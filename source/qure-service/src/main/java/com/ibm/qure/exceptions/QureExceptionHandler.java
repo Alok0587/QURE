@@ -24,6 +24,7 @@ public class QureExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ResponseMessage> handleAppExcpetion(Exception e) {
+		log.error("ERROR OCCURED: {}", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

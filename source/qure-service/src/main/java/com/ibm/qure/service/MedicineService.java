@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ibm.qure.exceptions.ApplicationException;
+import com.ibm.qure.exceptions.QureApplicationException;
 import com.ibm.qure.model.Medicine;
 import com.ibm.qure.repository.MedicineRepository;
 
@@ -18,12 +19,12 @@ public class MedicineService {
 	public MedicineService() {
 	}
 
-	public boolean create(Medicine medicine) throws ApplicationException {
+	public boolean create(Medicine medicine) throws QureApplicationException {
 		try {
 			medicineRepo.save(medicine);
 			return true;
 		} catch (Exception e) {
-			throw new ApplicationException("Server Error. Please try after sometime. Cause: " + e.getMessage(), e);
+			throw new QureApplicationException("Server Error. Please try after sometime. Cause: " + e.getMessage(), e);
 		}
 	}
 

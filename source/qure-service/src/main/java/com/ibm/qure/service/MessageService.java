@@ -2,6 +2,8 @@ package com.ibm.qure.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.ibm.qure.model.Appointment;
 import com.twilio.sdk.TwilioRestClient;
@@ -16,7 +18,7 @@ import java.util.List;
 
 @Service
 public class MessageService {
-
+	private static Logger log = LoggerFactory.getLogger(MessageService.class);
 	@Autowired
 	PatientService patientService;
 
@@ -39,19 +41,19 @@ public class MessageService {
 
 			MessageFactory messageFactory = client.getAccount().getMessageFactory();
 			Message message = messageFactory.create(params);
-			System.out.println(message.getSid());
+			log.debug(message.getSid());
 		} catch (TwilioRestException e) {
-			System.out.println(e.getErrorMessage());
+			log.debug(e.getErrorMessage());
 		}
 	}
 
 	public void sendAppointmentSMS(Appointment appointment) {
 		try {
-			System.out.println("before mobile");
+			log.debug("before mobile");
 			TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
 
 			String mobile = patientService.getById(appointment.getPatientId()).getPhone();
-			System.out.println(mobile);
+			log.debug(mobile);
 
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("Body", "Your appointment on " + appointment.getAppointmentDate()
@@ -61,9 +63,9 @@ public class MessageService {
 
 			MessageFactory messageFactory = client.getAccount().getMessageFactory();
 			Message message = messageFactory.create(params);
-			System.out.println(message.getSid());
+			log.debug(message.getSid());
 		} catch (TwilioRestException e) {
-			System.out.println(e.getErrorMessage());
+			log.debug(e.getErrorMessage());
 		}
 	}
 
@@ -74,7 +76,7 @@ public class MessageService {
 			Appointment appointment = appointmentService.get(id);
 
 			String mobile = (patientService.getById(appointment.getPatientId())).getPhone();
-			System.out.println(mobile);
+			log.debug(mobile);
 
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("Body",
@@ -86,9 +88,9 @@ public class MessageService {
 
 			MessageFactory messageFactory = client.getAccount().getMessageFactory();
 			Message message = messageFactory.create(params);
-			System.out.println(message.getSid());
+			log.debug(message.getSid());
 		} catch (TwilioRestException e) {
-			System.out.println(e.getErrorMessage());
+			log.debug(e.getErrorMessage());
 		}
 	}
 

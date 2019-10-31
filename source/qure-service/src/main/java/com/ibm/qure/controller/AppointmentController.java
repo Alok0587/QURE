@@ -56,7 +56,7 @@ public class AppointmentController {
 	@CrossOrigin("*")
 	public List<Appointment> getAllAppointments(@RequestParam(name = "dId", required = false) Optional<String> dId,
 			@RequestParam(name = "pId", required = false) Optional<String> pId,
-			@RequestParam(name = "slot", required = false) Optional<String> slot) {
+			@RequestParam(name = "slot", required = false) Optional<String> slot) throws QureApplicationException {
 		if (dId.isPresent() && slot.isPresent()) {
 			return appointService.appointmentSlot(slot, dId);
 		} else if (pId.isPresent()) {
@@ -83,7 +83,7 @@ public class AppointmentController {
 	// List appointment for given Id GET /appointments/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public Appointment getAppointment(@PathVariable String id) {
+	public Appointment getAppointment(@PathVariable String id) throws QureApplicationException {
 		return appointService.get(id);
 	}
 
@@ -99,8 +99,10 @@ public class AppointmentController {
 		if (x) {
 			messageService.sendAppointmentSMS(appointment);
 			resMsg = new ResponseMessage("Success", new String[] { "Appointment created successfully" });
+			log.debug("Appointment created successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Appointment can't be created " });
+			log.debug("Appointment can't be created");
 		}
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
@@ -123,8 +125,10 @@ public class AppointmentController {
 		if (x) {
 			messageService.sendAppointmentSMS(updatedAppoint);
 			resMsg = new ResponseMessage("Success", new String[] { "Appointment updated successfully" });
+			log.debug("Appointment updated Successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Appointment failed to update" });
+			log.debug("Appointment failed to update");
 		}
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
@@ -144,8 +148,10 @@ public class AppointmentController {
 		if (y) {
 
 			resMsg = new ResponseMessage("Success", new String[] { "Appointment deleted successfully" });
+			log.debug("Appointment deleted successfully");
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Appointment failed to delete" });
+			log.debug("Appointment failed to delete");
 		}
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
@@ -171,7 +177,7 @@ public class AppointmentController {
 
 	@ExceptionHandler(QureApplicationException.class)
 	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
-		log.error("Error Occured:", e.getMessage(), e);
+		log.error("Error Occured:{}", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);
