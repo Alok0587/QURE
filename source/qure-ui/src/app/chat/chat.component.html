@@ -8,14 +8,13 @@
         <img src="assets/image/chatBackground.jpg" class="img-fluid">
     </div>
     <div class="col-md-4" style="height:800px; float:right">
-        <div class="card" style="height:500px; border-style:solid;border-width: 3px;border-color: rgb(150, 185, 206);">
+        <div class="card" style="height:600px; border-style:solid;border-width: 3px;border-color: rgb(150, 185, 206);">
             <div class="card-body">
                 <div class="row" style="margin: 2px;">
                     <div class="col-md-12 ">
-                        <h3 class="font-italic"><b><i class="fa fa-user-md"></i>&nbsp;Qure Health Doctor</b></h3>
-                        <span id="activity"><div class="fa-2x">
-                            <i class="fas fa-circle-notch fa-spin"></i>
-                          </div></span>
+                        <h3 class="font-italic"><b>&nbsp;Qure Health Doctor</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn " style="background-color: white; display: inline;" (click)="disconnect()" routerLink="../"><i class="fa fa-close" style="font-size:30px;color:red"></i></button>
+                        </h3>
+                        <span id="activity"></span>
                         
                         <hr />
                         <div class="table-responsive">
@@ -47,19 +46,21 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <!--<label for="connect">WebSocket connection:</label>-->
-                            <button id="connected" (click)="connect()" class="btn btn-default" type="submit">Request
-                                Chat</button>
-                            <button id="disconnected" (click)="disconnect()" class="btn btn-danger" type="submit">Leave
-                            </button>
+                            <!-- <button id="connected" (click)="connect()" class="btn btn-default" type="submit">Request
+                                Chat</button> -->
+                            
+                            <!-- <button type="button" class="btn btn-primary" (click)="disconnect()" routerLink="../">Leave</button> -->
+
                         </div>
                     </form>
 
                 <form class="form-inline">
                     <div class="form-group">
                         <input type="text" [(ngModel)]="name" class="form-control" name="name"
-                            style="width:300px; margin:8px;" placeholder="Type here.."> <br>
+                            style="width:300px; margin:8px;" placeholder="Type here..">
+                            <button (click)="sendMessage()" class="btn btn-success" type="submit">Send</button>
+
                     </div>
-                    <button (click)="sendMessage()" class="btn btn-success" type="submit">Send</button>
                 </form>
 
 
