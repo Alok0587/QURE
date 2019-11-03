@@ -8,6 +8,7 @@ import { DoctorService } from '../doctors/doctor.service';
 import { AddAppointmentComponent } from '../appointments/add-appointment/add-appointment.component';
 import { ConcatSource } from 'webpack-sources';
 import { OrderService } from '../ordermedicines/order.service';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-patients',
@@ -23,8 +24,6 @@ export class PatientsComponent implements OnInit {
   isSaved2: boolean = false;
   searchForm: FormGroup;
   doctorList: any[];
-  slotList: any;
-  selDate: any;
 
 
   appointmentList: any[];
@@ -42,7 +41,8 @@ export class PatientsComponent implements OnInit {
   doctorData: any;
   showOrders: boolean = false;
   showAppointments : boolean = false;
-
+  slotList: any;
+  selDate: any;
 
   constructor(private orderService: OrderService,private addAppointment: AddAppointmentComponent, private appointmentService: AppointmentService, private doctorService: DoctorService, private patientService: PatientService, private route: ActivatedRoute, public router: Router) {
     this.slotList = ['9', '10', '17', '18', '19', '21'];
@@ -214,6 +214,8 @@ export class PatientsComponent implements OnInit {
 
   ngOnDestroy() {
     this.patientSubscription.unsubscribe();
+    // this.appointmentSubscription.unsubscribe();
+    // this.appointmentSubscription.unsubscribe();
 
   }
 

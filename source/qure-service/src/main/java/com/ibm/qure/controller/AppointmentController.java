@@ -30,8 +30,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Appointment;
+import com.ibm.qure.model.Doctor;
 import com.ibm.qure.model.ResponseMessage;
 import com.ibm.qure.service.AppointmentService;
+import com.ibm.qure.service.DoctorService;
 import com.ibm.qure.service.MessageService;
 import com.ibm.qure.service.PatientService;
 import com.ibm.qure.exceptions.QureApplicationException;
@@ -50,6 +52,9 @@ public class AppointmentController {
 
 	@Autowired
 	PatientService patientServie;
+
+	@Autowired
+	DoctorService doctorServie;
 
 	// List All appointments GET /appointments or Get by pId or dId
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -98,6 +103,8 @@ public class AppointmentController {
 		boolean x = appointService.create(appointment);
 		if (x) {
 			messageService.sendAppointmentSMS(appointment);
+			messageService.sendAppointmentEmail(patientServie.getById(appointment.getPatientId()).getEmail(),
+					appointment, doctorServie.getById(appointment.getDoctorId()));
 			resMsg = new ResponseMessage("Success", new String[] { "Appointment created successfully" });
 			log.debug("Appointment created successfully");
 		} else {
@@ -124,6 +131,8 @@ public class AppointmentController {
 		ResponseMessage resMsg;
 		if (x) {
 			messageService.sendAppointmentSMS(updatedAppoint);
+			messageService.sendAppointmentEmail(patientServie.getById(updatedAppoint.getPatientId()).getEmail(),
+					updatedAppoint, doctorServie.getById(updatedAppoint.getDoctorId()));
 			resMsg = new ResponseMessage("Success", new String[] { "Appointment updated successfully" });
 			log.debug("Appointment updated Successfully");
 		} else {
@@ -143,6 +152,7 @@ public class AppointmentController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> deleteAppointment(@PathVariable String id) {
 		messageService.cancelAppointmentSMS(id);
+		messageService.deleteAppointmentEmail(id);
 		boolean y = appointService.delete(id);
 		ResponseMessage resMsg;
 		if (y) {

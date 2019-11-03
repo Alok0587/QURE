@@ -104,12 +104,13 @@ export class AddAppointmentComponent implements OnInit {
 
 
   showSlot() {
+    // console.log(this.bookForm.value.appointmentDate);
     this.slotList = ['9', '10', '17', '18', '19', '21'];
     console.log("in show Slot. date=" + this.selDate.val());
     this.appointmentList.forEach(appointment => {
       this.slotList.forEach(slot => {
         if (appointment.time == slot && this.selDate.val() === appointment.appointmentDate) {
-          console.log("inside")
+          console.log("inside");
           const index: number = this.slotList.indexOf(slot);
           this.slotList.splice(index, 1);
         }

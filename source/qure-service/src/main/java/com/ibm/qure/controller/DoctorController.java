@@ -74,7 +74,8 @@ public class DoctorController {
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public List<Doctor> getAllDoctors(@RequestParam(name = "city", required = false) Optional<String> city,
-			@RequestParam(name = "specialization", required = false) Optional<String> specialization) throws QureApplicationException {
+			@RequestParam(name = "specialization", required = false) Optional<String> specialization)
+			throws QureApplicationException {
 		log.debug("Inside doc filtr controller");
 		if (city.isPresent()) {
 			if (specialization.isPresent()) {
@@ -102,7 +103,7 @@ public class DoctorController {
 	// List Doctor for given Id GET /doctors/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public Doctor getDoctor(@PathVariable String id) throws QureApplicationException{
+	public Doctor getDoctor(@PathVariable String id) throws QureApplicationException {
 		return doctorService.get(id);
 	}
 
@@ -127,6 +128,7 @@ public class DoctorController {
 
 		if (x) {
 			messageService.sendSMS(doctor.getPhone(), doctor.getName());
+			messageService.sendEmail(doctor.getEmail(), doctor.getName());
 			resMsg = new ResponseMessage("Success", new String[] { "Doctor created successfully" });
 		} else {
 			resMsg = new ResponseMessage("Failure", new String[] { "Unable to create doctor" });
@@ -147,6 +149,8 @@ public class DoctorController {
 		boolean x = doctorService.update(updatedDoctor);
 		ResponseMessage resMsg;
 		if (x) {
+			messageService.sendUpdateSMS(updatedDoctor.getPhone());
+			messageService.sendUpdateEmail(updatedDoctor.getEmail());
 			resMsg = new ResponseMessage("Success", new String[] { "Doctor updated successfully" });
 			log.debug("Doctor updated successfully");
 		} else {
@@ -164,6 +168,12 @@ public class DoctorController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> deleteDoctor(@PathVariable String id)
 			throws URISyntaxException, ApplicationException, QureApplicationException {
+
+		String mobile = doctorService.getById(id).getPhone();
+		String email = doctorService.getById(id).getEmail();
+		messageService.sendDeleteSMS(mobile);
+		messageService.sendDeleteEmail(email);
+
 		boolean x = doctorService.delete(id);
 		ResponseMessage resMsg;
 		if (x) {

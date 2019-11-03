@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ibm.qure.controller.DoctorController;
 import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.exceptions.QureApplicationException;
 import com.ibm.qure.model.Doctor;
