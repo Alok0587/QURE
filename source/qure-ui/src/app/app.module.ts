@@ -39,7 +39,6 @@ import { AdminDoctorComponent } from './admin/admin-doctor/admin-doctor.componen
 import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { DevteamComponent } from './devteam/devteam.component';
  
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
@@ -76,8 +75,7 @@ export function HttpLoaderFactory(http: HttpClient){
     SpecializationComponent,
     ChatComponent,
     AdminDoctorComponent,
-    AdminPharmacyComponent,
-    DevteamComponent
+    AdminPharmacyComponent
   ],
   imports: [
     BrowserModule,
