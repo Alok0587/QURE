@@ -28,6 +28,7 @@ import { PatientService } from './patients/patient.service';
 import { DoctorService } from './doctors/doctor.service';
 import { AdminService } from './admin/admin.service';
 import { AuthenticationService } from './authentication/authentication.service';
+import { DevteamComponent } from './devteam/devteam.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'doctors/register', component: DoctorRegisterComponent },
   { path: 'doctors/login', component: DoctorLoginComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'devteam', component: DevteamComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'blogs/blog1', component: Blog1Component },
