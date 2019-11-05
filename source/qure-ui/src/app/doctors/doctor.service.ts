@@ -92,14 +92,14 @@ export class DoctorService {
       }))
   }
   getDoctorById(email) {
-    // return this.getDoctorByEmail(email);
-    console.log("doctor email is ...." + email);
-    return this.http.get(this.REST_API_URL + "/" + email)
-      .pipe(map(res => {
-        console.log(res);
-        console.log("doctor by email")
-        return res;
-      }))
+     return this.getDoctorByEmail(email);
+    // console.log("doctor email is ...." + email);
+    // return this.http.get(this.REST_API_URL + "/" + email)
+    //   .pipe(map(res => {
+    //     console.log(res);
+    //     console.log("doctor by email")
+    //     return res;
+    //   }))
   }
 
   getDoctorBySpecialization(special) {

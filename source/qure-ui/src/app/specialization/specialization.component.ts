@@ -37,7 +37,7 @@ export class SpecializationComponent implements OnInit {
     console.log(email);
     this.doctorSubscription = await this.doctorService.getDoctorById(email)
     .subscribe( (res: any) => { 
-        console.log("xyzzzis"+ res );
+        console.log(res );
         this.doctorData = res;
       });
     //this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
@@ -51,10 +51,9 @@ export class SpecializationComponent implements OnInit {
    
   }
   async onUpdateHandler(doctorinfo){
-    
-    this.approval=1;
-    
+       
     doctorinfo.approvalStatus=1;
+    
    let res=await this.doctorService.updateDoctor(doctorinfo);
    console.log(res);
    if(res)
