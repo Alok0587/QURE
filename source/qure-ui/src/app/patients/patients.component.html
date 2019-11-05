@@ -9,7 +9,7 @@
         <div class="col-md-3">
 
             <!-- Card -->
-            <div class="card card-personal">
+            <div class="card card-personal" id="cards">
 
                 <!-- Card image-->
                 <img class="card-img-top" src="\assets\image\person3.gif" alt="Card image cap">
@@ -39,7 +39,7 @@
         <div class="col-md-6">
 
             <!-- Card -->
-            <div class="card text-center card-personal">
+            <div class="card text-center card-personal" id="cards">
 
                 <!-- Card image-->
                 <img class="card-img-top" src="\assets\image\appoint1.jpg" alt="Card image cap">
@@ -74,7 +74,7 @@
         <div class="col-md-3">
       
             <!-- Card -->
-            <div class="card text-center card-personal">
+            <div class="card text-center card-personal" id="cards">
       
               <!-- Card image-->
               <img class="card-img-top" src="\assets\image\medicine.jpg" alt="Card image cap">
@@ -283,15 +283,15 @@
     
 
 <div class="ScrollStyle">
-  <p *ngIf="appointmentList" [hidden]="!showAppointments">APPOINTMENTS</p>
+  <h3 *ngIf="appointmentList" [hidden]="!showAppointments">APPOINTMENTS</h3>
   <div class="row" *ngIf ="appointmentList" [hidden]="!showAppointments">
   <p *ngIf ="!appointmentList">NO APPOINTMENTS FOUND</p>
-      <div class="card col-sm-4" *ngFor="let appointment of appointmentList">
+      <div class="card" *ngFor="let appointment of appointmentList" id="appmtcard">
           <div class="card-body">
-              <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
+              <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
               <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
               <p class="card-text">Time: {{appointment.time}}</p>
-              <p class="card-text">Doctor: {{appointment.doctorId}}</p>
+              <p class="card-text" style="display: none;">Doctor: {{appointment.doctorId}}</p>
               <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
               (click)="onViewHandler(appointment)">View/Update</button>
               <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger">Delete</button>
@@ -302,7 +302,7 @@
 </div>
 
 <div class="ScrollStyle">
-  <p *ngIf="orderList" [hidden]="!showOrders">ORDERS</p>
+  <h3 *ngIf="orderList" [hidden]="!showOrders">ORDERS</h3>
 <div class="row" *ngIf ="orderList"  >
 <p *ngIf ="!orderList">NO PRESCRIPTIONS FOUND</p>
     <div class="card col-sm-4" *ngFor="let order of orderList">
@@ -318,3 +318,13 @@
 
 </div>
 </div>
+<style>
+  #cards{
+    height: 550px;
+  }
+  #appmtcard{
+    height: 300px;
+    background-color: darkgrey;
+    width: 300px;
+  }
+  </style>

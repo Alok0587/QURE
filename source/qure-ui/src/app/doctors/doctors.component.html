@@ -4,16 +4,16 @@
 <div class="row">
 
   <!-- Grid row -->
-  <div class="col-md-6" *ngIf="doctorData">
+  <div class="col-md-3" *ngIf="doctorData">
 
     <!-- Grid column -->
-    <div class="col-md-6 col-lg-6">
+    <!-- <div class="col-md-6 col-lg-6"> -->
 
       <!-- Card -->
       <div class="card card-personal">
 
         <!-- Card image-->
-        <img class="card-img-top" src="\assets\image\doctor-gif.gif" alt="Card image cap">
+        <img class="card-img-top" src="\assets\image\doctor-gif.gif" style="height: 320px; width: 280px;" alt="Card image cap">
         <!-- Card image-->
 
         <!-- Card content -->
@@ -34,13 +34,13 @@
       </div>
       <!-- Card -->
 
-    </div>
+    <!-- </div> -->
     <!-- Grid column -->
 
   </div>
 
   <!-- Grid row -->
-  <div class="col-md-6">
+  <div class="col-md-9">
 
     <div>
       <h3>Appointments</h3>
@@ -48,7 +48,7 @@
     <div class="ScrollStyle">
       <div class="row">
 
-        <div class="card col-md-3" *ngFor="let appointment of appointmentList" style="background-color:#ffffe6;">
+        <div class="card col-md-3" *ngFor="let appointment of appointmentList" style="background-color: darkgrey; height: 300px;">
           <div class="card-body">
             <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
             <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
