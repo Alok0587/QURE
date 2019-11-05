@@ -159,17 +159,28 @@ export class AddAppointmentComponent implements OnInit {
     console.log("todays daye=" + td);
     console.log("befpre");
     console.log("gg" + (tt < td));
+    console.log(tt);
+    console.log(td);
 
     if ((tt < td) == true) {
       console.log("beforeeee");
       $("#appointmentDate").val('');
-      $("#dateErr").text("Enter a valid Date");
+      $("#dateErr").text("Enter a valid date, of future please.");
     }
-    else {
-      $("#dateErr").text("");
+   // else {
+     // $("#dateErr").text("");
 
+    //}
+    
+    else if(tt-td>5304911023){
+      console.log("more than 3 months = "+(tt-td));
+      $("#appointmentDate").val('');
+      $("#dateErr").text("Enter a valid date, not later than 3 months please.");
     }
-
+    else{
+    $("#dateErr").text("");
+    }
+  }
   }
 
 }
