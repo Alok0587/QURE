@@ -11,8 +11,9 @@ public class Doctor extends Person {
 
 	private String licenseNumber;
 
-	// private int approvalStatus = 0;
+	private int approvalStatus = 0;
 
+	
 	private String specialization;
 
 	public Doctor() {
@@ -41,6 +42,14 @@ public class Doctor extends Person {
 
 	public void setLicenseNumber(String licenseNumber) {
 		this.licenseNumber = licenseNumber;
+	}
+
+	public int getApprovalStatus() {
+		return approvalStatus;
+	}
+
+	public void setApprovalStatus(int approvalStatus) {
+		this.approvalStatus = approvalStatus;
 	}
 
 	public String getSpecialization() {

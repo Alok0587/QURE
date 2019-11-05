@@ -14,7 +14,8 @@ export class SpecializationComponent implements OnInit {
   doctorList :any[];
   doctorData :any;
   doctorSubscription: Subscription;
-  
+  approval :number =0;
+  isSaved2: boolean;
   constructor(private doctorService: DoctorService, private route: ActivatedRoute,private appointmentService: AppointmentService) { }
 
   ngOnInit() {
@@ -22,7 +23,7 @@ export class SpecializationComponent implements OnInit {
     const specialization: string = this.route.snapshot.paramMap.get('spec');
     console.log(specialization);
 
-    this.doctorSubscription = this.doctorService.getDoctorBySpecialization(specialization)
+    this.doctorSubscription = this.doctorService.getDoctorBySpecialization2(specialization)
       .subscribe((res: any) => {
         console.log(res);
         this.doctorList = res;
@@ -31,12 +32,12 @@ export class SpecializationComponent implements OnInit {
       });
   }
 
-  async onViewHandler(dId){
+  async onViewHandler(email){
 
-    console.log(dId);
-    this.doctorSubscription = await this.doctorService.getDoctorById(dId)
+    console.log(email);
+    this.doctorSubscription = await this.doctorService.getDoctorById(email)
     .subscribe( (res: any) => { 
-        console.log( res );
+        console.log("xyzzzis"+ res );
         this.doctorData = res;
       });
     //this.duplicateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
@@ -49,5 +50,16 @@ export class SpecializationComponent implements OnInit {
     });
    
   }
-
+  async onUpdateHandler(doctorinfo){
+    
+    this.approval=1;
+    
+    doctorinfo.approvalStatus=1;
+   let res=await this.doctorService.updateDoctor(doctorinfo);
+   console.log(res);
+   if(res)
+   {
+     this.isSaved2=true;
+   }
+}
 }

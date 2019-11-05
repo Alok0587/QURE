@@ -13,6 +13,7 @@ export class AdminService {
 
     if (username === "admin" && password === "admin") {
       sessionStorage.setItem('username', username);
+      sessionStorage.setItem('usernameandpassword', username + ':' + password)
       sessionStorage.setItem('role', 'ADMIN');
       return true;
     } else {

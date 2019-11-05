@@ -50,7 +50,7 @@
 
         <div class="card col-md-3" *ngFor="let appointment of appointmentList" style="background-color:#ffffe6;">
           <div class="card-body">
-            <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
+            <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
             <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
             <p class="card-text">Time: {{appointment.time}}</p>
             <center><button type="button" class="btn-sm btn-primary " data-toggle="modal"

@@ -92,14 +92,14 @@ export class DoctorService {
       }))
   }
   getDoctorById(email) {
-    return this.getDoctorByEmail(email);
-    // console.log("doctor email is ...." + email);
-    // return this.http.get(this.REST_API_URL + "/" + email)
-    //   .pipe(map(res => {
-    //     console.log(res);
-    //     console.log("doctor by email")
-    //     return res;
-    //   }))
+    // return this.getDoctorByEmail(email);
+    console.log("doctor email is ...." + email);
+    return this.http.get(this.REST_API_URL + "/" + email)
+      .pipe(map(res => {
+        console.log(res);
+        console.log("doctor by email")
+        return res;
+      }))
   }
 
   getDoctorBySpecialization(special) {
@@ -119,6 +119,23 @@ export class DoctorService {
         specialization: special
       },
       headers: headers
+    })
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+      }));
+
+  }
+  getDoctorBySpecialization2(special) {
+
+    
+    console.log("special is " + special);
+
+    console.log(special + "12345");
+    return this.http.get(this.REST_API_URL, {
+      params: {
+        specialization: special
+      }
     })
       .pipe(map(res => {
         console.log(res);

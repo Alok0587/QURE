@@ -48,7 +48,7 @@ public class MessageService {
 
 			// MessageList
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("Body", "Welcome to Qure services, Mr/Mrs " + name));
+			params.add(new BasicNameValuePair("Body", "Welcome to Qure services, " + name));
 			params.add(new BasicNameValuePair("To", "+91" + mobile));
 			params.add(new BasicNameValuePair("From", TWILIO_NUMBER));
 
@@ -153,7 +153,7 @@ public class MessageService {
 		mailMessage.setTo(email);
 		mailMessage.setSubject("Glad to see you at QURE");
 		mailMessage.setText(
-				"Welcome to QURE Mr/Mrs " + name + ". We look forward to serve you. \n Thank you for being with us!");
+				"Welcome to QURE  " + name + ". We look forward to serve you. \n Thank you for being with us!");
 
 		mailSender.send(mailMessage);
 
