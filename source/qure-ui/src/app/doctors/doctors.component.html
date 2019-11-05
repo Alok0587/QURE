@@ -13,7 +13,7 @@
       <div class="card card-personal">
 
         <!-- Card image-->
-        <img class="card-img-top" src="\assets\image\doctor-gif.gif" style="height: 320px; width: 280px;" alt="Card image cap">
+        <img class="card-img-top" src="\assets\image\doctor-gif.gif" alt="Card image cap" height="400px;">
         <!-- Card image-->
 
         <!-- Card content -->
@@ -34,8 +34,7 @@
       </div>
       <!-- Card -->
 
-    <!-- </div> -->
-    <!-- Grid column -->
+
 
   </div>
 
@@ -45,30 +44,32 @@
     <div>
       <h3>Appointments</h3>
     </div>
+    <hr />    
+    
     <div class="ScrollStyle">
-      <div class="row">
 
-        <div class="card col-md-3" *ngFor="let appointment of appointmentList" style="background-color: darkgrey; height: 300px;">
-          <div class="card-body">
-            <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
-            <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
-            <p class="card-text">Time: {{appointment.time}}</p>
-            <center><button type="button" class="btn-sm btn-primary " data-toggle="modal"
-                data-target="#viewAppointmentModal" (click)="onViewHandler(appointment)">View</button> </center>
-            <center><button type="button" (click)="onDeleteHandler(appointment.appointmentId)"
-                class="btn-sm btn-danger">Cancel</button></center>
-                <center><button type="button" (click)="onPrescribeHandler(appointment.appointmentId,appointment.patientId)"
-                  class="btn-sm btn-primary">Prescribe</button></center>
-           
-            <!-- <p class="card-text">Slot: {{booking.slot}}</p> -->
-            <!-- <button type="button">Cancel this appointment</button> -->
+    <div class="row">
+      <div class="card" *ngFor="let appointment of appointmentList">
+
+        <div class="card">
+          <div class="card-body card-deck">
+            <b><h3 class="card-title"><i class="far fa-calendar-alt"></i>&nbsp;{{appointment.appointmentDate}}</h3>
+            <h5 class="card-text">Time: {{appointment.time}}</h5></b>
+
+            <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#viewAppointmentModal"
+              (click)="onViewHandler(appointment)">View</button>
+            <button type="button" (click)="onDeleteHandler(appointment.appointmentId)"
+              class="btn btn-danger">Cancel</button>
+            <button type="button" (click)="onPrescribeHandler(appointment.appointmentId,appointment.patientId)"
+              class="btn btn-primary">Prescribe</button>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
-
+  </div>
 </div>
 <!-- Section: Personal card -->
 <div class="modal fade" id="viewAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
