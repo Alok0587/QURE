@@ -15,14 +15,17 @@ export class DoctorLoginComponent implements OnInit {
   regStatus:boolean = false;
   dSubscription: Subscription;
   dData: any;
+  phone:any;
 
   message: any;
+  randomNumber : number;
 
   passwordnew:string;
   passwordconfirm:string;
   isSaved2: boolean;
   emailid:string;
   password:string;
+  otpNumber:number;
 
   constructor(private doctorService: DoctorService, public router: Router, private route :ActivatedRoute) {
 
@@ -58,18 +61,37 @@ export class DoctorLoginComponent implements OnInit {
     console.log(this.emailid);
     
 
-    var newpass =this.password;
-  //obj.id = this.patientId;
-  console.log(newpass);
-
-    let res = await this.doctorService.updatePassword(this.emailid,newpass);
-    console.log(res);
-    if (res) {
-      this.isSaved2 = true;
-      this.ngOnInit();
+    if(formData.value.phone === this.otpNumber){
+      var newpass =this.passwordnew;
+    //obj.id = this.patientId;
+    console.log(newpass);
+  
+      let res = await this.doctorService.updatePassword(this.emailid,newpass);
+      console.log(res);
+      if (res) {
+        this.isSaved2 = true;
+        //this.ngOnInit();
+      }
+    }else{
+      alert("wrong otp");
     }
 
   }
+  async generateRandomNumber(){
+    
+     console.log(this.emailid);
+ 
+     this.randomNumber =Math.random()*10000;
+    this.otpNumber = Math.round(this.randomNumber);
+    console.log(this.otpNumber);
+    let x = await this.doctorService.forgotPassword(this.emailid, this.otpNumber);
+    console.log("ggggggg");
+   //  if(x){
+ 
+   //  }
+ 
+ 
+   }
 
    async onSubmitButton2() {
     console.log(this.loginForm.value.email);

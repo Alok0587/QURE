@@ -222,4 +222,16 @@ public class MessageService {
 
 		System.out.println("Email sent successfully!");
 	}
+	public void sendFogotPass(String email, String otp) {
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+		mailMessage.setFrom("qureapplication@gmail.com");
+		mailMessage.setTo(email);
+		mailMessage.setSubject("IMPORTANT-OTP");
+		mailMessage.setText("Otp to change password is: "+otp);
+
+		mailSender.send(mailMessage);
+
+		System.out.println("Email sent successfully!");
+	}
 }

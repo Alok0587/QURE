@@ -170,6 +170,54 @@ public class DoctorController {
 
 		return ResponseEntity.created(location).body(resMsg);
 	}
+	
+	@PostMapping(value = "/forgot", consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@CrossOrigin("*")
+	public ResponseEntity<ResponseMessage> forgotPass(@RequestBody Doctor doctor)
+			throws URISyntaxException, ApplicationException, QureApplicationException {
+		System.out.println("controller");
+		boolean x = false;
+		try {
+
+			Users existDoc = userRepo.findByUsername(doctor.getEmail());
+
+			// System.out.println("existsXXXXXXXXXXXXXXXXXXXXXXXXXX "+existDoc);
+
+			if (existDoc == null) {
+
+				x = false;
+				throw new QureApplicationException();
+
+			}
+
+			else {
+				x = true;
+
+			}
+		}
+
+		catch (Exception e) {
+			throw new QureApplicationException(
+					"The profile doesn;t exists. Please check your credentials." + e.getMessage(), e);
+		}
+
+		ResponseMessage resMsg;
+
+		if (x) {
+
+			messageService.sendFogotPass(doctor.getEmail(), doctor.getPhone());
+			System.out.println("emaili");
+			resMsg = new ResponseMessage("Success", new String[] { "otp send successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Unable to send otp" });
+		}
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/forgot")
+				.buildAndExpand(doctor.getDoctorId()).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
+	}
+	///////////////////////////
+
 
 	// Update Doctor PUT /doctors/{id}
 	@PutMapping(value = "/{id}")
