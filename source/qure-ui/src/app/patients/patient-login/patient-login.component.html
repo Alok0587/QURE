@@ -19,19 +19,20 @@
         </div>
 
         <div class="md-form mb-5">
-          <input type="email" id="Form-email1" class="form-control validate" formControlName="email" placeholder="email" required>
+          <input type="email" id="Form-email1" class="form-control validate" formControlName="email"  [(ngModel)]="emailid" placeholder="email" required>
           <label data-error="wrong" data-success="right" for="Form-email1"></label>
         </div>
 
         <div class="md-form pb-3">
           <input type="password" id="Form-pass1" class="form-control validate" formControlName="password" placeholder="password" required>
           <label data-error="wrong" data-success="right" for="Form-pass1" ></label>
-          <p class="font-small blue-text d-flex justify-content-end">Forgot <a [routerLink]="['/contact']" class="blue-text ml-1">
-              Password?</a></p>
+          <button type="button" class="btn btn-md " style="float: right; background-color: rgb(140, 139, 145); color: black;"data-toggle="modal" data-target="#forgotModal"
+          >Forgot Password</button>
         </div>
 
         <div class="text-center mb-3">
           <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in</button>
+          <p>{{this.message}}</p>
         </div>
       </form>
 
@@ -48,3 +49,54 @@
 </div>
 
 <!-- Modal -->
+
+<div class="modal fade" id="forgotModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Change password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form ngNativeValidate #f="ngForm" (ngSubmit)="onPatientUpdateHandler(f)">
+              <div class="form-group row">
+                  <label for="emailID" class="col-sm-3 col-form-label">Email</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control"  name = "emailID" placeholder="{{emailid}}"
+                       disabled>
+                  </div>
+                </div>
+                     
+            
+            <div class="form-group row">
+              <label for="password1" class="col-sm-3 col-form-label">Enter Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" name="password1"
+                  [(ngModel)]="passwordnew" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="cpassword" class="col-sm-3 col-form-label">Confirm Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" name="cpassword"
+                  [(ngModel)]="passwordconfirm" required>
+              </div>
+            </div>
+           
+            
+            <div class="alert alert-success" *ngIf="isSaved2">
+              Updated successfully!
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary"(click)="onForgotHandler(passwordnew,passwordconfirm)">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

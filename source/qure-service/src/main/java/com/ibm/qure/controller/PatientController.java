@@ -87,27 +87,54 @@ public class PatientController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createPatient(@RequestBody @Valid Patient patient)
 			throws URISyntaxException, ApplicationException, QureApplicationException {
+		
+		try {
 
 		String encodedPassword = bCryptPasswordEncoder.encode(patient.getPassword());
 		patient.setPassword(encodedPassword);
-		patientRepo.save(patient);
-		messageService.sendSMS(patient.getPhone(), patient.getName());
-		messageService.sendEmail(patient.getEmail(), patient.getName());
-		// messageService.sendEmail(patient.getEmail());
+		
+		System.out.println(patient.getEmail());
+		Users existPat = userRepo.findByUsername(patient.getEmail());
+		
+		//System.out.println("existsXXXXXXXXXXXXXXXXXXXXXXXXXX    "+existDoc);
+		
+		if(existPat==null)
+		{
+			
+			
+			patientRepo.save(patient);
+			messageService.sendSMS(patient.getPhone(), patient.getName());
+			messageService.sendEmail(patient.getEmail(), patient.getName());
+			// messageService.sendEmail(patient.getEmail());
 
-		ResponseMessage resMsg;
-		Users user = new Users(patient.getEmail(), patient.getPassword(), patient.getPatientId(), "PATIENT");
-		log.debug(user.getUsername());
-		log.debug(user.getPassword());
-		userRepo.save(user);
-		resMsg = new ResponseMessage("Success", new String[] { "Patient created successfully" });
-		log.debug("Patient created successfully");
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(patient.getPatientId()).toUri();
+			ResponseMessage resMsg;
+			Users user = new Users(patient.getEmail(), patient.getPassword(), patient.getPatientId(), "PATIENT");
+			log.debug(user.getUsername());
+			log.debug(user.getPassword());
+			userRepo.save(user);
+			resMsg = new ResponseMessage("Success", new String[] { "Patient created successfully" });
+			log.debug("Patient created successfully");
+			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+					.buildAndExpand(patient.getPatientId()).toUri();
 
-		return ResponseEntity.created(location).body(resMsg);
+			return ResponseEntity.created(location).body(resMsg);
+			
+			}
+		
+		else
+		{
+		//doctorRepo.save(doctor);
+			System.out.println("Patient exists.");
+			throw new QureApplicationException();
+		
 	}
-
+	}
+	
+	catch (Exception e) {
+		throw new QureApplicationException("The profile already exists. Please check your credentials." + e.getMessage(), e);
+	}
+		
+	}
 	// Update Patient PUT /Patients/{id}
 	@PutMapping(value = "/{id}")
 	@CrossOrigin("*")
@@ -127,6 +154,43 @@ public class PatientController {
 			log.debug("Patient failed to update");
 		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(updatedPatient.getPatientId()).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
+	}
+	@PutMapping
+	@CrossOrigin("*")
+	public ResponseEntity<ResponseMessage> updatePassword(@RequestBody Patient upPatient)
+			throws URISyntaxException, ApplicationException, QureApplicationException {
+		
+		System.out.println(upPatient.getEmail()+ "   "+ upPatient.getPassword());
+		
+		String encodedPassword = bCryptPasswordEncoder.encode(upPatient.getPassword());
+		
+		
+		Patient updatedPatient = patientRepo.findByEmail(upPatient.getEmail());
+		
+		System.out.println(updatedPatient.getEmail());
+		Users user = userRepo.findByUsername(upPatient.getEmail());
+		boolean y=user.setPassword(encodedPassword);;
+
+		boolean x = updatedPatient.setPassword(encodedPassword);
+		
+		userRepo.save(user);
+		patientRepo.save(updatedPatient);
+		System.out.println(x);
+		System.out.println(updatedPatient.getPassword());
+		ResponseMessage resMsg;
+		if (x&&y) {
+//			messageService.sendUpdateSMS(updatedPatient.getPhone());
+			messageService.sendUpdateEmail(upPatient.getEmail());
+			resMsg = new ResponseMessage("Success", new String[] { "Password updated successfully" });
+			log.debug("Password updated successfully");
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Password failed to update" });
+			log.debug("Password failed to update");
+		}
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("")
 				.buildAndExpand(updatedPatient.getPatientId()).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);

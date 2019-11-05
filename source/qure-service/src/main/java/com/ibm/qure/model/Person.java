@@ -28,8 +28,9 @@ public abstract class Person {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public boolean setPassword(String password) {
 		this.password = password;
+		return true;
 	}
 
 	public String getEmail() {

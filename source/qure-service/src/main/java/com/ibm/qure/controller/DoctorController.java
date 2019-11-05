@@ -112,19 +112,51 @@ public class DoctorController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createDoctor(@RequestBody @Valid Doctor doctor)
 			throws URISyntaxException, ApplicationException, QureApplicationException {
+		boolean x = false;
+		try {
+			
 
-		String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
-		doctor.setPassword(encodedPassword);
-		doctorRepo.save(doctor);
+			String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
+			doctor.setPassword(encodedPassword);
+			
+			//System.out.println(doctor+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+			
+			System.out.println(doctor.getEmail());
+			Users existDoc = userRepo.findByUsername(doctor.getEmail());
+			
+			//System.out.println("existsXXXXXXXXXXXXXXXXXXXXXXXXXX    "+existDoc);
+			
+			if(existDoc==null)
+			{
+				
+				x = doctorService.create(doctor);
+				
+				Users user = new Users(doctor.getEmail(), doctor.getPassword(), doctor.getDoctorId(), "DOCTOR");
+				log.debug(user.getUsername());
+				log.debug(user.getPassword());
+				
+				userRepo.save(user);
+				
+				}
+			
+			else
+			{
+			//doctorRepo.save(doctor);
+				System.out.println("Doctor exists.");
+				throw new QureApplicationException();
+			
+		}
+		}
+		
+		catch (Exception e) {
+			throw new QureApplicationException("The profile already exists. Please check your credentials." + e.getMessage(), e);
+		}
+		
 
-		Users user = new Users(doctor.getEmail(), doctor.getPassword(), doctor.getDoctorId(), "DOCTOR");
-		log.debug(user.getUsername());
-		log.debug(user.getPassword());
-		userRepo.save(user);
 
 		ResponseMessage resMsg;
 
-		boolean x = doctorService.create(doctor);
+		
 
 		if (x) {
 			messageService.sendSMS(doctor.getPhone(), doctor.getName());
@@ -162,6 +194,45 @@ public class DoctorController {
 
 		return ResponseEntity.created(location).body(resMsg);
 	}
+	
+	@PutMapping
+	@CrossOrigin("*")
+	public ResponseEntity<ResponseMessage> updatePassword(@RequestBody Doctor upDoctor)
+			throws URISyntaxException, ApplicationException, QureApplicationException {
+		
+		System.out.println(upDoctor.getEmail()+ "   "+ upDoctor.getPassword());
+		
+		String encodedPassword = bCryptPasswordEncoder.encode(upDoctor.getPassword());
+		
+		
+		Doctor updatedDoctor = doctorRepo.findByEmail(upDoctor.getEmail());
+		
+		System.out.println(updatedDoctor.getEmail());
+		Users user = userRepo.findByUsername(upDoctor.getEmail());
+		boolean y=user.setPassword(encodedPassword);;
+
+		boolean x = updatedDoctor.setPassword(encodedPassword);
+		
+		userRepo.save(user);
+		doctorRepo.save(updatedDoctor);
+		System.out.println(x);
+		System.out.println(updatedDoctor.getPassword());
+		ResponseMessage resMsg;
+		if (x&&y) {
+//			messageService.sendUpdateSMS(updatedPatient.getPhone());
+			messageService.sendUpdateEmail(upDoctor.getEmail());
+			resMsg = new ResponseMessage("Success", new String[] { "Password updated successfully" });
+			log.debug("Password updated successfully");
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Password failed to update" });
+			log.debug("Password failed to update");
+		}
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("")
+				.buildAndExpand(updatedDoctor.getDoctorId()).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
+	}
+
 
 	// Delete Doctor DELETE /doctors/{id}
 	@DeleteMapping("/{id}")

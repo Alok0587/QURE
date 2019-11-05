@@ -16,6 +16,14 @@ export class DoctorLoginComponent implements OnInit {
   dSubscription: Subscription;
   dData: any;
 
+  message: any;
+
+  passwordnew:string;
+  passwordconfirm:string;
+  isSaved2: boolean;
+  emailid:string;
+  password:string;
+
   constructor(private doctorService: DoctorService, public router: Router, private route :ActivatedRoute) {
 
     if(this.route.snapshot.paramMap.get('regStatus')){
@@ -27,6 +35,41 @@ export class DoctorLoginComponent implements OnInit {
       password:new FormControl()
    });
    }
+
+   onForgotHandler(p1,p2)
+  {
+
+    console.log(p1+" "+p2);
+    if(p1===p2)
+    {
+      console.log("Passwords match");
+      this.password = p1;
+    }
+    else{
+      console.log("Don't match")
+    }
+    //this.
+  }
+  async onDoctorUpdateHandler(formData)
+  {
+    console.log(formData);
+   // console.log(formData.value);
+
+    console.log(this.emailid);
+    
+
+    var newpass =this.password;
+  //obj.id = this.patientId;
+  console.log(newpass);
+
+    let res = await this.doctorService.updatePassword(this.emailid,newpass);
+    console.log(res);
+    if (res) {
+      this.isSaved2 = true;
+      this.ngOnInit();
+    }
+
+  }
 
    async onSubmitButton2() {
     console.log(this.loginForm.value.email);
@@ -41,7 +84,14 @@ export class DoctorLoginComponent implements OnInit {
       
       
     } else
+    {
       this.validLogin = false;
+      console.log("CAN'TTTTTTTTTTTTTTTTTTTTTTTTT");
+      this.message="Can't login. Please check your credentials.";
+   
+      
+    }
+      
   }
 
   ngOnInit() {

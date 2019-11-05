@@ -40,6 +40,8 @@ export class DoctorService {
       })
       .catch((err) => {
         console.log(err);
+        alert("Can't login. Please check your credentials.");
+      
         return err;
       });
 
@@ -62,6 +64,8 @@ export class DoctorService {
         })
         .catch((err) => {
           console.log(err);
+          alert("Can't register. Profile already exists.")
+        
           reject(err);
         })
         .finally(() => {
@@ -122,6 +126,34 @@ export class DoctorService {
       }));
 
   }
+  updatePassword(email,password)
+  {
+    let _url = this.REST_API_URL ;
+
+    console.log(email+"   "+password);
+    let usrObj={
+      'email': email,
+      'password': password
+    }
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.put(_url, usrObj)
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+        .finally(() => {
+          console.log("Ends");
+        });
+    });
+    return promise;
+  }
+
   deleteDoctor(id: any) {
 
     let uandp = sessionStorage.getItem('usernameandpassword');

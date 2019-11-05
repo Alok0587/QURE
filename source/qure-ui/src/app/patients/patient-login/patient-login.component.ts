@@ -14,6 +14,12 @@ export class PatientLoginComponent implements OnInit {
   loginForm: FormGroup;
   validLogin = false;
   regStatus:boolean = false;  
+  message: any;  
+  passwordnew:string;
+  passwordconfirm:string;
+  isSaved2: boolean;
+  emailid:string;
+  password:string;
 
   constructor(private patientService: PatientService, private route :ActivatedRoute, private router: Router) {
 
@@ -28,6 +34,40 @@ export class PatientLoginComponent implements OnInit {
       password: new FormControl()
     });
   }
+  onForgotHandler(p1,p2)
+  {
+
+    console.log(p1+" "+p2);
+    if(p1===p2)
+    {
+      console.log("Passwords match");
+      this.password = p1;
+    }
+    else{
+      console.log("Don't match")
+    }
+    //this.
+  }
+  async onPatientUpdateHandler(formData)
+  {
+    //console.log(formData);
+   // console.log(formData.value);
+
+    console.log(this.emailid);
+    
+
+    var newpass =this.password;
+  //obj.id = this.patientId;
+  console.log(newpass);
+
+    let res = await this.patientService.updatePassword(this.emailid,newpass);
+    console.log(res);
+    if (res) {
+      this.isSaved2 = true;
+      this.ngOnInit();
+    }
+
+  }
 
   async onSubmitButton() {
     console.log(this.loginForm.value.email);
@@ -40,7 +80,12 @@ export class PatientLoginComponent implements OnInit {
       this.router.navigate(['patients']);
       console.log("logged in");
     } else
-      this.validLogin = false;
+      {
+        this.validLogin = false;
+        console.log("CAN'TTTTTTTTTTTTTTTTTTTTTTTTT");
+        this.message="Can't login. Please check your credentials.";
+      
+      }
   }
 
   ngOnInit() {    

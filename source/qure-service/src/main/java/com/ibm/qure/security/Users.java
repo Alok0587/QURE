@@ -39,8 +39,9 @@ public class Users {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public boolean setPassword(String password) {
 		this.password = password;
+		return true;
 	}
 
 	public Users() {
