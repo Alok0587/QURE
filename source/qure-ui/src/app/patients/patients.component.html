@@ -2,106 +2,124 @@
 <a routerLink="/patients/login">Go back</a>
 <section class="my-5">
 
-    <!-- Grid row 1 -->
-    <div class="row" *ngIf="patientData">
+  <!-- Grid row 1 -->
+  <div class="row" *ngIf="patientData">
 
-        <!-- Grid column -->
-        <div class="col-md-3">
+    <!-- Grid column -->
+    <div class="col-md-3">
 
-            <!-- Card -->
-            <div class="card card-personal" id="cards">
+      <!-- Card -->
+      <div class="card card-personal text-center border-primary" style=" background: rgba(197, 210, 231, 0.2);"
+        id="cards">
 
-                <!-- Card image-->
-                <img class="card-img-top" src="\assets\image\person3.gif" alt="Card image cap">
-                <!-- Card image-->
+        <!-- Card image-->
+        <img class="card-img-top" src="\assets\image\person3.gif" alt="Card image cap">
+        <!-- Card image-->
 
-                <!-- Card content -->
-                <div class="card-body">
-                    <!-- Title-->
-                    <a>
-                        <h4 class="card-title title-one">{{patientData.name}}</h4>
-                    </a>
-                    <p class="card-meta">{{patientData.email}}</p>
-                    <!-- Text -->
-                    <p class="card-text">{{patientData.phone}}</p>
-                    <hr>
-                   <center> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPatientModal"
-                    (click)="onEditHandler()">view/edit profile</button></center>
-                 
-                </div>
-                <!-- Card content -->
-
-            </div>
-            <!-- Card -->
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a>
+            <h4 class="card-title title-one"
+              style="font-weight: bold;font-size:18px; text-transform: uppercase;color: rgb(13, 13, 68);">
+              {{patientData.name}}</h4>
+          </a>
+          <p class="card-meta" style="color: rgb(14, 56, 66);">{{patientData.email}}</p>
+          <!-- Text -->
+          <p class="card-text" style="color: rgb(14, 56, 66);">{{patientData.phone}}</p>
+          <hr>
+          <center> <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+              data-target="#editPatientModal" (click)="onEditHandler()">View/edit profile</button></center>
 
         </div>
-        <!-- Grid column 2 -->
-        <div class="col-md-6">
+        <!-- Card content -->
 
-            <!-- Card -->
-            <div class="card text-center card-personal" id="cards">
+      </div>
+      <!-- Card -->
 
-                <!-- Card image-->
-                <img class="card-img-top" src="\assets\image\appoint1.jpg" alt="Card image cap">
-                <!-- Card image-->
+    </div>
+    <!-- Grid column 2 -->
+    <div class="col-md-6">
 
-                <!-- Card content -->
-                <div class="card-body ">
-                    <!-- Title-->
-                    <a>
-                            <p class="card-text">You don't have to visit or call us now.</p>
-                           
-                        
-                    </a>
-                    <button type="button" class="btn-sm btn-primary" (click)="onBookAppointmentHandler(patientData.patientId)">Book new appointment</button>
-                    <button type="button" (click)="onViewAppointmentList()" class="btn-sm btn-danger">Your appointments</button>  
-                      
-                   
-                    <!-- <p class="card-meta">{{patientData.email}}</p> -->
-                    <!-- Text -->
-                   
-                   
+      <!-- Card -->
+      <div class="card text-center card-personal border-primary"
+        style="background: rgba(197, 210, 231, 0.2);color: rgb(13, 13, 68);" id="cards">
 
-                </div>
-                <!-- Card content -->
+        <!-- Card image-->
+        <img class="card-img-top" src="\assets\image\appoint1.jpg" alt="Card image cap">
+        <!-- Card image-->
 
-            </div>
-            <!-- Card -->
+        <!-- Card content -->
+        <div class="card-body ">
+
+          <!-- Title-->
+          <a>
+            <p class="card-text" style="font-weight: bold; font-size:18px;">APPOINTMENTS
+            </p>
+
+
+
+
+
+          </a>
+          <hr>
+          <button type="button" class="btn btn-outline-info"
+            (click)="onBookAppointmentHandler(patientData.patientId)">Book new appointment</button>
+          <button type="button" (click)="onViewAppointmentList()" class="btn btn-outline-danger">Your
+            appointments</button>
+
+
+
+
+          <!-- <p class="card-meta">{{patientData.email}}</p> -->
+          <!-- Text -->
+
+
 
         </div>
+        <!-- Card content -->
 
-        <!-- Grid column3 -->
-        <div class="col-md-3">
-      
-            <!-- Card -->
-            <div class="card text-center card-personal" id="cards">
-      
-              <!-- Card image-->
-              <img class="card-img-top" src="\assets\image\medicine.jpg" alt="Card image cap">
-              <!-- Card image-->
-      
-              <!-- Card content -->
-              <div class="card-body ">
-                <!-- Title-->
-                <a>
-                  <h4 class="card-title title-one ">Book Medicines</h4>
-                </a>
-                <!-- <p class="card-meta">{{patientData.email}}</p> -->
-                <!-- Text -->
-                <p class="card-text">Our own QURE Pharmacy is at your service.</p>
-               
-                <button type="button" class="btn-sm btn-primary" (click)="viewOrderList(patientData.patientId)">View medicines</button>     <hr>
-                
-              </div>
-              <!-- Card content -->
-      
-            </div>
-            <!-- Card -->
-      
-          </div>
-      
+      </div>
+      <!-- Card -->
+
+    </div>
+
+    <!-- Grid column3 -->
+    <div class="col-md-3">
+
+      <!-- Card -->
+      <div class="card text-center card-personal border-primary"
+        style="background:  rgba(197, 210, 231, 0.2);color: rgb(13, 13, 68);" id="cards">
+
+        <!-- Card image-->
+        <img class="card-img-top" src="\assets\image\medicine.jpg" alt="Card image cap">
+        <!-- Card image-->
+
+        <!-- Card content -->
+        <div class="card-body ">
+          <!-- Title-->
+          <a>
+            <h4 class="card-title title-one " style="font-weight:bold;font-size:18px;">BOOK MEDICINES</h4>
+          </a>
+          <!-- <p class="card-meta">{{patientData.email}}</p> -->
+          <!-- Text -->
+          <p class="card-text ">Our own QURE Pharmacy is at your service.</p>
+          <!-- <p class="card-text h4-responsive">Click below to view prescribes medicines.</p> -->
+          <hr>
+
+          <button type="button" class="btn btn-outline-primary" (click)="viewOrderList(patientData.patientId)">View
+            medicines</button>
+
         </div>
-    <!-- Grid row -->
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
+
+    </div>
+
+  </div>
+  <!-- Grid row -->
 
 </section>
 <!-- Section: Personal card -->
@@ -109,27 +127,27 @@
 <div>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="viewAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <!-- Modal -->
+  <div class="modal fade" id="viewAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Appointment Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" *ngIf="duplicateAppointmentData">
-                <form ngNativeValidate #f="ngForm" (ngSubmit)="onUpdateHandler(f)">
-                    <!-- <div class="form-group row">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Appointment Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="duplicateAppointmentData">
+          <form ngNativeValidate #f="ngForm" (ngSubmit)="onUpdateHandler(f)">
+            <!-- <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Appointment Id</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="id" placeholder="Enter Id"
                                 [(ngModel)]="appointmentData.appointmentId" disabled required>
                         </div>
                     </div> -->
-                    <!-- <div class="form-group row">
+            <!-- <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">date</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" name="date" placeholder="Enter date"
@@ -153,55 +171,56 @@
                     </div> -->
 
 
-                    <div class="form-group row">
-                      <label for="staticEmail" class="col-sm-3 col-form-label">Date</label>
-                      <div class="col-sm-9">
-                          <input type="date" class="form-control" name="appointmentDate" id="appointmentDate"
-                              [(ngModel)]="duplicateAppointmentData.appointmentDate" required min=0>
-                          <p class="text-danger" id="dateErr"></p>    
-                      </div>
-                  </div>
-                  <div class="form-group row">
-                      <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
-                      <div class="col-sm-9">
-                          <!-- <input type="time" class="form-control" name="time" placeholder="Enter time"
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Date</label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="appointmentDate" id="appointmentDate"
+                  [(ngModel)]="duplicateAppointmentData.appointmentDate" required min=0>
+                <p class="text-danger" id="dateErr"></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
+              <div class="col-sm-9">
+                <!-- <input type="time" class="form-control" name="time" placeholder="Enter time"
                               [(ngModel)]="appointmentData.time"> -->
 
 
-                          <select (click)="showSlot()" (focus)="checkDate()" class="form-control" name="time"
-                              [(ngModel)]="duplicateAppointmentData.time" required>
-                              <option value={{slot}} *ngFor="let slot of slotList">{{slot}}</option>
-                          </select>
-                      </div>
-                  </div>
-
-
-
-
-
-
-                    <div class="alert alert-success" *ngIf="isSaved">
-                        Updated successfully!
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
+                <select (click)="showSlot()" (focus)="checkDate()" class="form-control" name="time"
+                  [(ngModel)]="duplicateAppointmentData.time" required>
+                  <option value={{slot}} *ngFor="let slot of slotList">{{slot}}</option>
+                </select>
+              </div>
             </div>
+
+
+
+
+
+
+            <div class="alert alert-success" *ngIf="isSaved">
+              Updated successfully!
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<!--modal for update and view patient-->
+  <!--modal for update and view patient-->
 
-<div class="modal fade" id="editPatientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="editPatientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" *ngIf="duplicatePatientData">View/Update {{duplicatePatientData.name}}'s Profile</h5>
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="duplicatePatientData">View/Update
+            {{duplicatePatientData.name}}'s Profile</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -211,15 +230,14 @@
             <div class="form-group row">
               <label for="age" class="col-sm-3 col-form-label">Age</label>
               <div class="col-sm-9">
-                <input type="int" class="form-control" name="age" 
-                  [(ngModel)]="duplicatePatientData.age" required>
+                <input type="int" class="form-control" name="age" [(ngModel)]="duplicatePatientData.age" required>
               </div>
-            </div>            
+            </div>
             <div class="form-group row">
               <label for="phone" class="col-sm-3 col-form-label">Phone</label>
               <div class="col-sm-9">
-                <input type="number" class="form-control" name="phone" 
-                  [(ngModel)]="duplicatePatientData.phone" required>
+                <input type="number" class="form-control" name="phone" [(ngModel)]="duplicatePatientData.phone"
+                  required>
               </div>
             </div>
             <div class="form-group row">
@@ -239,15 +257,15 @@
             <div class="form-group row">
               <label for="street" class="col-sm-3 col-form-label">Street</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="street"
-                  [(ngModel)]="duplicatePatientData.address.street" required>
+                <input type="text" class="form-control" name="street" [(ngModel)]="duplicatePatientData.address.street"
+                  required>
               </div>
             </div>
             <div class="form-group row">
               <label for="city" class="col-sm-3 col-form-label">City</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="city"
-                  [(ngModel)]="duplicatePatientData.address.city" required>
+                <input type="text" class="form-control" name="city" [(ngModel)]="duplicatePatientData.address.city"
+                  required>
               </div>
             </div>
             <div class="form-group row">
@@ -260,8 +278,8 @@
             <div class="form-group row">
               <label for="state" class="col-sm-3 col-form-label">State</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="state"
-                  [(ngModel)]="duplicatePatientData.address.state" required>
+                <input type="text" class="form-control" name="state" [(ngModel)]="duplicatePatientData.address.state"
+                  required>
               </div>
             </div>
             <div class="alert alert-success" *ngIf="isSaved2">
@@ -269,8 +287,8 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <!-- <button type="button" class="btn btn-secondary" >Close</button> -->
+              <button type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
             </div>
           </form>
         </div>
@@ -280,52 +298,52 @@
 </div>
 
 
-    
+
 
 <div class="ScrollStyle">
   <h3 *ngIf="appointmentList" [hidden]="!showAppointments">APPOINTMENTS</h3>
-  <div class="row" *ngIf ="appointmentList" [hidden]="!showAppointments">
-  <p *ngIf ="!appointmentList">NO APPOINTMENTS FOUND</p>
-      <div class="card" *ngFor="let appointment of appointmentList" id="appmtcard">
-          <div class="card-body">
-              <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
-              <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
-              <p class="card-text">Time: {{appointment.time}}</p>
-              <p class="card-text" style="display: none;">Doctor: {{appointment.doctorId}}</p>
-              <!-- <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
+  <div class="row" *ngIf="appointmentList" [hidden]="!showAppointments">
+    <p *ngIf="!appointmentList">NO APPOINTMENTS FOUND</p>
+    <div class="card" *ngFor="let appointment of appointmentList" id="appmtcard">
+      <div class="card-body">
+        <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
+        <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
+        <p class="card-text">Time: {{appointment.time}}</p>
+        <p class="card-text" style="display: none;">Doctor: {{appointment.doctorId}}</p>
+        <!-- <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
               (click)="onViewHandler(appointment)">View/Update</button>
               <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger">Delete</button>
           </div> -->
-          <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
-              (click)="onViewHandler(appointment)" *ngIf="appointment.appointmentStatus==0">View/Update</button>
-              <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger"
-              *ngIf="appointment.appointmentStatus==0">Delete</button>
-              <p class="card-text" *ngIf="appointment.appointmentStatus!=0">completed &#x2714;</p>
-              <p class="card-text" *ngIf="appointment.appointmentStatus==2">rated &#x2714;</p>
-              <button type="button" (click)="onRatingHandler(appointment)" class="btn-sm btn-success" 
-              data-toggle="modal" data-target="#ratings" *ngIf="appointment.appointmentStatus==1">Give Ratings</button>
-          </div>
+        <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
+          (click)="onViewHandler(appointment)" *ngIf="appointment.appointmentStatus==0">View/Update</button>
+        <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger"
+          *ngIf="appointment.appointmentStatus==0">Delete</button>
+        <p class="card-text" *ngIf="appointment.appointmentStatus!=0">completed &#x2714;</p>
+        <p class="card-text" *ngIf="appointment.appointmentStatus==2">rated &#x2714;</p>
+        <button type="button" (click)="onRatingHandler(appointment)" class="btn-sm btn-success" data-toggle="modal"
+          data-target="#ratings" *ngIf="appointment.appointmentStatus==1">Give Ratings</button>
       </div>
+    </div>
 
   </div>
 </div>
 
 <div class="ScrollStyle">
   <h3 *ngIf="orderList" [hidden]="!showOrders">ORDERS</h3>
-<div class="row" *ngIf ="orderList"  >
-<p *ngIf ="!orderList">NO PRESCRIPTIONS FOUND</p>
+  <div class="row" *ngIf="orderList">
+    <p *ngIf="!orderList">NO PRESCRIPTIONS FOUND</p>
     <div class="card col-sm-4" *ngFor="let order of orderList">
-        <div class="card-body">
-            <p class="card-title">Booked ID: {{order.bookedId}}</p>
-            <p class="card-text">Appointment ID: {{order.appointmentId}}</p>
-           <p class="card-text">Status: {{order.processingStatus}}</p>
-            <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
-                (click)="onViewHandler(order.bookedId)">View/Update</button>
-            <button type="button" (click)="onDeleteHandler(order.bookedId)" class="btn-sm btn-danger">Delete</button>
-        </div>
+      <div class="card-body">
+        <p class="card-title">Booked ID: {{order.bookedId}}</p>
+        <p class="card-text">Appointment ID: {{order.appointmentId}}</p>
+        <p class="card-text">Status: {{order.processingStatus}}</p>
+        <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
+          (click)="onViewHandler(order.bookedId)">View/Update</button>
+        <button type="button" (click)="onDeleteHandler(order.bookedId)" class="btn-sm btn-danger">Delete</button>
+      </div>
     </div>
 
-</div>
+  </div>
 </div>
 
 <div class="modal fade" id="ratings" tabindex="-1" role="dialog" aria-labelledby="ratings"
@@ -333,81 +351,46 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ratings">Rate your Experience</h5>
+          <h5 class="modal-title" id="ratings"><b>Rate your Experience</b></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" >
-
-
-
-
             <form class="col-md-8 offset-md-1" [formGroup]="ratingForm" (ngSubmit)="onAddRatingHandler()">               
-               <label for="rating" class="col-form-label">Rate your Experience with us!!!</label>
+               <label for="rating" class="col-form-label">Please tell us how your last consultation went...</label>
                <div class="col-md-8 offset-md-2">
-               <div>
-                 <input id="rating1" type="radio" value="5" name="rating" formControlName="rating" />&nbsp;
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                        </div>
-                    <br>
-                    <div >
-                        <input id="rating1" type="radio" value="4" name="rating" formControlName="rating" >&nbsp;
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                        </div>                      
-                    <br>
-                      <div >
-                        <input id="rating1" type="radio" value="3" name="rating" formControlName="rating" >&nbsp;
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                        <span class="fa fa-heart checked"></span>
-                      </div>
-                    <br>                   
-                    <div >
-                      <input id="rating1" type="radio" value="2" name="rating" formControlName="rating" >&nbsp;
-                      <span class="fa fa-heart checked"></span>
-                      <span class="fa fa-heart checked"></span>
-                    </div>                                        
-                    <br>                    
-                      <div >
-                        <input id="rating1" type="radio" value="1" name="rating" formControlName="rating">&nbsp;
-                        <span class="fa fa-heart checked"></span>
-                      </div>
-                      <br>                                                                                        
-                </div>   
-                    <div class="form-group row">
-                      <div class="col-md-8 offset-md-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </div>
+                 <input class="rating1" type="radio" value="5" name="rating" formControlName="rating" (click)="heartMaker(5)" checked>5 &nbsp;
+                 <input class="rating1" type="radio" value="4" name="rating" formControlName="rating" (click)="heartMaker(4)">4 &nbsp;
+                 <input class="rating1" type="radio" value="3" name="rating" formControlName="rating" (click)="heartMaker(3)">3 &nbsp;
+                 <input class="rating1" type="radio" value="2" name="rating" formControlName="rating" (click)="heartMaker(2)">2 &nbsp;
+                 <input class="rating1" type="radio" value="1" name="rating" formControlName="rating" (click)="heartMaker(1)">1 &nbsp;<br>
+                <div id="rating-ground">                 
+                </div>
+
+                
+               </div>
+                  <div class="form-group row">
+                    <div class="col-md-8 offset-md-3">
+                      <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
+                  </div>
+                  
+
     
             </form>
-
-
-
-
-
-
-
-          
         </div>
       </div>
     </div>
   </div>
 <style>
-  #cards{
+  #cards {
     height: 550px;
   }
-  #appmtcard{
+
+  #appmtcard {
     height: 300px;
     /* background-color: darkgrey; */
     width: 300px;
   }
-  </style>
+</style>

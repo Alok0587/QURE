@@ -51,8 +51,8 @@
     <div class="row">
       <div class="col-sm-9" *ngFor="let appointment of appointmentList">
 
-        <div class="card">
-          <div class="card-body card-deck">
+        <div class="card"*ngIf="appointment.appointmentStatus==0">
+          <div class="card-body card-deck" >
             <b><h3 class="card-title text-warning"><i class="far fa-calendar-alt"></i>&nbsp;{{appointment.appointmentDate}}</h3>
             <h5 class="card-text text-danger">Time: {{appointment.time}}</h5></b>&nbsp;&nbsp;
             <p class="card-text"><u>Appointment ID: {{appointment.appointmentId}}</u></p>&nbsp;&nbsp;
@@ -66,9 +66,33 @@
            
           </div>
         </div>
+        <br>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-9" *ngFor="let appointment of appointmentList">
+  
+          <div class="card bg-light" *ngIf="appointment.appointmentStatus!=0">
+            <div class="card-body card-deck">
+              <b><h3 class="card-title text-warning"><i class="far fa-calendar-alt"></i>&nbsp;{{appointment.appointmentDate}}</h3>
+              <h5 class="card-text text-danger">Time: {{appointment.time}}</h5></b>&nbsp;&nbsp;
+              <p class="card-text"><u>Appointment ID: {{appointment.appointmentId}}</u></p>&nbsp;&nbsp;
+              <b><p class="card-text text-success" *ngIf="appointment.appointmentStatus!=0">Completed &#x2714;</p></b>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn-sm-3 btn-info " data-toggle="modal" data-target="#viewAppointmentModal"
+                (click)="onViewHandler(appointment)">View</button>&nbsp;
+                <button type="button" (click)="onCompleteHandler(appointment)"
+                  class="btn-sm btn-success" *ngIf="appointment.appointmentStatus==0">Completed</button>&nbsp;
+                  <button type="button" (click)="onPrescribeHandler(appointment.appointmentId,appointment.patientId)"
+                    class="btn-sm btn-alert"  *ngIf="appointment.appointmentStatus==0">Prescribe</button>
+            </div>
+          </div>
+          <br>
+        </div>
       </div>
 
-    </div>
+
+
   </div>
   </div>
 </div>

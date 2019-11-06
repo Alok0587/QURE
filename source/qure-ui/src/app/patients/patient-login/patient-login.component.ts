@@ -94,5 +94,8 @@ async generateRandomNumber(){
 
   ngOnInit() {    
   }
-
+  
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+    }
 }

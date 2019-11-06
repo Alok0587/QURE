@@ -207,6 +207,15 @@ export class PatientsComponent implements OnInit {
     
   }
 
+  heartMaker(n:number){
+    document.getElementById('rating-ground').innerHTML="";
+    console.log("rating="+$(".rating1").val());
+    console.log("n="+n);
+    for(let i=0;i<n;i++)
+        document.getElementById('rating-ground').innerHTML+="<span class='fa fa-heart checked' style='color:red;'></span>&nbsp;";
+    
+  }
+
   checkDate() {
     this.selDate = $("#appointmentDate");
     console.log("in check date2. date=" + this.selDate.val());
