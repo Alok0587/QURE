@@ -62,7 +62,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <form ngNativeValidate #f="ngForm" (ngSubmit)="onPatientUpdateHandler(f)">
+          <p *ngIf="emailid==null">enter your email id</p>
+          <form ngNativeValidate #f="ngForm" (ngSubmit)="onPatientUpdateHandler(f)" *ngIf="emailid!=null">
               <div class="form-group row">
                   <label for="emailID" class="col-sm-3 col-form-label">Email</label>
                   <div class="col-sm-9">
