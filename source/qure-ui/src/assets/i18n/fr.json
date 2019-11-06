@@ -1,0 +1,25 @@
+{
+    "Contact":
+    {
+        "TITLE": "Vous avez des questions sur nos produits, nos services d'assistance ou autre?",
+        "TEXT": "Notre équipe de soutien est là pour vous aider! ",
+        "SELECT":"Choisir la langue",
+        "FirstLine": "Prenez contact avec nous",
+        "Hours":"Heures d'ouverture:",
+        "Lastline":"Fermé le dimanche"
+    },
+    "About":
+    {
+        "TitleOne":"Nous faisons des soins de santé",
+        "TitleTwo":"Compréhensible, accessible et abordable",
+        "SELECT":"Choisir la langue",
+        "Epharmacy":"Commandez des médicaments et des produits de santé en ligne et faites les livrer chez vous dans des pharmacies agréées",
+        "Consultation":"Consultez gratuitement des médecins qualifiés et enregistrés sur le chat",
+        "Labtest":"Un laboratoire de lecture teste en ligne un service de collecte d'échantillons à domicile sans tracas.",
+        "BelowCards":" Qure vous apporte une plate-forme en ligne, accessible pour tous vos besoins en matière de santé. Nous essayons de faire soins de santé une expérience sans tracas pour vous. Obtenez vos médicaments allopathiques, ayurvédiques, homéopathiques, vitamines & compléments nutritionnels et autres produits liés à la santé livrés à domicile. Des tests de laboratoire? Cela aussi dans le confort de votre maison. Docteur consulter? Oui, nous avons aussi couvert cela.",
+        "Sideheading":"Notre travail et notre culture",
+        "Besideimage":"Chez Qure, nous croyons fermement qu’une culture de qualité est un ingrédient important du succès d’une startup. Notre culture favorise la franchise radicale, les itérations rapides, la collaboration et une hiérarchie plate. Ci-dessous figurent nos valeurs fondamentales qui consacrent notre culture. Fait, c'est mieux que parfait: nous sommes une organisation hautement expérimentale et axée sur les données. En tant que tels, nous croyons à l'expédition rapide et fréquente. Nous pensons qu’à long terme, l’échec est plus rapide que tous les autres. Équipe et non individuelle: nous croyons au pouvoir de l’équipe. Pour nous, une équipe de superstars est beaucoup plus importante qu’une personne de superstars. Learn to pronounce"
+        
+    }
+
+}

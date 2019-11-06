@@ -3,282 +3,210 @@
 
 <div class="row">
 
-        <!-- Grid row -->
-        <div class="col-md-6" *ngIf="doctorData">
-      
-          <!-- Grid column -->
-          <div class="col-md-6 col-lg-6">
-      
-            <!-- Card -->
-            <div class="card card-personal">
-      
-              <!-- Card image-->
-              <img class="card-img-top" src="\assets\image\doctor-gif.gif" alt="Card image cap">
-              <!-- Card image-->
-      
-              <!-- Card content -->
-              <div class="card-body">
-                <!-- Title-->
-                <a>
-                  <h4 class="card-title title-one">Mr./Ms.{{doctorData.name}}</h4>
-                </a>
-                <p class="card-meta">{{doctorData.email}}</p>
-                <!-- Text -->
-                <p class="card-text">{{doctorData.phone}}</p>
-                <hr>
-                <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal"
-        (click)="onEditHandler()">Edit</button></center>
-              </div>
-              <!-- Card content -->
-      
-            </div>
-            <!-- Card -->
-      
+  <!-- Grid row -->
+  <div class="col-md-3" *ngIf="doctorData">
+
+    <!-- Grid column -->
+    <!-- <div class="col-md-6 col-lg-6"> -->
+
+      <!-- Card -->
+      <div class="card card-personal">
+
+        <!-- Card image-->
+        <img class="card-img-top" src="\assets\image\doctor-gif.gif" alt="Card image cap" height="400px;">
+        <!-- Card image-->
+
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a>
+            <h4 class="card-title title-one">{{doctorData.name}}</h4>
+          </a>
+          <p class="card-meta">{{doctorData.email}}</p>
+          <!-- Text -->
+          <p class="card-text">{{doctorData.phone}}</p>
+          <hr>
+          <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal"
+              (click)="onEditHandler()">Edit</button></center>
+        </div>
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
+
+
+
+  </div>
+
+  <!-- Grid row -->
+  <div class="col-md-9">
+
+    <div>
+      <h3>Appointments</h3>
+    </div>
+    <hr />    
+    
+    <div class="ScrollStyle">
+
+    <div class="row">
+      <div class="card" *ngFor="let appointment of appointmentList">
+
+        <div class="card">
+          <div class="card-body card-deck">
+            <b><h3 class="card-title"><i class="far fa-calendar-alt"></i>&nbsp;{{appointment.appointmentDate}}</h3>
+            <h5 class="card-text">Time: {{appointment.time}}</h5></b>
+
+            <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
+            <p class="card-text" *ngIf="appointment.appointmentStatus!=0">completed &#x2714;</p>
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#viewAppointmentModal"
+              (click)="onViewHandler(appointment)">View</button>
+              <button type="button" (click)="onCompleteHandler(appointment)"
+                class="btn-sm btn-secondary" *ngIf="appointment.appointmentStatus==0">completed</button>
+                <button type="button" (click)="onPrescribeHandler(appointment.appointmentId,appointment.patientId)"
+                  class="btn-sm btn-primary"  *ngIf="appointment.appointmentStatus==0">Prescribe</button>
+           
           </div>
-          <!-- Grid column -->
-      
-        </div>
-
-        <!-- Grid row -->
-<div class="col-md-6">
-
-        <div>
-            <h3>Appointments</h3>
-        </div>
-        <div class="ScrollStyle">
-            <div class="row" >
-
-                <div class="card col-md-3" *ngFor="let appointment of appointmentList" 
-                 style="background-color:#ffffe6;">
-                    <div class="card-body" >
-                        <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
-                        <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
-                        <p class="card-text">Time: {{appointment.time}}</p>
-                        <center><button type="button" class="btn-sm btn-primary " data-toggle="modal"
-                            data-target="#viewAppointmentModal"
-                            (click)="onViewHandler(appointment)">View</button> </center>
-                       <center><button type="button" (click)="onDeleteHandler(appointment.appointmentId)"
-                            class="btn-sm btn-danger">Cancel</button></center>
-                        <!-- <p class="card-text">Slot: {{booking.slot}}</p> -->
-                        <!-- <button type="button">Cancel this appointment</button> -->
-                    </div>
-                </div>
-
-            </div>
         </div>
       </div>
-      
-    </div>
-      <!-- Section: Personal card -->
-      <div class="modal fade" id="viewAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Appointment details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" *ngIf="duplicateAppointmentData">
-                <form ngNativeValidate #f="ngForm">
-                    <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Appointment Id</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="id" placeholder="Enter Id"
-                                [(ngModel)]="duplicateAppointmentData.appointmentId" disabled required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">date</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="date" placeholder="Enter date"
-                                [(ngModel)]="duplicateAppointmentData.appointmentDate" disabled required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="time" placeholder="Enter time"
-                                [(ngModel)]="duplicateAppointmentData.time" disabled required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Patient Id</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="pid" placeholder="Enter id"
-                                [(ngModel)]="duplicateAppointmentData.patientId" disabled required>
-                        </div>
-                    </div>
 
-                    <div class="alert alert-success" *ngIf="isSaved">
-                        Updated successfully!
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                        <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
-</div>  
+  </div>
+  </div>
+</div>
+<!-- Section: Personal card -->
+<div class="modal fade" id="viewAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Appointment details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="duplicateAppointmentData">
+        <form ngNativeValidate #f="ngForm">
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-3 col-form-label">Appointment Id</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="id" placeholder="Enter Id"
+                [(ngModel)]="duplicateAppointmentData.appointmentId" disabled required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-3 col-form-label">date</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="date" placeholder="Enter date"
+                [(ngModel)]="duplicateAppointmentData.appointmentDate" disabled required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="time" placeholder="Enter time"
+                [(ngModel)]="duplicateAppointmentData.time" disabled required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-3 col-form-label">Patient Id</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="pid" placeholder="Enter id"
+                [(ngModel)]="duplicateAppointmentData.patientId" disabled required>
+            </div>
+          </div>
+
+          <div class="alert alert-success" *ngIf="isSaved">
+            Updated successfully!
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-sm btn-secondary" data-dismiss="modal">Close</button>
+            <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--modal for edit doctor-->
 
 
 <div class="modal fade" id="editDoctorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" *ngIf="duplicateDoctorData">View/Update {{duplicateDoctorData.name}}'s Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" *ngIf="duplicateDoctorData">
-          <form ngNativeValidate #f="ngForm" (ngSubmit)="onUpdateHandler(f)">
-            <div class="form-group row">
-              <label for="age" class="col-sm-3 col-form-label">Age</label>
-              <div class="col-sm-9">
-                <input type="int" class="form-control" name="age" 
-                  [(ngModel)]="duplicateDoctorData.age" required>
-              </div>
-            </div>            
-            <div class="form-group row">
-              <label for="phone" class="col-sm-3 col-form-label">Phone</label>
-              <div class="col-sm-9">
-                <input type="number" class="form-control" name="phone" 
-                  [(ngModel)]="duplicateDoctorData.phone" required>
-              </div>
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="duplicateDoctorData">View/Update
+          {{duplicateDoctorData.name}}'s Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="duplicateDoctorData">
+        <form ngNativeValidate #f="ngForm" (ngSubmit)="onUpdateHandler(f)">
+          <div class="form-group row">
+            <label for="age" class="col-sm-3 col-form-label">Age</label>
+            <div class="col-sm-9">
+              <input type="int" class="form-control" name="age" [(ngModel)]="duplicateDoctorData.age" required>
             </div>
-            <div class="form-group row">
-              <label for="gender" class="col-sm-3 col-form-label">Gender</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="gender" [(ngModel)]="duplicateDoctorData.gender"
-                  disabled>
-              </div>
+          </div>
+          <div class="form-group row">
+            <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+            <div class="col-sm-9">
+              <input type="number" class="form-control" name="phone" [(ngModel)]="duplicateDoctorData.phone" required>
             </div>
-            <div class="form-group row">
-              <label for="buildingName" class="col-sm-3 col-form-label">Building Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="buildingName"
-                  [(ngModel)]="duplicateDoctorData.address.buildingName" required>
-              </div>
+          </div>
+          <div class="form-group row">
+            <label for="gender" class="col-sm-3 col-form-label">Gender</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="gender" [(ngModel)]="duplicateDoctorData.gender" disabled>
             </div>
-            <div class="form-group row">
-              <label for="street" class="col-sm-3 col-form-label">Street</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="street"
-                  [(ngModel)]="duplicateDoctorData.address.street" required>
-              </div>
+          </div>
+          <div class="form-group row">
+            <label for="buildingName" class="col-sm-3 col-form-label">Building Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="buildingName"
+                [(ngModel)]="duplicateDoctorData.address.buildingName" required>
             </div>
-            <div class="form-group row">
-              <label for="city" class="col-sm-3 col-form-label">City</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="city"
-                  [(ngModel)]="duplicateDoctorData.address.city" required>
-              </div>
+          </div>
+          <div class="form-group row">
+            <label for="street" class="col-sm-3 col-form-label">Street</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="street" [(ngModel)]="duplicateDoctorData.address.street"
+                required>
             </div>
-            <div class="form-group row">
-              <label for="pincode" class="col-sm-3 col-form-label">Pincode</label>
-              <div class="col-sm-9">
-                <input type="number" class="form-control" name="pincode"
-                  [(ngModel)]="duplicateDoctorData.address.pincode" required>
-              </div>
+          </div>
+          <div class="form-group row">
+            <label for="city" class="col-sm-3 col-form-label">City</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="city" [(ngModel)]="duplicateDoctorData.address.city"
+                required>
             </div>
-            <div class="form-group row">
-              <label for="state" class="col-sm-3 col-form-label">State</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="state"
-                  [(ngModel)]="duplicateDoctorData.address.state" required>
-              </div>
+          </div>
+          <div class="form-group row">
+            <label for="pincode" class="col-sm-3 col-form-label">Pincode</label>
+            <div class="col-sm-9">
+              <input type="number" class="form-control" name="pincode" [(ngModel)]="duplicateDoctorData.address.pincode"
+                required>
             </div>
-            <div class="alert alert-success" *ngIf="isSaved2">
-              Updated successfully!
+          </div>
+          <div class="form-group row">
+            <label for="state" class="col-sm-3 col-form-label">State</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="state" [(ngModel)]="duplicateDoctorData.address.state"
+                required>
             </div>
+          </div>
+          <div class="alert alert-success" *ngIf="isSaved2">
+            Updated successfully!
+          </div>
 
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-          </form>
-        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
       </div>
     </div>
-
- 
-
-<!-- <div class="modal fade" id="editDoctorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Update Doctor</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body" *ngIf="duplicateDoctorData">
-      <form ngNativeValidate #f="ngForm" (ngSubmit)="onUpdateHandler(f)">
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="name" placeholder="Enter name"
-              [(ngModel)]="duplicateDoctorData.name" disabled>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="email" placeholder="Enter Email"
-              [(ngModel)]="duplicateDoctorData.email" required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-3 col-form-label">age</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="age" placeholder="Enter Age"
-              [(ngModel)]="duplicateDoctorData.age" required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-3 col-form-label">Phone</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="phone" placeholder="Enter phone"
-              [(ngModel)]="duplicateDoctorData.phone" required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-3 col-form-label">Doctor Id</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="age" [(ngModel)]="duplicateDoctorData.doctorId"
-              disabled>
-          </div>
-        </div>
-
-
-
-        <div class="alert alert-success" *ngIf="isSaved2">
-          Updated successfully!
-          refresh to view the changes
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-      </form>
-    </div>
   </div>
-</div>
-</div> -->
-      <!-- Section: Personal card -->
-
-    
-      
-      
-
-

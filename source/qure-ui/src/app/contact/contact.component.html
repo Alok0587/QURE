@@ -1,10 +1,16 @@
 <a class="nav-link" routerLink="/"><i class="fa fa-backward" aria-hidden="true"></i>&nbsp;Go back</a>
 <!-- Jumbotron -->
 
+<label for="">
+  <select #langselect (change) ="translate.use(langselect.value)">
+      <option [ngValue]="null">{{'Contact.SELECT'| translate}}</option>
+  <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+</select>
+</label>
 <div class="jumbotron text-center">
 
     <!-- Title -->
-    <h3 class="card-title h3">Have questions about our products, support services, or anything else?</h3>
+    <h3 class="card-title h3">{{'Contact.TITLE' | translate}}</h3>
     <br/>
     <!-- Grid row -->
     <div class="row d-flex justify-content-center">
@@ -12,22 +18,22 @@
       <!-- Grid column -->
       <div class="col-xl-7 pb-2">
         <h4 class="pink-text">
-          <mdb-icon fas icon="microphone"></mdb-icon>&nbsp;
-      <strong>Our Support Team is here to help you !</strong>
+          
+      <strong>{{'Contact.TEXT' | translate}} &nbsp;</strong><mdb-icon fas icon="phone"></mdb-icon>
     </h4>
 
         <p class="card-text">
             
                     
-                <b>Get in touch with Us</b><br>
+                <b>{{'Contact.FirstLine' | translate}}</b><br>
                 <b class="blue-text my-4 font-weight-bold">(080) 4567-4567</b><br>
                 <b class="blue-text my-4 font-weight-bold">contact.qure@gmail.com</b>
                 <br><br>
                 84 Solo Sreet 158/9<br>
                 Marathalli, Bangalore, India<br><br>
-                <b>Open hours:</b><br>
+                <b>{{'Contact.Hours' | translate}}</b><br>
             <b>10 am to 6 pm Mon-Sat<br>
-                Closed on Sundays</b>
+                {{'Contact.Lastline' | translate}}</b>
                 
         </p>
   
@@ -39,8 +45,19 @@
     <hr class="my-4">
   
     <div class="pt-2">
-      <button type="button" mdbBtn color="blue" mdbWavesEffect>Sign up now <mdb-icon fas icon="user-plus" class="ml-1"></mdb-icon> </button>
+      <!-- <button type="button" mdbBtn color="blue" mdbWavesEffect>Sign up now <mdb-icon fas icon="user-plus" class="ml-1"></mdb-icon> </button> -->
       <!-- <button type="button" mdbBtn color="primary" outline="true" mdbWavesEffect> Download <mdb-icon fas icon="download" class="ml-1"></mdb-icon></button> -->
+    
+      <button class=" btn btn-primary dropdown" dropdown >
+        <a dropdownToggle mdbWavesEffect type="button" class="dropdown-toggle waves-light"  mdbWavesEffect>
+          Sign up now <mdb-icon fas icon="user-plus"></mdb-icon><span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/register"> As Doctor</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients/register"> As Patient</a>
+          
+        </div>
+      </button>
+
     </div>
   
   </div>

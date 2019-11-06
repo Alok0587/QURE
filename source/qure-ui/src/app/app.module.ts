@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HomeComponent } from './home/home.component';
@@ -29,7 +29,7 @@ import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
 
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
-import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
+import { BookMedicineComponent } from './ordermedicines/book-medicine/book-medicine.component';
 import { FaqComponent } from './faq/faq.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
@@ -37,7 +37,14 @@ import { DoctorRegisterComponent } from './doctors/doctor-register/doctor-regist
 import { ChatComponent } from './chat/chat.component';
 import { AdminDoctorComponent } from './admin/admin-doctor/admin-doctor.component';
 import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { DevteamComponent } from './devteam/devteam.component';
  
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http);
+}
+
 
 @NgModule({
   declarations: [
@@ -69,13 +76,20 @@ import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.co
     SpecializationComponent,
     ChatComponent,
     AdminDoctorComponent,
-    AdminPharmacyComponent
+    AdminPharmacyComponent,
+    DevteamComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
-
+    TranslateModule.forRoot({
+      loader:{
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps:[HttpClient]
+      }
+    }),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

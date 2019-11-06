@@ -11,5 +11,7 @@ export class Blog1Component implements OnInit {
 
   ngOnInit() {
   }
-
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+    }
 }

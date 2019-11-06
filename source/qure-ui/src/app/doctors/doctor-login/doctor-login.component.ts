@@ -15,6 +15,17 @@ export class DoctorLoginComponent implements OnInit {
   regStatus:boolean = false;
   dSubscription: Subscription;
   dData: any;
+  phone:any;
+
+  message: any;
+  randomNumber : number;
+
+  passwordnew:string;
+  passwordconfirm:string;
+  isSaved2: boolean;
+  emailid:string;
+  password:string;
+  otpNumber:number;
 
   constructor(private doctorService: DoctorService, public router: Router, private route :ActivatedRoute) {
 
@@ -26,6 +37,60 @@ export class DoctorLoginComponent implements OnInit {
       email: new FormControl(),
       password:new FormControl()
    });
+   }
+
+   onForgotHandler(p1,p2)
+  {
+
+    console.log(p1+" "+p2);
+    if(p1===p2)
+    {
+      console.log("Passwords match");
+      this.password = p1;
+    }
+    else{
+      console.log("Don't match")
+    }
+    //this.
+  }
+  async onDoctorUpdateHandler(formData)
+  {
+    console.log(formData);
+   // console.log(formData.value);
+
+    console.log(this.emailid);
+    
+
+    if(formData.value.phone === this.otpNumber){
+      var newpass =this.passwordnew;
+    //obj.id = this.patientId;
+    console.log(newpass);
+  
+      let res = await this.doctorService.updatePassword(this.emailid,newpass);
+      console.log(res);
+      if (res) {
+        this.isSaved2 = true;
+        //this.ngOnInit();
+      }
+    }else{
+      alert("wrong otp");
+    }
+
+  }
+  async generateRandomNumber(){
+    
+     console.log(this.emailid);
+ 
+     this.randomNumber =Math.random()*10000;
+    this.otpNumber = Math.round(this.randomNumber);
+    console.log(this.otpNumber);
+    let x = await this.doctorService.forgotPassword(this.emailid, this.otpNumber);
+    console.log("ggggggg");
+   //  if(x){
+ 
+   //  }
+ 
+ 
    }
 
    async onSubmitButton2() {
@@ -41,7 +106,14 @@ export class DoctorLoginComponent implements OnInit {
       
       
     } else
+    {
       this.validLogin = false;
+      console.log("CAN'TTTTTTTTTTTTTTTTTTTTTTTTT");
+      this.message="Can't login. Please check your credentials.";
+   
+      
+    }
+      
   }
 
   ngOnInit() {

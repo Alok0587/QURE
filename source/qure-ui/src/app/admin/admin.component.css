@@ -1,4 +1,7 @@
-.row .col-md-3 img{
+#admin{
     border-radius: 50%;
     
+}
+.col-md-2{
+    margin-left: 50px;
 }

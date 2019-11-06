@@ -17,7 +17,7 @@ import { Blog4Component } from './blogs/blog4/blog4.component';
 import { Blog5Component } from './blogs/blog5/blog5.component';
 import { Blog6Component } from './blogs/blog6/blog6.component';
 import { AddAppointmentComponent } from './appointments/add-appointment/add-appointment.component';
-import { BookMedicineComponent } from './patients/ordermedicines/book-medicine/book-medicine.component';
+import { BookMedicineComponent } from './ordermedicines/book-medicine/book-medicine.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AdminComponent } from './admin/admin.component';
 import { SpecializationComponent } from './specialization/specialization.component';
@@ -26,6 +26,10 @@ import { AdminDoctorComponent } from './admin/admin-doctor/admin-doctor.componen
 import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.component';
 import { PatientService } from './patients/patient.service';
 import { DoctorService } from './doctors/doctor.service';
+import { AdminService } from './admin/admin.service';
+
+import { AuthenticationService } from './authentication/authentication.service';
+import { DevteamComponent } from './devteam/devteam.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,10 +39,11 @@ const routes: Routes = [
   { path: 'patients/login', component: PatientLoginComponent },
   { path: 'doctors', component: DoctorsComponent, canActivate:[DoctorService] },
   { path: 'patients/appointments/:pid', component: AddAppointmentComponent, canActivate:[PatientService] },
-  { path: 'patients/bookmedicine/:pid', component: BookMedicineComponent, canActivate:[PatientService] },
+  { path: 'bookmedicine/:appid/:pid', component: BookMedicineComponent},
   { path: 'doctors/register', component: DoctorRegisterComponent },
   { path: 'doctors/login', component: DoctorLoginComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'devteam', component: DevteamComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'blogs/blog1', component: Blog1Component },
@@ -51,11 +56,11 @@ const routes: Routes = [
   { path: 'appointments/:id', component: AddAppointmentComponent, canActivate:[PatientService] },
   { path: 'doctors/:id', component: DoctorsComponent, canActivate:[DoctorService] },
   { path: 'adminlogin', component: AdminloginComponent },
-  { path: 'adminlogin/admin', component: AdminComponent },
-  { path: 'specialization/:spec', component: SpecializationComponent },
-  {path:'admin-doctor',component:AdminDoctorComponent},
-  {path:'admin-pharmacy',component:AdminPharmacyComponent},
-  {path:'Chat',component:ChatComponent}
+  { path: 'adminlogin/admin', component: AdminComponent, canActivate:[AdminService] },
+  { path: 'specialization/:spec', component: SpecializationComponent, canActivate:[AdminService] },
+  {path:'admin-doctor',component:AdminDoctorComponent, canActivate:[AdminService]},
+  {path:'admin-pharmacy',component:AdminPharmacyComponent, canActivate:[AdminService]},
+  {path:'Chat',component:ChatComponent, canActivate:[AuthenticationService] }
 ];
 
 @NgModule({

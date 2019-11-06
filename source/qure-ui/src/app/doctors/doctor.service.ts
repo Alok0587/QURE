@@ -19,13 +19,14 @@ export class DoctorService {
   async authenticate(username, password) {
 
     const headers = new HttpHeaders({
-                                  
-      'Content-Type':  'application/json',
-      'Authorization': 'Basic ' + btoa(username+':'+password)});
-      sessionStorage.setItem('usernameandpassword', username+':'+password)
-     
-      console.log("email "+username);
-      console.log("pass "+password);
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(username + ':' + password)
+    });
+    sessionStorage.setItem('usernameandpassword', username + ':' + password)
+
+    console.log("email " + username);
+    console.log("pass " + password);
     await this.http.post(this.REST_API_URL2, {}, { headers: headers })
       .toPromise()
       .then((res) => {
@@ -39,6 +40,8 @@ export class DoctorService {
       })
       .catch((err) => {
         console.log(err);
+        alert("Can't login. Please check your credentials.");
+      
         return err;
       });
 
@@ -61,6 +64,8 @@ export class DoctorService {
         })
         .catch((err) => {
           console.log(err);
+          alert("Can't register. Profile already exists.")
+        
           reject(err);
         })
         .finally(() => {
@@ -72,13 +77,14 @@ export class DoctorService {
   getDoctorByEmail(email) {
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-      console.log(headers);
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log(headers);
 
     console.log("doctor email is ...." + email);
-    return this.http.get(this.REST_API_URL + "/" + email, {headers: headers})
+    return this.http.get(this.REST_API_URL + "/" + email, { headers: headers })
       .pipe(map(res => {
         console.log(res);
         console.log("doctor by email")
@@ -86,7 +92,7 @@ export class DoctorService {
       }))
   }
   getDoctorById(email) {
-    return this.getDoctorByEmail(email);
+     return this.getDoctorByEmail(email);
     // console.log("doctor email is ...." + email);
     // return this.http.get(this.REST_API_URL + "/" + email)
     //   .pipe(map(res => {
@@ -100,10 +106,11 @@ export class DoctorService {
 
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-      console.log(headers);
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log(headers);
     console.log("special is " + special);
 
     console.log(special + "12345");
@@ -119,77 +126,179 @@ export class DoctorService {
       }));
 
   }
+  getDoctorBySpecialization2(special) {
+
+    
+    console.log("special is " + special);
+
+    console.log(special + "12345");
+    return this.http.get(this.REST_API_URL, {
+      params: {
+        specialization: special
+      }
+    })
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+      }));
+
+  }
+  updatePassword(email,password)
+  {
+    let _url = this.REST_API_URL ;
+
+    console.log(email+"   "+password);
+    let usrObj={
+      'email': email,
+      'password': password
+    }
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.put(_url, usrObj)
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+        .finally(() => {
+          console.log("Ends");
+        });
+    });
+    return promise;
+  }
+  async forgotPassword(email,otp){
+    let forgotpass={
+      'email': email,
+      'phone': otp
+    }
+    
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.REST_API_URL+'/forgot', forgotpass)
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Can't register. Profile already exists.")
+        
+          reject(err);
+        })
+        .finally(() => {
+          console.log("ENDS");
+        });
+    });
+    return promise;
+  }
+
   deleteDoctor(id: any) {
 
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-      console.log(headers);
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log(headers);
 
     console.log("id is " + id);
-    return this.http.delete(this.REST_API_URL + '/' + id, {headers: headers})
+    return this.http.delete(this.REST_API_URL + '/' + id, { headers: headers })
       .pipe(map(res => {
         console.log(res);
         return res;
-       
+
       }));
   }
-  async filterDoctor(city: string,specialization: string)
-  {
+  async filterDoctor(city: string, specialization: string) {
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-                                  console.log("spec and city");
-                                  console.log(specialization);
-                                  console.log(city);
 
-    
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log("spec and city");
+    console.log(specialization);
+    console.log(city);
+
+
     let _url = this.REST_API_URL;
-    if(city==="false"){
-      if(specialization==="false"){
-        _url = this.REST_API_URL;
-      }
-      else{
-        _url = this.REST_API_URL + "/?specialization=" + specialization;
-      }
-       
+
+
+    if (specialization != "false" && city != "false") {
+      _url = _url + "?city=" + city + "&specialization=" + specialization;
     }
-    else if(specialization==="false"){
-      _url = this.REST_API_URL + "/?city=" + city;
-      }      
-    
-    else{
-      let _url = this.REST_API_URL + "/?city=" + city + "&?specialization=" + specialization;
-    }                              
-      console.log("inside filter Doctor" + specialization+"and"+city)
-    return this.http.get(_url, {headers: headers})
+
+    else if (city != "false") {
+      _url = _url + "?city=" + city;
+    }
+    else if (specialization != "false") {
+      _url = _url + "?specialization=" + specialization;
+    }
+
+    console.log("inside filter Doctor" + specialization + "and" + city)
+    console.log("sending to link " + _url);
+    return this.http.get(_url, { headers: headers })
       .toPromise()
       .then(async (res: any[]) => {
         console.log(res);
+        _url = this.REST_API_URL;
         return await res;
       })
       .catch(err => {
+        _url = this.REST_API_URL;
         return (err);
 
       })
+
   }
 
   updateDoctor(doctorData) {
 
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
 
     let _url = this.REST_API_URL + '/' + doctorData.doctorId;
 
     let promise = new Promise((resolve, reject) => {
-      this.http.put(_url, doctorData, {headers: headers})
+      this.http.put(_url, doctorData, { headers: headers })
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+        .finally(() => {
+          console.log("Ends");
+        });
+    });
+    return promise;
+  }
+
+  rateDoctor(doctorData) {
+
+    let uandp = sessionStorage.getItem('usernameandpassword');
+    const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+
+    let _url = this.REST_API_URL+'/ratings';
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.put(_url, doctorData, { headers: headers })
         .toPromise()
         .then((res) => {
           console.log(res);
@@ -214,5 +323,5 @@ export class DoctorService {
     return false;
 
   }
-  
+
 }

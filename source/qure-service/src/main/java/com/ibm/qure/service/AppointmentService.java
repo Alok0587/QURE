@@ -10,38 +10,27 @@ import com.ibm.qure.model.Appointment;
 import com.ibm.qure.repository.AppointmentRepository;
 
 @Service
-public class AppointmentService{
-	
+public class AppointmentService {
+
 	@Autowired
 	AppointmentRepository appointRepo;
 
-
-	public  AppointmentService() {
+	public AppointmentService() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean create(Appointment appointment)  {		
-			appointRepo.save(appointment);
-			
-//			Patient patient = patientService.get(appointment.getPatientId());
-//			List<Appointment> appointmentList = patient.getAppointmentList();
-//			appointmentList.add(appointment);
-//			patient.setAppointmentList(appointmentList);
-//			patientService.update(patient);
-//			
-//			Doctor doctor = doctorService.get(appointment.getDoctorId());
-//			List<Patient> patientList = doctor.getPatientList();
-//			patientList.add(patient);
-//			doctor.setPatientList(patientList);
-//			doctorService.update(doctor);
-			
-			return true;	
+	public boolean create(Appointment appointment) {
+		appointRepo.save(appointment);
+		return true;
 	}
 
 	public Appointment get(String id) {
 		return appointRepo.findById(id).get();
 	}
-	
+
+	public List<Appointment> appointmentSlot(Optional<String> slot, Optional<String> dId) {
+		return appointRepo.findAllByTimeAndDoctorId(slot, dId);
+	}
 
 	public List<Appointment> getAll() {
 		return appointRepo.findAll();
@@ -56,14 +45,13 @@ public class AppointmentService{
 		appointRepo.deleteById(id);
 		return true;
 	}
-	
-	public List<Appointment> doctorsAppointmentList(Optional<String> dId){
+
+	public List<Appointment> doctorsAppointmentList(Optional<String> dId) {
 		return appointRepo.findAllByDoctorId(dId);
 	}
-	
-	public List<Appointment> patientsAppointmentList(Optional<String> pId){
+
+	public List<Appointment> patientsAppointmentList(Optional<String> pId) {
 		return appointRepo.findAllByPatientId(pId);
 	}
-
 
 }

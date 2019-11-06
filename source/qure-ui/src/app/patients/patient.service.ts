@@ -20,14 +20,15 @@ export class PatientService {
   async authenticate(username, password) {
 
     const headers = new HttpHeaders({
-                                  
-      'Content-Type':  'application/json',
-      'Authorization': 'Basic ' + btoa(username+':'+password)});
-      sessionStorage.setItem('usernameandpassword', username+':'+password)
-     
-      console.log("email "+username);
-      console.log("pass "+password);
-      await this.http.post(this.REST_API_URL2, {}, { headers: headers })
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(username + ':' + password)
+    });
+    sessionStorage.setItem('usernameandpassword', username + ':' + password)
+
+    console.log("email " + username);
+    console.log("pass " + password);
+    await this.http.post(this.REST_API_URL2, {}, { headers: headers })
       .toPromise()
       .then((res) => {
         let user = JSON.stringify(res);
@@ -41,6 +42,8 @@ export class PatientService {
       })
       .catch((err) => {
         console.log(err);
+        alert("Can't login. Please check your credentials.");
+      
         return err;
       });
 
@@ -53,7 +56,7 @@ export class PatientService {
     return true;
   }
 
-  
+
 
   registerPatient(patientData: any) {
     let promise = new Promise((resolve, reject) => {
@@ -65,6 +68,8 @@ export class PatientService {
         })
         .catch((err) => {
           console.log(err);
+          alert("Can't register. Profile already exists.")
+        
           reject(err);
         })
         .finally(() => {
@@ -82,32 +87,61 @@ export class PatientService {
   //     }));
   // }
 
- getPatientByEmail(email) {
-  let uandp = sessionStorage.getItem('usernameandpassword');
-  const headers = new HttpHeaders({
-                                
-                                'Content-Type':  'application/json',
-                                'Authorization': 'Basic ' + btoa(uandp)});
+  getPatientByEmail(email) {
+    let uandp = sessionStorage.getItem('usernameandpassword');
+    const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
     console.log(headers);
-  console.log("email is " + email);
     console.log("email is " + email);
-    return this.http.get(this.REST_API_URL + "/" + email, {headers: headers})
+    console.log("email is " + email);
+    return this.http.get(this.REST_API_URL + "/" + email, { headers: headers })
       .pipe(map(res => {
         console.log(res);
         return res;
       }))
   }
+  updatePassword(email,password)
+  {
+    let _url = this.REST_API_URL ;
+
+    console.log(email+"   "+password);
+    let usrObj={
+      'email': email,
+      'password': password
+    }
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.put(_url, usrObj)
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+        .finally(() => {
+          console.log("Ends");
+        });
+    });
+    return promise;
+  }
 
   updatePatient(patientData) {
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
     let _url = this.REST_API_URL + '/' + patientData.patientId;
 
     let promise = new Promise((resolve, reject) => {
-      this.http.put(_url, patientData, {headers: headers})
+      this.http.put(_url, patientData, { headers: headers })
         .toPromise()
         .then((res) => {
           console.log(res);
@@ -122,6 +156,32 @@ export class PatientService {
         });
     });
 
+    return promise;
+  }
+
+  async forgotPassword(email,otp){
+    let forgotpass={
+      'email': email,
+      'phone': otp
+    }
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.REST_API_URL+'/forgot', forgotpass)
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Can't register. Profile already exists.")
+
+          reject(err);
+        })
+        .finally(() => {
+          console.log("ENDS");
+        });
+    });
     return promise;
   }
 

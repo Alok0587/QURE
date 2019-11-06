@@ -1,6 +1,5 @@
 package com.ibm.qure.model;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,30 +11,24 @@ public class Doctor extends Person {
 
 	private String licenseNumber;
 
-	//private int approvalStatus = 0;
+	private int approvalStatus = 0;
 
+	
 	private String specialization;
 	
-	private int userLevel = 2;
-	
-	
-
-//	private List<Appointment> appointmentList;
-
-//	private List<Patient> patientList;
+	private float avgRating;
+	private int rCount = 0;
 
 	public Doctor() {
 		// default constructor
 	}
 
-	public Doctor(String name, String email, String password,int age, String gender, String phone, Address address,
+	public Doctor(String name, String email, String password, int age, String gender, String phone, Address address,
 			String licenseNumber, String specialization) {
-		super(name, email,password, age, gender, phone, address);
+		super(name, email, password, age, gender, phone, address);
 		this.licenseNumber = licenseNumber;
 		this.specialization = specialization;
-//		this.appointmentList = new ArrayList<Appointment>();
-//		this.patientList = new ArrayList<Patient>();
-		
+
 	}
 
 	public String getDoctorId() {
@@ -54,6 +47,14 @@ public class Doctor extends Person {
 		this.licenseNumber = licenseNumber;
 	}
 
+	public int getApprovalStatus() {
+		return approvalStatus;
+	}
+
+	public void setApprovalStatus(int approvalStatus) {
+		this.approvalStatus = approvalStatus;
+	}
+
 	public String getSpecialization() {
 		return specialization;
 	}
@@ -61,29 +62,22 @@ public class Doctor extends Person {
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
+	
+	public float getAvgRating() {
+		return avgRating;
+	}
 
-//	public List<Appointment> getAppointmentList() {
-//		return appointmentList;
-//	}
-//
-//	public void setAppointmentList(List<Appointment> appointmentList) {
-//		this.appointmentList = appointmentList;
-//	}
-
-//	public int getApprovalStatus() {
-//		return approvalStatus;
-//	}
-//
-//	public void setApprovalStatus(int approvalStatus) {
-//		this.approvalStatus = approvalStatus;
-//	}
-
-//	public List<Patient> getPatientList() {
-//		return patientList;
-//	}
-//
-//	public void setPatientList(List<Patient> patientList) {
-//		this.patientList = patientList;
-//	}
+	public void setAvgRating(float avgRating) {
+		this.avgRating = ((this.avgRating*this.rCount)+avgRating)/(this.rCount+1);
+		this.rCount=this.rCount+1;
+	}
+	
+	public void setRCount(int rCount) {
+		this.rCount= rCount;
+	}
+	
+	public int getRCount() {
+		return rCount;
+	}
 
 }

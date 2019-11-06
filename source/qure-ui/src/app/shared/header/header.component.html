@@ -1,6 +1,6 @@
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark stylish-color-dark navbar-static-top">
-        <a class="navbar-brand app-name h2-responsive font-weight-bold" routerLink="" style="color: chartreuse;"><strong>QURE</strong>
+ <header >
+     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+        <a class="navbar-brand app-name h2-responsive font-weight-bold" routerLink="" style="color: black;"><img src="assets/image/qure-logo.png" height="66px" width="199px" >
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,56 +8,56 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav mr-auto" style="margin-left: 65%;">
+          <ul class="navbar-nav mr-auto" style="margin-left: 60%;">
+            
               <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                  <a class="nav-link waves-light" routerLink="/">Home</a>
+                  <b><a class="nav-link waves-dark" routerLink="/" style="color: black;">Home</a></b>
               </li>
               <li class="nav-item"> 
-                  <a class="nav-link waves-light" mdbWavesEffect routerLink="/contact">Contact</a>
+                  <b><a class="nav-link waves-dark" mdbWavesEffect routerLink="/contact" style="color: black;">Contact</a></b>
               </li>
               <li class="nav-item" >
-                  <a class="nav-link waves-light" mdbWavesEffect routerLink="/about">About</a>
+                  <b><a class="nav-link waves-dark" mdbWavesEffect routerLink="/about" style="color: black;">About</a></b>
               </li>
-              <!-- <li class="nav-item">
-                  <a class="nav-link waves-light" mdbWavesEffect routerLink="/Chat">Chat</a>
-              </li> -->
+            
               
 
                 <li class="nav-item dropdown" *ngIf="authenticationService.isUserLoggedIn('PATIENT')"  dropdown>
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light font-weight-bold" style="color: chartreuse;" mdbWavesEffect>My Profile<span class="caret"></span></a>
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light font-weight-bold" style="color: rgb(15, 15, 15);" mdbWavesEffect>My Profile<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients">Profile</a>
-                          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/Chat">Chat</a>
-                          <a class="dropdown-item waves-light" mdbWavesEffect (click)="onLogout()" style="color: red;">Log out</a>
-                         
+                      <b>
+                          <a class="dropdown-item waves-dark" mdbWavesEffect routerLink="/patients" style="color: black;">Profile</a>
+                          <a class="dropdown-item waves-dark" mdbWavesEffect routerLink="/Chat" style="color: black;">Chat</a>
+                          <a class="dropdown-item waves-dark" mdbWavesEffect (click)="onLogout()" style="color: red;">Log out</a>
+                        </b>
                         </div>
                 </li>
                 <li class="nav-item dropdown" *ngIf="authenticationService.isUserLoggedIn('DOCTOR')"  dropdown>
-                  <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light font-weight-bold" style="color: chartreuse;" mdbWavesEffect>Dr Profile<span class="caret"></span></a>
+                  <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light font-weight-bold" style="color: rgb(15, 15, 15);" mdbWavesEffect>Dr Profile<span class="caret"></span></a>
                   <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors">Profile</a>
-                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/Chat">Chat</a>
-                        <a class="dropdown-item waves-light" mdbWavesEffect (click)="onLogout()" style="color: red;">Log out</a>
+                        <b><a class="dropdown-item waves-dark" mdbWavesEffect routerLink="/doctors" style="color: black;">Profile</a>
+                        <a class="dropdown-item waves-dark" mdbWavesEffect routerLink="/Chat" style="color: black;">Chat</a>
+                        <a class="dropdown-item waves-dark" mdbWavesEffect (click)="onLogout()" style="color: red;">Log out</a></b>
                        
                       </div>
               </li>
                 
               
               <li class="nav-item dropdown" *ngIf="!(authenticationService.isUserLoggedIn('DOCTOR') || authenticationService.isUserLoggedIn('PATIENT'))" dropdown>
-                  <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: white;" mdbWavesEffect> Sign In<span class="caret"></span></a>
+                  <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: rgb(15, 15, 15);" mdbWavesEffect> Sign In<span class="caret"></span></a>
                   <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/login">Doctor</a>
-                        <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients/login">Patient</a>
+                        <a class="dropdown-item waves-dark" mdbWavesEffect routerLink="/doctors/login" style="color: black;">Doctor</a>
+                        <a class="dropdown-item waves-dark" mdbWavesEffect routerLink="/patients/login" style="color: black;">Patient</a>
                        
                       </div>
               </li>
 
               <li class="nav-item dropdown" *ngIf="!(authenticationService.isUserLoggedIn('DOCTOR') || authenticationService.isUserLoggedIn('PATIENT'))" dropdown>
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color: white;" mdbWavesEffect>
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" style="color:rgb(15, 15, 15);" mdbWavesEffect>
                       Sign up<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                      <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/register">Doctor</a>
-                      <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients/register">Patient</a>
+                      <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/doctors/register" style="color: black;">Doctor</a>
+                      <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/patients/register" style="color: black;"> Patient</a>
                       
                     </div>
                   </li>
@@ -65,5 +65,8 @@
 
           </ul>              
         </div>
-    </nav>
-</header> 
+    </nav> 
+</header>  
+<br>
+<br>
+<br>

@@ -10,12 +10,16 @@ public class BookMedicine {
 	@Id
 	private String bookedId;
 	
-	//@DBRef
-	private String patientId;
-	//private String doctorId;
+//	//@DBRef
+//	private String patientId;
+//	//private String doctorId;
 	
 	//@DBRef
 	private String medicineId;
+	
+	private String patientId;
+	
+	private String appointmentId;
 	
 	private int processingStatus =0;
 	
@@ -25,12 +29,12 @@ public class BookMedicine {
 	public void setBookedId(String bookedId) {
 		this.bookedId = bookedId;
 	}
-	public String getPatientId() {
-		return patientId;
-	}
-	public void setPatientId(String patientId) {
-		this.patientId = patientId;
-	}
+//	public String getPatientId() {
+//		return patientId;
+//	}
+//	public void setPatientId(String patientId) {
+//		this.patientId = patientId;
+//	}
 //	public String getDoctorId() {
 //		return doctorId;
 //	}
@@ -48,6 +52,18 @@ public class BookMedicine {
 	}
 	public void setProcessingStatus(int processingStatus) {
 		this.processingStatus = processingStatus;
+	}
+	public String getAppointmentId() {
+		return appointmentId;
+	}
+	public void setAppointmentId(String appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+	public String getPatientId() {
+		return patientId;
+	}
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
 	}
 	
 	

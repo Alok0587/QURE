@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,35 +30,65 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ibm.qure.exceptions.ApplicationException;
 import com.ibm.qure.model.Appointment;
+import com.ibm.qure.model.Doctor;
 import com.ibm.qure.model.ResponseMessage;
 import com.ibm.qure.service.AppointmentService;
+import com.ibm.qure.service.DoctorService;
+import com.ibm.qure.service.MessageService;
+import com.ibm.qure.service.PatientService;
+import com.ibm.qure.exceptions.QureApplicationException;
 
 @RestController
 @RequestMapping("/appointments")
 public class AppointmentController {
 
+	private static Logger log = LoggerFactory.getLogger(AppointmentController.class);
+
 	@Autowired
 	AppointmentService appointService;
+
+	@Autowired
+	MessageService messageService;
+
+	@Autowired
+	PatientService patientServie;
+
+	@Autowired
+	DoctorService doctorServie;
 
 	// List All appointments GET /appointments or Get by pId or dId
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public List<Appointment> getAllAppointments(@RequestParam(name = "dId", required = false) Optional<String> dId,
-			@RequestParam(name = "pId", required = false) Optional<String> pId) {
-		if (pId.isPresent()) {
+			@RequestParam(name = "pId", required = false) Optional<String> pId,
+			@RequestParam(name = "slot", required = false) Optional<String> slot) throws QureApplicationException {
+		if (dId.isPresent() && slot.isPresent()) {
+			return appointService.appointmentSlot(slot, dId);
+		} else if (pId.isPresent()) {
 			return appointService.patientsAppointmentList(pId);
 		} else if (dId.isPresent()) {
 			return appointService.doctorsAppointmentList(dId);
-		} else {
-			return appointService.getAll();
 		}
+		return appointService.getAll();
 
 	}
+
+//	@GetMapping(value = "/checkslot", produces = { MediaType.APPLICATION_JSON_VALUE })
+//	@CrossOrigin("*")
+//	public boolean checkSlot(@RequestParam(name = "dId", required = false) Optional<String> dId,
+//			@RequestParam(name = "slot", required = false) Optional<String> slot) {
+//		if (dId.isPresent() && slot.isPresent()) {
+//			System.out.println("inside checkslot");
+//			return appointService.appointmentSlot(slot, dId).isEmpty();
+//		}
+//
+//		return false;
+//	}
 
 	// List appointment for given Id GET /appointments/{id}
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
-	public Appointment getAppointment(@PathVariable String id) {
+	public Appointment getAppointment(@PathVariable String id) throws QureApplicationException {
 		return appointService.get(id);
 	}
 
@@ -64,14 +96,21 @@ public class AppointmentController {
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.ALL_VALUE })
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createAppointment(@RequestBody @Valid Appointment appointment)
-			throws URISyntaxException, ApplicationException {
+			throws URISyntaxException, ApplicationException, QureApplicationException {
 
 		ResponseMessage resMsg;
 
-		appointService.create(appointment);
-
-		resMsg = new ResponseMessage("Success", new String[] { "Appointment created successfully" });
-
+		boolean x = appointService.create(appointment);
+		if (x) {
+			messageService.sendAppointmentSMS(appointment);
+			messageService.sendAppointmentEmail(patientServie.getById(appointment.getPatientId()).getEmail(),
+					appointment, doctorServie.getById(appointment.getDoctorId()));
+			resMsg = new ResponseMessage("Success", new String[] { "Appointment created successfully" });
+			log.debug("Appointment created successfully");
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Appointment can't be created " });
+			log.debug("Appointment can't be created");
+		}
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -87,11 +126,19 @@ public class AppointmentController {
 	public ResponseEntity<ResponseMessage> updateEmployee(@PathVariable String id,
 			@RequestBody Appointment updatedAppoint) {
 		updatedAppoint.setAppointmentId(id);
-		appointService.update(updatedAppoint);
+		boolean x = appointService.update(updatedAppoint);
 
 		ResponseMessage resMsg;
-		resMsg = new ResponseMessage("Success", new String[] { "Appointment updated successfully" });
-
+		if (x) {
+			messageService.sendAppointmentSMS(updatedAppoint);
+			messageService.sendAppointmentEmail(patientServie.getById(updatedAppoint.getPatientId()).getEmail(),
+					updatedAppoint, doctorServie.getById(updatedAppoint.getDoctorId()));
+			resMsg = new ResponseMessage("Success", new String[] { "Appointment updated successfully" });
+			log.debug("Appointment updated Successfully");
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Appointment failed to update" });
+			log.debug("Appointment failed to update");
+		}
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -104,10 +151,18 @@ public class AppointmentController {
 	@DeleteMapping("/{id}")
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> deleteAppointment(@PathVariable String id) {
-		appointService.delete(id);
+		messageService.cancelAppointmentSMS(id);
+		messageService.deleteAppointmentEmail(id);
+		boolean y = appointService.delete(id);
 		ResponseMessage resMsg;
-		resMsg = new ResponseMessage("Success", new String[] { "Appointment deleted successfully" });
+		if (y) {
 
+			resMsg = new ResponseMessage("Success", new String[] { "Appointment deleted successfully" });
+			log.debug("Appointment deleted successfully");
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Appointment failed to delete" });
+			log.debug("Appointment failed to delete");
+		}
 		// Build newly created Employee resource URI - Employee ID is always 0 here.
 		// Need to get the new Employee ID.
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
@@ -130,8 +185,9 @@ public class AppointmentController {
 		return ResponseEntity.badRequest().body(resMsg);
 	}
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ResponseMessage> handleAppExcpetion(Exception e) {
+	@ExceptionHandler(QureApplicationException.class)
+	public ResponseEntity<ResponseMessage> handleQureApplicationExcpetion(Exception e) {
+		log.error("Error Occured:{}", e.getMessage(), e);
 		ResponseMessage resMsg = new ResponseMessage("Failure", new String[] { e.getMessage() },
 				ExceptionUtils.getStackTrace(e));
 		return ResponseEntity.badRequest().body(resMsg);

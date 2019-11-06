@@ -16,32 +16,36 @@ export class AppointmentService {
   getAppointmentsByPatientId(id: any) {
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-      console.log(headers);
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log(headers);
     return this.http.get(this.REST_API_URL, {
       params: {
         pId: id
       },
       headers: headers
-      
+
     })
       .pipe(map(res => {
         console.log(res);
         return res;
       }));
   }
-   
+
   getAppointmentsByDoctorId(id: any) {
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-      console.log(headers);
-    return this.http.get(this.REST_API_URL, {params: {
-      dId: id},
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log(headers);
+    return this.http.get(this.REST_API_URL, {
+      params: {
+        dId: id
+      },
       headers: headers
     })
       .pipe(map(res => {  // 3. get res from rest api
@@ -53,21 +57,22 @@ export class AppointmentService {
     console.log(appointmentData);
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-      console.log(headers);
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log(headers);
     let promise = new Promise((resolve, reject) => {
-      this.http.post(this.REST_API_URL, appointmentData, {headers: headers})
+      this.http.post(this.REST_API_URL, appointmentData, { headers: headers })
         .toPromise()
         .then((res) => {
           console.log(res);
           resolve(res);
-        }) 
+        })
         .catch((err) => {
-            console.log(err);
-            reject(err);
-          })
+          console.log(err);
+          reject(err);
+        })
         .finally(() => {
           console.log("Ends");
         });
@@ -79,13 +84,14 @@ export class AppointmentService {
   getAppointmentById(id) {
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-      console.log(headers);
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log(headers);
     console.log("id is " + id);
-    return this.http.get(this.REST_API_URL + '/' + id, {headers: headers})
-      .pipe( map(async res => {
+    return this.http.get(this.REST_API_URL + '/' + id, { headers: headers })
+      .pipe(map(async res => {
         console.log(res);
         return await res;
       }));
@@ -94,14 +100,15 @@ export class AppointmentService {
   deleteAppointment(id: any) {
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
-      console.log(headers);
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+    console.log(headers);
 
     console.log("id is " + id);
     let promise = new Promise((resolve, reject) => {
-      this.http.delete(this.REST_API_URL + '/' + id, {headers: headers})
+      this.http.delete(this.REST_API_URL + '/' + id, { headers: headers })
         .toPromise()
         .then((res) => {
           console.log(res);
@@ -121,13 +128,14 @@ export class AppointmentService {
   updateAppointment(appointmentData: any) {
     let uandp = sessionStorage.getItem('usernameandpassword');
     const headers = new HttpHeaders({
-                                  
-                                  'Content-Type':  'application/json',
-                                  'Authorization': 'Basic ' + btoa(uandp)});
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
     let _url = this.REST_API_URL + '/' + appointmentData.appointmentId;
 
     let promise = new Promise((resolve, reject) => {
-      this.http.put(_url, appointmentData, {headers: headers})
+      this.http.put(_url, appointmentData, { headers: headers })
         .toPromise()
         .then((res) => {
           console.log(res);
@@ -143,4 +151,24 @@ export class AppointmentService {
     });
     return promise;
   }
+
+  // checkSlot(slot, dId){
+  //   let uandp = sessionStorage.getItem('usernameandpassword');
+  //   const headers = new HttpHeaders({
+
+  //                                 'Content-Type':  'application/json',
+  //                                 'Authorization': 'Basic ' + btoa(uandp)});
+  //   console.log(headers);
+  //   console.log("slot is " + slot);
+  //   return this.http.get(this.REST_API_URL+'/checkslot', {params: {
+  //     slot: slot, dId: dId},
+  //     headers: headers
+  //   })
+  //     .pipe( map(async res => {
+  //       console.log(res);
+  //       return await res;
+  //     }));
+
+
+  // }
 }

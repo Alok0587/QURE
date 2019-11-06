@@ -12,4 +12,6 @@ public interface AppointmentRepository extends MongoRepository<Appointment, Obje
 
 	List<Appointment> findAllByDoctorId(Optional<String> dId);
 
+	List<Appointment> findAllByTimeAndDoctorId(Optional<String> slot, Optional<String> dId);
+
 }
