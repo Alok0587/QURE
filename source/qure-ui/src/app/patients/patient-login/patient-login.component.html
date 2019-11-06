@@ -28,7 +28,7 @@
           <label data-error="wrong" data-success="right" for="Form-pass1" ></label>
           <button type="button" class="btn btn-md "
         style="float: right; background-color: rgb(140, 139, 145); color: black;"
-        (click)="generateRandomNumber()" data-toggle="modal" data-target="#forgotModal">Forgot Password</button>
+        (click)="generateRandomNumber()" data-toggle="modal" data-target="#forgotModal" >Forgot Password</button>
         </div>
 
         <div class="text-center mb-3">
@@ -62,8 +62,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p *ngIf="emailid==null">enter your email id</p>
-          <form ngNativeValidate #f="ngForm" (ngSubmit)="onPatientUpdateHandler(f)" *ngIf="emailid!=null">
+          <form ngNativeValidate #f="ngForm" (ngSubmit)="onPatientUpdateHandler(f)">
               <div class="form-group row">
                   <label for="emailID" class="col-sm-3 col-form-label">Email</label>
                   <div class="col-sm-9">
