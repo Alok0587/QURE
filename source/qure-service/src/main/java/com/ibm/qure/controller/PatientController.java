@@ -90,7 +90,7 @@ public class PatientController {
 	@CrossOrigin("*")
 	public ResponseEntity<ResponseMessage> createPatient(@RequestBody @Valid Patient patient)
 			throws URISyntaxException, ApplicationException, QureApplicationException {
-		
+		boolean x=false;
 		try {
 
 		String encodedPassword = bCryptPasswordEncoder.encode(patient.getPassword());
@@ -103,11 +103,10 @@ public class PatientController {
 		
 		if(existPat==null)
 		{
+			x=patientService.create(patient);
 			
+			//patientRepo.save(patient);
 			
-			patientRepo.save(patient);
-			messageService.sendSMS(patient.getPhone(), patient.getName());
-			messageService.sendEmail(patient.getEmail(), patient.getName());
 			// messageService.sendEmail(patient.getEmail());
 
 			ResponseMessage resMsg;
@@ -115,8 +114,17 @@ public class PatientController {
 			log.debug(user.getUsername());
 			log.debug(user.getPassword());
 			userRepo.save(user);
-			resMsg = new ResponseMessage("Success", new String[] { "Patient created successfully" });
-			log.debug("Patient created successfully");
+			if(x) {
+				messageService.sendSMS(patient.getPhone(), patient.getName());
+				messageService.sendEmail(patient.getEmail(), patient.getName());
+				resMsg = new ResponseMessage("Success", new String[] { "Patient created successfully" });
+				log.debug("Patient created successfully");
+			}
+			else {
+				resMsg = new ResponseMessage("Failure", new String[] { "Patient can't be created " });
+				log.debug("Patient created successfully");
+			}
+			
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 					.buildAndExpand(patient.getPatientId()).toUri();
 
