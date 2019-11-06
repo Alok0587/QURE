@@ -174,8 +174,6 @@ export class PatientService {
         })
         .catch((err) => {
           console.log(err);
-          alert("Can't register. Profile already exists.")
-
           reject(err);
         })
         .finally(() => {

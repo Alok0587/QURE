@@ -39,20 +39,7 @@ export class DoctorLoginComponent implements OnInit {
    });
    }
 
-   onForgotHandler(p1,p2)
-  {
 
-    console.log(p1+" "+p2);
-    if(p1===p2)
-    {
-      console.log("Passwords match");
-      this.password = p1;
-    }
-    else{
-      console.log("Don't match")
-    }
-    //this.
-  }
   async onDoctorUpdateHandler(formData)
   {
     console.log(formData);
@@ -84,13 +71,9 @@ export class DoctorLoginComponent implements OnInit {
      this.randomNumber =Math.random()*10000;
     this.otpNumber = Math.round(this.randomNumber);
     console.log(this.otpNumber);
+    if(this.emailid!=null){
     let x = await this.doctorService.forgotPassword(this.emailid, this.otpNumber);
-    console.log("ggggggg");
-   //  if(x){
- 
-   //  }
- 
- 
+      }
    }
 
    async onSubmitButton2() {
