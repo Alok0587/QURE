@@ -121,7 +121,7 @@ public class DoctorController {
 
 			String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
 			doctor.setPassword(encodedPassword);
-			
+			ResponseMessage resMsg;
 			//System.out.println(doctor+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 			
 			System.out.println(doctor.getEmail());
@@ -139,7 +139,19 @@ public class DoctorController {
 				log.debug(user.getPassword());
 				
 				userRepo.save(user);
-				
+				if (x) {
+					messageService.sendSMS(doctor.getPhone(), doctor.getName());
+					messageService.sendEmail(doctor.getEmail(), doctor.getName());
+					resMsg = new ResponseMessage("Success", new String[] { "Doctor created successfully" });
+				}
+				else {
+					resMsg = new ResponseMessage("Failure", new String[] { "Unable to create doctor" });
+				}
+				URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+						.buildAndExpand(doctor.getDoctorId()).toUri();
+
+				return ResponseEntity.created(location).body(resMsg);
+
 				}
 			
 			else
@@ -154,25 +166,8 @@ public class DoctorController {
 		catch (Exception e) {
 			throw new QureApplicationException("The profile already exists. Please check your credentials." + e.getMessage(), e);
 		}
-		
-
-
-		ResponseMessage resMsg;
-
-		
-
-		if (x) {
-			messageService.sendSMS(doctor.getPhone(), doctor.getName());
-			messageService.sendEmail(doctor.getEmail(), doctor.getName());
-			resMsg = new ResponseMessage("Success", new String[] { "Doctor created successfully" });
-		} else {
-			resMsg = new ResponseMessage("Failure", new String[] { "Unable to create doctor" });
-		}
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(doctor.getDoctorId()).toUri();
-
-		return ResponseEntity.created(location).body(resMsg);
-	}
+				
+			}
 	
 	@PostMapping(value = "/forgot", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
