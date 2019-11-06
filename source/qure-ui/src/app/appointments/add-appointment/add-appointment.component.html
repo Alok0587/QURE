@@ -68,11 +68,16 @@
                             {{doctor.address.city}}, {{doctor.address.state}}
                         </p>
                         <p class="card-text">Contact number: {{doctor.phone}}</p>
+                        <span *ngIf="doctor.avgRating ==0" class="card-text">Not yet rated</span>
+                        <span *ngIf="doctor.avgRating >=1" class="fa fa-star checked"></span>
+                        <span *ngIf="doctor.avgRating >=2" class="fa fa-star checked"></span>
+                        <span *ngIf="doctor.avgRating >=3" class="fa fa-star checked"></span>
+                        <span *ngIf="doctor.avgRating >=4" class="fa fa-star checked"></span>
+                        <span *ngIf="doctor.avgRating >=5" class="fa fa-star checked"></span>
+                        <!-- <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> -->
                         <p>verified &#x2714;</p>
 
 

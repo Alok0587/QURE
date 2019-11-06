@@ -61,8 +61,13 @@ export class DoctorsComponent implements OnInit {
     //this.duplicateAppointmentData = this.appointmentData;
     //JSON.parse(JSON.stringify(this.appointmentData));
   }
-  async onDeleteHandler(aId: any) {
-    let res = await this.appointmentService.deleteAppointment(aId);
+  
+  async onCompleteHandler(appointmentData) {
+    appointmentData.appointmentStatus=1;
+    console.log("llllllll");
+    console.log(appointmentData);
+    console.log("llllllll");
+    let res = await this.appointmentService.updateAppointment(appointmentData);
     this.onViewAppointmentList();
   }
 

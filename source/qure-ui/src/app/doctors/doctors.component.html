@@ -57,12 +57,14 @@
             <h5 class="card-text">Time: {{appointment.time}}</h5></b>
 
             <p class="card-text">Appointment ID: {{appointment.appointmentId}}</p>
+            <p class="card-text" *ngIf="appointment.appointmentStatus!=0">completed &#x2714;</p>
             <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#viewAppointmentModal"
               (click)="onViewHandler(appointment)">View</button>
-            <button type="button" (click)="onDeleteHandler(appointment.appointmentId)"
-              class="btn btn-danger">Cancel</button>
-            <button type="button" (click)="onPrescribeHandler(appointment.appointmentId,appointment.patientId)"
-              class="btn btn-primary">Prescribe</button>
+              <button type="button" (click)="onCompleteHandler(appointment)"
+                class="btn-sm btn-secondary" *ngIf="appointment.appointmentStatus==0">completed</button>
+                <button type="button" (click)="onPrescribeHandler(appointment.appointmentId,appointment.patientId)"
+                  class="btn-sm btn-primary"  *ngIf="appointment.appointmentStatus==0">Prescribe</button>
+           
           </div>
         </div>
       </div>

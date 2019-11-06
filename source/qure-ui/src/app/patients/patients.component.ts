@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { PatientService } from './patient.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentService } from '../appointments/appointment.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DoctorService } from '../doctors/doctor.service';
 import { AddAppointmentComponent } from '../appointments/add-appointment/add-appointment.component';
 import { ConcatSource } from 'webpack-sources';
@@ -24,6 +24,7 @@ export class PatientsComponent implements OnInit {
   isSaved2: boolean = false;
   searchForm: FormGroup;
   doctorList: any[];
+  ratedAppointmentData: any;
 
 
   appointmentList: any[];
@@ -43,9 +44,16 @@ export class PatientsComponent implements OnInit {
   showAppointments : boolean = false;
   slotList: any;
   selDate: any;
+  ratingForm: FormGroup;
 
   constructor(private orderService: OrderService,private addAppointment: AddAppointmentComponent, private appointmentService: AppointmentService, private doctorService: DoctorService, private patientService: PatientService, private route: ActivatedRoute, public router: Router) {
     this.slotList = ['9', '10', '17', '18', '19', '21'];
+    this.ratingForm = new FormGroup({
+      // Step2: Create Form Control
+      doctorId: new FormControl(),      
+      rating: new FormControl('5', Validators.required)     
+
+      });
 
   }
 
@@ -161,6 +169,42 @@ export class PatientsComponent implements OnInit {
     console.log("inside update app" + this.duplicateAppointmentData);
     let res = await this.appointmentService.updateAppointment(this.duplicateAppointmentData);
     this.onViewAppointmentList();
+  }
+
+  async onRatingHandler(appointmentData){
+    appointmentData.appointmentStatus=2;
+    this.ratedAppointmentData=appointmentData;
+    // let res = await this.appointmentService.updateAppointment(this.duplicateAppointmentData);
+    // this.doctorData = await this.doctorService.getDoctorById(appointmentData.doctorId);
+
+
+    // this.doctorSubscription = this.doctorService.getDoctorById(appointmentData.doctorId)
+    //   .subscribe(async (res: any) => {
+    //     console.log(res);
+    //     this.doctorData = await res;
+    //     console.log("current doctor is" + this.doctorData.doctorId);
+    //     console.log("jjjj" + this.doctorData.value);
+    
+        
+
+    //   });
+    this.doctorData={
+      'doctorId': appointmentData.doctorId,
+      'avgRating':5
+    }
+  }
+
+  async onAddRatingHandler(){
+       
+    
+    this.doctorData.avgRating=parseInt(this.ratingForm.value.rating);
+    console.log(this.doctorData);
+    console.log("jjjj" + this.doctorData.avgRating);
+    await this.doctorService.rateDoctor(this.doctorData);
+    let res = await this.appointmentService.updateAppointment(this.ratedAppointmentData);
+    this.onViewAppointmentList();
+
+    
   }
 
   checkDate() {

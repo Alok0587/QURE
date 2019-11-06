@@ -15,6 +15,9 @@ public class Doctor extends Person {
 
 	
 	private String specialization;
+	
+	private float avgRating;
+	private int rCount = 0;
 
 	public Doctor() {
 		// default constructor
@@ -58,6 +61,23 @@ public class Doctor extends Person {
 
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
+	}
+	
+	public float getAvgRating() {
+		return avgRating;
+	}
+
+	public void setAvgRating(float avgRating) {
+		this.avgRating = ((this.avgRating*this.rCount)+avgRating)/(this.rCount+1);
+		this.rCount=this.rCount+1;
+	}
+	
+	public void setRCount(int rCount) {
+		this.rCount= rCount;
+	}
+	
+	public int getRCount() {
+		return rCount;
 	}
 
 }

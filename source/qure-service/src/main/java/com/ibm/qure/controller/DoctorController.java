@@ -280,6 +280,51 @@ public class DoctorController {
 
 		return ResponseEntity.created(location).body(resMsg);
 	}
+	
+	
+	@PutMapping(value = "/ratings")
+	@CrossOrigin("*")
+	public ResponseEntity<ResponseMessage> updateDoctor(@RequestBody Doctor ratingDoctor)
+			throws URISyntaxException, ApplicationException, QureApplicationException {
+//		//ratingDoctor.setDoctorId(ratingDoctor.getDoctorId());
+//		System.out.println("inside");
+//		Doctor doctor = doctorService.getById(ratingDoctor.getDoctorId());
+//		System.out.println(ratingDoctor.getDoctorId());
+////		doctor.setRCount();
+////		ratingDoctor.setRCount();
+//		int z = ratingDoctor.getAvgRating();
+//		System.out.println(z);
+//		doctor.setAvgRating(z);
+//		System.out.println("doctor calc rating" + doctor.getAvgRating());
+//		doctor.setRCount(1);
+//		//System.out.println(doctor.getAvgRating());
+		
+		//ratingDoctor.setDoctorId(ratingDoctor.getDoctorId());
+				Doctor doctor = doctorService.getById(ratingDoctor.getDoctorId());
+//				doctor.setRCount();
+//				ratingDoctor.setRCount();
+				doctor.setAvgRating(ratingDoctor.getAvgRating());
+//				doctor.setRCount(1);
+		
+		
+
+		boolean x = doctorService.update(doctor);
+		ResponseMessage resMsg;
+		if (x) {
+			//messageService.sendUpdateSMS(updatedDoctor.getPhone());
+			//messageService.sendUpdateEmail(updatedDoctor.getEmail());
+			resMsg = new ResponseMessage("Success", new String[] { "Doctor updated successfully" });
+			log.debug("Doctor updated successfully");
+			
+		} else {
+			resMsg = new ResponseMessage("Success", new String[] { "Doctor update Failed" });
+			log.debug("Doctor update Failed");
+		}
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(ratingDoctor.getDoctorId()).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
+	}
 
 
 	// Delete Doctor DELETE /doctors/{id}

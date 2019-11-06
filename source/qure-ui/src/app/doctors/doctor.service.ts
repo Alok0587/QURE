@@ -286,6 +286,35 @@ export class DoctorService {
     return promise;
   }
 
+  rateDoctor(doctorData) {
+
+    let uandp = sessionStorage.getItem('usernameandpassword');
+    const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(uandp)
+    });
+
+    let _url = this.REST_API_URL+'/ratings';
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.put(_url, doctorData, { headers: headers })
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+        .finally(() => {
+          console.log("Ends");
+        });
+    });
+    return promise;
+  }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authenticationService.isUserLoggedIn('DOCTOR'))
       return true;

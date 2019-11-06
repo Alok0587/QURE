@@ -292,9 +292,18 @@
               <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
               <p class="card-text">Time: {{appointment.time}}</p>
               <p class="card-text" style="display: none;">Doctor: {{appointment.doctorId}}</p>
-              <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
+              <!-- <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
               (click)="onViewHandler(appointment)">View/Update</button>
               <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger">Delete</button>
+          </div> -->
+          <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
+              (click)="onViewHandler(appointment)" *ngIf="appointment.appointmentStatus==0">View/Update</button>
+              <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger"
+              *ngIf="appointment.appointmentStatus==0">Delete</button>
+              <p class="card-text" *ngIf="appointment.appointmentStatus!=0">completed &#x2714;</p>
+              <p class="card-text" *ngIf="appointment.appointmentStatus==2">rated &#x2714;</p>
+              <button type="button" (click)="onRatingHandler(appointment)" class="btn-sm btn-success" 
+              data-toggle="modal" data-target="#ratings" *ngIf="appointment.appointmentStatus==1">Give Ratings</button>
           </div>
       </div>
 
@@ -318,13 +327,87 @@
 
 </div>
 </div>
+
+<div class="modal fade" id="ratings" tabindex="-1" role="dialog" aria-labelledby="ratings"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ratings">Rate your Experience</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+
+
+
+
+            <form class="col-md-8 offset-md-1" [formGroup]="ratingForm" (ngSubmit)="onAddRatingHandler()">               
+               <label for="rating" class="col-form-label">Rate your Experience with us!!!</label>
+               <div class="col-md-8 offset-md-2">
+               <div>
+                 <input id="rating1" type="radio" value="5" name="rating" formControlName="rating" />&nbsp;
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                        </div>
+                    <br>
+                    <div >
+                        <input id="rating1" type="radio" value="4" name="rating" formControlName="rating" >&nbsp;
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                        </div>                      
+                    <br>
+                      <div >
+                        <input id="rating1" type="radio" value="3" name="rating" formControlName="rating" >&nbsp;
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                        <span class="fa fa-heart checked"></span>
+                      </div>
+                    <br>                   
+                    <div >
+                      <input id="rating1" type="radio" value="2" name="rating" formControlName="rating" >&nbsp;
+                      <span class="fa fa-heart checked"></span>
+                      <span class="fa fa-heart checked"></span>
+                    </div>                                        
+                    <br>                    
+                      <div >
+                        <input id="rating1" type="radio" value="1" name="rating" formControlName="rating">&nbsp;
+                        <span class="fa fa-heart checked"></span>
+                      </div>
+                      <br>                                                                                        
+                </div>   
+                    <div class="form-group row">
+                      <div class="col-md-8 offset-md-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </div>
+    
+            </form>
+
+
+
+
+
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
 <style>
   #cards{
     height: 550px;
   }
   #appmtcard{
     height: 300px;
-    background-color: darkgrey;
+    /* background-color: darkgrey; */
     width: 300px;
   }
   </style>

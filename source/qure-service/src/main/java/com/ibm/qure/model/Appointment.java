@@ -81,11 +81,11 @@ public class Appointment {
 		this.doctorId = doctorId;
 	}
 
-	public int getAppointmetStatus() {
+	public int getAppointmentStatus() {
 		return appointmentStatus;
 	}
 
-	public void setAppointmetStatus(int appointmentStatus) {
+	public void setAppointmentStatus(int appointmentStatus) {
 		this.appointmentStatus = appointmentStatus;
 	}
 

@@ -109,11 +109,13 @@ export class AddAppointmentComponent implements OnInit {
     console.log("in show Slot. date=" + this.selDate.val());
     this.appointmentList.forEach(appointment => {
       this.slotList.forEach(slot => {
+        if(appointment.appointmentStatus==0){
         if (appointment.time == slot && this.selDate.val() === appointment.appointmentDate) {
           console.log("inside");
           const index: number = this.slotList.indexOf(slot);
           this.slotList.splice(index, 1);
         }
+      }
       });
     });
     console.log(this.slotList);
