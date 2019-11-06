@@ -104,7 +104,10 @@ public class DoctorController {
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public Doctor getDoctor(@PathVariable String id) throws QureApplicationException {
-		return doctorService.get(id);
+		if(doctorService.get(id) != null) {
+			return doctorService.get(id);
+		}
+		else return doctorService.getById(id);
 	}
 
 	// Create Doctor POST /doctors

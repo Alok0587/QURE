@@ -79,7 +79,10 @@ public class PatientController {
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@CrossOrigin("*")
 	public Patient getPatient(@PathVariable String id) throws QureApplicationException {
-		return patientService.get(id);
+		if(patientService.get(id) != null) {
+			return patientService.get(id);
+		}
+		else return patientService.getById(id);
 	}
 
 	// Create Patient POST /Patients
@@ -194,7 +197,55 @@ public class PatientController {
 				.buildAndExpand(updatedPatient.getPatientId()).toUri();
 
 		return ResponseEntity.created(location).body(resMsg);
+	}///////////////////////////////
+	
+	
+	@PostMapping(value = "/forgot", consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@CrossOrigin("*")
+	public ResponseEntity<ResponseMessage> forgotPass(@RequestBody Patient patient)
+			throws URISyntaxException, ApplicationException, QureApplicationException {
+		System.out.println("controller");
+		boolean x = false;
+		try {
+
+			Users existPat = userRepo.findByUsername(patient.getEmail());
+
+			// System.out.println("existsXXXXXXXXXXXXXXXXXXXXXXXXXX "+existDoc);
+
+			if (existPat == null) {
+
+				x = false;
+				throw new QureApplicationException();
+
+			}
+
+			else {
+				x = true;
+
+			}
+		}
+
+		catch (Exception e) {
+			throw new QureApplicationException(
+					"The profile doesn;t exists. Please check your credentials." + e.getMessage(), e);
+		}
+
+		ResponseMessage resMsg;
+
+		if (x) {
+
+			messageService.sendFogotPass(patient.getEmail(), patient.getPhone());
+			System.out.println("emaili");
+			resMsg = new ResponseMessage("Success", new String[] { "otp send successfully" });
+		} else {
+			resMsg = new ResponseMessage("Failure", new String[] { "Unable to send otp" });
+		}
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/forgot")
+				.buildAndExpand(patient.getPatientId()).toUri();
+
+		return ResponseEntity.created(location).body(resMsg);
 	}
+	///////////////////////////
 
 	// Delete Patient DELETE /Patients/{id}
 	@DeleteMapping("/{id}")

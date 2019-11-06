@@ -159,6 +159,32 @@ export class PatientService {
     return promise;
   }
 
+  async forgotPassword(email,otp){
+    let forgotpass={
+      'email': email,
+      'phone': otp
+    }
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.REST_API_URL+'/forgot', forgotpass)
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Can't register. Profile already exists.")
+
+          reject(err);
+        })
+        .finally(() => {
+          console.log("ENDS");
+        });
+    });
+    return promise;
+  }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authenticationService.isUserLoggedIn('PATIENT'))
       return true;

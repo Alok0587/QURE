@@ -20,6 +20,9 @@ export class PatientLoginComponent implements OnInit {
   isSaved2: boolean;
   emailid:string;
   password:string;
+  phone: any;
+  randomNumber:any;
+  otpNumber:number;
 
   constructor(private patientService: PatientService, private route :ActivatedRoute, private router: Router) {
 
@@ -54,20 +57,38 @@ export class PatientLoginComponent implements OnInit {
    // console.log(formData.value);
 
     console.log(this.emailid);
-    
 
-    var newpass =this.password;
-  //obj.id = this.patientId;
-  console.log(newpass);
+    if(formData.value.phone === this.otpNumber){
+      var newpass =this.passwordnew;
+    //obj.id = this.patientId;
+    console.log(newpass);
 
-    let res = await this.patientService.updatePassword(this.emailid,newpass);
-    console.log(res);
-    if (res) {
-      this.isSaved2 = true;
-      this.ngOnInit();
-    }
-
+      let res = await this.patientService.updatePassword(this.emailid,newpass);
+      console.log(res);
+      if (res) {
+        this.isSaved2 = true;
+        //this.ngOnInit();
+      }
+    }else{
+      alert("wrong otp");
   }
+}
+
+async generateRandomNumber(){
+
+  console.log(this.emailid);
+
+  this.randomNumber =Math.random()*10000;
+ this.otpNumber = Math.round(this.randomNumber);
+ console.log(this.otpNumber);
+ let x = await this.patientService.forgotPassword(this.emailid, this.otpNumber);
+ console.log("ggggggg");
+//  if(x){
+
+//  }
+
+
+}
 
   async onSubmitButton() {
     console.log(this.loginForm.value.email);
