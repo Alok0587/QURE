@@ -346,63 +346,43 @@
   </div>
 </div>
 
-<div class="modal fade" id="ratings" tabindex="-1" role="dialog" aria-labelledby="ratings" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ratings">Rate your Experience</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-
-
-        <form class="col-md-8 offset-md-1" [formGroup]="ratingForm" (ngSubmit)="onAddRatingHandler()">
-          <label for="rating" class="col-form-label">Rate your Experience with us!!!</label>
-          <div class="col-md-8 offset-md-2">
-            <div class="modal-body">
-              <form class="col-md-8 offset-md-1" [formGroup]="ratingForm" (ngSubmit)="onAddRatingHandler()">
-                <label for="rating" class="col-form-label">Please tell us how your last consultation went...</label>
-                <div class="col-md-8 offset-md-2">
-                  <input class="rating1" type="radio" value="5" name="rating" formControlName="rating"
-                    (click)="heartMaker(5)" checked>5 &nbsp;
-                  <input class="rating1" type="radio" value="4" name="rating" formControlName="rating"
-                    (click)="heartMaker(4)">4 &nbsp;
-                  <input class="rating1" type="radio" value="3" name="rating" formControlName="rating"
-                    (click)="heartMaker(3)">3 &nbsp;
-                  <input class="rating1" type="radio" value="2" name="rating" formControlName="rating"
-                    (click)="heartMaker(2)">2 &nbsp;
-                  <input class="rating1" type="radio" value="1" name="rating" formControlName="rating"
-                    (click)="heartMaker(1)">1 &nbsp;<br>
-                  <div id="rating-ground">
-
-
-                  </div>
+<div class="modal fade" id="ratings" tabindex="-1" role="dialog" aria-labelledby="ratings"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ratings"><b>Rate your Experience</b></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+            <form class="col-md-8 offset-md-1" [formGroup]="ratingForm" (ngSubmit)="onAddRatingHandler()">               
+               <label for="rating" class="col-form-label">Please tell us how your last consultation went...</label>
+               <div class="col-md-8 offset-md-2">
+                 <input class="rating1" type="radio" value="5" name="rating" formControlName="rating" (click)="heartMaker(5)" checked>5 &nbsp;
+                 <input class="rating1" type="radio" value="4" name="rating" formControlName="rating" (click)="heartMaker(4)">4 &nbsp;
+                 <input class="rating1" type="radio" value="3" name="rating" formControlName="rating" (click)="heartMaker(3)">3 &nbsp;
+                 <input class="rating1" type="radio" value="2" name="rating" formControlName="rating" (click)="heartMaker(2)">2 &nbsp;
+                 <input class="rating1" type="radio" value="1" name="rating" formControlName="rating" (click)="heartMaker(1)">1 &nbsp;<br>
+                <div id="rating-ground">                 
                 </div>
-                <br>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-8 offset-md-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </div>
 
-        </form>
+                
+               </div>
+                  <div class="form-group row">
+                    <div class="col-md-8 offset-md-3">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                  
 
-
-
-
-
-
-
-
+    
+            </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 <style>
   #cards {
     height: 550px;
