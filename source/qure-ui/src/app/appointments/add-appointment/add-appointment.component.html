@@ -18,7 +18,7 @@
                 </a> -->
                 <form class="form" [formGroup]="searchForm" (ngSubmit)="onSearchDoctorHandler()">
                     <div class="form-group " id="searchbar"><p style="color: rgb(15, 15, 146);">Choose location:</p>
-                        <select class="form-control" formControlName="city" style="width: 250px; height: 40px; margin-left: 30px;">
+                        <select class="form-control" formControlName="city" style="width: 75%; height: 10%; margin-left: 10%;">
                             <option value="false">ALL locations</option>
                             <option value="Bangalore">Bangalore</option>
                             <option value="Delhi">Delhi</option>
@@ -33,7 +33,7 @@
                         </select>
                         <br />
                         <p style="color: rgb(15, 15, 146);">Choose specialization:</p><select class="form-control" formControlName="specialization"
-                        style="width: 250px; height: 40px; margin-left: 30px;">
+                        style="width: 75%; height: 10%; margin-left: 10%;">
                             <option value="false">All specializations</option>
                             <option value="ENT">ENT</option>
                             <option value="Dentist">Dentist</option>
@@ -44,7 +44,7 @@
 
                         </select>
                         <br>
-                        <button type="submit" class="btn btn-outline-primary">SELECT</button>
+                        <button type="submit" class="btn btn-outline-primary">SEARCH</button>
 
                     </div>
                 </form>

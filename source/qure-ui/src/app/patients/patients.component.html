@@ -53,29 +53,13 @@
         <div class="card-body ">
 
           <!-- Title-->
-          <a>
             <p class="card-text" style="font-weight: bold; font-size:18px;">APPOINTMENTS
             </p>
-
-
-
-
-
-          </a>
-          <hr>
+          <!-- <hr> -->
           <button type="button" class="btn btn-outline-info"
             (click)="onBookAppointmentHandler(patientData.patientId)">Book new appointment</button>
           <button type="button" (click)="onViewAppointmentList()" class="btn btn-outline-danger">Your
             appointments</button>
-
-
-
-
-          <!-- <p class="card-meta">{{patientData.email}}</p> -->
-          <!-- Text -->
-
-
-
         </div>
         <!-- Card content -->
 
@@ -103,8 +87,8 @@
           </a>
           <!-- <p class="card-meta">{{patientData.email}}</p> -->
           <!-- Text -->
-          <p class="card-text ">Our own QURE Pharmacy is at your service.</p>
-          <!-- <p class="card-text h4-responsive">Click below to view prescribes medicines.</p> -->
+          <p class="card-meta" style="color: rgb(14, 56, 66);">QURE Pharmacy at your service.</p>
+          <p class="card-text" style="color: rgb(14, 56, 66);">Click below for medicines.</p>
           <hr>
 
           <button type="button" class="btn btn-outline-primary" (click)="viewOrderList(patientData.patientId)">View
@@ -140,37 +124,6 @@
         </div>
         <div class="modal-body" *ngIf="duplicateAppointmentData">
           <form ngNativeValidate #f="ngForm" (ngSubmit)="onUpdateHandler(f)">
-            <!-- <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Appointment Id</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="id" placeholder="Enter Id"
-                                [(ngModel)]="appointmentData.appointmentId" disabled required>
-                        </div>
-                    </div> -->
-            <!-- <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">date</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" name="date" placeholder="Enter date"
-                                [(ngModel)]="duplicateAppointmentData.appointmentDate" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
-                        <div class="col-sm-9">
-                          
-                                <select class="form-control" name="time" [(ngModel)]="duplicateAppointmentData.time" required>
-                                    <option value="9">9 am</option>
-                                    <option value="10">10 am</option>
-                                    <option value="17">5 pm</option>
-                                    <option value="18">6 pm</option>
-                                    <option value="19">7 pm</option>
-                                    <option value="9">9 pm</option>
-                              
-                                    </select>
-                        </div>
-                    </div> -->
-
-
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Date</label>
               <div class="col-sm-9">
@@ -288,7 +241,8 @@
 
             <div class="modal-footer">
               <!-- <button type="button" class="btn btn-secondary" >Close</button> -->
-              <button type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
           </form>
         </div>
@@ -321,7 +275,7 @@
         <p class="card-text" *ngIf="appointment.appointmentStatus!=0">completed &#x2714;</p>
         <p class="card-text" *ngIf="appointment.appointmentStatus==2">rated &#x2714;</p>
         <button type="button" (click)="onRatingHandler(appointment)" class="btn-sm btn-success" data-toggle="modal"
-          data-target="#ratings" *ngIf="appointment.appointmentStatus==1">Give Ratings</button>
+          data-target="#ratings" *ngIf="appointment.appointmentStatus==1" (click)="heartMaker(5)">Give Ratings</button>
       </div>
     </div>
 
@@ -374,10 +328,7 @@
                     <div class="col-md-8 offset-md-3">
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
-                  </div>
-                  
-
-    
+                  </div>    
             </form>
         </div>
       </div>
