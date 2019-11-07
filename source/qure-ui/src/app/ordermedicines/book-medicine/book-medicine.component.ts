@@ -31,7 +31,7 @@ export class BookMedicineComponent implements OnInit {
 
   
     }
-    async onBookHandler(medId:string,medicine:any){
+    async onBookHandler(medId:string,medicineName:any){
 
       const _patientId: string = this.route.snapshot.paramMap.get('pid');
       const _appId : string = this.route.snapshot.paramMap.get('appid');
@@ -43,7 +43,8 @@ export class BookMedicineComponent implements OnInit {
       
         'medicineId' : medId,
         'appointmentId': _appId,
-        'patientId': _patientId
+        'patientId': _patientId,
+        'medicineName': medicineName
         
 
       };

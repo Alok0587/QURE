@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class OrderService {
 
   private REST_URL_BOOK : string = "http://localhost:7071/qure/bookmedicines";
 
-  constructor(private http: HttpClient) { }
+  constructor(private authenticationService: AuthenticationService,private http: HttpClient) { }
 
   getMedicines() {
     return this.http.get(this.REST_API_URL)
@@ -28,6 +29,35 @@ export class OrderService {
         return res; 
       }));
   }
+  updateOrder(orderData)
+  {
+    // let uandp = sessionStorage.getItem('usernameandpassword');
+    // const headers = new HttpHeaders({
+
+    //   'Content-Type': 'application/json',
+    //   'Authorization': 'Basic ' + btoa(uandp)
+    // });
+    console.log(orderData);
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.put(this.REST_URL_BOOK+'/'+orderData.bookedId, orderData )
+        .toPromise()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+        .finally(() => {
+          console.log("ENDS");
+        });
+    });
+
+    return promise;
+  }
+    
 
   createOrder(medicineData: any) {
     console.log(medicineData+" In order service file");

@@ -19,6 +19,7 @@ export class AdminPharmacyComponent implements OnInit {
   orderData: any;
   showOrders: boolean;
   showMedicines:boolean;
+ 
   constructor(private orderService: OrderService, private route: ActivatedRoute, public router: Router) {
     this.showOrders = false;
     this.showMedicines = false;
@@ -78,6 +79,17 @@ export class AdminPharmacyComponent implements OnInit {
 
 
    //licateAppointmentData = JSON.parse(JSON.stringify(this.appointmentData));
+  }
+  async onDeliverHandler(order)
+  {
+  
+    order.processingStatus='Delivered';
+    console.log(order);
+    
+    let res=await this.orderService.updateOrder(order);
+    console.log(res);
+   
+    
   }
    async onOrderDeleteHandler(orderId)
 {

@@ -137,15 +137,16 @@ aria-hidden="true">
 
         <div class="row" [hidden]="!showOrders">
                 
-            <div class="card col-sm-4" *ngFor="let order of orderList">
+            <div class="card col-sm-3 border-secondary" style="margin: 5px 5px 5px 5px;" *ngFor="let order of orderList">
                     <h3>Order</h3>
                 <div class="card-body">
                     <p class="card-text">Order ID: {{order.bookedId}}</p>
                     <h5 class="card-title">Patient ID: {{order.patientId}}</h5>
-                    <p class="card-text">medicine ID: {{order.medicineId}}</p>
-                    <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewOrderModal"
-                        (click)="onOrderViewHandler(order.bookedId)">View/Update</button>
-                    <button type="button" (click)="onOrderDeleteHandler(order.bookedId)" class="btn-sm btn-danger">Delete</button>
+                    <p class="card-text">Medicine name: {{order.medicineName}}</p>
+
+                    <button type="button" *ngIf="order.processingStatus==='Not delivered'"class="btn-sm btn-primary" 
+                        (click)="onDeliverHandler(order)">Deliver</button>
+                    <!-- <button type="button" (click)="onOrderDeleteHandler(order.bookedId)" class="btn-sm btn-danger">Delete</button> -->
                 </div>
             </div>
     
@@ -157,7 +158,7 @@ aria-hidden="true">
 
         <div class="row" [hidden]="!showMedicines">
                 
-            <div class="card col-sm-4" *ngFor="let medicine of medicineList"> 
+            <div class="card col-sm-3 border-secondary" style="margin: 5px 5px 5px 5px;" *ngFor="let medicine of medicineList"> 
                     <h3>Medicine</h3>
                 <div class="card-body">
                     <p class="card-text">Medicine ID: {{medicine.medicineId}}</p>

@@ -40,7 +40,7 @@
             </select></p><hr> -->
             <p class="card-text"><strong>Quantity:</strong> {{medicine.quantity}}</p><hr>
             <p class="card-text"><strong>Price:</strong> {{medicine.price}}</p><hr>
-            <button type="submit" class="btn btn-primary" (click)="onBookHandler(medicine.medicineId)">Book</button>
+            <button type="submit" class="btn btn-primary" (click)="onBookHandler(medicine.medicineId,medicine.name)">Book</button>
 
        
     </div>

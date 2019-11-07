@@ -254,11 +254,11 @@
 
 
 
-<div class="ScrollStyle">
-  <h3 *ngIf="appointmentList" [hidden]="!showAppointments">APPOINTMENTS</h3>
-  <div class="row" *ngIf="appointmentList" [hidden]="!showAppointments">
+<div class="ScrollStyle" [hidden]="!showAppointments">
+  <h3 *ngIf="appointmentList">APPOINTMENTS</h3>
+  <div class="row" *ngIf="appointmentList" >
     <p *ngIf="!appointmentList">NO APPOINTMENTS FOUND</p>
-    <div class="card" *ngFor="let appointment of appointmentList" id="appmtcard">
+    <div class="card border-secondary" style="margin: 5px 5px 5px 5px;" *ngFor="let appointment of appointmentList" id="appmtcard">
       <div class="card-body">
         <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
         <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
@@ -282,19 +282,16 @@
   </div>
 </div>
 
-<div class="ScrollStyle">
-  <h3 *ngIf="orderList" [hidden]="!showOrders">ORDERS</h3>
+<div class="ScrollStyle" [hidden]="!showOrders">
+  <h3 *ngIf="orderList">ORDERS</h3>
   <div class="row" *ngIf="orderList">
     <p *ngIf="!orderList">NO PRESCRIPTIONS FOUND</p>
-    <div class="card col-sm-4" *ngFor="let order of orderList">
+    <div class="card col-sm-4 border-secondary" style="margin: 5px 5px 5px 5px;" *ngFor="let order of orderList">
       <div class="card-body">
-        <p class="card-title">Booked ID: {{order.bookedId}}</p>
-        <p class="card-text">Appointment ID: {{order.appointmentId}}</p>
+        <p class="card-title">Medicine name: {{order.medicineName}}</p>
+        <!-- <p class="card-text">Appointment ID: {{order.appointmentId}}</p> -->
         <p class="card-text">Status: {{order.processingStatus}}</p>
-        <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
-          (click)="onViewHandler(order.bookedId)">View/Update</button>
-        <button type="button" (click)="onDeleteHandler(order.bookedId)" class="btn-sm btn-danger">Delete</button>
-      </div>
+       </div>
     </div>
 
   </div>

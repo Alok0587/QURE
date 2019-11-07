@@ -89,6 +89,7 @@ export class PatientsComponent implements OnInit {
       });
       this.showOrders = false;
       this.showAppointments = true;
+      
   }
   async viewOrderList(pid)
   {
