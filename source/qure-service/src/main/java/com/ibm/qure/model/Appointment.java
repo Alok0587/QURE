@@ -13,8 +13,10 @@ public class Appointment {
 	private String appointmentDate;
 
 	private String patientId;
+	private String patientName;
 
 	private String doctorId;
+	private String doctorName;
 
 	private int appointmentStatus = 0;
 
@@ -23,7 +25,7 @@ public class Appointment {
 	}
 
 	public Appointment(String appointmentId, String time, int price, String appointmentDate, String patientId,
-			String doctorId) {
+			String doctorId, String patientName, String doctorName) {
 		super();
 		this.appointmentId = appointmentId;
 		this.time = time;
@@ -31,6 +33,8 @@ public class Appointment {
 		this.appointmentDate = appointmentDate;
 		this.patientId = patientId;
 		this.doctorId = doctorId;
+		this.doctorName = doctorName;
+		this.patientName = patientName;
 	}
 
 	public String getAppointmentId() {
@@ -87,6 +91,22 @@ public class Appointment {
 
 	public void setAppointmentStatus(int appointmentStatus) {
 		this.appointmentStatus = appointmentStatus;
+	}
+
+	public String getPatientName() {
+		return patientName;
+	}
+
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
 	}
 
 }
