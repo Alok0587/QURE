@@ -19,6 +19,7 @@ export class ChatComponent {
   name: string;
   convo: string;
   msg: string;
+  loading:boolean=false;
 
   date: string = new Date().toLocaleString();
   parser: string[];
@@ -28,6 +29,7 @@ export class ChatComponent {
     this.webSocketAPI = new WebSocketAPI(new ChatComponent());
     this.webSocketAPI._connect();
     document.getElementById("activity").innerHTML="<b><div class='fa-1x' style='color:green'><i class='fas fa-circle-notch fa-spin'>&nbsp;</i>Available </div>";
+    document.getElementById("loading").style.display="none";
 
 
   }
@@ -51,6 +53,7 @@ export class ChatComponent {
   }
 
   sendMessage() {
+    document.getElementById("loading").style.display="block";
     this.webSocketAPI._send(this.name);
   }
   recievedMessage(message) {
@@ -58,6 +61,7 @@ export class ChatComponent {
     console.log(message.class);
     this.msg = this.convo.slice(13, this.convo.length - 2);
      $("#convo").append("<tr><td>"+"<button type= 'button' class='btn' style='float:left; background-color:#566573 ' >" + "<h5  style='color:white;'>"  +this.msg + "</h5>" + "<span class='time-left text-muted'>"+this.date+"</span>"+"</button>"+"</tr></td>"); 
+     document.getElementById("loading").style.display="none";
 
   }
   async delay(ms: number) {

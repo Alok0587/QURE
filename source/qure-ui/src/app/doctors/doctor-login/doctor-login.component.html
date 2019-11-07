@@ -37,11 +37,13 @@
 
         </div>
 
-      <div class="text-center mb-3">
-        <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in</button>
-        <p>{{this.message}}</p>
+        <div class="text-center mb-3">
+          <button [disabled]="loading" type="submit" class="fadeIn fourth btn btn-primary btn-md">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+             Sign In
+            </button>
+            <p>{{this.message}}</p>
       </div>
-      </form>
       
     </div>
     <!--Footer-->

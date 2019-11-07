@@ -23,6 +23,7 @@ export class PatientLoginComponent implements OnInit {
   phone: any;
   randomNumber:any;
   otpNumber:number;
+  loading:boolean=false;
 
   constructor(private patientService: PatientService, private route :ActivatedRoute, private router: Router) {
 
@@ -74,6 +75,7 @@ async generateRandomNumber(){
 }
 
   async onSubmitButton() {
+    this.loading=true;
     console.log(this.loginForm.value.email);
     console.log(this.loginForm.value.password);
     let x = await this.patientService.authenticate(this.loginForm.value.email, this.loginForm.value.password);

@@ -13,7 +13,7 @@ export class PatientRegisterComponent implements OnInit {
   patientForm: FormGroup;
   isSaved: boolean;
   gender='male';
-
+   loading:boolean=false;
   constructor(private patientService: PatientService, private router: Router) {
     this.patientForm = new FormGroup({
       name: new FormControl('', [
@@ -53,6 +53,7 @@ export class PatientRegisterComponent implements OnInit {
   }
 
   async onAddPatientHandler() {
+    this.loading=true;
     console.log(this.patientForm);
     console.log(this.patientForm.value);
     let res: any = await this.patientService.registerPatient(this.patientForm.value);

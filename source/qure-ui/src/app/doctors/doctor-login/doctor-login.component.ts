@@ -16,7 +16,7 @@ export class DoctorLoginComponent implements OnInit {
   dSubscription: Subscription;
   dData: any;
   phone:any;
-
+  loading:boolean=false;
   message: any;
   randomNumber : number;
 
@@ -77,6 +77,7 @@ export class DoctorLoginComponent implements OnInit {
    }
 
    async onSubmitButton2() {
+     this.loading=true;
     console.log(this.loginForm.value.email);
     console.log(this.loginForm.value.password);
     let x = await this.doctorService.authenticate(this.loginForm.value.email, this.loginForm.value.password);
