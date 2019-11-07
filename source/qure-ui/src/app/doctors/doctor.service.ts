@@ -45,6 +45,7 @@ export class DoctorService {
       .catch((err) => {
         console.log(err);
         alert("Can't login. Please check your credentials.");
+        window.location.reload();
       
         return err;
       });

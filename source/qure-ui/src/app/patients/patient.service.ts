@@ -47,7 +47,7 @@ export class PatientService {
       .catch((err) => {
         console.log(err);
         alert("Can't login. Please check your credentials.");
-      
+        window.location.reload();
         return err;
       });
 
@@ -71,9 +71,11 @@ export class PatientService {
           resolve(res);
         })
         .catch((err) => {
+
           console.log(err);
           alert("Can't register. Profile already exists.")
-        
+          window.location.reload();
+          
           reject(err);
         })
         .finally(() => {

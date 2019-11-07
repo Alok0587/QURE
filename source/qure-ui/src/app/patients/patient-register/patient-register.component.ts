@@ -62,6 +62,7 @@ export class PatientRegisterComponent implements OnInit {
     if (res && res.message) {
       this.isSaved = true;
     }
+    
 
     this.router.navigate(['patients/login', { regStatus: this.isSaved }] );
     // this.router.navigate(['patients/login']);

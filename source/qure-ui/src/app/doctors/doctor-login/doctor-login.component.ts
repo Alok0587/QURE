@@ -91,10 +91,12 @@ export class DoctorLoginComponent implements OnInit {
       
     } else
     {
+      this.loading=false;
+
       this.validLogin = false;
       console.log("CAN'TTTTTTTTTTTTTTTTTTTTTTTTT");
+
       this.message="Can't login. Please check your credentials.";
-   
       
     }
       

@@ -90,7 +90,7 @@ async generateRandomNumber(){
         this.validLogin = false;
         console.log("CAN'TTTTTTTTTTTTTTTTTTTTTTTTT");
         this.message="Can't login. Please check your credentials.";
-      
+        window.location.reload();
       }
   }
 
