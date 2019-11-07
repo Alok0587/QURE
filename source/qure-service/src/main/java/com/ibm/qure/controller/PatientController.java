@@ -220,16 +220,17 @@ public class PatientController {
 
 			// System.out.println("existsXXXXXXXXXXXXXXXXXXXXXXXXXX "+existDoc);
 
-			if (existPat != null) {
+			if (existPat == null) {
 
-				x = true;
+				x = false;
+				throw new QureApplicationException();
 				
 
 			}
 
 			else {
 				x = true;
-				throw new QureApplicationException();
+				
 
 			}
 		}

@@ -131,6 +131,7 @@ export class PatientsComponent implements OnInit {
       this.ngOnInit();
     }
   }
+  
 
   onBookAppointmentHandler(pId) {
     console.log("Id: " + pId);

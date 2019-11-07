@@ -15,6 +15,7 @@ export class PatientRegisterComponent implements OnInit {
   gender='male';
    loading:boolean=false;
   constructor(private patientService: PatientService, private router: Router) {
+    window.scrollTo(0,0);
     this.patientForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -70,5 +71,7 @@ export class PatientRegisterComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  
 
 }

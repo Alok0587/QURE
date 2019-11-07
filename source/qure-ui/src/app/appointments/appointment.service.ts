@@ -77,7 +77,7 @@ export class AppointmentService {
           console.log("Ends");
         });
     });
-    alert("appointment Success");
+    //alert("appointment Success");
     return promise;
   }
 

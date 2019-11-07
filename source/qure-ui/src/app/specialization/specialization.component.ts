@@ -61,4 +61,7 @@ export class SpecializationComponent implements OnInit {
      this.isSaved2=true;
    }
 }
+ngAfterViewChecked(){
+ window.scrollTo(0,0);
+}
 }

@@ -1,28 +1,54 @@
 <div class="row">
 
-    <br>
-    <div class="col-md-2" style="background-color: #e6f9ff;">
-        <br>
-        <center>
-        <img src="assets/image/adminProfile2.png" id="admin">
-        <br><br>
-        <h4 style="text-align: center;"><b>ADMIN</b></h4><br>
-    </center>
-        First Name: John<br>
-        Last Name: Smith<br>
-        Email Id: johnsmith@gmail.com<br>
-        Phone: 9876543210<br>
-        Address: Bangalore, India<br>
+<div class="col-md-6">
+    <center><mdb-card style="width: 500px;height: 500px;">
+        <div class="view overlay waves-light" id="one" mdbWavesEffect >
+          <!-- Card img -->
+          <mdb-card-img src="assets/image/admin1.jpg" alt="Card image cap"></mdb-card-img>
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!--Card content-->
+        <mdb-card-body>
+          <!--Title-->
+          <mdb-card-title>
+            <h4>Doctors</h4>
+          </mdb-card-title>
+    
+          <!--Text-->
+    
+         
+    
+          <button routerLink="/admin-doctor" mdbBtn class="btn btn-outline-primary" mdbWavesEffect>Go here</button>
+        </mdb-card-body>
+      </mdb-card> </center>
+    
+</div>
+   <!-- Card -->
+  
+  <!-- Card -->
+  <div class="col-md-6">
+ <center> <mdb-card style="width: 500px;height: 500px;"> 
+    <div class="view rgba-white-slight waves-light"  id="one" mdbWavesEffect>
+      <!-- Card img -->
+      <mdb-card-img src="assets/image/car3.jpg" alt="Card image cap"></mdb-card-img>
+      <a>
+        <div class="mask"></div>
+      </a>
     </div>
-    <div class="col-md-1"></div>
+    <!--Card content-->
+    <mdb-card-body>
+      <!--Title-->
+      <mdb-card-title>
+        <h4>Pharmacy</h4>
+      </mdb-card-title>
 
-    <div class="col-md-4">
-
-        <a routerLink="/admin-doctor"><img src="assets/image/doctor-gif.gif" style="height: 300px; width: 370px;"></a>
-    </div>
-    <div class="col-md-4">
-        <a routerLink="/admin-pharmacy"><img src="assets/image/pharmacy-gif.gif" style="height: 300px; width: 370px;"></a>
-
-    </div>
-
+      <!--Text-->
+     
+      <br>
+      <button routerLink="/admin-pharmacy" mdbBtn class="btn btn-outline-primary" mdbWavesEffect>Go here</button>
+    </mdb-card-body>
+  </mdb-card></center>
+ </div>
 </div>

@@ -1,5 +1,5 @@
 <!-- Section: Personal card -->
-<a routerLink="/patients/login">Go back</a>
+<a routerLink="/home">Go back</a>
 <section class="my-5">
 
   <!-- Grid row 1 -->
@@ -156,8 +156,8 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-outline-primary">Save changes</button>
             </div>
           </form>
         </div>
@@ -260,17 +260,17 @@
     <p *ngIf="!appointmentList">NO APPOINTMENTS FOUND</p>
     <div class="card border-secondary" style="margin: 5px 5px 5px 5px;" *ngFor="let appointment of appointmentList" id="appmtcard">
       <div class="card-body">
-        <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
-        <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
-        <p class="card-text">Time: {{appointment.time}}:00</p>
-        <p class="card-text">Doctor: {{appointment.doctorName}}</p>       
+        <!-- <p class="card-text" style="display: none; font-weight: bold; color: rgb(23, 23, 138);">Appointment ID: {{appointment.appointmentId}}</p> -->
+        <h5 class="card-title"><span style="font-weight: bold; color: rgb(23, 23, 138);"><i class="far fa-calendar-alt"></i>&nbsp;DATE:</span> {{appointment.appointmentDate}}</h5>
+        <p class="card-text"><span style="font-weight: bold; color: rgb(23, 23, 138);">TIME</span> {{appointment.time}}:00</p>
+        <p class="card-text"><span style="font-weight: bold; color: rgb(23, 23, 138);">DOCTOR: </span> {{appointment.doctorName}}</p>  <hr>     
         <button type="button" class="btn-sm btn-outline-primary" data-toggle="modal" data-target="#viewAppointmentModal"
-          (click)="onViewHandler(appointment)" *ngIf="appointment.appointmentStatus==0">View/Update</button>
+          (click)="onViewHandler(appointment)" *ngIf="appointment.appointmentStatus==0">View/Update</button>&nbsp;&nbsp;&nbsp;
         <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-outline-danger"
-          *ngIf="appointment.appointmentStatus==0">cancel</button>
-        <p class="card-text" *ngIf="appointment.appointmentStatus!=0" style="color: green;">completed &#x2714;</p>
-        <p class="card-text" *ngIf="appointment.appointmentStatus==2" style="color: rgb(224, 109, 67);">rated &#x2714;</p>
-        <button type="button" (click)="onRatingHandler(appointment)" class="btn-sm btn-outline-success" data-toggle="modal"
+          *ngIf="appointment.appointmentStatus==0">Cancel</button>
+        <p class="card-text" *ngIf="appointment.appointmentStatus!=0" style="color: green;">COMPLETED &#x2714;</p>
+        <p class="card-text" *ngIf="appointment.appointmentStatus==2" style="color: rgb(224, 109, 67);">RATED &#x2714;</p>
+        <button type="button" class="btn-sm btn-outline-primary" (click)="onRatingHandler(appointment)" class="btn-sm btn-outline-info" data-toggle="modal"
           data-target="#ratings" *ngIf="appointment.appointmentStatus==1" (click)="heartMaker(5)">Give Ratings</button>
       </div>
     </div>
@@ -281,11 +281,11 @@
   <h3 *ngIf="orderList">ORDERS</h3>
   <div class="row" *ngIf="orderList">
     <p *ngIf="!orderList">NO PRESCRIPTIONS FOUND</p>
-    <div class="card col-sm-4 border-secondary" style="margin: 5px 5px 5px 5px;" *ngFor="let order of orderList">
+    <div class="card col-sm-3 border-secondary" style="margin: 5px 5px 5px 5px;" *ngFor="let order of orderList">
       <div class="card-body">
-        <p class="card-title">Medicine name: {{order.medicineName}}</p>
+        <p class="card-title"><span style="font-weight: bold; color: rgb(23, 23, 138);">MEDICINE NAME: </span>  {{order.medicineName}}</p>
         <!-- <p class="card-text">Appointment ID: {{order.appointmentId}}</p> -->
-        <p class="card-text">Status: {{order.processingStatus}}</p>
+        <p class="card-text"><span style="font-weight: bold; color: rgb(23, 23, 138);">DELIVERY STATUS: </span> <span style="color: coral;">{{order.processingStatus}} </span></p>
        </div>
     </div>
 

@@ -31,10 +31,14 @@ export class AddAppointmentComponent implements OnInit {
     doctorName: ""
   }
 
+  isSaved:boolean = false;
+
 
 
   constructor(private patientService: PatientService, private appointmentService: AppointmentService, 
     private route: ActivatedRoute, public router: Router, private doctorService: DoctorService) {
+
+      this.isSaved = false;
 
   }
 
@@ -99,6 +103,7 @@ export class AddAppointmentComponent implements OnInit {
 
   async onBookHandler(bookForm: any) {
     let res: any = await this.appointmentService.createAppointment(this.appointmentData);
+    this.isSaved = true;
   }
 
   onClickButton() {
