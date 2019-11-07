@@ -5,6 +5,7 @@ import { Subscription, pipe } from 'rxjs';
 import { AppointmentService } from '../appointment.service';
 import { DoctorService } from 'src/app/doctors/doctor.service';
 import * as $ from 'jquery';
+import { PatientService } from 'src/app/patients/patient.service';
 @Component({
   selector: 'app-add-appointment',
   templateUrl: './add-appointment.component.html',
@@ -13,60 +14,42 @@ import * as $ from 'jquery';
 export class AddAppointmentComponent implements OnInit {
 
   // appointmentList: any[];
-  appointmentSubscription: Subscription;
+  // appointmentSubscription: Subscription;
   doctorList: any[];
   appointmentList: any[];
-  appointmentSubscription2: Subscription;
-  slotList: any;
-  appointmentForm: any;
-  appId: string;
-  minDate: any;
-  bookForm: FormGroup;
+  slotList: any; 
   searchForm: FormGroup;
-  doctorId: any;
   selDate: any;
+  patientData: any;
   appointmentData = {
     patientId: "",
     doctorId: "",
     appointmentDate: "",
     price: 500,
-    time: ""
-
+    time: "",
+    patientName: "",
+    doctorName: ""
   }
 
 
 
-  constructor(private appointmentService: AppointmentService, private route: ActivatedRoute, public router: Router, private doctorService: DoctorService) {
-    this.slotList = ['9', '10', '17', '18', '19', '21'];
-    // console.log(this.startDate.getDate());
+  constructor(private patientService: PatientService, private appointmentService: AppointmentService, 
+    private route: ActivatedRoute, public router: Router, private doctorService: DoctorService) {
+
   }
 
-  ngOnInit() {
-    // const _dId = this.onReturn();
-    // const patientId: string = this.route.snapshot.paramMap.get('id');
-    // let startDate = new Date();
-    // console.log(startDate.getDate() + "/" + startDate.getMonth() + "/" + startDate.getFullYear());
-    // this.minDate = (startDate.getDate() + "/" + startDate.getMonth() + "/" + startDate.getFullYear());
-    // // let todayDate=this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    // this.minDate = startDate;
-    // let today: Date = new Date(Date.now());
-    // console.log(today);
-    // // console.log(this.minDate);
+  async ngOnInit() {
+    let pEmail = sessionStorage.getItem('username');
+    this.patientData = this.patientService.getPatientByEmail(pEmail)
+      .subscribe(async (res: any) => {
+        console.log(res);
+        this.patientData = await res;
+        console.log("current Patient is" + this.patientData.patientId);
+      });
 
 
     const _patientId: string = sessionStorage.getItem('userId');
-    console.log(_patientId)
-    this.bookForm = new FormGroup({
-      //step2; create Form Control
-      patientId: new FormControl(_patientId, Validators.required),
-      doctorId: new FormControl('', Validators.required),
-      time: new FormControl('', Validators.required), //step5: add validators
-      appointmentDate: new FormControl('', [
-        Validators.required
-
-      ]),
-      price: new FormControl('500', Validators.required)
-    });
+    console.log(_patientId);  
 
     this.searchForm = new FormGroup({
       // Step2: Create Form Control
@@ -74,6 +57,7 @@ export class AddAppointmentComponent implements OnInit {
       specialization: new FormControl('false', Validators.required)
     });
   }
+
   async onSearchDoctorHandler() {
     let pid = sessionStorage.getItem('userId');
     console.log(pid + " city id " + this.searchForm.value.city);
@@ -83,62 +67,41 @@ export class AddAppointmentComponent implements OnInit {
 
   }
 
-
-  onSelectHandler(dId) {
-    this.appointmentService.getAppointmentsByDoctorId(dId)
+  onSelectHandler(doctor) {
+    this.appointmentService.getAppointmentsByDoctorId(doctor.doctorId)
       .subscribe((res: any[]) => {
         console.log(res);
         this.appointmentList = res;
       });
+    
+    this.appointmentData.doctorId = doctor.doctorId;
+    this.appointmentData.doctorName = doctor.name;
 
-    console.log(this.bookForm.value.patientId);
-    this.doctorId = dId;
-    this.appointmentData.doctorId = dId;
+    this.appointmentData.patientName = this.patientData.name;
     this.appointmentData.patientId = sessionStorage.getItem('userId');
-    console.log(this.appointmentData.doctorId);
-    console.log(this.appointmentData.patientId);
-
   }
 
-
-
-
   showSlot() {
-    // console.log(this.bookForm.value.appointmentDate);
-    this.slotList = ['9', '10', '17', '18', '19', '21'];
-    console.log("in show Slot. date=" + this.selDate.val());
+    this.slotList = ['9', '10', '17', '18', '19', '20'];    
     this.appointmentList.forEach(appointment => {
       this.slotList.forEach(slot => {
         if(appointment.appointmentStatus==0){
-        if (appointment.time == slot && this.selDate.val() === appointment.appointmentDate) {
-          console.log("inside");
+        if (appointment.time == slot && this.selDate.val() === appointment.appointmentDate) {         
           const index: number = this.slotList.indexOf(slot);
           this.slotList.splice(index, 1);
         }
       }
       });
     });
-    console.log(this.slotList);
   }
 
 
   async onBookHandler(bookForm: any) {
-    console.log(bookForm);
-    console.log(bookForm.value);
-    bookForm.value.doctorId = this.doctorId;
-    bookForm.value.patientId = sessionStorage.getItem('userId');
-
-    let res: any = await this.appointmentService.createAppointment(bookForm.value);
-
-
-    console.log(res);
-    // this.router.navigate(['/patients'])
-
-
+    let res: any = await this.appointmentService.createAppointment(this.appointmentData);
   }
 
   onClickButton() {
-    let id = this.bookForm.value.patientId;
+    let id = sessionStorage.getItem('userId');
     this.router.navigate(['/patients', id])
   }
 
