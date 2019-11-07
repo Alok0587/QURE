@@ -58,6 +58,7 @@ export class PatientsComponent implements OnInit {
   }
 
   async ngOnInit() {
+    window.scrollTo(0, 0);
     // const _patientId: string = this.route.snapshot.paramMap.get('id');
     let pEmail = sessionStorage.getItem('username');
 

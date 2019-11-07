@@ -39,6 +39,7 @@ export class AddAppointmentComponent implements OnInit {
   }
 
   async ngOnInit() {
+    window.scrollTo(0, 0);
     let pEmail = sessionStorage.getItem('username');
     this.patientData = this.patientService.getPatientByEmail(pEmail)
       .subscribe(async (res: any) => {

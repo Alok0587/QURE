@@ -141,7 +141,7 @@
 
                 <select (click)="showSlot()" (focus)="checkDate()" class="form-control" name="time"
                   [(ngModel)]="duplicateAppointmentData.time" required>
-                  <option value={{slot}} *ngFor="let slot of slotList">{{slot}}</option>
+                  <option value={{slot}} *ngFor="let slot of slotList">{{slot}}:00</option>
                 </select>
               </div>
             </div>
@@ -241,8 +241,8 @@
 
             <div class="modal-footer">
               <!-- <button type="button" class="btn btn-secondary" >Close</button> -->
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-outline-primary">Save changes</button>
             </div>
           </form>
         </div>
@@ -263,22 +263,17 @@
         <p class="card-text" style="display: none;">Appointment ID: {{appointment.appointmentId}}</p>
         <h5 class="card-title">Date: {{appointment.appointmentDate}}</h5>
         <p class="card-text">Time: {{appointment.time}}:00</p>
-        <p class="card-text">Doctor: {{appointment.doctorName}}</p>
-        <!-- <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
-              (click)="onViewHandler(appointment)">View/Update</button>
-              <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger">Delete</button>
-          </div> -->
-        <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#viewAppointmentModal"
+        <p class="card-text">Doctor: {{appointment.doctorName}}</p>       
+        <button type="button" class="btn-sm btn-outline-primary" data-toggle="modal" data-target="#viewAppointmentModal"
           (click)="onViewHandler(appointment)" *ngIf="appointment.appointmentStatus==0">View/Update</button>
-        <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-danger"
-          *ngIf="appointment.appointmentStatus==0">Delete</button>
-        <p class="card-text" *ngIf="appointment.appointmentStatus!=0">completed &#x2714;</p>
-        <p class="card-text" *ngIf="appointment.appointmentStatus==2">rated &#x2714;</p>
-        <button type="button" (click)="onRatingHandler(appointment)" class="btn-sm btn-success" data-toggle="modal"
+        <button type="button" (click)="onDeleteHandler(appointment.appointmentId)" class="btn-sm btn-outline-danger"
+          *ngIf="appointment.appointmentStatus==0">cancel</button>
+        <p class="card-text" *ngIf="appointment.appointmentStatus!=0" style="color: green;">completed &#x2714;</p>
+        <p class="card-text" *ngIf="appointment.appointmentStatus==2" style="color: rgb(224, 109, 67);">rated &#x2714;</p>
+        <button type="button" (click)="onRatingHandler(appointment)" class="btn-sm btn-outline-success" data-toggle="modal"
           data-target="#ratings" *ngIf="appointment.appointmentStatus==1" (click)="heartMaker(5)">Give Ratings</button>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -303,7 +298,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="ratings"><b>Rate your Experience</b></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="btn-sm btn-outline-success close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -323,7 +318,7 @@
                </div>
                   <div class="form-group row">
                     <div class="col-md-8 offset-md-3">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn-sm btn-outline-success">Submit</button>
                     </div>
                   </div>    
             </form>
