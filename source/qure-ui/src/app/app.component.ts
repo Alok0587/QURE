@@ -14,21 +14,21 @@ export class AppComponent {
   intervalId;
 
   ngOnInit() {
-    const getDownloadProgress = () => {
-      console.log('getDownload', this);
-      if (this.progress <= 99) {
-        console.log('inside if', this.progress);
-        this.progress = this.progress + 1;
-      }
-      else {
-        clearInterval(this.intervalId);
-      }
-    }
-    this.intervalId = setInterval(getDownloadProgress, 1000);
+    // const getDownloadProgress = () => {
+    //   console.log('getDownload', this);
+    //   if (this.progress <= 99) {
+    //     console.log('inside if', this.progress);
+    //     this.progress = this.progress + 1;
+    //   }
+    //   else {
+    //     clearInterval(this.intervalId);
+    //   }
+    // }
+    // this.intervalId = setInterval(getDownloadProgress, 1000);
   }
 
-  ngOnDestroy() {
-    clearInterval(this.intervalId);
-  }
+  // ngOnDestroy() {
+  //   clearInterval(this.intervalId);
+  // }
 
 }
