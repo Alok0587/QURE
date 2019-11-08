@@ -70,7 +70,7 @@
             </div>
 
             <div class="form-group row">
-                    <label for="licenseNumber" class="col-sm-2 col-form-label">License Number</label>
+                    <label for="licenseNumber" class="col-sm-2 col-form-label">MCI Number</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': doctorForm.get('licenseNumber').touched 
             && doctorForm.get('licenseNumber').invalid }" placeholder="Enter licenseNumber" formControlName="licenseNumber" />
@@ -86,7 +86,7 @@
                 <div class="col-sm-9">
                     <select class="custom-select custom-select-sm form-control" [ngClass]="{ 'is-invalid': doctorForm.get('specialization').touched 
                                 && doctorForm.get('specialization').invalid }" formControlName="specialization">
-                        <option selected>Open this select menu</option>
+                        
                         <option value="ENT">ENT</option>
                         <option value="Dentist">Dentist</option>
                         <option value="Psychiatrist">Psychiatrist</option>
@@ -187,11 +187,12 @@
 
             </div>
 
-            <div class="form-group row">
-                <div class="col-sm-10 offset-sm-2">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="text-center mb-3">
+                    <button [disabled]="loading" type="submit" class="fadeIn fourth btn btn-primary btn-md">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                       Proceed
+                      </button>
                 </div>
-            </div>
 
         </form>
     </div>

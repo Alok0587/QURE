@@ -224,11 +224,13 @@ public class PatientController {
 
 				x = false;
 				throw new QureApplicationException();
+				
 
 			}
 
 			else {
 				x = true;
+				
 
 			}
 		}

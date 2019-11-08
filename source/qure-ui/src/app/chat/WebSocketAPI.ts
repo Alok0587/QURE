@@ -43,6 +43,8 @@ export class WebSocketAPI {
     // on error, schedule a reconnection attempt
     errorCallBack(error) {
         console.log("errorCallBack -> " + error)
+        document.getElementById("activity").innerHTML="<b><div class='fa-1x' style='color:red'><i class='fas fa-circle-notch fa-spin'>&nbsp;</i>Currently Not Available </div>";
+
         setTimeout(() => {
             this._connect();
         }, 5000);

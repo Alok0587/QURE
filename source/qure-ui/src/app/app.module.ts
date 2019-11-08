@@ -40,7 +40,7 @@ import { AdminPharmacyComponent } from './admin/admin-pharmacy/admin-pharmacy.co
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DevteamComponent } from './devteam/devteam.component';
- 
+
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
 }
@@ -93,6 +93,7 @@ export function HttpLoaderFactory(http: HttpClient){
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    
   ],
   providers: [AddAppointmentComponent],
   schemas: [

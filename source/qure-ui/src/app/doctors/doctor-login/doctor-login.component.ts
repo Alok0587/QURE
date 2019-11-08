@@ -16,7 +16,7 @@ export class DoctorLoginComponent implements OnInit {
   dSubscription: Subscription;
   dData: any;
   phone:any;
-
+  loading:boolean=false;
   message: any;
   randomNumber : number;
 
@@ -39,20 +39,7 @@ export class DoctorLoginComponent implements OnInit {
    });
    }
 
-   onForgotHandler(p1,p2)
-  {
 
-    console.log(p1+" "+p2);
-    if(p1===p2)
-    {
-      console.log("Passwords match");
-      this.password = p1;
-    }
-    else{
-      console.log("Don't match")
-    }
-    //this.
-  }
   async onDoctorUpdateHandler(formData)
   {
     console.log(formData);
@@ -84,16 +71,13 @@ export class DoctorLoginComponent implements OnInit {
      this.randomNumber =Math.random()*10000;
     this.otpNumber = Math.round(this.randomNumber);
     console.log(this.otpNumber);
+    if(this.emailid!=null){
     let x = await this.doctorService.forgotPassword(this.emailid, this.otpNumber);
-    console.log("ggggggg");
-   //  if(x){
- 
-   //  }
- 
- 
+      }
    }
 
    async onSubmitButton2() {
+     this.loading=true;
     console.log(this.loginForm.value.email);
     console.log(this.loginForm.value.password);
     let x = await this.doctorService.authenticate(this.loginForm.value.email, this.loginForm.value.password);
@@ -107,10 +91,12 @@ export class DoctorLoginComponent implements OnInit {
       
     } else
     {
+      this.loading=false;
+
       this.validLogin = false;
       console.log("CAN'TTTTTTTTTTTTTTTTTTTTTTTTT");
+
       this.message="Can't login. Please check your credentials.";
-   
       
     }
       

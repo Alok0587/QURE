@@ -34,13 +34,18 @@ export class DoctorService {
         let userObj = JSON.parse(user);
         console.log("response: " + JSON.stringify(res));
         console.log("username: " + userObj.principal.username);
-        sessionStorage.setItem('username', userObj.principal.username)
-        sessionStorage.setItem('role', 'DOCTOR')
-        return res;
+        console.log(userObj.authorities[0].authority);
+        if(userObj.authorities[0].authority==='ROLE_DOCTOR'){
+          sessionStorage.setItem('username', userObj.principal.username)
+          sessionStorage.setItem('role', 'DOCTOR')
+          return true;
+        }        
+        return false;
       })
       .catch((err) => {
         console.log(err);
         alert("Can't login. Please check your credentials.");
+        window.location.reload();
       
         return err;
       });
@@ -184,9 +189,7 @@ export class DoctorService {
           resolve(res);
         })
         .catch((err) => {
-          console.log(err);
-          alert("Can't register. Profile already exists.")
-        
+          console.log(err);        
           reject(err);
         })
         .finally(() => {

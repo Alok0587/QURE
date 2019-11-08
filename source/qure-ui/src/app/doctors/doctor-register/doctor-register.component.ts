@@ -12,7 +12,7 @@ export class DoctorRegisterComponent implements OnInit {
 
   doctorForm: FormGroup;
   isSaved: boolean;
-
+  loading:boolean=false;
 
   constructor(private doctorService: DoctorService,public router: Router) {
 
@@ -63,6 +63,7 @@ export class DoctorRegisterComponent implements OnInit {
   }
 
   async onAddDoctorHandler() {
+    this.loading=true;
     console.log(this.doctorForm);
     console.log(this.doctorForm.value);
     let res: any = await this.doctorService.registerDoctor(this.doctorForm.value);

@@ -58,7 +58,11 @@
                     <div class="form-group">
                         <input type="text" [(ngModel)]="name" class="form-control" name="name"
                             style="width:300px; margin:8px;" placeholder="Type here..">
-                            <button (click)="sendMessage()" class="btn btn-success" type="submit">Send</button>
+                            <!-- <button (click)="sendMessage()" class="btn btn-success" type="submit"></button> -->
+                            <button (click)="sendMessage()"  class="fadeIn fourth btn btn-success btn-md">
+                                <span  id="loading"  class="spinner-border spinner-border-sm mr-1"></span>
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                              </button>
 
                     </div>
                 </form>

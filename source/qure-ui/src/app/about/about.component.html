@@ -16,7 +16,7 @@
     <div class="card-deck">
         <!-- Card -->
         <mdb-card>
-          <div class="view overlay waves-light" id="one" mdbWavesEffect>
+          <div class="view overlay waves-light" id="one" mdbWavesEffect >
             <!-- Card img -->
             <mdb-card-img src="assets/image/epharmacy.png" alt="Card image cap"></mdb-card-img>
             <a>
@@ -34,13 +34,13 @@
             <mdb-card-text> {{'About.Epharmacy'| translate}}
             </mdb-card-text>
       
-            <a href="#" mdbBtn color="primary" mdbWavesEffect>Go here</a>
+            <a routerLink="/patients/login" mdbBtn color="primary" mdbWavesEffect>Go here</a>
           </mdb-card-body>
         </mdb-card>
       
         <!-- Card -->
         <mdb-card>
-          <div class="view rgba-white-slight waves-light" id="one" mdbWavesEffect>
+          <div class="view rgba-white-slight waves-light"  id="one" mdbWavesEffect>
             <!-- Card img -->
             <mdb-card-img src="assets/image/chatnow.jpg" alt="Card image cap"></mdb-card-img>
             <a>
@@ -57,16 +57,16 @@
             <!--Text-->
             <mdb-card-text>{{'About.Consultation'|translate}}
             </mdb-card-text>
-      
-            <a href="#" mdbBtn color="primary" mdbWavesEffect>Go here</a>
+            <br>
+            <a routerLink="/patients/login" mdbBtn color="primary" mdbWavesEffect>Go here</a>
           </mdb-card-body>
         </mdb-card>
       
         <!-- Card -->
         <mdb-card>
-          <div class="view rgba-white-slight waves-light" id="one" mdbWavesEffect>
+          <div class="view rgba-white-slight waves-light" id="one"  mdbWavesEffect>
             <!-- Card img -->
-            <mdb-card-img src="assets/image/about3.jpg" alt="Card image cap"></mdb-card-img>
+            <mdb-card-img src="assets/image/about3.jpg" alt="Card image cap" ></mdb-card-img>
             <a>
               <div class="mask"></div>
             </a>
@@ -83,7 +83,7 @@
             </mdb-card-text>
             <br/>
       
-            <a href="#" mdbBtn color="primary" mdbWavesEffect>Go here</a>
+            <a routerLink="/patients/login" mdbBtn color="primary" mdbWavesEffect>Go here</a>
           </mdb-card-body>
         </mdb-card>
       </div>
@@ -120,10 +120,10 @@
            <br><br>
            <div class="row">
             <div class="col-md-6">
-              <center><img src="assets/image/aboutUs_image.png" height="250px;"width="530px;"></center>
+              <center><a routerLink="/devteam"><img src="assets/image/aboutpic.jpg" height="500px" width="700px"></a></center>
             </div>
             <div class="col-md-6">
-             <h3><b>{{'About.Sideheading'|translate}}</b></h3>
+             <h4><b>{{'About.Sideheading'|translate}}</b></h4>
     <p>{{'About.Besideimage'| translate}}<!-- <p>At Qure we strongly believe that a great culture is an important ingredient for a startup’s success. 
     Our culture promotes radical candour,
     fast paced iterations, collaboration and a flat hierarchy. Listed below are our core values that

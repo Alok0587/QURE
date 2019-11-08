@@ -23,6 +23,7 @@ export class PatientLoginComponent implements OnInit {
   phone: any;
   randomNumber:any;
   otpNumber:number;
+  loading:boolean=false;
 
   constructor(private patientService: PatientService, private route :ActivatedRoute, private router: Router) {
 
@@ -37,20 +38,7 @@ export class PatientLoginComponent implements OnInit {
       password: new FormControl()
     });
   }
-  onForgotHandler(p1,p2)
-  {
 
-    console.log(p1+" "+p2);
-    if(p1===p2)
-    {
-      console.log("Passwords match");
-      this.password = p1;
-    }
-    else{
-      console.log("Don't match")
-    }
-    //this.
-  }
   async onPatientUpdateHandler(formData)
   {
     //console.log(formData);
@@ -81,16 +69,13 @@ async generateRandomNumber(){
   this.randomNumber =Math.random()*10000;
  this.otpNumber = Math.round(this.randomNumber);
  console.log(this.otpNumber);
+ if(this.emailid!=null){
  let x = await this.patientService.forgotPassword(this.emailid, this.otpNumber);
- console.log("ggggggg");
-//  if(x){
-
-//  }
-
-
+ }
 }
 
   async onSubmitButton() {
+    this.loading=true;
     console.log(this.loginForm.value.email);
     console.log(this.loginForm.value.password);
     let x = await this.patientService.authenticate(this.loginForm.value.email, this.loginForm.value.password);
@@ -105,11 +90,11 @@ async generateRandomNumber(){
         this.validLogin = false;
         console.log("CAN'TTTTTTTTTTTTTTTTTTTTTTTTT");
         this.message="Can't login. Please check your credentials.";
-      
+        window.location.reload();
       }
   }
 
-  ngOnInit() {    
+  ngOnInit() {
+    window.scrollTo(0, 0);    
   }
-
 }

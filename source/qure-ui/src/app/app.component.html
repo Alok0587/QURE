@@ -1,9 +1,26 @@
 <!-- right place for layout -->
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 <app-header></app-header>
 
 <div class="container-fluid" style="margin-top: 1%; margin-bottom: 5%;">
     <router-outlet></router-outlet>
     <!-- <app-home></app-home> -->
 </div>
-
+<circle-progress
+[percent]="progress"
+[radius]="100"
+[outerStrokeWidth]="10"
+[innerStrokeWidth]="10"
+[space] = "-10"
+[outerStrokeColor]="'#4882c2'"
+[innerStrokeColor]="'#e7e8ea'"
+[titleFontSize]= "24"
+[unitsFontSize]= "24"
+[showSubtitle] = "false"
+[animation]="true"
+[animationDuration]="300"
+[startFromZero]="false"
+[responsive]="true"
+></circle-progress>
 <app-footer></app-footer>

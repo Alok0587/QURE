@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ibm.qure.exceptions.QureApplicationException;
 import com.ibm.qure.model.Appointment;
 import com.ibm.qure.model.Doctor;
 import com.twilio.sdk.TwilioRestClient;
@@ -42,7 +43,7 @@ public class MessageService {
 	public static final String AUTH_TOKEN = "8af8e3de253ef6a0ee7f814f581f0b5e";
 	public static final String TWILIO_NUMBER = "+18572148925";
 
-	public void sendSMS(String mobile, String name) {
+	public void sendSMS(String mobile, String name){
 		try {
 			TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
 
@@ -222,7 +223,7 @@ public class MessageService {
 
 		System.out.println("Email sent successfully!");
 	}
-	public void sendFogotPass(String email, String otp) {
+	public void sendFogotPass(String email, String otp){
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 
 		mailMessage.setFrom("qureapplication@gmail.com");

@@ -16,12 +16,15 @@ public class BookMedicine {
 	
 	//@DBRef
 	private String medicineId;
+	private String medicineName;
+
+
 	
 	private String patientId;
 	
 	private String appointmentId;
 	
-	private int processingStatus =0;
+	private String processingStatus ="Not delivered";
 	
 	public String getBookedId() {
 		return bookedId;
@@ -47,10 +50,10 @@ public class BookMedicine {
 	public void setMedicineId(String medicineId) {
 		this.medicineId = medicineId;
 	}
-	public int getProcessingStatus() {
+	public String getProcessingStatus() {
 		return processingStatus;
 	}
-	public void setProcessingStatus(int processingStatus) {
+	public void setProcessingStatus(String processingStatus) {
 		this.processingStatus = processingStatus;
 	}
 	public String getAppointmentId() {
@@ -64,6 +67,12 @@ public class BookMedicine {
 	}
 	public void setPatientId(String patientId) {
 		this.patientId = patientId;
+	}
+	public String getMedicineName() {
+		return medicineName;
+	}
+	public void setMedicineName(String medicineName) {
+		this.medicineName = medicineName;
 	}
 	
 	

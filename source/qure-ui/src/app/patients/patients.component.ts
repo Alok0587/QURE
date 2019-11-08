@@ -58,6 +58,7 @@ export class PatientsComponent implements OnInit {
   }
 
   async ngOnInit() {
+    window.scrollTo(0, 0);
     // const _patientId: string = this.route.snapshot.paramMap.get('id');
     let pEmail = sessionStorage.getItem('username');
 
@@ -89,6 +90,7 @@ export class PatientsComponent implements OnInit {
       });
       this.showOrders = false;
       this.showAppointments = true;
+      
   }
   async viewOrderList(pid)
   {
@@ -129,6 +131,7 @@ export class PatientsComponent implements OnInit {
       this.ngOnInit();
     }
   }
+  
 
   onBookAppointmentHandler(pId) {
     console.log("Id: " + pId);
@@ -204,6 +207,15 @@ export class PatientsComponent implements OnInit {
     let res = await this.appointmentService.updateAppointment(this.ratedAppointmentData);
     this.onViewAppointmentList();
 
+    
+  }
+
+  heartMaker(n:number){
+    document.getElementById('rating-ground').innerHTML="";
+    console.log("rating="+$(".rating1").val());
+    console.log("n="+n);
+    for(let i=0;i<n;i++)
+        document.getElementById('rating-ground').innerHTML+="<span class='fa fa-heart checked' style='color:red;'></span>&nbsp;";
     
   }
 

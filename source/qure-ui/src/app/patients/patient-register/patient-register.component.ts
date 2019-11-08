@@ -13,8 +13,9 @@ export class PatientRegisterComponent implements OnInit {
   patientForm: FormGroup;
   isSaved: boolean;
   gender='male';
-
+   loading:boolean=false;
   constructor(private patientService: PatientService, private router: Router) {
+    window.scrollTo(0,0);
     this.patientForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -53,6 +54,7 @@ export class PatientRegisterComponent implements OnInit {
   }
 
   async onAddPatientHandler() {
+    this.loading=true;
     console.log(this.patientForm);
     console.log(this.patientForm.value);
     let res: any = await this.patientService.registerPatient(this.patientForm.value);
@@ -61,6 +63,7 @@ export class PatientRegisterComponent implements OnInit {
     if (res && res.message) {
       this.isSaved = true;
     }
+    
 
     this.router.navigate(['patients/login', { regStatus: this.isSaved }] );
     // this.router.navigate(['patients/login']);
@@ -68,5 +71,7 @@ export class PatientRegisterComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  
 
 }

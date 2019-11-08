@@ -11,11 +11,11 @@
                 <p class="card-text">MIC number: {{doctor.licenseNumber}}</p>
                 <p class="card-text">Name: {{doctor.name}}</p>
                <center><button type="button" data-toggle="modal" (click)="onViewHandler(doctor.email)"
-                    data-target="#viewDoctorModal" class="btn btn-primary">View</button></center>
+                    data-target="#viewDoctorModal" class="btn btn-outline-primary">View</button></center>
                <center> <button type="button" data-toggle="modal" (click)="onDeleteHandler(doctor.doctorId)"
-                    class="btn btn-danger">Delete</button></center>
+                    class="btn btn-outline-danger">Delete</button></center>
                     <center> <button type="button" data-toggle="modal" *ngIf="doctor.approvalStatus==0" (click)="onUpdateHandler(doctor)"
-                        class="btn btn-primary">Verify</button></center>
+                        class="btn btn-outline-primary">Verify</button></center>
             </div>
         </div>
 
@@ -28,7 +28,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"><b>DOCTOR'S DETAILS</b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-outline-primary close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -80,7 +80,7 @@
 
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
 
                 </div>
                 <!-- </form> -->

@@ -1,94 +1,77 @@
 <div class="row">
     <div class="col-md-3">
+        <div class="card border-primary text-center card-personal" style="background: rgba(138, 166, 214, 0.2);">
 
-        <!-- Card -->
-        <div class="card text-center card-personal">
-
-            <!-- Card image-->
             <img class="card-img-top" src="\assets\image\appoint1.jpg" alt="Card image cap">
-            <!-- Card image-->
 
-            <!-- Card content -->
             <div class="card-body ">
-                <!-- Title-->
-                <a>
-                    <p class="card-text">You don't have to visit or call us now.</p>
-
-
-                </a>
                 <form class="form" [formGroup]="searchForm" (ngSubmit)="onSearchDoctorHandler()">
-                    <div class="form-group " id="searchbar">Location
-                        <select class="form-control" formControlName="city" style="width: 200px; height: 30px;">
-                            <option value="false">ALL location</option>
-                            <option value="delhi">delhi</option>
-                            <option value="pune">pune</option>
-                            <option value="bangalore">bangalore</option>
-
+                    <div class="form-group " id="searchbar">
+                        <p style="color: rgb(15, 15, 146);">Choose location:</p>
+                        <select class="form-control" formControlName="city"
+                            style="width: 75%; height: 10%; margin-left: 10%;">
+                            <option value="false">ALL locations</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Pune">Pune</option>
                         </select>
                         <br />
-                        Specialization<select class="form-control" formControlName="specialization"
-                            style="width: 200px; height: 30px;">
-                            <option value="false">All specialization</option>
+                        <p style="color: rgb(15, 15, 146);">Choose specialization:</p><select class="form-control"
+                            formControlName="specialization" style="width: 75%; height: 10%; margin-left: 10%;">
+                            <option value="false">All specializations</option>
                             <option value="ENT">ENT</option>
                             <option value="Dentist">Dentist</option>
                             <option value="Psychiatrist">Psychiatrist</option>
                             <option value="Neurologist">Neurologist</option>
                             <option value="Cardiologist">Cardiologist</option>
-
-
                         </select>
                         <br>
-                        <button type="submit" class="btn btn-primary">SELECT</button>
-
+                        <button type="submit" class="btn btn-outline-primary">SEARCH</button>
                     </div>
                 </form>
-                <!-- <p class="card-meta">{{patientData.email}}</p> -->
-                <!-- Text -->
-
-
-
             </div>
-            <!-- Card content -->
-
         </div>
-        <!-- Card -->
-
     </div>
     <div class="col-md-9">
         <h4>Doctors</h4>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div>
             <div class="row">
 
-                <div class="card col-sm-4" *ngFor="let doctor of doctorList">
+                <div class="card col-md-3 border-info " style="margin: 5px 5px 5px 5px;"
+                    *ngFor="let doctor of doctorList">
                     <div class="card-body">
-                        <p class="card-text">Doctor Name: {{doctor.name}}</p>
-                        <p class="card-text">MIC number: {{doctor.licenseNumber}}</p>
-                        <p class="card-text" *ngIf="doctor.address">Adress: {{doctor.address.buildingName}},
+                        <p class="card-text"><span
+                                style="color:rgb(55, 92, 194); text-transform: uppercase; font-weight:bold;">Doctor
+                                Name:</span> {{doctor.name}}</p>
+                        <p class="card-text"><span
+                                style="color:rgb(55, 92, 194); text-transform: uppercase; font-weight:bold;">MIC
+                                License:</span> {{doctor.licenseNumber}}</p>
+                        <p class="card-text"><span
+                                style="color:rgb(55, 92, 194); text-transform: uppercase; font-weight:bold;">Specialization:
+                                </span> {{doctor.specialization}}</p>
+                        <p class="card-text" *ngIf="doctor.address"><span
+                                style="color: rgb(55, 92, 194); text-transform: uppercase; font-weight:bold;">Clinic Adress:
+                            </span>{{doctor.address.buildingName}},
                             {{doctor.address.street}},
                             {{doctor.address.city}}, {{doctor.address.state}}
                         </p>
-                        <p class="card-text">Contact number: {{doctor.phone}}</p>
-                        <span *ngIf="doctor.avgRating ==0" class="card-text">Not yet rated</span>
+                        <p class="card-text"><span
+                                style="color:rgb(55, 92, 194); text-transform: uppercase; font-weight:bold;">Contact
+                                number:</span> {{doctor.phone}}</p>
+                        <span class="text-center" *ngIf="doctor.avgRating ==0" class="card-text">Not yet rated</span>
                         <span *ngIf="doctor.avgRating >=1" class="fa fa-star checked"></span>
                         <span *ngIf="doctor.avgRating >=2" class="fa fa-star checked"></span>
                         <span *ngIf="doctor.avgRating >=3" class="fa fa-star checked"></span>
                         <span *ngIf="doctor.avgRating >=4" class="fa fa-star checked"></span>
                         <span *ngIf="doctor.avgRating >=5" class="fa fa-star checked"></span>
-                        <!-- <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span> -->
-                        <p>verified &#x2714;</p>
-
-
-                        <!-- <button type="button" data-toggle="modal" (click)="onSelectHandler(doctor.doctorId)"
-                class="btn btn-danger">BOOK</button> -->
-                        <center> <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#bookAppointmentModal"
-                                (click)="onSelectHandler(doctor.doctorId)">BOOK</button></center>
+                        <p class="text-center" style="font-weight:bold;color: rgb(224, 109, 67);"
+                            *ngIf="doctor.approvalStatus==1">Verified by QURE &#x2714;</p>
+                        <center> <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                                data-target="#bookAppointmentModal" (click)="onSelectHandler(doctor)">BOOK NOW</button>
+                        </center>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -99,50 +82,62 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Appointment Details</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Appointment Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form ngNativeValidate #f="ngForm" (ngSubmit)="onBookHandler(f)">
-                    <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Doctor Id</label>
+                    <div class="form-group row" style="display: none;">
+                        <label for="doctorId" class="col-sm-3 col-form-label">Doctor Id</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="doctorId" placeholder="Enter Id"
+                            <input type="text" class="form-control" name="doctorId"
                                 [(ngModel)]="appointmentData.doctorId" disabled required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Patient Id</label>
+                        <label for="doctorName" class="col-sm-3 col-form-label">Doctor Name</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="patientId" placeholder="Enter Id"
+                            <input type="text" class="form-control" name="doctorName"
+                                [(ngModel)]="appointmentData.doctorName" disabled required>
+                        </div>
+                    </div>
+                    <div class="form-group row" style="display: none;">
+                        <label for="patientId" class="col-sm-3 col-form-label">Patient Id</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="patientId"
                                 [(ngModel)]="appointmentData.patientId" disabled required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Date</label>
+                        <label for="patientName" class="col-sm-3 col-form-label">Patient Name</label>
                         <div class="col-sm-9">
-                            <input type="date" id="date" class="form-control" name="appointmentDate" id="appointmentDate"
-                                [(ngModel)]="appointmentData.appointmentDate" (blur)="checkDate()" required min=0>
-                            <p class="text-danger" id="dateErr"></p>    
+                            <input type="text" class="form-control" name="patientName"
+                                [(ngModel)]="appointmentData.patientName" disabled required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Time</label>
+                        <label for="appointmentDate" class="col-sm-3 col-form-label">Date</label>
                         <div class="col-sm-9">
-                            <!-- <input type="time" class="form-control" name="time" placeholder="Enter time"
-                                [(ngModel)]="appointmentData.time"> -->
-
-
+                            <input type="date" id="date" class="form-control" name="appointmentDate"
+                                id="appointmentDate" [(ngModel)]="appointmentData.appointmentDate" (blur)="checkDate()"
+                                required min=0>
+                            <p class="text-danger" id="dateErr"></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="time" class="col-sm-3 col-form-label">Time</label>
+                        <div class="col-sm-9">
                             <select (click)=showSlot() class="form-control" name="time"
                                 [(ngModel)]="appointmentData.time" required>
-                                <option value={{slot}} *ngFor="let slot of slotList">{{slot}}</option>
+                                <option value={{slot}} *ngFor="let slot of slotList">{{slot}}:00</option>
                             </select>
                         </div>
+                        <small style="color: red;">[24hr format]</small>
                     </div>
                     <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Price</label>
+                        <label for="price" class="col-sm-3 col-form-label">Price</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" name="price" [(ngModel)]="appointmentData.price"
                                 disabled>
@@ -150,13 +145,13 @@
                     </div>
 
                     <div class="alert alert-success" *ngIf="isSaved">
-                        Updated successfully!
+                        Booked successfully!
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        <button type="button" class="btn-sm btn-outline-secondary" data-dismiss="modal"
                             routerLink="/patients">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn-sm btn-outline-primary">Book</button>
                     </div>
                 </form>
             </div>
